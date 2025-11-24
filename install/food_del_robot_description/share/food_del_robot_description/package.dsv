@@ -1,0 +1,8 @@
+source;share/food_del_robot_description/hook/cmake_prefix_path.ps1
+source;share/food_del_robot_description/hook/cmake_prefix_path.dsv
+source;share/food_del_robot_description/hook/cmake_prefix_path.sh
+source;share/food_del_robot_description/local_setup.bash
+source;share/food_del_robot_description/local_setup.dsv
+source;share/food_del_robot_description/local_setup.ps1
+source;share/food_del_robot_description/local_setup.sh
+source;share/food_del_robot_description/local_setup.zsh

@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<robot name="food_del_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Xacro parameters -->
+    <xacro:property name="base_length" value="0.5"/>
+    <xacro:property name="base_height" value="0.3"/>
+    <xacro:property name="base_width" value="0.5"/>
+    <xacro:property name="wheel_radius" value="0.07"/>
+    <xacro:property name="wheel_length" value="0.04"/>
+    <xacro:property name="rotate_90" value="1.57"/>
+    <xacro:property name ="lidar_length" value = "0.04"/>
+    <xacro:property name ="lidar_radius" value = "0.08"/>
+
+    <!-- Wheel macro -->
+    <xacro:macro name="wheel_link" params="prefix">
+        <link name="${prefix}_wheel_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+                </geometry>
+                <!-- Rotate cylinder to roll correctly along Y axis -->
+                <origin xyz="0.0 0.0 0.0" rpy="${rotate_90} 0.0 0.0"/>
+                <material name="red"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <sphere radius="${wheel_radius}"/>
+                </geometry>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </collision>
+            <xacro:cylinder_inertia 
+                m="1.0" 
+                r="${wheel_radius}" 
+                l="${wheel_length}" 
+                o_xyz="0.0 0.0 0.0" 
+                o_rpy="0.0 ${rotate_90} 0.0"/>
+        </link>
+    </xacro:macro>
+
+    <!-- Caster wheel macro -->
+    <xacro:macro name="caster_wheel_link" params="prefix">
+        <link name="${prefix}_caster_wheel_link">
+            <visual>
+                <geometry>
+                    <sphere radius="${wheel_radius / 2.0}"/>
+                </geometry>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <material name="green"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <sphere radius="${wheel_radius / 2.0}"/>
+                </geometry>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </collision>
+            <xacro:sphere_inertia m="0.5" r="${wheel_radius / 2.0}" o_xyz="0.0 0.0 0.0" o_rpy="0.0 0.0 0.0"/>
+        </link>
+    </xacro:macro>
+
+    <!-- Instantiate wheels -->
+    <xacro:wheel_link prefix="right"/>
+    <xacro:wheel_link prefix="left"/>
+    <xacro:caster_wheel_link prefix="front"/>
+    <xacro:caster_wheel_link prefix="back"/>
+
+    <!-- Base links -->
+    <link name="base_footprint"/>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="${base_length} ${base_width} ${base_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 ${base_height / 2.0}" rpy="0.0 0.0 0.0"/>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${base_length} ${base_width} ${base_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 ${base_height / 2.0}" rpy="0.0 0.0 0.0"/>
+        </collision>
+        <xacro:box_inertia 
+            m="5.0" 
+            x="${base_length}" 
+            y="${base_width}" 
+            z="${base_height}" 
+            o_xyz="0.0 0.0 ${base_height / 2.0}" 
+            o_rpy="0.0 0.0 0.0"/>
+    </link>
+
+    <!-- Base scan link -->
+    <link name="base_scan_link">
+        <visual>
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_length}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_length}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </collision>
+        <xacro:cylinder_inertia 
+            m="0.2" 
+            r="${lidar_radius}" 
+            l="${lidar_length}" 
+            o_xyz="0.0 0.0 0.0" 
+            o_rpy="0.0 0.0 0.0"/>
+    </link>
+
+    <!-- Joints -->
+    <joint name="base_footprint_base_link_joint" type="fixed">
+        <origin xyz="0.0 0.0 ${wheel_radius}" rpy="0.0 0.0 0.0"/>
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+    </joint>
+    <!-- Wheels are now placed along Y-axis (left/right), robot moves along +X -->
+    <joint name="base_right_wheel_joint" type="revolute">
+        <origin xyz="0.0 ${-base_width / 2.0 - wheel_length / 2} ${wheel_radius/6}" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="right_wheel_link"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="0.0" upper="6.28" effort="100.0" velocity="5.0"/>
+    </joint>
+
+    <joint name="base_left_wheel_joint" type="revolute">
+        <origin xyz="0.0 ${base_width / 2.0 + wheel_length / 2} 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="left_wheel_link"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="0.0" upper="6.28" effort="100.0" velocity="5.0"/>
+    </joint>
+
+    <!-- Casters placed front/back along X-axis -->
+    <joint name="base_front_caster_wheel_joint" type="fixed">
+        <origin xyz="${base_length / 2.0 - wheel_radius} 0.0 ${-wheel_radius/2}" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="front_caster_wheel_link"/>
+    </joint>
+
+    <joint name="base_back_caster_wheel_joint" type="fixed">
+        <origin xyz="${-base_length / 2.0 + wheel_radius} 0.0 ${-wheel_radius/2}" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="back_caster_wheel_link"/>
+    </joint>
+
+    <!-- base scan joint -->
+    <joint name="base_scan_base_link_joint" type="fixed">
+        <origin xyz="0.0 0.0 ${base_height + (lidar_length/2)}" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="base_scan_link"/>
+    </joint>
+
+</robot>
