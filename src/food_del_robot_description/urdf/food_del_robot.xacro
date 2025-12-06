@@ -90,7 +90,7 @@
     </link>
 
     <!-- Base scan link -->
-    <link name="base_scan_link">
+    <link name="laser">
         <visual>
             <geometry>
                 <cylinder radius="${lidar_radius}" length="${lidar_length}"/>
@@ -149,10 +149,10 @@
     </joint>
 
     <!-- base scan joint -->
-    <joint name="base_scan_base_link_joint" type="fixed">
+    <joint name="laser_base_link_joint" type="fixed">
         <origin xyz="0.0 0.0 ${base_height + (lidar_length/2)}" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
-        <child link="base_scan_link"/>
+        <child link="laser"/>
     </joint>
 
 </robot>
