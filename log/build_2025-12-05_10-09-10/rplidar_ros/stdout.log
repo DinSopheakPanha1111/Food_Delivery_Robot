@@ -1,0 +1,7 @@
+[  3%] Built target rplidar_client
+[  5%] [32mBuilding CXX object CMakeFiles/rplidarA1_node.dir/src/rplidarA1_node.cpp.o[0m
+[  7%] [32mBuilding CXX object CMakeFiles/rplidarA1_node.dir/sdk/src/sl_serial_channel.cpp.o[0m
+[  8%] [32mBuilding CXX object CMakeFiles/rplidarA1_node.dir/sdk/src/sl_tcp_channel.cpp.o[0m
+[ 10%] [32mBuilding CXX object CMakeFiles/rplidarA1_node.dir/sdk/src/sl_udp_channel.cpp.o[0m
+[ 66%] Built target rplidar_node
+[ 75%] Built target rplidar_composition

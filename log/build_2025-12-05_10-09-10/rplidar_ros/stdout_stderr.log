@@ -1,0 +1,56 @@
+[  3%] Built target rplidar_client
+[  5%] [32mBuilding CXX object CMakeFiles/rplidarA1_node.dir/src/rplidarA1_node.cpp.o[0m
+[  7%] [32mBuilding CXX object CMakeFiles/rplidarA1_node.dir/sdk/src/sl_serial_channel.cpp.o[0m
+[  8%] [32mBuilding CXX object CMakeFiles/rplidarA1_node.dir/sdk/src/sl_tcp_channel.cpp.o[0m
+[ 10%] [32mBuilding CXX object CMakeFiles/rplidarA1_node.dir/sdk/src/sl_udp_channel.cpp.o[0m
+[ 66%] Built target rplidar_node
+[ 75%] Built target rplidar_composition
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/src/rplidarA1_node.cpp:35:10:[m[K [01;31m[Kfatal error: [m[Krclcpp/rclcpp.hpp: No such file or directory
+   35 | #include [01;31m[K<rclcpp/rclcpp.hpp>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+gmake[2]: *** [CMakeFiles/rplidarA1_node.dir/build.make:76: CMakeFiles/rplidarA1_node.dir/src/rplidarA1_node.cpp.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/src/sl_serial_channel.cpp:33[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kdata[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+   66 |     sl_u8 data[[01;35m[K0[m[K];
+      |                [01;35m[K^[m[K
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/src/sl_udp_channel.cpp:33[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kdata[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+   66 |     sl_u8 data[[01;35m[K0[m[K];
+      |                [01;35m[K^[m[K
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/src/sl_serial_channel.cpp:33[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kpayload[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+  324 |     sl_u8  payload[[01;35m[K0[m[K];
+      |                    [01;35m[K^[m[K
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/src/sl_udp_channel.cpp:33[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kpayload[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+  324 |     sl_u8  payload[[01;35m[K0[m[K];
+      |                    [01;35m[K^[m[K
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/src/sl_tcp_channel.cpp:33[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kdata[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+   66 |     sl_u8 data[[01;35m[K0[m[K];
+      |                [01;35m[K^[m[K
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/src/sl_tcp_channel.cpp:33[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kpayload[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+  324 |     sl_u8  payload[[01;35m[K0[m[K];
+      |                    [01;35m[K^[m[K
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/src/sl_udp_channel.cpp:[m[K In member function ‘[01m[Kvoid sl::UdpChannel::setStatus(_u32)[m[K’:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/src/sl_udp_channel.cpp:112:29:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kflag[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  112 |         void setStatus([01;35m[K_u32 flag[m[K){}
+      |                        [01;35m[K~~~~~^~~~[m[K
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/src/sl_tcp_channel.cpp:[m[K In member function ‘[01m[Kvoid sl::TcpChannel::setStatus(_u32)[m[K’:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros/sdk/src/sl_tcp_channel.cpp:109:29:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kflag[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  109 |         void setStatus([01;35m[K_u32 flag[m[K){}
+      |                        [01;35m[K~~~~~^~~~[m[K
+gmake[1]: *** [CMakeFiles/Makefile2:221: CMakeFiles/rplidarA1_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2
