@@ -1,0 +1,42 @@
+[0.020s] Invoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16
+[0.035s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.120s] -- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)
+[0.146s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.148s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.152s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.162s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.173s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.203s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.206s] -- Found rmw_cyclonedds_cpp: 1.3.4 (/opt/ros/humble/share/rmw_cyclonedds_cpp/cmake)
+[0.221s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[0.256s] -- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.264s] -- Found tf2_msgs: 0.25.16 (/opt/ros/humble/share/tf2_msgs/cmake)
+[0.290s] -- Found nav_msgs: 4.9.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[0.301s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.378s] -- Configuring done
+[0.393s] -- Generating done
+[0.398s] -- Build files have been written to: /home/panha/Food_Delivery_Robot/build/zlac8015d_driver
+[0.435s] [ 25%] Built target robot_kinematic
+[0.436s] [ 50%] Built target can
+[0.459s] [ 62%] [32mBuilding CXX object CMakeFiles/zlac8015d_driver.dir/src/zlac8015d_driver.cpp.o[0m
+[0.682s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/zlac8015d_driver.cpp:[m[K In member function ‘[01m[Kbool ZLAC8015DDriver::set_sync_target_speed(float)[m[K’:
+[0.682s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/zlac8015d_driver.cpp:31:67:[m[K [01;31m[Kerror: [m[Kinvalid operands of types ‘[01m[Kfloat[m[K’ and ‘[01m[Kint[m[K’ to binary ‘[01m[Koperator&[m[K’
+[0.682s]    31 |     ss << std::hex << std::setw(4) << std::setfill('0') << ([32m[Kspeed[m[K [01;31m[K&[m[K [34m[K0xFFFF[m[K);
+[0.682s]       |                                                             [32m[K~~~~~[m[K [01;31m[K^[m[K [34m[K~~~~~~[m[K
+[0.683s]       |                                                             [32m[K|[m[K       [34m[K|[m[K
+[0.683s]       |                                                             [32m[Kfloat[m[K   [34m[Kint[m[K
+[0.683s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/zlac8015d_driver.cpp:[m[K In member function ‘[01m[Kbool ZLAC8015DDriver::set_sync_left_right_speed(float, float)[m[K’:
+[0.683s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/zlac8015d_driver.cpp:38:77:[m[K [01;31m[Kerror: [m[Kinvalid operands of types ‘[01m[Kfloat[m[K’ and ‘[01m[Kint[m[K’ to binary ‘[01m[Koperator&[m[K’
+[0.683s]    38 |     ss_left << std::hex << std::setw(4) << std::setfill('0') << ([32m[Kleft_speed[m[K [01;31m[K&[m[K [34m[K0xFFFF[m[K);
+[0.683s]       |                                                                  [32m[K~~~~~~~~~~[m[K [01;31m[K^[m[K [34m[K~~~~~~[m[K
+[0.683s]       |                                                                  [32m[K|[m[K            [34m[K|[m[K
+[0.683s]       |                                                                  [32m[Kfloat[m[K        [34m[Kint[m[K
+[0.683s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/zlac8015d_driver.cpp:39:79:[m[K [01;31m[Kerror: [m[Kinvalid operands of types ‘[01m[Kfloat[m[K’ and ‘[01m[Kint[m[K’ to binary ‘[01m[Koperator&[m[K’
+[0.683s]    39 |     ss_right << std::hex << std::setw(4) << std::setfill('0') << ([32m[Kright_speed[m[K [01;31m[K&[m[K [34m[K0xFFFF[m[K);
+[0.684s]       |                                                                   [32m[K~~~~~~~~~~~[m[K [01;31m[K^[m[K [34m[K~~~~~~[m[K
+[0.684s]       |                                                                   [32m[K|[m[K             [34m[K|[m[K
+[0.684s]       |                                                                   [32m[Kfloat[m[K         [34m[Kint[m[K
+[0.717s] gmake[2]: *** [CMakeFiles/zlac8015d_driver.dir/build.make:76: CMakeFiles/zlac8015d_driver.dir/src/zlac8015d_driver.cpp.o] Error 1
+[0.717s] gmake[1]: *** [CMakeFiles/Makefile2:184: CMakeFiles/zlac8015d_driver.dir/all] Error 2
+[0.718s] gmake: *** [Makefile:146: all] Error 2
+[0.720s] Invoked command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16

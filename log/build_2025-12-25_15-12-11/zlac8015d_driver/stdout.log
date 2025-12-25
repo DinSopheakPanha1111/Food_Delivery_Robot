@@ -1,0 +1,6 @@
+[ 50%] Built target robot_kinematic
+[ 50%] Built target can
+[ 62%] [32mBuilding CXX object CMakeFiles/zlac8015d_driver.dir/src/zlac8015d_driver.cpp.o[0m
+[ 75%] [32m[1mLinking CXX static library libzlac8015d_driver.a[0m
+[ 75%] Built target zlac8015d_driver
+[ 87%] [32mBuilding CXX object CMakeFiles/drive_and_odom.dir/src/drive_and_odom.cpp.o[0m

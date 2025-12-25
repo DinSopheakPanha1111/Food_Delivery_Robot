@@ -1,0 +1,159 @@
+[0.137s] colcon DEBUG Command line arguments: ['/usr/bin/colcon', 'list', '-p', '--base-paths', '/home/panha/Food_Delivery_Robot']
+[0.137s] colcon DEBUG Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='list', build_base='build', ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['/home/panha/Food_Delivery_Robot'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], topological_order=False, names_only=False, paths_only=True, topological_graph=False, topological_graph_dot=False, topological_graph_density=False, topological_graph_legend=False, topological_graph_dot_cluster=False, topological_graph_dot_include_skipped=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x74fed6f601f0>, verb_extension=<colcon_package_information.verb.list.ListVerb object at 0x74fed6f2f070>, main=<bound method ListVerb.main of <colcon_package_information.verb.list.ListVerb object at 0x74fed6f2f070>>, mixin_verb=('list',))
+[0.184s] colcon.colcon_core.package_discovery Level 1 discover_packages(colcon_meta) check parameters
+[0.185s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) check parameters
+[0.185s] colcon.colcon_core.package_discovery Level 1 discover_packages(ignore) check parameters
+[0.185s] colcon.colcon_core.package_discovery Level 1 discover_packages(path) check parameters
+[0.185s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) discover
+[0.185s] colcon.colcon_core.package_discovery INFO Crawling recursively for packages in '/home/panha/Food_Delivery_Robot'
+[0.185s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extensions ['ignore', 'ignore_ament_install']
+[0.185s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extension 'ignore'
+[0.185s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extension 'ignore_ament_install'
+[0.185s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extensions ['colcon_pkg']
+[0.185s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extension 'colcon_pkg'
+[0.185s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extensions ['colcon_meta']
+[0.185s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extension 'colcon_meta'
+[0.186s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extensions ['ros']
+[0.186s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extension 'ros'
+[0.201s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extensions ['cmake', 'python']
+[0.201s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extension 'cmake'
+[0.201s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extension 'python'
+[0.201s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extensions ['python_setup_py']
+[0.201s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot) by extension 'python_setup_py'
+[0.201s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/build) by extensions ['ignore', 'ignore_ament_install']
+[0.201s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/build) by extension 'ignore'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/build) ignored
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extensions ['ignore', 'ignore_ament_install']
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extension 'ignore'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extension 'ignore_ament_install'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extensions ['colcon_pkg']
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extension 'colcon_pkg'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extensions ['colcon_meta']
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extension 'colcon_meta'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extensions ['ros']
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extension 'ros'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extensions ['cmake', 'python']
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extension 'cmake'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extension 'python'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extensions ['python_setup_py']
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs) by extension 'python_setup_py'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extensions ['ignore', 'ignore_ament_install']
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extension 'ignore'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extension 'ignore_ament_install'
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extensions ['colcon_pkg']
+[0.202s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extension 'colcon_pkg'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extensions ['colcon_meta']
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extension 'colcon_meta'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extensions ['ros']
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extension 'ros'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extensions ['cmake', 'python']
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extension 'cmake'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extension 'python'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extensions ['python_setup_py']
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/EKF) by extension 'python_setup_py'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extensions ['ignore', 'ignore_ament_install']
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extension 'ignore'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extension 'ignore_ament_install'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extensions ['colcon_pkg']
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extension 'colcon_pkg'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extensions ['colcon_meta']
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extension 'colcon_meta'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extensions ['ros']
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extension 'ros'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extensions ['cmake', 'python']
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extension 'cmake'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extension 'python'
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extensions ['python_setup_py']
+[0.203s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/Map) by extension 'python_setup_py'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extensions ['ignore', 'ignore_ament_install']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extension 'ignore'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extension 'ignore_ament_install'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extensions ['colcon_pkg']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extension 'colcon_pkg'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extensions ['colcon_meta']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extension 'colcon_meta'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extensions ['ros']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extension 'ros'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extensions ['cmake', 'python']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extension 'cmake'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extension 'python'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extensions ['python_setup_py']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/ROS2_Nav2) by extension 'python_setup_py'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extensions ['ignore', 'ignore_ament_install']
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extension 'ignore'
+[0.204s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extension 'ignore_ament_install'
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extensions ['colcon_pkg']
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extension 'colcon_pkg'
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extensions ['colcon_meta']
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extension 'colcon_meta'
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extensions ['ros']
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extension 'ros'
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extensions ['cmake', 'python']
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extension 'cmake'
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extension 'python'
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extensions ['python_setup_py']
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/docs/graph) by extension 'python_setup_py'
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/install) by extensions ['ignore', 'ignore_ament_install']
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/install) by extension 'ignore'
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/install) ignored
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/log) by extensions ['ignore', 'ignore_ament_install']
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/log) by extension 'ignore'
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/log) ignored
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extensions ['ignore', 'ignore_ament_install']
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extension 'ignore'
+[0.205s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extension 'ignore_ament_install'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extensions ['colcon_pkg']
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extension 'colcon_pkg'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extensions ['colcon_meta']
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extension 'colcon_meta'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extensions ['ros']
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extension 'ros'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extensions ['cmake', 'python']
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extension 'cmake'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extension 'python'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extensions ['python_setup_py']
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src) by extension 'python_setup_py'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/food_del_robot_description) by extensions ['ignore', 'ignore_ament_install']
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/food_del_robot_description) by extension 'ignore'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/food_del_robot_description) by extension 'ignore_ament_install'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/food_del_robot_description) by extensions ['colcon_pkg']
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/food_del_robot_description) by extension 'colcon_pkg'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/food_del_robot_description) by extensions ['colcon_meta']
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/food_del_robot_description) by extension 'colcon_meta'
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/food_del_robot_description) by extensions ['ros']
+[0.206s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/food_del_robot_description) by extension 'ros'
+[0.211s] colcon.colcon_core.package_identification DEBUG Package '/home/panha/Food_Delivery_Robot/src/food_del_robot_description' with type 'ros.ament_cmake' and name 'food_del_robot_description'
+[0.211s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/robot_kinematic) by extensions ['ignore', 'ignore_ament_install']
+[0.211s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/robot_kinematic) by extension 'ignore'
+[0.211s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/robot_kinematic) ignored
+[0.211s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2) by extensions ['ignore', 'ignore_ament_install']
+[0.211s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2) by extension 'ignore'
+[0.211s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2) by extension 'ignore_ament_install'
+[0.212s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2) by extensions ['colcon_pkg']
+[0.212s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2) by extension 'colcon_pkg'
+[0.212s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2) by extensions ['colcon_meta']
+[0.212s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2) by extension 'colcon_meta'
+[0.212s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2) by extensions ['ros']
+[0.212s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2) by extension 'ros'
+[0.213s] colcon.colcon_core.package_identification DEBUG Package '/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2' with type 'ros.ament_cmake' and name 'rplidar_ros'
+[0.213s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis) by extensions ['ignore', 'ignore_ament_install']
+[0.213s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis) by extension 'ignore'
+[0.213s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis) by extension 'ignore_ament_install'
+[0.213s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis) by extensions ['colcon_pkg']
+[0.213s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis) by extension 'colcon_pkg'
+[0.213s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis) by extensions ['colcon_meta']
+[0.213s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis) by extension 'colcon_meta'
+[0.213s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis) by extensions ['ros']
+[0.213s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis) by extension 'ros'
+[0.214s] colcon.colcon_core.package_identification DEBUG Package '/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis' with type 'ros.ament_cmake' and name 'yahboom_imu_10_axis'
+[0.214s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/zlac8015d_driver) by extensions ['ignore', 'ignore_ament_install']
+[0.214s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/zlac8015d_driver) by extension 'ignore'
+[0.214s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/zlac8015d_driver) by extension 'ignore_ament_install'
+[0.214s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/zlac8015d_driver) by extensions ['colcon_pkg']
+[0.214s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/zlac8015d_driver) by extension 'colcon_pkg'
+[0.214s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/zlac8015d_driver) by extensions ['colcon_meta']
+[0.214s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/zlac8015d_driver) by extension 'colcon_meta'
+[0.214s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/zlac8015d_driver) by extensions ['ros']
+[0.214s] colcon.colcon_core.package_identification Level 1 _identify(/home/panha/Food_Delivery_Robot/src/zlac8015d_driver) by extension 'ros'
+[0.215s] colcon.colcon_core.package_identification DEBUG Package '/home/panha/Food_Delivery_Robot/src/zlac8015d_driver' with type 'ros.ament_cmake' and name 'zlac8015d_driver'
+[0.216s] colcon.colcon_core.package_discovery Level 1 discover_packages(recursive) using defaults

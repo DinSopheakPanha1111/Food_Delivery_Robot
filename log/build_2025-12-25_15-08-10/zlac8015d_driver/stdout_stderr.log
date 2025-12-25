@@ -1,0 +1,23 @@
+[ 50%] Built target can
+[ 50%] Built target robot_kinematic
+[ 62%] [32mBuilding CXX object CMakeFiles/zlac8015d_driver.dir/src/zlac8015d_driver.cpp.o[0m
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/zlac8015d_driver.cpp:[m[K In member function ‘[01m[Kbool ZLAC8015DDriver::set_sync_target_speed(float)[m[K’:
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/zlac8015d_driver.cpp:31:67:[m[K [01;31m[Kerror: [m[Kinvalid operands of types ‘[01m[Kfloat[m[K’ and ‘[01m[Kint[m[K’ to binary ‘[01m[Koperator&[m[K’
+   31 |     ss << std::hex << std::setw(4) << std::setfill('0') << ([32m[Kspeed[m[K [01;31m[K&[m[K [34m[K0xFFFF[m[K);
+      |                                                             [32m[K~~~~~[m[K [01;31m[K^[m[K [34m[K~~~~~~[m[K
+      |                                                             [32m[K|[m[K       [34m[K|[m[K
+      |                                                             [32m[Kfloat[m[K   [34m[Kint[m[K
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/zlac8015d_driver.cpp:[m[K In member function ‘[01m[Kbool ZLAC8015DDriver::set_sync_left_right_speed(float, float)[m[K’:
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/zlac8015d_driver.cpp:38:77:[m[K [01;31m[Kerror: [m[Kinvalid operands of types ‘[01m[Kfloat[m[K’ and ‘[01m[Kint[m[K’ to binary ‘[01m[Koperator&[m[K’
+   38 |     ss_left << std::hex << std::setw(4) << std::setfill('0') << ([32m[Kleft_speed[m[K [01;31m[K&[m[K [34m[K0xFFFF[m[K);
+      |                                                                  [32m[K~~~~~~~~~~[m[K [01;31m[K^[m[K [34m[K~~~~~~[m[K
+      |                                                                  [32m[K|[m[K            [34m[K|[m[K
+      |                                                                  [32m[Kfloat[m[K        [34m[Kint[m[K
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/zlac8015d_driver.cpp:39:79:[m[K [01;31m[Kerror: [m[Kinvalid operands of types ‘[01m[Kfloat[m[K’ and ‘[01m[Kint[m[K’ to binary ‘[01m[Koperator&[m[K’
+   39 |     ss_right << std::hex << std::setw(4) << std::setfill('0') << ([32m[Kright_speed[m[K [01;31m[K&[m[K [34m[K0xFFFF[m[K);
+      |                                                                   [32m[K~~~~~~~~~~~[m[K [01;31m[K^[m[K [34m[K~~~~~~[m[K
+      |                                                                   [32m[K|[m[K             [34m[K|[m[K
+      |                                                                   [32m[Kfloat[m[K         [34m[Kint[m[K
+gmake[2]: *** [CMakeFiles/zlac8015d_driver.dir/build.make:76: CMakeFiles/zlac8015d_driver.dir/src/zlac8015d_driver.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:184: CMakeFiles/zlac8015d_driver.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

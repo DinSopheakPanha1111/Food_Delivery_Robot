@@ -1,0 +1,13 @@
+[0.019s] Invoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16
+[0.055s] [ 25%] Built target robot_kinematic
+[0.056s] [ 50%] Built target can
+[0.077s] [ 75%] Built target zlac8015d_driver
+[0.102s] [ 87%] [32mBuilding CXX object CMakeFiles/drive_and_odom.dir/src/drive_and_odom.cpp.o[0m
+[0.313s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:4:10:[m[K [01;31m[Kfatal error: [m[Ktf2/LinearMath/Quaternion.hpp: No such file or directory
+[0.313s]     4 | #include [01;31m[K<tf2/LinearMath/Quaternion.hpp>[m[K
+[0.313s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.313s] compilation terminated.
+[0.325s] gmake[2]: *** [CMakeFiles/drive_and_odom.dir/build.make:76: CMakeFiles/drive_and_odom.dir/src/drive_and_odom.cpp.o] Error 1
+[0.325s] gmake[1]: *** [CMakeFiles/Makefile2:212: CMakeFiles/drive_and_odom.dir/all] Error 2
+[0.326s] gmake: *** [Makefile:146: all] Error 2
+[0.328s] Invoked command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16
