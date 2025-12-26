@@ -34,8 +34,6 @@ bool CAN::run_ip(const std::string& ip_cmd)
 }
 
 // ======================================================
-// 🔹 Check if CAN interface is already UP
-// ======================================================
 bool CAN::is_interface_up() const
 {
     FILE* f = popen(("ip link show " + iface_).c_str(), "r");
@@ -52,15 +50,11 @@ bool CAN::is_interface_up() const
 }
 
 // ======================================================
-// 🔹 Enable CAN (NO RESET if already UP)
-// ======================================================
 bool CAN::enable(bool configure_link)
 {
-    // Socket already open → reuse
     if (sock_ != -1)
         return true;
 
-    // Configure link ONLY if requested AND interface is DOWN
     if (configure_link && !is_interface_up())
     {
         (void)run_ip("link set " + iface_ + " down");
@@ -73,7 +67,6 @@ bool CAN::enable(bool configure_link)
             return false;
     }
 
-    // Open CAN socket
     sock_ = ::socket(PF_CAN, SOCK_RAW, CAN_RAW);
     if (sock_ < 0) {
         perror("socket");
@@ -119,40 +112,39 @@ bool CAN::disable(bool bring_link_down)
 }
 
 // ======================================================
-bool CAN::send_frame(uint8_t id, const uint8_t* data, uint8_t len)
+// 🔧 FIXED: full 11-bit CAN ID supported
+bool CAN::send_frame(uint16_t id, const uint8_t* data, uint8_t len)
 {
     if (sock_ < 0 || len > 8)
         return false;
 
     struct can_frame frame {};
-    frame.can_id  = id;
+    frame.can_id  = id & CAN_SFF_MASK;   // ✅ keep 11-bit ID
     frame.can_dlc = len;
 
     if (len)
         std::memcpy(frame.data, data, len);
 
-    ssize_t n = ::write(sock_, &frame, sizeof(frame));
-    return n == static_cast<ssize_t>(sizeof(frame));
+    return (::write(sock_, &frame, sizeof(frame)) ==
+            static_cast<ssize_t>(sizeof(frame)));
 }
 
 // ======================================================
-bool CAN::receive_frame(uint8_t &id, uint8_t *data, uint8_t &len)
+// 🔧 FIXED: receive full CAN ID
+bool CAN::receive_frame(uint16_t &id, uint8_t *data, uint8_t &len)
 {
     if (sock_ < 0)
         return false;
 
     struct can_frame frame {};
 
-    struct timeval tv;
-    tv.tv_sec  = 2;
-    tv.tv_usec = 0;
+    struct timeval tv {2, 0};
     setsockopt(sock_, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
 
-    ssize_t n = ::read(sock_, &frame, sizeof(frame));
-    if (n != static_cast<ssize_t>(sizeof(frame)))
+    if (::read(sock_, &frame, sizeof(frame)) != sizeof(frame))
         return false;
 
-    id  = static_cast<uint8_t>(frame.can_id & 0xFF);
+    id  = frame.can_id & CAN_SFF_MASK;   // ✅ full ID
     len = frame.can_dlc;
 
     if (len)
@@ -161,8 +153,6 @@ bool CAN::receive_frame(uint8_t &id, uint8_t *data, uint8_t &len)
     return true;
 }
 
-// ======================================================
-// 🔹 Explicit bitrate change (INTENTIONAL reset)
 // ======================================================
 bool CAN::set_new_bitrate(int new_bitrate)
 {

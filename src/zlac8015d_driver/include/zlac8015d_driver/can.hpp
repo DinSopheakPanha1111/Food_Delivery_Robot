@@ -17,12 +17,11 @@ public:
     bool enable(bool configure_link = true);
     bool disable(bool bring_link_down = true);
 
-    bool send_frame(uint8_t id, const uint8_t* data, uint8_t len);
-    bool receive_frame(uint8_t &id, uint8_t *data, uint8_t &len);
+    bool send_frame(uint16_t id, const uint8_t* data, uint8_t len);
+    bool receive_frame(uint16_t &id, uint8_t *data, uint8_t &len);
 
     bool set_new_bitrate(int new_bitrate);
 
-    // 🔹 NEW
     bool is_interface_up() const;
 
 private:
