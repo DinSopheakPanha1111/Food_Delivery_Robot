@@ -11,10 +11,31 @@ ZLAC8015DDriver::ZLAC8015DDriver(CAN& can_interface, uint8_t device_id)
 
 /* =====================================================
  * Low-level SDO sender
+ * TX: 0x600 + node_id → LOW BYTE ONLY
  * ===================================================== */
 bool ZLAC8015DDriver::send_sdo(const uint8_t data[8])
 {
-    return can_.send_frame(dev_id_, data, 8);
+    uint8_t tx_id = dev_id_;   // 0x601 → 0x01
+    return can_.send_frame(tx_id, data, 8);
+}
+
+/* =====================================================
+ * Low-level SDO receiver
+ * RX: 0x580 + node_id → LOW BYTE ONLY
+ * ===================================================== */
+bool ZLAC8015DDriver::receive_sdo(uint8_t response[8])
+{
+    uint8_t rx_id = 0;
+    uint8_t len = 0;
+
+    if (!can_.receive_frame(rx_id, response, len))
+        return false;
+
+    // Expect 0x581 → LOW BYTE = 0x81
+    if (rx_id != static_cast<uint8_t>(0x80 + dev_id_))
+        return false;
+
+    return len == 8;
 }
 
 /* =====================================================
@@ -22,7 +43,6 @@ bool ZLAC8015DDriver::send_sdo(const uint8_t data[8])
  * ===================================================== */
 bool ZLAC8015DDriver::set_velocity_mode()
 {
-    // 0x6060 = mode of operation, 0x03 = velocity
     const uint8_t data[8] = {
         0x2F, 0x60, 0x60, 0x00,
         0x03, 0x00, 0x00, 0x00
@@ -31,7 +51,7 @@ bool ZLAC8015DDriver::set_velocity_mode()
 }
 
 /* =====================================================
- * Enable driver
+ * Enable driver (CiA-402)
  * ===================================================== */
 bool ZLAC8015DDriver::enable()
 {
@@ -45,14 +65,19 @@ bool ZLAC8015DDriver::enable()
         0x07, 0x00, 0x00, 0x00
     };
 
-    if (!send_sdo(shutdown))
-        return false;
+    const uint8_t enable_op[8] = {
+        0x2B, 0x40, 0x60, 0x00,
+        0x0F, 0x00, 0x00, 0x00
+    };
 
-    return send_sdo(switch_on);
+    return send_sdo(shutdown) &&
+           send_sdo(switch_on) &&
+           send_sdo(enable_op);
 }
 
 /* =====================================================
  * Set left & right wheel speed (RPM)
+ * Object: 0x60FF:03
  * ===================================================== */
 bool ZLAC8015DDriver::set_sync_left_right_speed(float left_rpm, float right_rpm)
 {
@@ -72,6 +97,7 @@ bool ZLAC8015DDriver::set_sync_left_right_speed(float left_rpm, float right_rpm)
 
 /* =====================================================
  * Read wheel speed feedback (RPM)
+ * Object: 0x606C:03
  * ===================================================== */
 bool ZLAC8015DDriver::read_speed_feedback(float& left_rpm, float& right_rpm)
 {
@@ -81,16 +107,11 @@ bool ZLAC8015DDriver::read_speed_feedback(float& left_rpm, float& right_rpm)
     };
 
     uint8_t response[8] = {0};
-    uint8_t id = 0;
-    uint8_t len = 0;
 
     if (!send_sdo(request))
         return false;
 
-    if (!can_.receive_frame(id, response, len))
-        return false;
-
-    if (len < 8)
+    if (!receive_sdo(response))
         return false;
 
     int16_t left  = static_cast<int16_t>(response[4] | (response[5] << 8));

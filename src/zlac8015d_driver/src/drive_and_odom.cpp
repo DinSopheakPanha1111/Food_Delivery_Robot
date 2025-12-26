@@ -2,7 +2,6 @@
 #include <geometry_msgs/msg/twist.hpp>
 #include <nav_msgs/msg/odometry.hpp>
 #include <cmath>
-
 #include "zlac8015d_driver.hpp"
 #include "can.hpp"
 #include "kinematic.hpp"
@@ -12,7 +11,7 @@ public:
     MotorControlNode()
     : Node("motor_control_node"),
       can_("can0", 500000),
-      driver_(can_, 0x601),
+      driver_(can_, 0x01),
       last_time_(this->now())
     {
         // Robot parameters
@@ -70,7 +69,7 @@ private:
         // Convert robot velocity -> wheel RPM
         float left_rpm  = kinematic_.get_left_wheel_rpm(v, wz, wheel_base_, wheel_radius_);
         float right_rpm = kinematic_.get_right_wheel_rpm(v, wz, wheel_base_, wheel_radius_);
-
+        RCLCPP_INFO(this->get_logger(), "left_rpm: %.2f| right_rpm: %.2f",left_rpm,right_rpm);
         // Send to driver
         driver_.set_sync_left_right_speed(left_rpm, right_rpm);
     }
