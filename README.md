@@ -55,3 +55,10 @@ ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3}, angular: {z:
 ros2 topic echo /odom/wheel
 
 ```
+
+**2.4 EMERGENCY STOP/RELEASE TEST**
+
+```
+ros2 service call /emergency_stop food_del_robot/srv/EmergencyStop "{stop: true, release: false}"
+
+```

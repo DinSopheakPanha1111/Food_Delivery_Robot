@@ -37,7 +37,6 @@ bool ZLAC8015DDriver::receive_sdo(uint8_t response[8])
 
     return (len == 8);
 }
-
 /* =====================================================
  * Set velocity mode
  * 0x6060 = mode of operation, 0x03 = velocity
@@ -139,6 +138,31 @@ bool ZLAC8015DDriver::emergency_stop()
     return send_sdo(data);
 }
 
+bool ZLAC8015DDriver::status_emergency_stop()
+{
+    uint8_t response[8] = {0};
+
+    if (!receive_sdo(response))
+        return false;
+
+    const uint8_t expected[8] = {
+        0x2B,   
+        0x40,   
+        0x60,   
+        0x00,  
+        0x0F,   
+        0x00,   
+        0x00,
+        0x00
+    };
+
+    for (int i = 0; i < 8; i++) {
+        if (response[i] != expected[i])
+            return false;
+    }
+    return true;
+}
+
 /* =====================================================
  * Release emergency stop (back to Enable operation)
  * ===================================================== */
@@ -150,3 +174,29 @@ bool ZLAC8015DDriver::release_emergency_stop()
     };
     return send_sdo(data);
 }
+
+bool ZLAC8015DDriver::status_release_emergency_stop()
+{
+    uint8_t response[8] = {0};
+
+    if (!receive_sdo(response))
+        return false;
+
+    const uint8_t expected[8] = {
+        0x2B,   
+        0x40,   
+        0x60,   
+        0x00,  
+        0x0F,   
+        0x00,   
+        0x00,
+        0x00
+    };
+
+    for (int i = 0; i < 8; i++) {
+        if (response[i] != expected[i])
+            return false;
+    }
+    return true;
+}
+

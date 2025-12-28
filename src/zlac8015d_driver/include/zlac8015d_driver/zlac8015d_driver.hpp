@@ -12,7 +12,9 @@ public:
     bool set_velocity_mode();
     bool enable();
     bool emergency_stop();
+    bool status_emergency_stop();
     bool release_emergency_stop();
+    bool status_release_emergency_stop();
 
     // Motion
     bool set_sync_left_right_speed(float left_rpm, float right_rpm);

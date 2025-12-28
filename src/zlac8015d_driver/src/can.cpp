@@ -112,14 +112,14 @@ bool CAN::disable(bool bring_link_down)
 }
 
 // ======================================================
-// 🔧 FIXED: full 11-bit CAN ID supported
+// 
 bool CAN::send_frame(uint16_t id, const uint8_t* data, uint8_t len)
 {
     if (sock_ < 0 || len > 8)
         return false;
 
     struct can_frame frame {};
-    frame.can_id  = id & CAN_SFF_MASK;   // ✅ keep 11-bit ID
+    frame.can_id  = id & CAN_SFF_MASK;
     frame.can_dlc = len;
 
     if (len)
@@ -130,7 +130,7 @@ bool CAN::send_frame(uint16_t id, const uint8_t* data, uint8_t len)
 }
 
 // ======================================================
-// 🔧 FIXED: receive full CAN ID
+// receive full CAN ID
 bool CAN::receive_frame(uint16_t &id, uint8_t *data, uint8_t &len)
 {
     if (sock_ < 0)
@@ -144,7 +144,7 @@ bool CAN::receive_frame(uint16_t &id, uint8_t *data, uint8_t &len)
     if (::read(sock_, &frame, sizeof(frame)) != sizeof(frame))
         return false;
 
-    id  = frame.can_id & CAN_SFF_MASK;   // ✅ full ID
+    id  = frame.can_id & CAN_SFF_MASK;
     len = frame.can_dlc;
 
     if (len)
