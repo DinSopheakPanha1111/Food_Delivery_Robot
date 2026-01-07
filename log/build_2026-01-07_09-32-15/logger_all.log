@@ -1,0 +1,482 @@
+[0.104s] [34mcolcon[0m [1;30mDEBUG[0m [32mCommand line arguments: ['/usr/bin/colcon', 'build'][0m
+[0.104s] [34mcolcon[0m [1;30mDEBUG[0m [32mParsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=16, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7f5ed378ba30>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f5ed378b430>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f5ed378b430>>, mixin_verb=('build',))[0m
+[0.133s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) check parameters
+[0.133s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) check parameters
+[0.133s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) check parameters
+[0.133s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) check parameters
+[0.133s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) discover
+[0.133s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) discover
+[0.133s] [34mcolcon.colcon_core.package_discovery[0m [1;30mINFO[0m Crawling recursively for packages in '/home/panha/Food_Delivery_Robot'
+[0.133s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.133s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore'
+[0.133s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore_ament_install'
+[0.133s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_pkg']
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_pkg'
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_meta']
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_meta'
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ros']
+[0.134s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ros'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['cmake', 'python']
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'cmake'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['python_setup_py']
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python_setup_py'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extension 'ignore'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) ignored
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['ignore', 'ignore_ament_install']
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'ignore'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'ignore_ament_install'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['colcon_pkg']
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'colcon_pkg'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['colcon_meta']
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'colcon_meta'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['ros']
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'ros'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['cmake', 'python']
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'cmake'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'python'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extensions ['python_setup_py']
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs) by extension 'python_setup_py'
+[0.145s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extension 'ignore'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extension 'ignore_ament_install'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extensions ['colcon_pkg']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extension 'colcon_pkg'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extensions ['colcon_meta']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extension 'colcon_meta'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extensions ['ros']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extension 'ros'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extensions ['cmake', 'python']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extension 'cmake'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extension 'python'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extensions ['python_setup_py']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/EKF) by extension 'python_setup_py'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extension 'ignore'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extension 'ignore_ament_install'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extensions ['colcon_pkg']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extension 'colcon_pkg'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extensions ['colcon_meta']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extension 'colcon_meta'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extensions ['ros']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extension 'ros'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extensions ['cmake', 'python']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extension 'cmake'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extension 'python'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extensions ['python_setup_py']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/Map) by extension 'python_setup_py'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extension 'ignore'
+[0.146s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extension 'ignore_ament_install'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extensions ['colcon_pkg']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extension 'colcon_pkg'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extensions ['colcon_meta']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extension 'colcon_meta'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extensions ['ros']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extension 'ros'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extensions ['cmake', 'python']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extension 'cmake'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extension 'python'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extensions ['python_setup_py']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/ROS2_Nav2) by extension 'python_setup_py'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extensions ['ignore', 'ignore_ament_install']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extension 'ignore'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extension 'ignore_ament_install'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extensions ['colcon_pkg']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extension 'colcon_pkg'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extensions ['colcon_meta']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extension 'colcon_meta'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extensions ['ros']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extension 'ros'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extensions ['cmake', 'python']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extension 'cmake'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extension 'python'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extensions ['python_setup_py']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(docs/graph) by extension 'python_setup_py'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extension 'ignore'
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) ignored
+[0.147s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extension 'ignore'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) ignored
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore_ament_install'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_pkg']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_pkg'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_meta']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_meta'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ros']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ros'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['cmake', 'python']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'cmake'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['python_setup_py']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python_setup_py'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot) by extensions ['ignore', 'ignore_ament_install']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot) by extension 'ignore'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot) by extension 'ignore_ament_install'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot) by extensions ['colcon_pkg']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot) by extension 'colcon_pkg'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot) by extensions ['colcon_meta']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot) by extension 'colcon_meta'
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot) by extensions ['ros']
+[0.148s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot) by extension 'ros'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/food_del_robot' with type 'ros.ament_cmake' and name 'food_del_robot'[0m
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot_description) by extensions ['ignore', 'ignore_ament_install']
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot_description) by extension 'ignore'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot_description) by extension 'ignore_ament_install'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot_description) by extensions ['colcon_pkg']
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot_description) by extension 'colcon_pkg'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot_description) by extensions ['colcon_meta']
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot_description) by extension 'colcon_meta'
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot_description) by extensions ['ros']
+[0.150s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/food_del_robot_description) by extension 'ros'
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/food_del_robot_description' with type 'ros.ament_cmake' and name 'food_del_robot_description'[0m
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/robot_kinematic) by extensions ['ignore', 'ignore_ament_install']
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/robot_kinematic) by extension 'ignore'
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/robot_kinematic) ignored
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rplidar_ros-ros2) by extensions ['ignore', 'ignore_ament_install']
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rplidar_ros-ros2) by extension 'ignore'
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rplidar_ros-ros2) by extension 'ignore_ament_install'
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rplidar_ros-ros2) by extensions ['colcon_pkg']
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rplidar_ros-ros2) by extension 'colcon_pkg'
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rplidar_ros-ros2) by extensions ['colcon_meta']
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rplidar_ros-ros2) by extension 'colcon_meta'
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rplidar_ros-ros2) by extensions ['ros']
+[0.151s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/rplidar_ros-ros2) by extension 'ros'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/rplidar_ros-ros2' with type 'ros.ament_cmake' and name 'rplidar_ros'[0m
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/yahboom_imu_10_axis) by extensions ['ignore', 'ignore_ament_install']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/yahboom_imu_10_axis) by extension 'ignore'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/yahboom_imu_10_axis) by extension 'ignore_ament_install'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/yahboom_imu_10_axis) by extensions ['colcon_pkg']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/yahboom_imu_10_axis) by extension 'colcon_pkg'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/yahboom_imu_10_axis) by extensions ['colcon_meta']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/yahboom_imu_10_axis) by extension 'colcon_meta'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/yahboom_imu_10_axis) by extensions ['ros']
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/yahboom_imu_10_axis) by extension 'ros'
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/yahboom_imu_10_axis' with type 'ros.ament_cmake' and name 'yahboom_imu_10_axis'[0m
+[0.152s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/zlac8015d_driver) by extensions ['ignore', 'ignore_ament_install']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/zlac8015d_driver) by extension 'ignore'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/zlac8015d_driver) by extension 'ignore_ament_install'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/zlac8015d_driver) by extensions ['colcon_pkg']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/zlac8015d_driver) by extension 'colcon_pkg'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/zlac8015d_driver) by extensions ['colcon_meta']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/zlac8015d_driver) by extension 'colcon_meta'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/zlac8015d_driver) by extensions ['ros']
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src/zlac8015d_driver) by extension 'ros'
+[0.153s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src/zlac8015d_driver' with type 'ros.ament_cmake' and name 'zlac8015d_driver'[0m
+[0.153s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) using defaults
+[0.153s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) discover
+[0.153s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) using defaults
+[0.153s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) discover
+[0.153s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) using defaults
+[0.165s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) check parameters
+[0.165s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) discover
+[0.169s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 5 installed packages in /home/panha/Food_Delivery_Robot/install[0m
+[0.170s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 55 installed packages in /home/panha/ws_moveit/install[0m
+[0.171s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 3 installed packages in /home/panha/sporaX_ws/install[0m
+[0.171s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 3 installed packages in /home/panha/mushroom_ws_V2/install[0m
+[0.171s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 12 installed packages in /home/panha/turtlebot3_ws/install[0m
+[0.172s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 2 installed packages in /home/panha/Robocon2026_ws/install[0m
+[0.172s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 2 installed packages in /home/panha/my_ws/install[0m
+[0.173s] [34mcolcon.colcon_installed_package_information.package_discovery[0m [1;30mDEBUG[0m [32mFound 433 installed packages in /opt/ros/humble[0m
+[0.176s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(prefix_path) using defaults
+[0.222s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot' build argument 'cmake_args' from command line to 'None'
+[0.222s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot' build argument 'cmake_target' from command line to 'None'
+[0.222s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.222s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot' build argument 'cmake_clean_cache' from command line to 'False'
+[0.222s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot' build argument 'cmake_clean_first' from command line to 'False'
+[0.222s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot' build argument 'cmake_force_configure' from command line to 'False'
+[0.222s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot' build argument 'ament_cmake_args' from command line to 'None'
+[0.222s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot' build argument 'catkin_cmake_args' from command line to 'None'
+[0.222s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.222s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'food_del_robot' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/panha/Food_Delivery_Robot/build/food_del_robot', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/panha/Food_Delivery_Robot/install/food_del_robot', 'merge_install': False, 'path': '/home/panha/Food_Delivery_Robot/src/food_del_robot', 'symlink_install': False, 'test_result_base': None}[0m
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot_description' build argument 'cmake_args' from command line to 'None'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot_description' build argument 'cmake_target' from command line to 'None'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot_description' build argument 'cmake_clean_cache' from command line to 'False'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot_description' build argument 'cmake_clean_first' from command line to 'False'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot_description' build argument 'cmake_force_configure' from command line to 'False'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot_description' build argument 'ament_cmake_args' from command line to 'None'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot_description' build argument 'catkin_cmake_args' from command line to 'None'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'food_del_robot_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'food_del_robot_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/panha/Food_Delivery_Robot/build/food_del_robot_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/panha/Food_Delivery_Robot/install/food_del_robot_description', 'merge_install': False, 'path': '/home/panha/Food_Delivery_Robot/src/food_del_robot_description', 'symlink_install': False, 'test_result_base': None}[0m
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'rplidar_ros' build argument 'cmake_args' from command line to 'None'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'rplidar_ros' build argument 'cmake_target' from command line to 'None'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'rplidar_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'rplidar_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'rplidar_ros' build argument 'cmake_clean_first' from command line to 'False'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'rplidar_ros' build argument 'cmake_force_configure' from command line to 'False'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'rplidar_ros' build argument 'ament_cmake_args' from command line to 'None'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'rplidar_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'rplidar_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.223s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'rplidar_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/panha/Food_Delivery_Robot/build/rplidar_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/panha/Food_Delivery_Robot/install/rplidar_ros', 'merge_install': False, 'path': '/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2', 'symlink_install': False, 'test_result_base': None}[0m
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'yahboom_imu_10_axis' build argument 'cmake_args' from command line to 'None'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'yahboom_imu_10_axis' build argument 'cmake_target' from command line to 'None'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'yahboom_imu_10_axis' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'yahboom_imu_10_axis' build argument 'cmake_clean_cache' from command line to 'False'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'yahboom_imu_10_axis' build argument 'cmake_clean_first' from command line to 'False'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'yahboom_imu_10_axis' build argument 'cmake_force_configure' from command line to 'False'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'yahboom_imu_10_axis' build argument 'ament_cmake_args' from command line to 'None'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'yahboom_imu_10_axis' build argument 'catkin_cmake_args' from command line to 'None'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'yahboom_imu_10_axis' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'yahboom_imu_10_axis' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis', 'merge_install': False, 'path': '/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis', 'symlink_install': False, 'test_result_base': None}[0m
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'zlac8015d_driver' build argument 'cmake_args' from command line to 'None'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'zlac8015d_driver' build argument 'cmake_target' from command line to 'None'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'zlac8015d_driver' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'zlac8015d_driver' build argument 'cmake_clean_cache' from command line to 'False'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'zlac8015d_driver' build argument 'cmake_clean_first' from command line to 'False'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'zlac8015d_driver' build argument 'cmake_force_configure' from command line to 'False'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'zlac8015d_driver' build argument 'ament_cmake_args' from command line to 'None'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'zlac8015d_driver' build argument 'catkin_cmake_args' from command line to 'None'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'zlac8015d_driver' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.224s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'zlac8015d_driver' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver', 'merge_install': False, 'path': '/home/panha/Food_Delivery_Robot/src/zlac8015d_driver', 'symlink_install': False, 'test_result_base': None}[0m
+[0.224s] [34mcolcon.colcon_core.executor[0m [1;30mINFO[0m Executing jobs using 'parallel' executor
+[0.225s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete[0m
+[0.225s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/panha/Food_Delivery_Robot/src/food_del_robot' with build type 'ament_cmake'
+[0.225s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/panha/Food_Delivery_Robot/src/food_del_robot'
+[0.227s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.227s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.227s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.235s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/panha/Food_Delivery_Robot/src/food_del_robot_description' with build type 'ament_cmake'
+[0.235s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/panha/Food_Delivery_Robot/src/food_del_robot_description'
+[0.235s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.235s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.243s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2' with build type 'ament_cmake'
+[0.244s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2'
+[0.244s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.244s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.252s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis' with build type 'ament_cmake'
+[0.252s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/panha/Food_Delivery_Robot/src/yahboom_imu_10_axis'
+[0.252s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.252s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.260s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in '/home/panha/Food_Delivery_Robot/src/zlac8015d_driver' with build type 'ament_cmake'
+[0.261s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in '/home/panha/Food_Delivery_Robot/src/zlac8015d_driver'
+[0.261s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.261s] [34mcolcon.colcon_core.shell[0m [1;30mDEBUG[0m [32mSkip shell extension 'dsv' for command environment[0m
+[0.273s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/panha/Food_Delivery_Robot/build/food_del_robot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/food_del_robot -- -j16 -l16[0m
+[0.275s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/panha/Food_Delivery_Robot/build/food_del_robot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/food_del_robot_description -- -j16 -l16[0m
+[0.277s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/panha/Food_Delivery_Robot/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/rplidar_ros -- -j16 -l16[0m
+[0.279s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis -- -j16 -l16[0m
+[0.282s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16[0m
+[0.297s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/panha/Food_Delivery_Robot/build/food_del_robot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/food_del_robot_description -- -j16 -l16[0m
+[0.304s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/panha/Food_Delivery_Robot/build/food_del_robot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/food_del_robot_description[0m
+[0.312s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(food_del_robot_description)
+[0.313s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/panha/Food_Delivery_Robot/build/food_del_robot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/food_del_robot_description[0m
+[0.316s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description' for CMake module files
+[0.316s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description' for CMake config files
+[0.316s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('food_del_robot_description', 'cmake_prefix_path')
+[0.317s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/hook/cmake_prefix_path.ps1'
+[0.318s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/hook/cmake_prefix_path.dsv'
+[0.319s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/hook/cmake_prefix_path.sh'
+[0.320s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/bin'
+[0.320s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/lib/pkgconfig/food_del_robot_description.pc'
+[0.320s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/lib/python3.10/site-packages'
+[0.320s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/bin'
+[0.321s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.ps1'
+[0.321s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.dsv'
+[0.322s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.sh'
+[0.323s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.bash'
+[0.323s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.zsh'
+[0.324s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/colcon-core/packages/food_del_robot_description)
+[0.325s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(food_del_robot_description)
+[0.326s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description' for CMake module files
+[0.326s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description' for CMake config files
+[0.327s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('food_del_robot_description', 'cmake_prefix_path')
+[0.327s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/hook/cmake_prefix_path.ps1'
+[0.327s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/hook/cmake_prefix_path.dsv'
+[0.328s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/hook/cmake_prefix_path.sh'
+[0.328s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/bin'
+[0.328s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/lib/pkgconfig/food_del_robot_description.pc'
+[0.329s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/lib/python3.10/site-packages'
+[0.329s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/bin'
+[0.329s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.ps1'
+[0.330s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.dsv'
+[0.331s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.sh'
+[0.331s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.bash'
+[0.332s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.zsh'
+[0.332s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/colcon-core/packages/food_del_robot_description)
+[0.349s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis -- -j16 -l16[0m
+[0.351s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis[0m
+[0.357s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(yahboom_imu_10_axis)
+[0.357s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis[0m
+[0.357s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis' for CMake module files
+[0.358s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis' for CMake config files
+[0.358s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('yahboom_imu_10_axis', 'cmake_prefix_path')
+[0.358s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/hook/cmake_prefix_path.ps1'
+[0.359s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/hook/cmake_prefix_path.dsv'
+[0.359s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/hook/cmake_prefix_path.sh'
+[0.359s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib'
+[0.359s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/bin'
+[0.359s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib/pkgconfig/yahboom_imu_10_axis.pc'
+[0.360s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib/python3.10/site-packages'
+[0.360s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/bin'
+[0.360s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.ps1'
+[0.360s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.dsv'
+[0.361s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.sh'
+[0.361s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.bash'
+[0.361s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.zsh'
+[0.362s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/colcon-core/packages/yahboom_imu_10_axis)
+[0.362s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(yahboom_imu_10_axis)
+[0.362s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis' for CMake module files
+[0.362s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis' for CMake config files
+[0.363s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('yahboom_imu_10_axis', 'cmake_prefix_path')
+[0.363s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/hook/cmake_prefix_path.ps1'
+[0.363s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/hook/cmake_prefix_path.dsv'
+[0.363s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/hook/cmake_prefix_path.sh'
+[0.364s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib'
+[0.364s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/bin'
+[0.364s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib/pkgconfig/yahboom_imu_10_axis.pc'
+[0.364s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib/python3.10/site-packages'
+[0.364s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/bin'
+[0.364s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.ps1'
+[0.365s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.dsv'
+[0.365s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.sh'
+[0.365s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.bash'
+[0.366s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.zsh'
+[0.366s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/colcon-core/packages/yahboom_imu_10_axis)
+[0.376s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16[0m
+[0.377s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/zlac8015d_driver[0m
+[0.382s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(zlac8015d_driver)
+[0.383s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver' for CMake module files
+[0.383s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/zlac8015d_driver[0m
+[0.384s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver' for CMake config files
+[0.384s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('zlac8015d_driver', 'cmake_prefix_path')
+[0.384s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/hook/cmake_prefix_path.ps1'
+[0.385s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/hook/cmake_prefix_path.dsv'
+[0.385s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/hook/cmake_prefix_path.sh'
+[0.385s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib'
+[0.385s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/bin'
+[0.385s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/pkgconfig/zlac8015d_driver.pc'
+[0.386s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/python3.10/site-packages'
+[0.386s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/bin'
+[0.386s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.ps1'
+[0.387s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.dsv'
+[0.387s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.sh'
+[0.387s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.bash'
+[0.387s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.zsh'
+[0.388s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/colcon-core/packages/zlac8015d_driver)
+[0.388s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(zlac8015d_driver)
+[0.388s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver' for CMake module files
+[0.388s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver' for CMake config files
+[0.389s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('zlac8015d_driver', 'cmake_prefix_path')
+[0.389s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/hook/cmake_prefix_path.ps1'
+[0.389s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/hook/cmake_prefix_path.dsv'
+[0.389s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/hook/cmake_prefix_path.sh'
+[0.390s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib'
+[0.390s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/bin'
+[0.390s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/pkgconfig/zlac8015d_driver.pc'
+[0.390s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/python3.10/site-packages'
+[0.390s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/bin'
+[0.391s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.ps1'
+[0.391s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.dsv'
+[0.391s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.sh'
+[0.392s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.bash'
+[0.392s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.zsh'
+[0.392s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/colcon-core/packages/zlac8015d_driver)
+[0.662s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/panha/Food_Delivery_Robot/build/food_del_robot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/food_del_robot -- -j16 -l16[0m
+[0.664s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/panha/Food_Delivery_Robot/build/food_del_robot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/food_del_robot[0m
+[0.713s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(food_del_robot)
+[0.713s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot' for CMake module files
+[0.714s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/panha/Food_Delivery_Robot/build/food_del_robot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/food_del_robot[0m
+[0.714s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot' for CMake config files
+[0.714s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('food_del_robot', 'cmake_prefix_path')
+[0.714s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/cmake_prefix_path.ps1'
+[0.715s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/cmake_prefix_path.dsv'
+[0.715s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/cmake_prefix_path.sh'
+[0.716s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib'
+[0.716s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('food_del_robot', 'ld_library_path_lib')
+[0.716s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/ld_library_path_lib.ps1'
+[0.717s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/ld_library_path_lib.dsv'
+[0.717s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/ld_library_path_lib.sh'
+[0.717s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot/bin'
+[0.717s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/pkgconfig/food_del_robot.pc'
+[0.717s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/python3.10/site-packages'
+[0.718s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot/bin'
+[0.718s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.ps1'
+[0.718s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.dsv'
+[0.718s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.sh'
+[0.719s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.bash'
+[0.719s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.zsh'
+[0.719s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/panha/Food_Delivery_Robot/install/food_del_robot/share/colcon-core/packages/food_del_robot)
+[0.720s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(food_del_robot)
+[0.720s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot' for CMake module files
+[0.720s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot' for CMake config files
+[0.720s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('food_del_robot', 'cmake_prefix_path')
+[0.721s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/cmake_prefix_path.ps1'
+[0.721s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/cmake_prefix_path.dsv'
+[0.721s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/cmake_prefix_path.sh'
+[0.722s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib'
+[0.722s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('food_del_robot', 'ld_library_path_lib')
+[0.722s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/ld_library_path_lib.ps1'
+[0.723s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/ld_library_path_lib.dsv'
+[0.723s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/hook/ld_library_path_lib.sh'
+[0.723s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot/bin'
+[0.723s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/pkgconfig/food_del_robot.pc'
+[0.723s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/python3.10/site-packages'
+[0.724s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/food_del_robot/bin'
+[0.724s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.ps1'
+[0.724s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.dsv'
+[0.724s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.sh'
+[0.725s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.bash'
+[0.725s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.zsh'
+[0.726s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/panha/Food_Delivery_Robot/install/food_del_robot/share/colcon-core/packages/food_del_robot)
+[3.520s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/panha/Food_Delivery_Robot/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/rplidar_ros -- -j16 -l16[0m
+[3.521s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in '/home/panha/Food_Delivery_Robot/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/rplidar_ros[0m
+[3.532s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(rplidar_ros)
+[3.532s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros' for CMake module files
+[3.532s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in '/home/panha/Food_Delivery_Robot/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/rplidar_ros[0m
+[3.533s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros' for CMake config files
+[3.533s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('rplidar_ros', 'cmake_prefix_path')
+[3.533s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.ps1'
+[3.533s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.dsv'
+[3.534s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.sh'
+[3.534s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros/lib'
+[3.534s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros/bin'
+[3.534s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/pkgconfig/rplidar_ros.pc'
+[3.534s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/python3.10/site-packages'
+[3.535s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros/bin'
+[3.535s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.ps1'
+[3.535s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.dsv'
+[3.535s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.sh'
+[3.536s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.bash'
+[3.536s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.zsh'
+[3.536s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/colcon-core/packages/rplidar_ros)
+[3.537s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(rplidar_ros)
+[3.537s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros' for CMake module files
+[3.537s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros' for CMake config files
+[3.537s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('rplidar_ros', 'cmake_prefix_path')
+[3.537s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.ps1'
+[3.538s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.dsv'
+[3.538s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.sh'
+[3.538s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros/lib'
+[3.538s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros/bin'
+[3.538s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/pkgconfig/rplidar_ros.pc'
+[3.538s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/python3.10/site-packages'
+[3.539s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking '/home/panha/Food_Delivery_Robot/install/rplidar_ros/bin'
+[3.539s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.ps1'
+[3.539s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.dsv'
+[3.539s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.sh'
+[3.540s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.bash'
+[3.540s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script '/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.zsh'
+[3.540s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(/home/panha/Food_Delivery_Robot/install/rplidar_ros/share/colcon-core/packages/rplidar_ros)
+[3.540s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mclosing loop[0m
+[3.541s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mloop closed[0m
+[3.541s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete finished with '0'[0m
+[3.541s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoining thread[0m
+[3.546s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[3.546s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[3.546s] [34mcolcon.colcon_notification.desktop_notification[0m [1;30mINFO[0m Sending desktop notification using 'notify2'
+[3.554s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoined thread[0m
+[3.554s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/panha/Food_Delivery_Robot/install/local_setup.ps1'
+[3.555s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/home/panha/Food_Delivery_Robot/install/_local_setup_util_ps1.py'
+[3.556s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/panha/Food_Delivery_Robot/install/setup.ps1'
+[3.560s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/panha/Food_Delivery_Robot/install/local_setup.sh'
+[3.561s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module '/home/panha/Food_Delivery_Robot/install/_local_setup_util_sh.py'
+[3.561s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/panha/Food_Delivery_Robot/install/setup.sh'
+[3.564s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/panha/Food_Delivery_Robot/install/local_setup.bash'
+[3.565s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/panha/Food_Delivery_Robot/install/setup.bash'
+[3.568s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script '/home/panha/Food_Delivery_Robot/install/local_setup.zsh'
+[3.569s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script '/home/panha/Food_Delivery_Robot/install/setup.zsh'

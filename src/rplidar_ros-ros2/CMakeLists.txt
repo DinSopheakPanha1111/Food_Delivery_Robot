@@ -71,6 +71,13 @@ ament_target_dependencies(rplidar_composition
   sensor_msgs
 )
 
+add_executable(rplidar_a1 src/rplidar_a1.cpp ${RPLIDAR_SDK_SRC})
+ament_target_dependencies(rplidar_a1
+  rclcpp
+  std_srvs
+  sensor_msgs
+)
+
 add_executable(rplidar_client src/rplidar_client.cpp)
 ament_target_dependencies(rplidar_client
   rclcpp
@@ -85,7 +92,7 @@ install(DIRECTORY launch rviz
 )
 
 install(
-  TARGETS rplidar_node rplidar_composition rplidar_client
+  TARGETS rplidar_node rplidar_composition rplidar_client rplidar_a1
   RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
 

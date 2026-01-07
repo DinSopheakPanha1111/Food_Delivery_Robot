@@ -1,0 +1,80 @@
+[0.032s] Invoking command in '/home/panha/Food_Delivery_Robot/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/rplidar_ros -- -j16 -l16
+[0.078s] [  3%] Built target rplidar_client
+[0.085s] [ 66%] Built target rplidar_composition
+[0.085s] [ 67%] Built target rplidar_node
+[0.099s] [ 69%] [32mBuilding CXX object CMakeFiles/rplidar_a1.dir/src/rplidar_a1.cpp.o[0m
+[1.842s] In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_cmd.h:41[m[K,
+[1.842s]                  from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_driver.h:54[m[K,
+[1.843s]                  from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar.h:36[m[K,
+[1.843s]                  from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:5[m[K:
+[1.843s] [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_protocol.h:66:16:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kdata[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[1.843s]    66 |     sl_u8 data[[01;35m[K0[m[K];
+[1.843s]       |                [01;35m[K^[m[K
+[1.843s] In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_driver.h:54[m[K,
+[1.843s]                  from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar.h:36[m[K,
+[1.843s]                  from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:5[m[K:
+[1.843s] [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_cmd.h:324:20:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kpayload[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[1.843s]   324 |     sl_u8  payload[[01;35m[K0[m[K];
+[1.843s]       |                    [01;35m[K^[m[K
+[1.856s] [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:[m[K In member function ‘[01m[Kvoid RplidarA1Node::publish_scan(sl_lidar_response_measurement_node_hq_t*, size_t, rclcpp::Time, double, bool, bool, float, float, const string&, float)[m[K’:
+[1.856s] [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:241:14:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kinverted[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[1.857s]   241 |         [01;35m[Kbool inverted[m[K,
+[1.857s]       |         [01;35m[K~~~~~^~~~~~~~[m[K
+[1.857s] [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:242:14:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kflip_x[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[1.857s]   242 |         [01;35m[Kbool flip_x[m[K,
+[1.857s]       |         [01;35m[K~~~~~^~~~~~[m[K
+[3.229s] [ 71%] [32m[1mLinking CXX executable rplidar_a1[0m
+[3.403s] [100%] Built target rplidar_a1
+[3.415s] Invoked command in '/home/panha/Food_Delivery_Robot/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/rplidar_ros -- -j16 -l16
+[3.417s] Invoking command in '/home/panha/Food_Delivery_Robot/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/rplidar_ros
+[3.421s] -- Install configuration: ""
+[3.421s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch
+[3.421s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m7_launch.py
+[3.422s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s3_launch.py
+[3.422s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_c1_launch.py
+[3.422s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2_launch.py
+[3.422s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_t1_launch.py
+[3.422s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_c1_launch.py
+[3.422s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m12_launch.py
+[3.422s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m8_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_t1_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a1_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a3_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s2e_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s3_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m12_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m7_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s2_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a1_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2e_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s1_tcp_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s1_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_tcp_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a3_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m8_launch.py
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/rviz
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/rviz/rplidar_ros.rviz
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/rplidar_ros/rplidar_node
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/rplidar_ros/rplidar_composition
+[3.423s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/rplidar_ros/rplidar_client
+[3.423s] -- Installing: /home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/rplidar_ros/rplidar_a1
+[3.424s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/rplidar_ros/rplidar_a1" to ""
+[3.424s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/ament_index/resource_index/package_run_dependencies/rplidar_ros
+[3.424s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/ament_index/resource_index/parent_prefix_path/rplidar_ros
+[3.424s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.sh
+[3.424s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.dsv
+[3.424s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/environment/path.sh
+[3.424s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/environment/path.dsv
+[3.425s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/local_setup.bash
+[3.425s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/local_setup.sh
+[3.425s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/local_setup.zsh
+[3.425s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/local_setup.dsv
+[3.425s] -- Installing: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.dsv
+[3.425s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/ament_index/resource_index/packages/rplidar_ros
+[3.425s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_dependencies-extras.cmake
+[3.425s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_include_directories-extras.cmake
+[3.425s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig.cmake
+[3.425s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig-version.cmake
+[3.425s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.xml
+[3.426s] Invoked command in '/home/panha/Food_Delivery_Robot/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/rplidar_ros

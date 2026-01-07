@@ -1,0 +1,20 @@
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_cmd.h:41[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_driver.h:54[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar.h:36[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:5[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_protocol.h:66:16:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kdata[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+   66 |     sl_u8 data[[01;35m[K0[m[K];
+      |                [01;35m[K^[m[K
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_driver.h:54[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar.h:36[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:5[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_cmd.h:324:20:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kpayload[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+  324 |     sl_u8  payload[[01;35m[K0[m[K];
+      |                    [01;35m[K^[m[K
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:[m[K In member function ‘[01m[Kvoid RplidarA1Node::publish_scan(sl_lidar_response_measurement_node_hq_t*, size_t, rclcpp::Time, double, bool, bool, float, float, const string&, float)[m[K’:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:242:14:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kinverted[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  242 |         [01;35m[Kbool inverted[m[K,
+      |         [01;35m[K~~~~~^~~~~~~~[m[K
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:243:14:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kflip_x[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  243 |         [01;35m[Kbool flip_x[m[K,
+      |         [01;35m[K~~~~~^~~~~~[m[K
