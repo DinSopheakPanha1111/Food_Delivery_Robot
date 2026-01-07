@@ -62,3 +62,10 @@ ros2 topic echo /odom/wheel
 ros2 service call /emergency_stop food_del_robot/srv/EmergencyStop "{stop: true, release: false}"
 
 ```
+
+**2.5 RPLIDAR A1 TEST**
+
+```
+ros2 run rplidar_ros rplidar_a1
+
+```
