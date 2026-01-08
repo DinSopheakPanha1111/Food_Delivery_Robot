@@ -25,7 +25,7 @@ public:
 
     int run()
     {
-        /* ================= A1 CONFIG (MATCH OFFICIAL) ================= */
+        /* ================= A1 CONFIG (OFFICIAL MATCH) ================= */
         const int serial_baudrate = 115200;
 
         const std::vector<std::string> port_list = {
@@ -39,7 +39,7 @@ public:
         const std::string frame_id   = "laser";
         const std::string topic_name = "scan";
 
-        /* OFFICIAL NODE: let SDK choose default scan mode */
+        // 🔑 IMPORTANT: empty = let SDK auto-pick Sensitivity
         const std::string scan_mode  = "";
         const float scan_frequency   = 10.0f;
 
@@ -207,7 +207,7 @@ private:
         if (!found)
             return false;
 
-        drv_->startScanExpress(false, selected.id, 0, &selected);
+        drv_->startScan(false, true, 0, &selected);
 
         int points_per_circle =
             static_cast<int>(1000000.0 / selected.us_per_sample / freq);
