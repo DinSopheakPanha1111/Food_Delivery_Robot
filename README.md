@@ -108,13 +108,13 @@ Frequency and BW :
 
 Frequency : 
 
-average rate: 100.012
-	min: 0.010s max: 0.010s std dev: 0.00007s window: 101
+average rate: 6.659
+	min: 0.145s max: 0.153s std dev: 0.00172s window: 15
 
 BW : 
 
-32.57 KB/s from 100 messages
-	Message size mean: 0.32 KB min: 0.32 KB max: 0.32 KB
+20.14 KB/s from 20 messages
+	Message size mean: 2.94 KB min: 2.94 KB max: 2.94 KB
 
 ```
 

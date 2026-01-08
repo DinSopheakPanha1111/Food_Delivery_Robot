@@ -8,7 +8,7 @@
 #include <limits>
 #include <string>
 #include <vector>
-#include <unistd.h>   // access()
+#include <unistd.h>
 
 using namespace sl;
 
@@ -25,12 +25,11 @@ public:
 
     int run()
     {
-        /* ================= A1 CONFIG ================= */
+        /* ================= A1 CONFIG (MATCH OFFICIAL) ================= */
         const int serial_baudrate = 115200;
 
-        // Try these ports in order (add/remove as you like)
         const std::vector<std::string> port_list = {
-            "/dev/rplidar",   // udev alias (recommended)
+            "/dev/rplidar",
             "/dev/ttyUSB0",
             "/dev/ttyUSB1",
             "/dev/ttyUSB2",
@@ -39,7 +38,9 @@ public:
 
         const std::string frame_id   = "laser";
         const std::string topic_name = "scan";
-        const std::string scan_mode  = "Standard";
+
+        /* OFFICIAL NODE: let SDK choose default scan mode */
+        const std::string scan_mode  = "";
         const float scan_frequency   = 10.0f;
 
         const bool inverted          = false;
@@ -66,7 +67,7 @@ public:
             return -1;
         }
 
-        /* ================= MOTOR (A1 PWM) ================= */
+        /* ================= MOTOR (OFFICIAL PWM) ================= */
         drv_->setMotorSpeed(600);
 
         if (!start_scan(scan_mode, scan_frequency)) {
@@ -75,10 +76,10 @@ public:
             return -1;
         }
 
-        /* ================= QoS (RViz friendly) ================= */
+        /* ================= QoS ================= */
         scan_pub_ = create_publisher<sensor_msgs::msg::LaserScan>(
             topic_name,
-            rclcpp::QoS(rclcpp::KeepLast(10)).reliable()
+            rclcpp::QoS(rclcpp::KeepLast(10))
         );
 
         RCLCPP_INFO(get_logger(), "Publishing LaserScan on: %s", topic_name.c_str());
@@ -114,8 +115,9 @@ public:
                         frame_id, range_min);
                 }
             } else {
-                RCLCPP_WARN_THROTTLE(get_logger(), *get_clock(), 2000,
-                                     "grabScanDataHq failed (0x%08x), trying to continue...", result);
+                RCLCPP_WARN_THROTTLE(
+                    get_logger(), *get_clock(), 2000,
+                    "grabScanDataHq failed (0x%08x)", result);
             }
 
             rclcpp::spin_some(shared_from_this());
@@ -127,41 +129,29 @@ public:
     }
 
 private:
-    /* ================= CONNECT WITH FALLBACK ================= */
     bool connect_any_port(const std::vector<std::string>& ports, int baudrate)
     {
         for (const auto& port : ports) {
-            // Skip non-existing or non-accessible device nodes
-            if (access(port.c_str(), R_OK | W_OK) != 0) {
-                RCLCPP_DEBUG(get_logger(), "Port not accessible: %s", port.c_str());
+            if (access(port.c_str(), R_OK | W_OK) != 0)
                 continue;
-            }
 
-            cleanup_channel(); // free previous try (if any)
+            cleanup_channel();
 
             channel_ = *createSerialPortChannel(port, baudrate);
-            if (!channel_) {
-                RCLCPP_WARN(get_logger(), "Failed to create channel for %s", port.c_str());
+            if (!channel_)
                 continue;
-            }
 
-            auto ans = drv_->connect(channel_);
-            if (SL_IS_OK(ans)) {
-                RCLCPP_INFO(get_logger(), "Connected to RPLIDAR on %s @ %d", port.c_str(), baudrate);
+            if (SL_IS_OK(drv_->connect(channel_))) {
+                RCLCPP_INFO(get_logger(), "Connected to RPLIDAR on %s", port.c_str());
                 connected_port_ = port;
                 return true;
             }
-
-            RCLCPP_WARN(get_logger(), "Failed to connect on %s (0x%08x)", port.c_str(), ans);
         }
         return false;
     }
 
     void cleanup_channel()
     {
-        // NOTE: sl_lidar channel lifetime depends on SDK version.
-        // Many builds require deleting the channel pointer after a failed attempt.
-        // If your SDK provides a dispose/release function, use it instead.
         if (channel_) {
             delete channel_;
             channel_ = nullptr;
@@ -169,7 +159,6 @@ private:
         connected_port_.clear();
     }
 
-    /* ================= DEVICE ================= */
     bool get_device_info()
     {
         sl_lidar_response_device_info_t info;
@@ -178,8 +167,7 @@ private:
 
         RCLCPP_INFO(
             get_logger(),
-            "RPLIDAR A1 | Port %s | FW %d.%02d | HW %d",
-            connected_port_.empty() ? "unknown" : connected_port_.c_str(),
+            "RPLIDAR A1 | FW %d.%02d | HW %d",
             info.firmware_version >> 8,
             info.firmware_version & 0xFF,
             info.hardware_version
@@ -194,13 +182,12 @@ private:
             return false;
 
         if (health.status == SL_LIDAR_STATUS_ERROR) {
-            RCLCPP_ERROR(get_logger(), "LIDAR health status ERROR (code=%d)", health.error_code);
+            RCLCPP_ERROR(get_logger(), "LIDAR health ERROR");
             return false;
         }
         return true;
     }
 
-    /* ================= SCAN MODE ================= */
     bool start_scan(const std::string& name, float freq)
     {
         std::vector<LidarScanMode> modes;
@@ -210,17 +197,15 @@ private:
         bool found = false;
 
         for (auto& m : modes) {
-            if (m.scan_mode == name) {
+            if (name.empty() || m.scan_mode == name) {
                 selected = m;
                 found = true;
                 break;
             }
         }
 
-        if (!found) {
-            RCLCPP_ERROR(get_logger(), "Scan mode %s not supported", name.c_str());
+        if (!found)
             return false;
-        }
 
         drv_->startScanExpress(false, selected.id, 0, &selected);
 
@@ -235,10 +220,9 @@ private:
 
         RCLCPP_INFO(
             get_logger(),
-            "scan mode: %s | sample rate: %d KHz | max_distance: %.1f m | scan freq: %.1f Hz | compensate x%d",
+            "scan mode: %s | sample rate: %d KHz | scan freq: %.1f Hz | compensate x%d",
             selected.scan_mode,
             (int)(1000.0 / selected.us_per_sample + 0.5),
-            selected.max_distance,
             freq,
             angle_compensate_multiple_
         );
@@ -246,7 +230,6 @@ private:
         return true;
     }
 
-    /* ================= PUBLISH ================= */
     static float angle(const sl_lidar_response_measurement_node_hq_t& n)
     {
         return n.angle_z_q14 * 90.f / 16384.f;
@@ -297,13 +280,12 @@ private:
         const std::string& frame,
         float range_min)
     {
-        (void)inverted; // keep params for future use
+        (void)inverted;
         (void)flip_x;
 
         sensor_msgs::msg::LaserScan msg;
         msg.header.stamp = stamp;
         msg.header.frame_id = frame;
-
         msg.angle_min = angle_min;
         msg.angle_max = angle_max;
         msg.angle_increment = (angle_max - angle_min) / (count - 1);
@@ -336,14 +318,11 @@ private:
     ILidarDriver* drv_{nullptr};
     IChannel* channel_{nullptr};
     std::string connected_port_;
-
     rclcpp::Publisher<sensor_msgs::msg::LaserScan>::SharedPtr scan_pub_;
-
     int angle_compensate_multiple_{1};
     float max_distance_{12.0f};
 };
 
-/* ================= SIGNAL ================= */
 void sigint_handler(int)
 {
     need_exit = true;
@@ -353,10 +332,8 @@ int main(int argc, char** argv)
 {
     rclcpp::init(argc, argv);
     signal(SIGINT, sigint_handler);
-
     auto node = std::make_shared<RPlidarA1Node>();
     int ret = node->run();
-
     rclcpp::shutdown();
     return ret;
 }
