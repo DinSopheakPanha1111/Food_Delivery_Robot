@@ -1,0 +1,64 @@
+[0.020s] Invoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16
+[0.036s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.135s] -- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)
+[0.163s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.165s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.169s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.181s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.194s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.221s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.224s] -- Found rmw_cyclonedds_cpp: 1.3.4 (/opt/ros/humble/share/rmw_cyclonedds_cpp/cmake)
+[0.240s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[0.275s] -- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.284s] -- Found nav_msgs: 4.9.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[0.296s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.308s] -- Found food_del_robot: 0.0.0 (/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake)
+[0.389s] -- Configuring done
+[0.407s] -- Generating done
+[0.412s] -- Build files have been written to: /home/panha/Food_Delivery_Robot/build/zlac8015d_driver
+[0.446s] [ 50%] Built target robot_kinematic
+[0.446s] [ 50%] Built target can
+[0.470s] [ 75%] Built target zlac8015d_driver
+[0.501s] [ 87%] [32mBuilding CXX object CMakeFiles/drive_and_odom.dir/src/drive_and_odom.cpp.o[0m
+[0.739s] In file included from [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:8[m[K:
+[0.739s] [01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:18:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+[0.739s]    18 |  //**************************************************************************** */
+[0.739s]       |    
+[0.739s] [01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:29:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+[0.739s]    29 |  //**************************************************************************** */
+[0.740s]       |    
+[0.740s] [01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:38:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+[0.740s]    38 |  //**************************************************************************** */
+[0.740s]       |    
+[0.740s] [01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:48:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+[0.740s]    48 |  //**************************************************************************** */
+[0.740s]       |    
+[7.134s] [100%] [32m[1mLinking CXX executable drive_and_odom[0m
+[7.456s] [100%] Built target drive_and_odom
+[7.467s] Invoked command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16
+[7.469s] Invoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/zlac8015d_driver
+[7.474s] -- Install configuration: ""
+[7.474s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/libcan.a
+[7.474s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/libzlac8015d_driver.a
+[7.474s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include/
+[7.474s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include//zlac8015d_driver
+[7.474s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include//zlac8015d_driver/zlac8015d_driver.hpp
+[7.474s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include//zlac8015d_driver/can.hpp
+[7.475s] -- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/zlac8015d_driver/drive_and_odom
+[7.481s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/zlac8015d_driver/drive_and_odom" to ""
+[7.481s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/ament_index/resource_index/package_run_dependencies/zlac8015d_driver
+[7.481s] -- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/ament_index/resource_index/parent_prefix_path/zlac8015d_driver
+[7.481s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/ament_prefix_path.sh
+[7.481s] -- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/ament_prefix_path.dsv
+[7.481s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/path.sh
+[7.481s] -- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/path.dsv
+[7.481s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.bash
+[7.481s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.sh
+[7.482s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.zsh
+[7.482s] -- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.dsv
+[7.482s] -- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.dsv
+[7.482s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/ament_index/resource_index/packages/zlac8015d_driver
+[7.482s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/cmake/zlac8015d_driverConfig.cmake
+[7.482s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/cmake/zlac8015d_driverConfig-version.cmake
+[7.482s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.xml
+[7.484s] Invoked command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/zlac8015d_driver

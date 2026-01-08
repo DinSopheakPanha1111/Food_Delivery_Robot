@@ -1,0 +1,42 @@
+[0.035s] Invoking command in '/home/panha/Food_Delivery_Robot/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/rplidar_ros -- -j16 -l16
+[0.071s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.174s] -- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)
+[0.211s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.214s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.219s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.231s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.245s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.279s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.283s] -- Found rmw_cyclonedds_cpp: 1.3.4 (/opt/ros/humble/share/rmw_cyclonedds_cpp/cmake)
+[0.303s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[0.346s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.369s] -- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)
+[0.460s] -- Configuring done
+[0.483s] -- Generating done
+[0.490s] -- Build files have been written to: /home/panha/Food_Delivery_Robot/build/rplidar_ros
+[0.530s] [  3%] Built target rplidar_client
+[0.545s] [  5%] [32mBuilding CXX object CMakeFiles/rplidar_a1.dir/src/rplidar_a1.cpp.o[0m
+[0.546s] [ 37%] Built target rplidar_node
+[0.547s] [ 69%] Built target rplidar_composition
+[2.441s] In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_cmd.h:41[m[K,
+[2.441s]                  from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_driver.h:54[m[K,
+[2.441s]                  from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar.h:36[m[K,
+[2.441s]                  from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:5[m[K:
+[2.441s] [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_protocol.h:66:16:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kdata[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[2.441s]    66 |     sl_u8 data[[01;35m[K0[m[K];
+[2.441s]       |                [01;35m[K^[m[K
+[2.441s] In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_driver.h:54[m[K,
+[2.442s]                  from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar.h:36[m[K,
+[2.442s]                  from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:5[m[K:
+[2.442s] [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_cmd.h:324:20:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kpayload[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[2.442s]   324 |     sl_u8  payload[[01;35m[K0[m[K];
+[2.442s]       |                    [01;35m[K^[m[K
+[2.454s] [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:[m[K In member function ‘[01m[Kvoid RPlidarA1Node::publish_raw(sl_lidar_response_measurement_node_hq_t*, size_t, rclcpp::Time, double, bool, bool, float, float, const string&, float)[m[K’:
+[2.455s] [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:223:14:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kinverted[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[2.455s]   223 |         [01;35m[Kbool inverted[m[K,
+[2.455s]       |         [01;35m[K~~~~~^~~~~~~~[m[K
+[2.455s] [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:224:14:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kflip_x[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[2.455s]   224 |         [01;35m[Kbool flip_x[m[K,
+[2.455s]       |         [01;35m[K~~~~~^~~~~~[m[K
+[3.834s] [ 71%] [32m[1mLinking CXX executable rplidar_a1[0m
+[4.057s] [100%] Built target rplidar_a1

@@ -1,0 +1,22 @@
+[  3%] Built target food_del_robot__cpp
+[ 12%] Built target food_del_robot__rosidl_generator_c
+[ 12%] Built target ament_cmake_python_copy_food_del_robot
+[ 22%] Built target food_del_robot__rosidl_typesupport_cpp
+[ 58%] Built target food_del_robot__rosidl_typesupport_introspection_c
+[ 61%] Built target food_del_robot__rosidl_typesupport_fastrtps_cpp
+[ 61%] Built target food_del_robot__rosidl_typesupport_fastrtps_c
+[ 61%] Built target food_del_robot__rosidl_typesupport_c
+[ 70%] Built target food_del_robot__rosidl_typesupport_introspection_cpp
+[ 70%] Built target food_del_robot
+[ 74%] Built target food_del_robot__py
+[ 80%] Built target food_del_robot__rosidl_generator_py
+[ 93%] Built target food_del_robot__rosidl_typesupport_fastrtps_c__pyext
+[ 93%] Built target food_del_robot__rosidl_typesupport_introspection_c__pyext
+[100%] Built target food_del_robot__rosidl_typesupport_c__pyext
+running egg_info
+writing food_del_robot.egg-info/PKG-INFO
+writing dependency_links to food_del_robot.egg-info/dependency_links.txt
+writing top-level names to food_del_robot.egg-info/top_level.txt
+reading manifest file 'food_del_robot.egg-info/SOURCES.txt'
+writing manifest file 'food_del_robot.egg-info/SOURCES.txt'
+[100%] Built target ament_cmake_python_build_food_del_robot_egg
