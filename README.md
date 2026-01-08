@@ -108,15 +108,34 @@ Frequency and BW :
 
 Frequency : 
 
-average rate: 6.659
-	min: 0.145s max: 0.153s std dev: 0.00172s window: 15
+average rate: 6.932
+	min: 0.135s max: 0.148s std dev: 0.00524s window: 8
+average rate: 6.940
+	min: 0.135s max: 0.148s std dev: 0.00526s window: 15
+average rate: 6.917
+	min: 0.135s max: 0.148s std dev: 0.00494s window: 22
+average rate: 6.925
+	min: 0.134s max: 0.148s std dev: 0.00517s window: 29
 
 BW : 
 
-20.14 KB/s from 20 messages
-	Message size mean: 2.94 KB min: 2.94 KB max: 2.94 KB
+66.06 KB/s from 7 messages
+	Message size mean: 8.70 KB min: 8.70 KB max: 8.70 KB
+63.37 KB/s from 14 messages
+	Message size mean: 8.70 KB min: 8.70 KB max: 8.70 KB
+62.52 KB/s from 21 messages
+	Message size mean: 8.70 KB min: 8.70 KB max: 8.70 KB
+62.11 KB/s from 28 messages
+	Message size mean: 8.70 KB min: 8.70 KB max: 8.70 KB
 
 ```
+
+Information : 
+
+[INFO] [1767873310.778035442] [rplidar_a1_node]: RPLIDAR A1 | FW 1.29 | HW 7
+[INFO] [1767873311.083058315] [rplidar_a1_node]: scan mode: Sensitivity | sample rate: 8 KHz | scan freq: 10.0 Hz | compensate x3
+[INFO] [1767873311.084896206] [rplidar_a1_node]: Publishing LaserScan on: scan
+  
 
 **1.2 LAUNCH IMU**
 
