@@ -84,7 +84,7 @@ private:
         float right_rpm =
             kinematic_.get_right_wheel_rpm(v, wz, wheel_base_, wheel_radius_);
 
-        driver_.set_sync_left_right_speed(left_rpm, right_rpm);
+        driver_.set_sync_left_right_speed(left_rpm, -right_rpm);
     }
 
     /* ================= EMERGENCY SERVICE ================= */

@@ -68,6 +68,16 @@ ament_target_dependencies(drive_and_odom
   food_del_robot
 )
 
+# ================== Cmd Vel to Twist Stamped Node =================
+add_executable(cmd_vel_to_twist_stamped
+  src/cmd_vel_to_twist_stamped.cpp
+)
+
+ament_target_dependencies(cmd_vel_to_twist_stamped
+  rclcpp
+  geometry_msgs
+)
+
 # ================= Install =================
 install(
   TARGETS can zlac8015d_driver
@@ -82,7 +92,7 @@ install(
 )
 
 install(
-  TARGETS drive_and_odom
+  TARGETS drive_and_odom cmd_vel_to_twist_stamped
   DESTINATION lib/${PROJECT_NAME}
 )
 
