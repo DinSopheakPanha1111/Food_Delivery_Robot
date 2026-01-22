@@ -1,5 +1,7 @@
 // By TE Tikea
 
+// just for relaying /cmd_vel (Twist) to /diff_drive_controller/cmd_vel (TwistStamped)
+
 #include <rclcpp/rclcpp.hpp>
 #include <geometry_msgs/msg/twist.hpp>
 #include <geometry_msgs/msg/twist_stamped.hpp>
