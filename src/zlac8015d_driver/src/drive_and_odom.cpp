@@ -156,6 +156,22 @@ private:
         odom.twist.twist.linear.x = vx;
         odom.twist.twist.angular.z = wz;
 
+        // Adding covariance for pose (position and orientation)
+        odom.pose.covariance = {0.01, 0.0, 0.0, 0.0, 0.0, 0.0,   // x, y, z position covariance
+                                0.0, 0.01, 0.0, 0.0, 0.0, 0.0,   // orientation covariance (roll, pitch, yaw)
+                                0.0, 0.0, 0.01, 0.0, 0.0, 0.0,   // orientation covariance
+                                0.0, 0.0, 0.0, 0.01, 0.0, 0.0,   // velocity covariance
+                                0.0, 0.0, 0.0, 0.0, 0.01, 0.0,   // velocity covariance
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.01};  // angular velocity covariance
+
+        // Adding covariance for twist (linear and angular velocities)
+        odom.twist.covariance = {0.01, 0.0, 0.0, 0.0, 0.0, 0.0,   // vx, vy, vz covariance
+                                 0.0, 0.01, 0.0, 0.0, 0.0, 0.0,   // vx, vy, vz covariance
+                                 0.0, 0.0, 0.01, 0.0, 0.0, 0.0,   // angular velocities covariance
+                                 0.0, 0.0, 0.0, 0.01, 0.0, 0.0,   // angular velocities covariance
+                                 0.0, 0.0, 0.0, 0.0, 0.01, 0.0,   // twist covariance
+                                 0.0, 0.0, 0.0, 0.0, 0.0, 0.01};  // twist covariance
+
         odom_pub_->publish(odom);
     }
 };

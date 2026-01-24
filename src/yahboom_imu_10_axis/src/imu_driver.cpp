@@ -90,6 +90,22 @@ private:
         imu_msg.orientation.y = quat[2];
         imu_msg.orientation.z = quat[3];
 
+        // Covariance matrices (set diagonal to a small value, 0 means no uncertainty)
+        // Linear acceleration covariance (3x3 matrix)
+        imu_msg.linear_acceleration_covariance = {0.01, 0.0, 0.0,
+                                                 0.0, 0.01, 0.0,
+                                                 0.0, 0.0, 0.01};
+
+        // Angular velocity covariance (3x3 matrix)
+        imu_msg.angular_velocity_covariance = {0.01, 0.0, 0.0,
+                                               0.0, 0.01, 0.0,
+                                               0.0, 0.0, 0.01};
+
+        // Orientation covariance (3x3 matrix)
+        imu_msg.orientation_covariance = {0.01, 0.0, 0.0,
+                                          0.0, 0.01, 0.0,
+                                          0.0, 0.0, 0.01};
+
         imu_pub_->publish(imu_msg);
     }
 
