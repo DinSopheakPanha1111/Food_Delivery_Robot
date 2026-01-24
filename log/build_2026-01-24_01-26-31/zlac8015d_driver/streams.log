@@ -1,0 +1,33 @@
+[0.055s] Invoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j6 -l6
+[0.243s] [ 20%] Built target can
+[0.264s] [ 40%] Built target robot_kinematic
+[0.299s] [ 60%] Built target cmd_vel_to_twist_stamped
+[0.323s] [ 80%] Built target zlac8015d_driver
+[0.400s] [100%] Built target drive_and_odom
+[0.492s] Invoked command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j6 -l6
+[0.494s] Invoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/zlac8015d_driver
+[0.511s] -- Install configuration: ""
+[0.511s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/libcan.a
+[0.512s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/libzlac8015d_driver.a
+[0.512s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include/
+[0.512s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include//zlac8015d_driver
+[0.512s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include//zlac8015d_driver/can.hpp
+[0.512s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include//zlac8015d_driver/zlac8015d_driver.hpp
+[0.513s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/zlac8015d_driver/drive_and_odom
+[0.514s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/zlac8015d_driver/cmd_vel_to_twist_stamped
+[0.514s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/ament_index/resource_index/package_run_dependencies/zlac8015d_driver
+[0.514s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/ament_index/resource_index/parent_prefix_path/zlac8015d_driver
+[0.515s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/ament_prefix_path.sh
+[0.515s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/ament_prefix_path.dsv
+[0.515s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/path.sh
+[0.515s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/path.dsv
+[0.515s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.bash
+[0.515s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.sh
+[0.515s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.zsh
+[0.516s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.dsv
+[0.516s] -- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.dsv
+[0.516s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/ament_index/resource_index/packages/zlac8015d_driver
+[0.516s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/cmake/zlac8015d_driverConfig.cmake
+[0.516s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/cmake/zlac8015d_driverConfig-version.cmake
+[0.517s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.xml
+[0.523s] Invoked command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/zlac8015d_driver

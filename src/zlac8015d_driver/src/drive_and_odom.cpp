@@ -13,12 +13,12 @@ class MotorControlNode : public rclcpp::Node
 public:
     MotorControlNode()
     : Node("motor_control_node"),
-      can_("can0", 500000),
+      can_("can1", 500000),
       driver_(can_, 0x01),
       last_time_(this->now())
     {
-        wheel_radius_ = 0.075;
-        wheel_base_   = 0.40;
+        wheel_radius_ = 0.065;
+        wheel_base_   = 0.457;
 
         odom_pub_ = this->create_publisher<nav_msgs::msg::Odometry>(
             "/odom/wheel", 10);

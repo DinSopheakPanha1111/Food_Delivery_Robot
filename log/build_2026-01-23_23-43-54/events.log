@@ -1,0 +1,593 @@
+[0.000000] (-) TimerEvent: {}
+[0.000611] (food_del_robot) JobQueued: {'identifier': 'food_del_robot', 'dependencies': OrderedDict()}
+[0.001148] (rplidar_ros) JobQueued: {'identifier': 'rplidar_ros', 'dependencies': OrderedDict()}
+[0.001400] (yahboom_imu_10_axis) JobQueued: {'identifier': 'yahboom_imu_10_axis', 'dependencies': OrderedDict()}
+[0.001665] (zlac8015d_driver) JobQueued: {'identifier': 'zlac8015d_driver', 'dependencies': OrderedDict()}
+[0.001760] (food_del_robot_description) JobQueued: {'identifier': 'food_del_robot_description', 'dependencies': OrderedDict([('zlac8015d_driver', '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver')])}
+[0.001844] (zlac8015d_driver) JobStarted: {'identifier': 'zlac8015d_driver'}
+[0.015591] (food_del_robot) JobStarted: {'identifier': 'food_del_robot'}
+[0.024999] (rplidar_ros) JobStarted: {'identifier': 'rplidar_ros'}
+[0.034100] (yahboom_imu_10_axis) JobStarted: {'identifier': 'yahboom_imu_10_axis'}
+[0.046316] (zlac8015d_driver) JobProgress: {'identifier': 'zlac8015d_driver', 'progress': 'cmake'}
+[0.047504] (zlac8015d_driver) JobProgress: {'identifier': 'zlac8015d_driver', 'progress': 'build'}
+[0.048752] (zlac8015d_driver) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver', '--', '-j6', '-l6'], 'cwd': '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'panha'), ('SSH_CLIENT', '192.168.200.23 58570 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib:/home/panha/ros2_ws/install/realsense2_camera/lib:/home/panha/ros2_ws/install/realsense2_camera_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/panha'), ('OLDPWD', '/home/panha'), ('SSH_TTY', '/dev/pts/1'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin NX Engineering Reference Developer Kit'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install:/home/panha/yolo_ws/install:/home/panha/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'panha'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422725018830'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/panha/.local/bin:/home/panha/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('RWM_IMPLEMENTATION', 'rwm_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('ROS_DOMAIN_ID', '1'), ('AMENT_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/yolo_ws/install/depth_test:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '192.168.200.23 58570 192.168.200.19 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share/:/usr/share/'), ('PYTHONPATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages:/home/panha/yolo_ws/install/depth_test/lib/python3.10/site-packages:/home/panha/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('CMAKE_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble'), ('JETSON_P_NUMBER', 'p3767-0003')]), 'shell': False}
+[0.052845] (food_del_robot) JobProgress: {'identifier': 'food_del_robot', 'progress': 'cmake'}
+[0.054048] (food_del_robot) JobProgress: {'identifier': 'food_del_robot', 'progress': 'build'}
+[0.054531] (food_del_robot) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/panha/Food_Delivery_Robot/build/food_del_robot', '--', '-j6', '-l6'], 'cwd': '/home/panha/Food_Delivery_Robot/build/food_del_robot', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'panha'), ('SSH_CLIENT', '192.168.200.23 58570 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib:/home/panha/ros2_ws/install/realsense2_camera/lib:/home/panha/ros2_ws/install/realsense2_camera_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/panha'), ('OLDPWD', '/home/panha'), ('SSH_TTY', '/dev/pts/1'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin NX Engineering Reference Developer Kit'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install:/home/panha/yolo_ws/install:/home/panha/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'panha'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422725018830'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/panha/.local/bin:/home/panha/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('RWM_IMPLEMENTATION', 'rwm_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('ROS_DOMAIN_ID', '1'), ('AMENT_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/yolo_ws/install/depth_test:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/panha/Food_Delivery_Robot/build/food_del_robot'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '192.168.200.23 58570 192.168.200.19 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share/:/usr/share/'), ('PYTHONPATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages:/home/panha/yolo_ws/install/depth_test/lib/python3.10/site-packages:/home/panha/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('CMAKE_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble'), ('JETSON_P_NUMBER', 'p3767-0003')]), 'shell': False}
+[0.057628] (rplidar_ros) JobProgress: {'identifier': 'rplidar_ros', 'progress': 'cmake'}
+[0.058710] (rplidar_ros) JobProgress: {'identifier': 'rplidar_ros', 'progress': 'build'}
+[0.059176] (rplidar_ros) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/panha/Food_Delivery_Robot/build/rplidar_ros', '--', '-j6', '-l6'], 'cwd': '/home/panha/Food_Delivery_Robot/build/rplidar_ros', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'panha'), ('SSH_CLIENT', '192.168.200.23 58570 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib:/home/panha/ros2_ws/install/realsense2_camera/lib:/home/panha/ros2_ws/install/realsense2_camera_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/panha'), ('OLDPWD', '/home/panha'), ('SSH_TTY', '/dev/pts/1'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin NX Engineering Reference Developer Kit'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install:/home/panha/yolo_ws/install:/home/panha/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'panha'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422725018830'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/panha/.local/bin:/home/panha/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('RWM_IMPLEMENTATION', 'rwm_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('ROS_DOMAIN_ID', '1'), ('AMENT_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/yolo_ws/install/depth_test:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/panha/Food_Delivery_Robot/build/rplidar_ros'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '192.168.200.23 58570 192.168.200.19 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share/:/usr/share/'), ('PYTHONPATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages:/home/panha/yolo_ws/install/depth_test/lib/python3.10/site-packages:/home/panha/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('CMAKE_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble'), ('JETSON_P_NUMBER', 'p3767-0003')]), 'shell': False}
+[0.066433] (yahboom_imu_10_axis) JobProgress: {'identifier': 'yahboom_imu_10_axis', 'progress': 'cmake'}
+[0.067737] (yahboom_imu_10_axis) JobProgress: {'identifier': 'yahboom_imu_10_axis', 'progress': 'build'}
+[0.068260] (yahboom_imu_10_axis) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis', '--', '-j6', '-l6'], 'cwd': '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'panha'), ('SSH_CLIENT', '192.168.200.23 58570 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib:/home/panha/ros2_ws/install/realsense2_camera/lib:/home/panha/ros2_ws/install/realsense2_camera_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/panha'), ('OLDPWD', '/home/panha'), ('SSH_TTY', '/dev/pts/1'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin NX Engineering Reference Developer Kit'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install:/home/panha/yolo_ws/install:/home/panha/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'panha'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422725018830'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/panha/.local/bin:/home/panha/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('RWM_IMPLEMENTATION', 'rwm_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('ROS_DOMAIN_ID', '1'), ('AMENT_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/yolo_ws/install/depth_test:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '192.168.200.23 58570 192.168.200.19 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share/:/usr/share/'), ('PYTHONPATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages:/home/panha/yolo_ws/install/depth_test/lib/python3.10/site-packages:/home/panha/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('CMAKE_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble'), ('JETSON_P_NUMBER', 'p3767-0003')]), 'shell': False}
+[0.099536] (-) TimerEvent: {}
+[0.165668] (food_del_robot) StdoutLine: {'line': b'[  3%] Built target food_del_robot__cpp\n'}
+[0.183984] (zlac8015d_driver) StdoutLine: {'line': b'[ 20%] Built target robot_kinematic\n'}
+[0.188733] (yahboom_imu_10_axis) StdoutLine: {'line': b'[ 50%] Built target imu_serial\n'}
+[0.192009] (zlac8015d_driver) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/can.dir/src/can.cpp.o\x1b[0m\n'}
+[0.196546] (food_del_robot) StdoutLine: {'line': b'[ 12%] Built target food_del_robot__rosidl_generator_c\n'}
+[0.199658] (-) TimerEvent: {}
+[0.202520] (food_del_robot) StdoutLine: {'line': b'[ 12%] Built target ament_cmake_python_copy_food_del_robot\n'}
+[0.216934] (zlac8015d_driver) StdoutLine: {'line': b'[ 50%] Built target cmd_vel_to_twist_stamped\n'}
+[0.217413] (food_del_robot) StdoutLine: {'line': b'[ 22%] Built target food_del_robot__rosidl_typesupport_cpp\n'}
+[0.237623] (rplidar_ros) StdoutLine: {'line': b'[  3%] Built target rplidar_client\n'}
+[0.246190] (rplidar_ros) StdoutLine: {'line': b'[ 35%] Built target rplidar_node\n'}
+[0.250768] (food_del_robot) StdoutLine: {'line': b'[ 32%] Built target food_del_robot__rosidl_typesupport_fastrtps_cpp\n'}
+[0.266581] (rplidar_ros) StdoutLine: {'line': b'[ 92%] Built target rplidar_a1\n'}
+[0.267051] (food_del_robot) StdoutLine: {'line': b'[ 41%] Built target food_del_robot__rosidl_typesupport_introspection_cpp\n'}
+[0.267802] (rplidar_ros) StdoutLine: {'line': b'[100%] Built target rplidar_composition\n'}
+[0.273164] (yahboom_imu_10_axis) StdoutLine: {'line': b'[100%] Built target imu_driver\n'}
+[0.283065] (food_del_robot) StdoutLine: {'line': b'[ 51%] Built target food_del_robot__rosidl_typesupport_fastrtps_c\n'}
+[0.296258] (rplidar_ros) CommandEnded: {'returncode': 0}
+[0.298798] (rplidar_ros) JobProgress: {'identifier': 'rplidar_ros', 'progress': 'install'}
+[0.299985] (-) TimerEvent: {}
+[0.304783] (food_del_robot) StdoutLine: {'line': b'[ 61%] Built target food_del_robot__rosidl_typesupport_introspection_c\n'}
+[0.311650] (food_del_robot) StdoutLine: {'line': b'[ 70%] Built target food_del_robot__rosidl_typesupport_c\n'}
+[0.315270] (rplidar_ros) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/panha/Food_Delivery_Robot/build/rplidar_ros'], 'cwd': '/home/panha/Food_Delivery_Robot/build/rplidar_ros', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'panha'), ('SSH_CLIENT', '192.168.200.23 58570 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib:/home/panha/ros2_ws/install/realsense2_camera/lib:/home/panha/ros2_ws/install/realsense2_camera_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/panha'), ('OLDPWD', '/home/panha'), ('SSH_TTY', '/dev/pts/1'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin NX Engineering Reference Developer Kit'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install:/home/panha/yolo_ws/install:/home/panha/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'panha'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422725018830'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/panha/.local/bin:/home/panha/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('RWM_IMPLEMENTATION', 'rwm_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('ROS_DOMAIN_ID', '1'), ('AMENT_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/yolo_ws/install/depth_test:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/panha/Food_Delivery_Robot/build/rplidar_ros'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '192.168.200.23 58570 192.168.200.19 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share/:/usr/share/'), ('PYTHONPATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages:/home/panha/yolo_ws/install/depth_test/lib/python3.10/site-packages:/home/panha/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('CMAKE_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble'), ('JETSON_P_NUMBER', 'p3767-0003')]), 'shell': False}
+[0.320147] (yahboom_imu_10_axis) CommandEnded: {'returncode': 0}
+[0.321371] (yahboom_imu_10_axis) JobProgress: {'identifier': 'yahboom_imu_10_axis', 'progress': 'install'}
+[0.322100] (yahboom_imu_10_axis) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis'], 'cwd': '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'panha'), ('SSH_CLIENT', '192.168.200.23 58570 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib:/home/panha/ros2_ws/install/realsense2_camera/lib:/home/panha/ros2_ws/install/realsense2_camera_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/panha'), ('OLDPWD', '/home/panha'), ('SSH_TTY', '/dev/pts/1'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin NX Engineering Reference Developer Kit'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install:/home/panha/yolo_ws/install:/home/panha/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'panha'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422725018830'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/panha/.local/bin:/home/panha/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('RWM_IMPLEMENTATION', 'rwm_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('ROS_DOMAIN_ID', '1'), ('AMENT_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/yolo_ws/install/depth_test:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '192.168.200.23 58570 192.168.200.19 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share/:/usr/share/'), ('PYTHONPATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages:/home/panha/yolo_ws/install/depth_test/lib/python3.10/site-packages:/home/panha/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('CMAKE_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble'), ('JETSON_P_NUMBER', 'p3767-0003')]), 'shell': False}
+[0.333045] (rplidar_ros) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.334192] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch\n'}
+[0.334878] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m8_launch.py\n'}
+[0.335049] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a3_launch.py\n'}
+[0.335186] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s3_launch.py\n'}
+[0.335347] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a3_launch.py\n'}
+[0.335470] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_tcp_launch.py\n'}
+[0.335587] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s1_tcp_launch.py\n'}
+[0.336007] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m7_launch.py\n'}
+[0.336209] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_t1_launch.py\n'}
+[0.336477] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_t1_launch.py\n'}
+[0.336605] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m12_launch.py\n'}
+[0.336807] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m7_launch.py\n'}
+[0.336933] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2_launch.py\n'}
+[0.337147] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s1_launch.py\n'}
+[0.337323] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_c1_launch.py\n'}
+[0.338003] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s2_launch.py\n'}
+[0.338205] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2e_launch.py\n'}
+[0.338353] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m8_launch.py\n'}
+[0.338488] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s2e_launch.py\n'}
+[0.338824] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_c1_launch.py\n'}
+[0.339138] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m12_launch.py\n'}
+[0.339283] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a1_launch.py\n'}
+[0.339476] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a1_launch.py\n'}
+[0.339612] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_launch.py\n'}
+[0.340337] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s3_launch.py\n'}
+[0.340734] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/rviz\n'}
+[0.341005] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/rviz/rplidar_ros.rviz\n'}
+[0.341149] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/rplidar_ros/rplidar_node\n'}
+[0.341280] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/rplidar_ros/rplidar_composition\n'}
+[0.341770] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/rplidar_ros/rplidar_client\n'}
+[0.344512] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/lib/rplidar_ros/rplidar_a1\n'}
+[0.344975] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/ament_index/resource_index/package_run_dependencies/rplidar_ros\n'}
+[0.345173] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/ament_index/resource_index/parent_prefix_path/rplidar_ros\n'}
+[0.345411] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.sh\n'}
+[0.345737] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.dsv\n'}
+[0.346075] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/environment/path.sh\n'}
+[0.346392] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/environment/path.dsv\n'}
+[0.346570] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/local_setup.bash\n'}
+[0.347109] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/local_setup.sh\n'}
+[0.347387] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/local_setup.zsh\n'}
+[0.347642] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/local_setup.dsv\n'}
+[0.347892] (rplidar_ros) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.dsv\n'}
+[0.348140] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/ament_index/resource_index/packages/rplidar_ros\n'}
+[0.348348] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[0.348559] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.348841] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[0.349136] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib/libimu_serial.a\n'}
+[0.349388] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig.cmake\n'}
+[0.349597] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig-version.cmake\n'}
+[0.350010] (rplidar_ros) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/rplidar_ros/share/rplidar_ros/package.xml\n'}
+[0.350213] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib/yahboom_imu_10_axis/imu_driver\n'}
+[0.350484] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/include/\n'}
+[0.350643] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/include//imu_serial.hpp\n'}
+[0.350999] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/include//protocol.hpp\n'}
+[0.351263] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/ament_index/resource_index/package_run_dependencies/yahboom_imu_10_axis\n'}
+[0.351650] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/ament_index/resource_index/parent_prefix_path/yahboom_imu_10_axis\n'}
+[0.351941] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/environment/ament_prefix_path.sh\n'}
+[0.352122] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/environment/ament_prefix_path.dsv\n'}
+[0.352384] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/environment/path.sh\n'}
+[0.352537] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/environment/path.dsv\n'}
+[0.352795] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/local_setup.bash\n'}
+[0.353200] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/local_setup.sh\n'}
+[0.353931] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/local_setup.zsh\n'}
+[0.354182] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/local_setup.dsv\n'}
+[0.355465] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.dsv\n'}
+[0.356038] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/ament_index/resource_index/packages/yahboom_imu_10_axis\n'}
+[0.356340] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/cmake/yahboom_imu_10_axisConfig.cmake\n'}
+[0.356629] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/cmake/yahboom_imu_10_axisConfig-version.cmake\n'}
+[0.356909] (yahboom_imu_10_axis) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.xml\n'}
+[0.357182] (rplidar_ros) CommandEnded: {'returncode': 0}
+[0.358143] (food_del_robot) StdoutLine: {'line': b'[ 70%] Built target food_del_robot\n'}
+[0.394026] (rplidar_ros) JobEnded: {'identifier': 'rplidar_ros', 'rc': 0}
+[0.397858] (yahboom_imu_10_axis) CommandEnded: {'returncode': 0}
+[0.400605] (-) TimerEvent: {}
+[0.402054] (food_del_robot) StdoutLine: {'line': b'[ 74%] Built target food_del_robot__py\n'}
+[0.430035] (yahboom_imu_10_axis) JobEnded: {'identifier': 'yahboom_imu_10_axis', 'rc': 0}
+[0.452530] (food_del_robot) StdoutLine: {'line': b'[ 80%] Built target food_del_robot__rosidl_generator_py\n'}
+[0.500399] (food_del_robot) StdoutLine: {'line': b'[100%] Built target food_del_robot__rosidl_typesupport_c__pyext\n'}
+[0.500868] (-) TimerEvent: {}
+[0.501163] (food_del_robot) StdoutLine: {'line': b'[100%] Built target food_del_robot__rosidl_typesupport_fastrtps_c__pyext\n'}
+[0.501492] (food_del_robot) StdoutLine: {'line': b'[100%] Built target food_del_robot__rosidl_typesupport_introspection_c__pyext\n'}
+[0.601067] (-) TimerEvent: {}
+[0.701831] (-) TimerEvent: {}
+[0.802504] (-) TimerEvent: {}
+[0.828794] (food_del_robot) StdoutLine: {'line': b'running egg_info\n'}
+[0.830591] (food_del_robot) StdoutLine: {'line': b'writing food_del_robot.egg-info/PKG-INFO\n'}
+[0.831206] (food_del_robot) StdoutLine: {'line': b'writing dependency_links to food_del_robot.egg-info/dependency_links.txt\n'}
+[0.831960] (food_del_robot) StdoutLine: {'line': b'writing top-level names to food_del_robot.egg-info/top_level.txt\n'}
+[0.837145] (food_del_robot) StdoutLine: {'line': b"reading manifest file 'food_del_robot.egg-info/SOURCES.txt'\n"}
+[0.838475] (food_del_robot) StdoutLine: {'line': b"writing manifest file 'food_del_robot.egg-info/SOURCES.txt'\n"}
+[0.902659] (-) TimerEvent: {}
+[0.918927] (food_del_robot) StdoutLine: {'line': b'[100%] Built target ament_cmake_python_build_food_del_robot_egg\n'}
+[0.947711] (food_del_robot) CommandEnded: {'returncode': 0}
+[0.950033] (food_del_robot) JobProgress: {'identifier': 'food_del_robot', 'progress': 'install'}
+[0.950935] (food_del_robot) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/panha/Food_Delivery_Robot/build/food_del_robot'], 'cwd': '/home/panha/Food_Delivery_Robot/build/food_del_robot', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'panha'), ('SSH_CLIENT', '192.168.200.23 58570 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib:/home/panha/ros2_ws/install/realsense2_camera/lib:/home/panha/ros2_ws/install/realsense2_camera_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/panha'), ('OLDPWD', '/home/panha'), ('SSH_TTY', '/dev/pts/1'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin NX Engineering Reference Developer Kit'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install:/home/panha/yolo_ws/install:/home/panha/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'panha'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422725018830'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/panha/.local/bin:/home/panha/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('RWM_IMPLEMENTATION', 'rwm_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('ROS_DOMAIN_ID', '1'), ('AMENT_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/yolo_ws/install/depth_test:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/panha/Food_Delivery_Robot/build/food_del_robot'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '192.168.200.23 58570 192.168.200.19 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share/:/usr/share/'), ('PYTHONPATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages:/home/panha/yolo_ws/install/depth_test/lib/python3.10/site-packages:/home/panha/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('CMAKE_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble'), ('JETSON_P_NUMBER', 'p3767-0003')]), 'shell': False}
+[0.970763] (zlac8015d_driver) StdoutLine: {'line': b'[ 60%] \x1b[32m\x1b[1mLinking CXX static library libcan.a\x1b[0m\n'}
+[0.973906] (food_del_robot) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.974420] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/ament_index/resource_index/rosidl_interfaces/food_del_robot\n'}
+[0.974813] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot\n'}
+[0.975083] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv\n'}
+[0.975321] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail\n'}
+[0.975510] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__struct.h\n'}
+[0.975741] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__functions.h\n'}
+[0.975923] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__functions.c\n'}
+[0.976223] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__type_support.h\n'}
+[0.976483] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/emergency_stop.h\n'}
+[0.976654] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg\n'}
+[0.976860] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg/rosidl_generator_c__visibility_control.h\n'}
+[0.977059] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/library_path.sh\n'}
+[0.977323] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/library_path.dsv\n'}
+[0.977642] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_generator_c.so\n'}
+[0.977889] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot\n'}
+[0.978206] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv\n'}
+[0.978453] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail\n'}
+[0.978655] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__rosidl_typesupport_fastrtps_c.h\n'}
+[0.978890] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg\n'}
+[0.979062] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[0.979328] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_fastrtps_c.so\n'}
+[0.979599] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot\n'}
+[0.979807] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv\n'}
+[0.980020] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail\n'}
+[0.980186] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__traits.hpp\n'}
+[0.980393] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__builder.hpp\n'}
+[0.980558] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__type_support.hpp\n'}
+[0.980814] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__struct.hpp\n'}
+[0.981025] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/emergency_stop.hpp\n'}
+[0.981220] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg\n'}
+[0.981391] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[0.981594] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot\n'}
+[0.981799] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv\n'}
+[0.981955] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail\n'}
+[0.982217] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/dds_fastrtps\n'}
+[0.982410] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[0.982568] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg\n'}
+[0.982755] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[0.982913] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_fastrtps_cpp.so\n'}
+[0.983107] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot\n'}
+[0.983324] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv\n'}
+[0.983484] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail\n'}
+[0.983666] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__rosidl_typesupport_introspection_c.h\n'}
+[0.983942] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__type_support.c\n'}
+[0.984241] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg\n'}
+[0.984452] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[0.984610] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_introspection_c.so\n'}
+[0.984762] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_c.so\n'}
+[0.984913] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot\n'}
+[0.985065] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv\n'}
+[0.985227] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail\n'}
+[0.985377] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__rosidl_typesupport_introspection_cpp.hpp\n'}
+[0.985559] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__type_support.cpp\n'}
+[0.985769] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_introspection_cpp.so\n'}
+[0.985921] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_cpp.so\n'}
+[0.986061] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/pythonpath.sh\n'}
+[0.986218] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/pythonpath.dsv\n'}
+[0.986359] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot-0.0.0-py3.10.egg-info\n'}
+[0.986499] (food_del_robot) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[0.986638] (food_del_robot) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[0.986778] (food_del_robot) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[0.986916] (food_del_robot) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[0.987305] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot\n'}
+[0.987450] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/_food_del_robot_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[0.987591] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[0.987733] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv\n'}
+[0.987871] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/_emergency_stop.py\n'}
+[0.988009] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/__init__.py\n'}
+[0.988145] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/_emergency_stop_s.c\n'}
+[0.988284] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[0.988451] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/_food_del_robot_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[0.988600] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/libfood_del_robot__rosidl_generator_py.so\n'}
+[0.988742] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/_food_del_robot_s.ep.rosidl_typesupport_c.c\n'}
+[0.988883] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/__init__.py\n'}
+[0.989021] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[1.002794] (-) TimerEvent: {}
+[1.040915] (zlac8015d_driver) StdoutLine: {'line': b'[ 60%] Built target can\n'}
+[1.058878] (food_del_robot) StdoutLine: {'line': b"Listing '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot'...\n"}
+[1.059381] (food_del_robot) StdoutLine: {'line': b"Listing '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv'...\n"}
+[1.070184] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[1.070803] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[1.071382] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[1.072023] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_generator_py.so\n'}
+[1.072405] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/EmergencyStop.idl\n'}
+[1.072675] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/EmergencyStop.srv\n'}
+[1.072941] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/EmergencyStop_Request.msg\n'}
+[1.073191] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/EmergencyStop_Response.msg\n'}
+[1.073460] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/ament_index/resource_index/package_run_dependencies/food_del_robot\n'}
+[1.073790] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/ament_index/resource_index/parent_prefix_path/food_del_robot\n'}
+[1.074095] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/ament_prefix_path.sh\n'}
+[1.074324] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/ament_prefix_path.dsv\n'}
+[1.074501] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/path.sh\n'}
+[1.074670] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/path.dsv\n'}
+[1.074835] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/local_setup.bash\n'}
+[1.075051] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/local_setup.sh\n'}
+[1.075257] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/local_setup.zsh\n'}
+[1.075478] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/local_setup.dsv\n'}
+[1.075688] (food_del_robot) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.dsv\n'}
+[1.076029] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/ament_index/resource_index/packages/food_del_robot\n'}
+[1.076320] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_generator_cExport.cmake\n'}
+[1.076576] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_generator_cExport-noconfig.cmake\n'}
+[1.076850] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[1.077084] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[1.077417] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_generator_cppExport.cmake\n'}
+[1.077660] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[1.077961] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[1.078188] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_introspection_cExport.cmake\n'}
+[1.078446] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[1.078749] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_cExport.cmake\n'}
+[1.079022] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[1.079315] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[1.079540] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[1.079749] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_cppExport.cmake\n'}
+[1.079919] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[1.080114] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_generator_pyExport.cmake\n'}
+[1.080282] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_generator_pyExport-noconfig.cmake\n'}
+[1.080444] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/rosidl_cmake-extras.cmake\n'}
+[1.080605] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[1.080768] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[1.080933] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[1.081096] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[1.081259] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[1.081420] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[1.081649] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robotConfig.cmake\n'}
+[1.081827] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robotConfig-version.cmake\n'}
+[1.081995] (food_del_robot) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.xml\n'}
+[1.085079] (food_del_robot) CommandEnded: {'returncode': 0}
+[1.095129] (zlac8015d_driver) StdoutLine: {'line': b'[ 70%] \x1b[32mBuilding CXX object CMakeFiles/zlac8015d_driver.dir/src/zlac8015d_driver.cpp.o\x1b[0m\n'}
+[1.102942] (-) TimerEvent: {}
+[1.131551] (food_del_robot) JobEnded: {'identifier': 'food_del_robot', 'rc': 0}
+[1.203076] (-) TimerEvent: {}
+[1.303607] (-) TimerEvent: {}
+[1.404202] (-) TimerEvent: {}
+[1.504793] (-) TimerEvent: {}
+[1.569172] (zlac8015d_driver) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking CXX static library libzlac8015d_driver.a\x1b[0m\n'}
+[1.604955] (-) TimerEvent: {}
+[1.641392] (zlac8015d_driver) StdoutLine: {'line': b'[ 80%] Built target zlac8015d_driver\n'}
+[1.705106] (-) TimerEvent: {}
+[1.706052] (zlac8015d_driver) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding CXX object CMakeFiles/drive_and_odom.dir/src/drive_and_odom.cpp.o\x1b[0m\n'}
+[1.805247] (-) TimerEvent: {}
+[1.905879] (-) TimerEvent: {}
+[2.006502] (-) TimerEvent: {}
+[2.107105] (-) TimerEvent: {}
+[2.171985] (zlac8015d_driver) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:8\x1b[m\x1b[K:\n'}
+[2.172519] (zlac8015d_driver) StderrLine: {'line': b'\x1b[01m\x1b[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:18:3:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment\x07-Wcomment\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[2.172677] (zlac8015d_driver) StderrLine: {'line': b'   18 |  //**************************************************************************** */\n'}
+[2.172809] (zlac8015d_driver) StderrLine: {'line': b'      |    \n'}
+[2.172929] (zlac8015d_driver) StderrLine: {'line': b'\x1b[01m\x1b[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:29:3:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment\x07-Wcomment\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[2.173047] (zlac8015d_driver) StderrLine: {'line': b'   29 |  //**************************************************************************** */\n'}
+[2.173161] (zlac8015d_driver) StderrLine: {'line': b'      |    \n'}
+[2.173270] (zlac8015d_driver) StderrLine: {'line': b'\x1b[01m\x1b[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:38:3:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment\x07-Wcomment\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[2.173382] (zlac8015d_driver) StderrLine: {'line': b'   38 |  //**************************************************************************** */\n'}
+[2.173526] (zlac8015d_driver) StderrLine: {'line': b'      |    \n'}
+[2.173638] (zlac8015d_driver) StderrLine: {'line': b'\x1b[01m\x1b[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:48:3:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment\x07-Wcomment\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[2.173750] (zlac8015d_driver) StderrLine: {'line': b'   48 |  //**************************************************************************** */\n'}
+[2.173858] (zlac8015d_driver) StderrLine: {'line': b'      |    \n'}
+[2.207206] (-) TimerEvent: {}
+[2.307800] (-) TimerEvent: {}
+[2.408469] (-) TimerEvent: {}
+[2.509147] (-) TimerEvent: {}
+[2.609843] (-) TimerEvent: {}
+[2.710533] (-) TimerEvent: {}
+[2.811209] (-) TimerEvent: {}
+[2.911899] (-) TimerEvent: {}
+[3.012617] (-) TimerEvent: {}
+[3.113284] (-) TimerEvent: {}
+[3.213969] (-) TimerEvent: {}
+[3.314642] (-) TimerEvent: {}
+[3.415309] (-) TimerEvent: {}
+[3.515973] (-) TimerEvent: {}
+[3.616653] (-) TimerEvent: {}
+[3.717547] (-) TimerEvent: {}
+[3.818428] (-) TimerEvent: {}
+[3.919124] (-) TimerEvent: {}
+[4.020008] (-) TimerEvent: {}
+[4.120683] (-) TimerEvent: {}
+[4.221347] (-) TimerEvent: {}
+[4.322040] (-) TimerEvent: {}
+[4.422912] (-) TimerEvent: {}
+[4.523589] (-) TimerEvent: {}
+[4.624265] (-) TimerEvent: {}
+[4.724931] (-) TimerEvent: {}
+[4.825610] (-) TimerEvent: {}
+[4.930155] (-) TimerEvent: {}
+[5.030827] (-) TimerEvent: {}
+[5.131509] (-) TimerEvent: {}
+[5.232164] (-) TimerEvent: {}
+[5.332824] (-) TimerEvent: {}
+[5.433505] (-) TimerEvent: {}
+[5.534158] (-) TimerEvent: {}
+[5.634845] (-) TimerEvent: {}
+[5.735525] (-) TimerEvent: {}
+[5.836199] (-) TimerEvent: {}
+[5.936867] (-) TimerEvent: {}
+[6.037548] (-) TimerEvent: {}
+[6.138194] (-) TimerEvent: {}
+[6.238846] (-) TimerEvent: {}
+[6.339509] (-) TimerEvent: {}
+[6.440193] (-) TimerEvent: {}
+[6.540851] (-) TimerEvent: {}
+[6.641554] (-) TimerEvent: {}
+[6.742229] (-) TimerEvent: {}
+[6.842888] (-) TimerEvent: {}
+[6.943553] (-) TimerEvent: {}
+[7.044210] (-) TimerEvent: {}
+[7.144825] (-) TimerEvent: {}
+[7.245461] (-) TimerEvent: {}
+[7.346134] (-) TimerEvent: {}
+[7.446802] (-) TimerEvent: {}
+[7.547442] (-) TimerEvent: {}
+[7.648060] (-) TimerEvent: {}
+[7.748697] (-) TimerEvent: {}
+[7.849354] (-) TimerEvent: {}
+[7.950038] (-) TimerEvent: {}
+[8.050688] (-) TimerEvent: {}
+[8.151352] (-) TimerEvent: {}
+[8.252010] (-) TimerEvent: {}
+[8.352674] (-) TimerEvent: {}
+[8.453349] (-) TimerEvent: {}
+[8.554027] (-) TimerEvent: {}
+[8.654679] (-) TimerEvent: {}
+[8.755344] (-) TimerEvent: {}
+[8.856016] (-) TimerEvent: {}
+[8.956891] (-) TimerEvent: {}
+[9.057578] (-) TimerEvent: {}
+[9.158260] (-) TimerEvent: {}
+[9.258929] (-) TimerEvent: {}
+[9.359598] (-) TimerEvent: {}
+[9.460270] (-) TimerEvent: {}
+[9.560939] (-) TimerEvent: {}
+[9.661594] (-) TimerEvent: {}
+[9.762257] (-) TimerEvent: {}
+[9.862925] (-) TimerEvent: {}
+[9.966585] (-) TimerEvent: {}
+[10.067237] (-) TimerEvent: {}
+[10.167895] (-) TimerEvent: {}
+[10.268513] (-) TimerEvent: {}
+[10.369151] (-) TimerEvent: {}
+[10.469839] (-) TimerEvent: {}
+[10.570501] (-) TimerEvent: {}
+[10.671144] (-) TimerEvent: {}
+[10.771770] (-) TimerEvent: {}
+[10.872399] (-) TimerEvent: {}
+[10.973040] (-) TimerEvent: {}
+[11.073686] (-) TimerEvent: {}
+[11.174297] (-) TimerEvent: {}
+[11.274898] (-) TimerEvent: {}
+[11.375501] (-) TimerEvent: {}
+[11.476150] (-) TimerEvent: {}
+[11.576814] (-) TimerEvent: {}
+[11.677475] (-) TimerEvent: {}
+[11.778126] (-) TimerEvent: {}
+[11.878785] (-) TimerEvent: {}
+[11.979445] (-) TimerEvent: {}
+[12.080115] (-) TimerEvent: {}
+[12.180774] (-) TimerEvent: {}
+[12.281415] (-) TimerEvent: {}
+[12.382056] (-) TimerEvent: {}
+[12.482671] (-) TimerEvent: {}
+[12.583289] (-) TimerEvent: {}
+[12.683906] (-) TimerEvent: {}
+[12.784549] (-) TimerEvent: {}
+[12.885203] (-) TimerEvent: {}
+[12.985878] (-) TimerEvent: {}
+[13.086536] (-) TimerEvent: {}
+[13.187171] (-) TimerEvent: {}
+[13.287828] (-) TimerEvent: {}
+[13.388511] (-) TimerEvent: {}
+[13.489174] (-) TimerEvent: {}
+[13.589868] (-) TimerEvent: {}
+[13.690509] (-) TimerEvent: {}
+[13.791163] (-) TimerEvent: {}
+[13.891861] (-) TimerEvent: {}
+[13.992528] (-) TimerEvent: {}
+[14.093166] (-) TimerEvent: {}
+[14.193825] (-) TimerEvent: {}
+[14.294444] (-) TimerEvent: {}
+[14.395080] (-) TimerEvent: {}
+[14.495722] (-) TimerEvent: {}
+[14.596361] (-) TimerEvent: {}
+[14.696956] (-) TimerEvent: {}
+[14.797577] (-) TimerEvent: {}
+[14.898227] (-) TimerEvent: {}
+[14.998883] (-) TimerEvent: {}
+[15.099526] (-) TimerEvent: {}
+[15.200159] (-) TimerEvent: {}
+[15.300772] (-) TimerEvent: {}
+[15.401386] (-) TimerEvent: {}
+[15.502038] (-) TimerEvent: {}
+[15.602661] (-) TimerEvent: {}
+[15.703276] (-) TimerEvent: {}
+[15.803901] (-) TimerEvent: {}
+[15.904519] (-) TimerEvent: {}
+[16.005153] (-) TimerEvent: {}
+[16.105796] (-) TimerEvent: {}
+[16.206431] (-) TimerEvent: {}
+[16.307071] (-) TimerEvent: {}
+[16.407689] (-) TimerEvent: {}
+[16.508326] (-) TimerEvent: {}
+[16.608985] (-) TimerEvent: {}
+[16.709608] (-) TimerEvent: {}
+[16.810241] (-) TimerEvent: {}
+[16.910874] (-) TimerEvent: {}
+[17.011501] (-) TimerEvent: {}
+[17.112140] (-) TimerEvent: {}
+[17.212760] (-) TimerEvent: {}
+[17.313379] (-) TimerEvent: {}
+[17.414024] (-) TimerEvent: {}
+[17.514660] (-) TimerEvent: {}
+[17.615309] (-) TimerEvent: {}
+[17.716144] (-) TimerEvent: {}
+[17.816764] (-) TimerEvent: {}
+[17.917367] (-) TimerEvent: {}
+[18.017944] (-) TimerEvent: {}
+[18.118521] (-) TimerEvent: {}
+[18.219079] (-) TimerEvent: {}
+[18.319651] (-) TimerEvent: {}
+[18.420219] (-) TimerEvent: {}
+[18.520797] (-) TimerEvent: {}
+[18.621357] (-) TimerEvent: {}
+[18.721941] (-) TimerEvent: {}
+[18.822520] (-) TimerEvent: {}
+[18.923107] (-) TimerEvent: {}
+[19.023682] (-) TimerEvent: {}
+[19.124252] (-) TimerEvent: {}
+[19.224807] (-) TimerEvent: {}
+[19.325377] (-) TimerEvent: {}
+[19.425953] (-) TimerEvent: {}
+[19.526575] (-) TimerEvent: {}
+[19.627216] (-) TimerEvent: {}
+[19.727879] (-) TimerEvent: {}
+[19.828517] (-) TimerEvent: {}
+[19.929197] (-) TimerEvent: {}
+[20.029892] (-) TimerEvent: {}
+[20.130611] (-) TimerEvent: {}
+[20.231260] (-) TimerEvent: {}
+[20.332133] (-) TimerEvent: {}
+[20.432815] (-) TimerEvent: {}
+[20.533690] (-) TimerEvent: {}
+[20.634571] (-) TimerEvent: {}
+[20.735458] (-) TimerEvent: {}
+[20.836329] (-) TimerEvent: {}
+[20.937008] (-) TimerEvent: {}
+[21.037692] (-) TimerEvent: {}
+[21.138348] (-) TimerEvent: {}
+[21.238999] (-) TimerEvent: {}
+[21.339656] (-) TimerEvent: {}
+[21.440329] (-) TimerEvent: {}
+[21.540991] (-) TimerEvent: {}
+[21.604196] (zlac8015d_driver) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable drive_and_odom\x1b[0m\n'}
+[21.641182] (-) TimerEvent: {}
+[21.741906] (-) TimerEvent: {}
+[21.842578] (-) TimerEvent: {}
+[21.943261] (-) TimerEvent: {}
+[22.043894] (-) TimerEvent: {}
+[22.144444] (-) TimerEvent: {}
+[22.244902] (-) TimerEvent: {}
+[22.345489] (-) TimerEvent: {}
+[22.446087] (-) TimerEvent: {}
+[22.546677] (-) TimerEvent: {}
+[22.558949] (zlac8015d_driver) StdoutLine: {'line': b'[100%] Built target drive_and_odom\n'}
+[22.585724] (zlac8015d_driver) CommandEnded: {'returncode': 0}
+[22.588046] (zlac8015d_driver) JobProgress: {'identifier': 'zlac8015d_driver', 'progress': 'install'}
+[22.588856] (zlac8015d_driver) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver'], 'cwd': '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'panha'), ('SSH_CLIENT', '192.168.200.23 58570 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib:/home/panha/ros2_ws/install/realsense2_camera/lib:/home/panha/ros2_ws/install/realsense2_camera_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/panha'), ('OLDPWD', '/home/panha'), ('SSH_TTY', '/dev/pts/1'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin NX Engineering Reference Developer Kit'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install:/home/panha/yolo_ws/install:/home/panha/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'panha'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422725018830'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/panha/.local/bin:/home/panha/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('RWM_IMPLEMENTATION', 'rwm_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('ROS_DOMAIN_ID', '1'), ('AMENT_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/yolo_ws/install/depth_test:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '192.168.200.23 58570 192.168.200.19 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share/:/usr/share/'), ('PYTHONPATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages:/home/panha/yolo_ws/install/depth_test/lib/python3.10/site-packages:/home/panha/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('CMAKE_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble'), ('JETSON_P_NUMBER', 'p3767-0003')]), 'shell': False}
+[22.610592] (zlac8015d_driver) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[22.611052] (zlac8015d_driver) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/libcan.a\n'}
+[22.611583] (zlac8015d_driver) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/libzlac8015d_driver.a\n'}
+[22.612209] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include/\n'}
+[22.612443] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include//zlac8015d_driver\n'}
+[22.612645] (zlac8015d_driver) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include//zlac8015d_driver/can.hpp\n'}
+[22.612874] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/include//zlac8015d_driver/zlac8015d_driver.hpp\n'}
+[22.613175] (zlac8015d_driver) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/zlac8015d_driver/drive_and_odom\n'}
+[22.624716] (zlac8015d_driver) StdoutLine: {'line': b'-- Set runtime path of "/home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/zlac8015d_driver/drive_and_odom" to ""\n'}
+[22.625237] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/lib/zlac8015d_driver/cmd_vel_to_twist_stamped\n'}
+[22.625627] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/ament_index/resource_index/package_run_dependencies/zlac8015d_driver\n'}
+[22.625843] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/ament_index/resource_index/parent_prefix_path/zlac8015d_driver\n'}
+[22.626082] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/ament_prefix_path.sh\n'}
+[22.626309] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/ament_prefix_path.dsv\n'}
+[22.626515] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/path.sh\n'}
+[22.626728] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/environment/path.dsv\n'}
+[22.626868] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.bash\n'}
+[22.626998] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.sh\n'}
+[22.627152] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.zsh\n'}
+[22.627324] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/local_setup.dsv\n'}
+[22.627518] (zlac8015d_driver) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.dsv\n'}
+[22.627682] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/ament_index/resource_index/packages/zlac8015d_driver\n'}
+[22.627813] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/cmake/zlac8015d_driverConfig.cmake\n'}
+[22.627941] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/cmake/zlac8015d_driverConfig-version.cmake\n'}
+[22.628115] (zlac8015d_driver) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/zlac8015d_driver/share/zlac8015d_driver/package.xml\n'}
+[22.631667] (zlac8015d_driver) CommandEnded: {'returncode': 0}
+[22.647015] (-) TimerEvent: {}
+[22.676937] (zlac8015d_driver) JobEnded: {'identifier': 'zlac8015d_driver', 'rc': 0}
+[22.680504] (food_del_robot_description) JobStarted: {'identifier': 'food_del_robot_description'}
+[22.701756] (food_del_robot_description) JobProgress: {'identifier': 'food_del_robot_description', 'progress': 'cmake'}
+[22.702775] (food_del_robot_description) JobProgress: {'identifier': 'food_del_robot_description', 'progress': 'build'}
+[22.703391] (food_del_robot_description) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/panha/Food_Delivery_Robot/build/food_del_robot_description', '--', '-j6', '-l6'], 'cwd': '/home/panha/Food_Delivery_Robot/build/food_del_robot_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'panha'), ('SSH_CLIENT', '192.168.200.23 58570 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib:/home/panha/ros2_ws/install/realsense2_camera/lib:/home/panha/ros2_ws/install/realsense2_camera_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/panha'), ('OLDPWD', '/home/panha'), ('SSH_TTY', '/dev/pts/1'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin NX Engineering Reference Developer Kit'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install:/home/panha/yolo_ws/install:/home/panha/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'panha'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422725018830'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/panha/.local/bin:/home/panha/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('RWM_IMPLEMENTATION', 'rwm_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('ROS_DOMAIN_ID', '1'), ('AMENT_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/yolo_ws/install/depth_test:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/panha/Food_Delivery_Robot/build/food_del_robot_description'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '192.168.200.23 58570 192.168.200.19 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share/:/usr/share/'), ('PYTHONPATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages:/home/panha/yolo_ws/install/depth_test/lib/python3.10/site-packages:/home/panha/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('CMAKE_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble'), ('JETSON_P_NUMBER', 'p3767-0003')]), 'shell': False}
+[22.747169] (-) TimerEvent: {}
+[22.789723] (food_del_robot_description) CommandEnded: {'returncode': 0}
+[22.791860] (food_del_robot_description) JobProgress: {'identifier': 'food_del_robot_description', 'progress': 'install'}
+[22.792515] (food_del_robot_description) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/panha/Food_Delivery_Robot/build/food_del_robot_description'], 'cwd': '/home/panha/Food_Delivery_Robot/build/food_del_robot_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'panha'), ('SSH_CLIENT', '192.168.200.23 58570 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/lib:/home/panha/ros2_ws/install/realsense2_camera/lib:/home/panha/ros2_ws/install/realsense2_camera_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/panha'), ('OLDPWD', '/home/panha'), ('SSH_TTY', '/dev/pts/1'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin NX Engineering Reference Developer Kit'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install:/home/panha/yolo_ws/install:/home/panha/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'panha'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (8GB ram)'), ('JETSON_SERIAL_NUMBER', '1422725018830'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '6'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/panha/.local/bin:/home/panha/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', 'localhost:11.0'), ('LANG', 'en_US.UTF-8'), ('RWM_IMPLEMENTATION', 'rwm_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('ROS_DOMAIN_ID', '1'), ('AMENT_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/yolo_ws/install/depth_test:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/panha/Food_Delivery_Robot/build/food_del_robot_description'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '192.168.200.23 58570 192.168.200.19 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share/:/usr/share/'), ('PYTHONPATH', '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages:/home/panha/yolo_ws/install/depth_test/lib/python3.10/site-packages:/home/panha/ros2_ws/install/realsense2_camera_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('CMAKE_PREFIX_PATH', '/home/panha/Food_Delivery_Robot/install/zlac8015d_driver:/home/panha/Food_Delivery_Robot/install/food_del_robot_description:/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis:/home/panha/Food_Delivery_Robot/install/rplidar_ros:/home/panha/Food_Delivery_Robot/install/food_del_robot:/home/panha/ros2_ws/install/realsense2_description:/home/panha/ros2_ws/install/realsense2_camera:/home/panha/ros2_ws/install/realsense2_camera_msgs:/home/panha/yolo_ws/install/depth_test:/opt/ros/humble'), ('JETSON_P_NUMBER', 'p3767-0003')]), 'shell': False}
+[22.813612] (food_del_robot_description) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[22.814380] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//urdf\n'}
+[22.814821] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//urdf/food_del_robot_gazebo.xacro\n'}
+[22.815205] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//urdf/food_del_robot.xacro\n'}
+[22.815483] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//urdf/food_del_robot.ros2_control.xacro\n'}
+[22.815779] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//urdf/my_main.urdf.xacro\n'}
+[22.816084] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//urdf/common_properties.xacro\n'}
+[22.816369] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//launch\n'}
+[22.816529] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//launch/joystick.launch.py\n'}
+[22.816678] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//launch/gazebo.launch.py\n'}
+[22.816849] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//launch/display.launch.py\n'}
+[22.816995] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//launch/robot.launch.py\n'}
+[22.817274] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//launch/robot_with_joystick.launch.py\n'}
+[22.817525] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//rviz\n'}
+[22.817680] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//rviz/food_del_robot.rviz\n'}
+[22.817839] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//config\n'}
+[22.817979] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//config/food_del_robot.yaml\n'}
+[22.818116] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//config/joystick.yaml\n'}
+[22.818253] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//config/gazebo_bridge.yaml\n'}
+[22.818388] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//worlds\n'}
+[22.818520] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//worlds/restaurant\n'}
+[22.818654] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//worlds/restaurant/restaurant.world\n'}
+[22.818787] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//worlds/restaurant/model.sdf\n'}
+[22.818918] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//worlds/restaurant/model.config\n'}
+[22.819050] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//maps\n'}
+[22.819181] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//maps/imu.yaml\n'}
+[22.819313] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description//maps/imu.pgm\n'}
+[22.819445] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/ament_index/resource_index/package_run_dependencies/food_del_robot_description\n'}
+[22.819578] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/ament_index/resource_index/parent_prefix_path/food_del_robot_description\n'}
+[22.819733] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/environment/ament_prefix_path.sh\n'}
+[22.820127] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/environment/ament_prefix_path.dsv\n'}
+[22.820752] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/environment/path.sh\n'}
+[22.823165] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/environment/path.dsv\n'}
+[22.824143] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/local_setup.bash\n'}
+[22.824600] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/local_setup.sh\n'}
+[22.824889] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/local_setup.zsh\n'}
+[22.825305] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/local_setup.dsv\n'}
+[22.825786] (food_del_robot_description) StdoutLine: {'line': b'-- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.dsv\n'}
+[22.826207] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/ament_index/resource_index/packages/food_del_robot_description\n'}
+[22.826616] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/cmake/food_del_robot_descriptionConfig.cmake\n'}
+[22.827024] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/cmake/food_del_robot_descriptionConfig-version.cmake\n'}
+[22.827527] (food_del_robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot_description/share/food_del_robot_description/package.xml\n'}
+[22.827918] (food_del_robot_description) CommandEnded: {'returncode': 0}
+[22.847290] (-) TimerEvent: {}
+[22.871104] (food_del_robot_description) JobEnded: {'identifier': 'food_del_robot_description', 'rc': 0}
+[22.873384] (-) EventReactorShutdown: {}

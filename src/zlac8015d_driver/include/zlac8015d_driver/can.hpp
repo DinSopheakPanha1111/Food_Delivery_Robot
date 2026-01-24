@@ -11,7 +11,7 @@
 
 class CAN {
 public:
-    explicit CAN(const std::string& interface = "can0", int bitrate = 1'000'000);
+    explicit CAN(const std::string& interface = "can1", int bitrate = 1'000'000);
     ~CAN();
 
     bool enable(bool configure_link = true);
