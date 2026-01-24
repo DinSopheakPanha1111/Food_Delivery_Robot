@@ -131,9 +131,9 @@ private:
         float v_right =
             (right_rpm * 2.0f * 0.1f * M_PI * wheel_radius_) / 60.0f;
         float vx =
-            kinematic_.get_forward_velocity(v_right, v_left);
+            kinematic_.get_forward_velocity(v_right, -v_left);
         float wz =
-            kinematic_.get_rotational_velocity(v_right, v_left, wheel_base_);
+            kinematic_.get_rotational_velocity(v_right, -v_left, wheel_base_);
 
         rclcpp::Time now = this->now();
         double dt = (now - last_time_).seconds();
