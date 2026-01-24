@@ -7,12 +7,12 @@ from launch.substitutions import Command
 def generate_launch_description():
     urdf_path = os.path.join(
         os.getenv('HOME'),
-        'food_del_robot/src/food_del_robot_description/urdf/my_main.urdf.xacro'
+        'Food_Delivery_Robot/src/food_del_robot_description/urdf/my_main.urdf.xacro'
     )
 
     rviz_config_path = os.path.join(
         os.getenv('HOME'),
-        'food_del_robot/src/food_del_robot_description/rviz/food_del_robot.rviz'
+        'Food_Delivery_Robot/src/food_del_robot_description/rviz/food_del_robot.rviz'
     )
 
     return LaunchDescription([

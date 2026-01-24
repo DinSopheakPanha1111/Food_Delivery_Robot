@@ -10,7 +10,6 @@ Panels:
         - /TF1
         - /TF1/Frames1
         - /Map1
-        - /Map1/Status1
       Splitter Ratio: 0.5
     Tree Height: 549
   - Class: rviz_common/Selection
@@ -52,7 +51,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Alpha: 1
+    - Alpha: 0.30000001192092896
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
       Description File: ""
@@ -70,11 +69,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        back_caster_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         base_footprint:
           Alpha: 1
           Show Axes: false
@@ -84,12 +78,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        base_scan_link:
+        imu_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        front_caster_wheel_link:
+        laser:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -117,21 +111,15 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        back_caster_wheel_link:
-          Value: true
         base_footprint:
           Value: true
         base_link:
           Value: true
-        base_scan_link:
+        imu_link:
           Value: true
-        front_caster_wheel_link:
+        laser:
           Value: true
         left_wheel_link:
-          Value: true
-        map:
-          Value: true
-        odom:
           Value: true
         right_wheel_link:
           Value: true
@@ -141,20 +129,16 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        map:
-          odom:
-            base_footprint:
-              base_link:
-                back_caster_wheel_link:
-                  {}
-                base_scan_link:
-                  {}
-                front_caster_wheel_link:
-                  {}
-                left_wheel_link:
-                  {}
-                right_wheel_link:
-                  {}
+        base_footprint:
+          base_link:
+            imu_link:
+              {}
+            laser:
+              {}
+            left_wheel_link:
+              {}
+            right_wheel_link:
+              {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -181,7 +165,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: map
+    Fixed Frame: base_footprint
     Frame Rate: 30
   Name: root
   Tools:
@@ -224,7 +208,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 14.822301864624023
+      Distance: 0.6894451379776001
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -239,10 +223,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.9797968864440918
+      Pitch: 0.5347966551780701
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.2316644191741943
+      Yaw: 0.6116585731506348
     Saved: ~
 Window Geometry:
   Displays:

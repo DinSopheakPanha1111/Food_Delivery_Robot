@@ -1,0 +1,28 @@
+[0.041s] Invoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake /home/panha/Food_Delivery_Robot/src/zlac8015d_driver -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/panha/Food_Delivery_Robot/install/zlac8015d_driver
+[0.054s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.145s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.158s] -- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)
+[0.194s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.196s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.203s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.215s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.229s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.266s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.270s] -- Found rmw_cyclonedds_cpp: 1.3.4 (/opt/ros/humble/share/rmw_cyclonedds_cpp/cmake)
+[0.291s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[0.339s] -- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.349s] -- Found nav_msgs: 4.9.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[0.364s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.377s] -- Found food_del_robot: 0.0.0 (/home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake)
+[0.470s] -- Configuring done
+[0.490s] -- Generating done
+[0.497s] -- Build files have been written to: /home/panha/Food_Delivery_Robot/build/zlac8015d_driver
+[0.505s] Invoked command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake /home/panha/Food_Delivery_Robot/src/zlac8015d_driver -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/panha/Food_Delivery_Robot/install/zlac8015d_driver
+[0.506s] Invoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/home/panha/mushroom_ws_V2/install/py_mushroom_control:/home/panha/turtlebot3_ws/install/turtlebot3_teleop:/home/panha/turtlebot3_ws/install/turtlebot3_example:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16
+[0.546s] [ 20%] Built target robot_kinematic
+[0.547s] [ 40%] Built target can
+[0.556s] [ 50%] [32m[1mLinking CXX executable cmd_vel_to_twist_stamped[0m
+[0.568s] [ 70%] Built target zlac8015d_driver
+[0.598s] [ 80%] [32m[1mLinking CXX executable drive_and_odom[0m
+[1.130s] [ 90%] Built target cmd_vel_to_twist_stamped
+[1.134s] [100%] Built target drive_and_odom

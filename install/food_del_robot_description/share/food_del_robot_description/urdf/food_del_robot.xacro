@@ -2,10 +2,10 @@
 <robot name="food_del_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- Xacro parameters -->
-    <xacro:property name="base_length" value="0.5"/>
-    <xacro:property name="base_height" value="0.3"/>
-    <xacro:property name="base_width" value="0.5"/>
-    <xacro:property name="wheel_radius" value="0.07"/>
+    <xacro:property name="base_length" value="0.48"/>
+    <xacro:property name="base_height" value="0.2"/>
+    <xacro:property name="base_width" value="0.48"/>
+    <xacro:property name="wheel_radius" value="0.065"/>
     <xacro:property name="wheel_length" value="0.04"/>
     <xacro:property name="rotate_90" value="1.57"/>
     <xacro:property name ="lidar_length" value = "0.04"/>
@@ -120,7 +120,7 @@
     </joint>
     <!-- Wheels are now placed along Y-axis (left/right), robot moves along +X -->
     <joint name="base_right_wheel_joint" type="revolute">
-        <origin xyz="0.0 ${-base_width / 2.0 - wheel_length / 2} ${wheel_radius/6}" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.0 ${-base_width / 2.0 - wheel_length / 2} 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="right_wheel_link"/>
         <axis xyz="0.0 1.0 0.0"/>
