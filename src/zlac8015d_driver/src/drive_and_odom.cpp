@@ -1,6 +1,8 @@
 #include <rclcpp/rclcpp.hpp>
 #include <geometry_msgs/msg/twist.hpp>
 #include <nav_msgs/msg/odometry.hpp>
+#include <tf2_ros/transform_broadcaster.h>
+#include <geometry_msgs/msg/transform_stamped.hpp>
 #include <cmath>
 
 #include "zlac8015d_driver.hpp"
@@ -15,7 +17,8 @@ public:
     : Node("motor_control_node"),
       can_("can1", 500000),
       driver_(can_, 0x01),
-      last_time_(this->now())
+      last_time_(this->now()),
+      tf_broadcaster_(this) // Pass 'this' as the Node
     {
         wheel_radius_ = 0.065;
         wheel_base_   = 0.457;
@@ -59,7 +62,7 @@ private:
     CAN can_;
     ZLAC8015DDriver driver_;
     KINEMATIC kinematic_;
-
+    tf2_ros::TransformBroadcaster tf_broadcaster_;
     /* ================= STATE ================= */
     float wheel_radius_;
     float wheel_base_;
@@ -146,7 +149,7 @@ private:
         nav_msgs::msg::Odometry odom;
         odom.header.stamp = now;
         odom.header.frame_id = "odom";
-        odom.child_frame_id = "base_link";
+        odom.child_frame_id = "base_footprint";
 
         odom.pose.pose.position.x = x_;
         odom.pose.pose.position.y = y_;
@@ -173,8 +176,23 @@ private:
                                  0.0, 0.0, 0.0, 0.0, 0.0, 0.01};  // twist covariance
 
         odom_pub_->publish(odom);
+
+        // Broadcast transform (odom -> base_footprint)
+        geometry_msgs::msg::TransformStamped transformStamped;
+        transformStamped.header.stamp = now;
+        transformStamped.header.frame_id = "odom";
+        transformStamped.child_frame_id = "base_footprint";
+
+        transformStamped.transform.translation.x = x_;
+        transformStamped.transform.translation.y = y_;
+        transformStamped.transform.translation.z = 0.0;
+        transformStamped.transform.rotation = odom.pose.pose.orientation;
+
+        // Send the transform
+        tf_broadcaster_.sendTransform(transformStamped);
     }
 };
+
 
 int main(int argc, char **argv)
 {

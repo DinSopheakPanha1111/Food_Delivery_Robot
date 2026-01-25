@@ -212,3 +212,50 @@ ros2 topic echo /odom/wheel
 ros2 service call /emergency_stop food_del_robot/srv/EmergencyStop "{stop: true, release: false}"
 
 ```
+**3. ODOMETRY TEST**
+
+**3.1 RUN MOTOR NODE**
+
+```
+ros2 run zlac8015d_driver drive_and_odom 
+
+```
+**3.2 RUN IMU NODE**
+
+```
+ros2 run yahboom_imu_10_axis imu_driver
+
+```
+**3.3 RUN EKF NODE**
+
+**!!NOTE : Make sure to change the params file to your own path**
+
+```
+ros2 run robot_localization ekf_node --ros-args --params-file /home/panha/Food_Delivery_Robot/src/food_del_robot/config/ekf_config.yaml
+
+```
+
+**3.4 Check Topic**
+
+**!!NOTE : Make sure to change the params file to your own path**
+
+```
+ros2 topic echo /odometry/filtered
+
+```
+
+What to check : 
+
+
+
+**3.5 Publish some speed**
+
+**!!NOTE : Make sure to change the params file to your own path**
+
+```
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.05}, angular: {z: 0.0}}"
+
+```
+
+
+
