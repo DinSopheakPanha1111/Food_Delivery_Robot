@@ -1,0 +1,77 @@
+
++ Example for mobile robot : 
+        rclcpp::Time now = this->now();
+        double dt = (now - last_time_).seconds();
+        last_time_ = now;
+
+        x_ += vx * std::cos(theta_) * dt;
+        y_ += vx * std::sin(theta_) * dt;
+        theta_ += wz * dt;
+
+        nav_msgs::msg::Odometry odom;
+        odom.header.stamp = now;
+        odom.header.frame_id = "odom";
+        odom.child_frame_id = "base_footprint";
+
+        odom.pose.pose.position.x = x_;
+        odom.pose.pose.position.y = y_;
+        odom.pose.pose.orientation.z = std::sin(theta_ * 0.5);
+        odom.pose.pose.orientation.w = std::cos(theta_ * 0.5);
+
+        odom.twist.twist.linear.x = vx;
+        odom.twist.twist.angular.z = wz;
+
+        // Adding covariance for pose (position and orientation)
+        odom.pose.covariance = {x, 0.0, 0.0, 0.0, 0.0, 0.0,   
+                                0.0, y, 0.0, 0.0, 0.0, 0.0,   
+                                0.0, 0.0, z, 0.0, 0.0, 0.0,   
+                                0.0, 0.0, 0.0, roll, 0.0, 0.0,   
+                                0.0, 0.0, 0.0, 0.0, pitch, 0.0,  
+                                0.0, 0.0, 0.0, 0.0, 0.0, yaw}; 
+
+        // Adding covariance for twist (linear and angular velocities)
+        odom.twist.covariance = {x_dot, 0.0, 0.0, 0.0, 0.0, 0.0,   
+                                 0.0, y_dot, 0.0, 0.0, 0.0, 0.0,   
+                                 0.0, 0.0, z_dot, 0.0, 0.0, 0.0,   
+                                 0.0, 0.0, 0.0, roll_dot, 0.0, 0.0,   
+                                 0.0, 0.0, 0.0, 0.0, pitch_dot, 0.0,   
+                                 0.0, 0.0, 0.0, 0.0, 0.0, yaw_dot};  
+
+        odom_pub_->publish(odom);
+
++ What to concern is covariance, what are those covariance for?
+
+    Variaince = (expected error)^2
+
+    - Small value means i'm confident
+    - Big value means i'm uncertain
+    - 0 means don't trust this axis at all
+
+    EKF use this to weight sensors
+
+    Common values to fill in : 
+        > Certain : 0.01
+        > Uncertain : 0.1 - 1
+        > ignore : 1e6
+
++ Quaternion to Euler
+    roll  = atan2( 2*(w*x + y*z), 1 - 2*(x*x + y*y) )
+    pitch = asin( 2*(w*y - z*x) )
+    yaw   = atan2( 2*(w*z + x*y),1 - 2*(y*y + z*z) )
+
+    In mobile robot : 
+                      roll = 0
+                      pitch = 0
+                      yaw = atan2( 2*(w*z + x*y),1 - 2*(y*y + z*z) )
+
++ Euler to Quaternion
+    x = sin(roll/2) * cos(pitch/2) * cos(yaw/2) - cos(roll/2) * sin(pitch/2) * sin(yaw/2)
+    y = cos(roll/2) * sin(pitch/2) * cos(yaw/2) + sin(roll/2) * cos(pitch/2) * sin(yaw/2)
+    z = cos(roll/2) * cos(pitch/2) * sin(yaw/2) - sin(roll/2) * sin(pitch/2) * cos(yaw/2)
+    w = cos(roll/2) * cos(pitch/2) * cos(yaw/2) + sin(roll/2) * sin(pitch/2) * sin(yaw/2)
+
+    In mobile robot : 
+                      x = 0
+                      y = 0
+                      z = sin(yaw/2)
+                      w = cos(yaw/2) 

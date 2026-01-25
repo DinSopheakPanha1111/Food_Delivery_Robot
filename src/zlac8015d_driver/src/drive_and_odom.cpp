@@ -160,36 +160,22 @@ private:
         odom.twist.twist.angular.z = wz;
 
         // Adding covariance for pose (position and orientation)
-        odom.pose.covariance = {0.01, 0.0, 0.0, 0.0, 0.0, 0.0,   // x, y, z position covariance
-                                0.0, 0.01, 0.0, 0.0, 0.0, 0.0,   // orientation covariance (roll, pitch, yaw)
-                                0.0, 0.0, 0.01, 0.0, 0.0, 0.0,   // orientation covariance
-                                0.0, 0.0, 0.0, 0.01, 0.0, 0.0,   // velocity covariance
-                                0.0, 0.0, 0.0, 0.0, 0.01, 0.0,   // velocity covariance
-                                0.0, 0.0, 0.0, 0.0, 0.0, 0.01};  // angular velocity covariance
+        odom.pose.covariance = {0.01, 0.0, 0.0, 0.0, 0.0, 0.0,   
+                                0.0, 0.1, 0.0, 0.0, 0.0, 0.0,   
+                                0.0, 0.0, 1e6, 0.0, 0.0, 0.0,   
+                                0.0, 0.0, 0.0, 1e6, 0.0, 0.0,  
+                                0.0, 0.0, 0.0, 0.0, 1e6, 0.0,  
+                                0.0, 0.0, 0.0, 0.0, 0.0, 0.5};  
 
         // Adding covariance for twist (linear and angular velocities)
-        odom.twist.covariance = {0.01, 0.0, 0.0, 0.0, 0.0, 0.0,   // vx, vy, vz covariance
-                                 0.0, 0.01, 0.0, 0.0, 0.0, 0.0,   // vx, vy, vz covariance
-                                 0.0, 0.0, 0.01, 0.0, 0.0, 0.0,   // angular velocities covariance
-                                 0.0, 0.0, 0.0, 0.01, 0.0, 0.0,   // angular velocities covariance
-                                 0.0, 0.0, 0.0, 0.0, 0.01, 0.0,   // twist covariance
-                                 0.0, 0.0, 0.0, 0.0, 0.0, 0.01};  // twist covariance
+        odom.twist.covariance = {0.01, 0.0, 0.0, 0.0, 0.0, 0.0,   
+                                 0.0, 0.01, 0.0, 0.0, 0.0, 0.0,   
+                                 0.0, 0.0, 1e6, 0.0, 0.0, 0.0,   
+                                 0.0, 0.0, 0.0, 1e6, 0.0, 0.0,   
+                                 0.0, 0.0, 0.0, 0.0, 1e6, 0.0,   
+                                 0.0, 0.0, 0.0, 0.0, 0.0, 0.5};  
 
         odom_pub_->publish(odom);
-
-        // Broadcast transform (odom -> base_footprint)
-        geometry_msgs::msg::TransformStamped transformStamped;
-        transformStamped.header.stamp = now;
-        transformStamped.header.frame_id = "odom";
-        transformStamped.child_frame_id = "base_footprint";
-
-        transformStamped.transform.translation.x = x_;
-        transformStamped.transform.translation.y = y_;
-        transformStamped.transform.translation.z = 0.0;
-        transformStamped.transform.rotation = odom.pose.pose.orientation;
-
-        // Send the transform
-        tf_broadcaster_.sendTransform(transformStamped);
     }
 };
 
