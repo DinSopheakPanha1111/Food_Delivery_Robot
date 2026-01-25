@@ -30,7 +30,7 @@ imu0_config: [x,  y,  z,
                 false, false, true,
                 false, false, false,
                 false, false, true,
-                true, false, false]
+                false, false, false]
     
 odomN_differential : When set to true, instead of using the robot's absolute position
 it looks at how much position has changed over time (like speed). This helps avoid errors
