@@ -244,10 +244,6 @@ ros2 topic echo /odometry/filtered
 
 ```
 
-What to check : 
-
-
-
 **3.5 Publish some speed**
 
 **!!NOTE : Make sure to change the params file to your own path**
@@ -257,5 +253,18 @@ ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.05}, angular: {z
 
 ```
 
+**3.6 RViz check**
+
+```
+ros2 launch food_del_robot_description display.launch.py
+
+```
+
+Change the fixed frame to odom
+
+then, add two Odometry components
+
+1. Odometry 1 : Topic : /odom/wheel
+2. Odometry 2 : Topic : /odometry/filtered
 
 
