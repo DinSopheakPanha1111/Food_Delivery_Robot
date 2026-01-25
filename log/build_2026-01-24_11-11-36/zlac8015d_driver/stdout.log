@@ -1,0 +1,5 @@
+[ 20%] Built target can
+[ 40%] Built target robot_kinematic
+[ 60%] Built target cmd_vel_to_twist_stamped
+[ 80%] Built target zlac8015d_driver
+[100%] Built target drive_and_odom

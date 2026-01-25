@@ -1,0 +1,5 @@
+failed to create symbolic link '/home/panha/Food_Delivery_Robot/build/food_del_robot/ament_cmake_python/food_del_robot/food_del_robot' because existing path cannot be removed: Is a directory
+gmake[2]: *** [CMakeFiles/ament_cmake_python_symlink_food_del_robot.dir/build.make:70: CMakeFiles/ament_cmake_python_symlink_food_del_robot] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:421: CMakeFiles/ament_cmake_python_symlink_food_del_robot.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+gmake: *** [Makefile:146: all] Error 2

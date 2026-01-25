@@ -1,0 +1,52 @@
+
+- frequency : 100
+- Operating in 2D for mobile robot set two_d_mode = true;
+You will ignore subtle effect of variations in the ground plane
+
+odom0_config: [x,  y,  z,
+               roll, pitch, yaw,
+               vx, vy, vz,
+               roll_dot, pitch_dot, yaw_dot,
+               ax, ay, az]
+
+    + For differential drive robot : 
+
+    odom0_config: [true,  true,  false,
+                false, false, true,
+                true, false, false,
+                false, false, true,
+                false, false, false]
+
+imu0_config: [x,  y,  z,
+
+               roll, pitch, yaw,
+               vx, vy, vz,
+               roll_dot, pitch_dot, yaw_dot,
+               ax, ay, az]
+
+    + For differential drive robot : 
+
+    imu0_config: [false,  false,  false,
+                false, false, true,
+                false, false, false,
+                false, false, true,
+                true, false, false]
+    
+odomN_differential : When set to true, instead of using the robot's absolute position
+it looks at how much position has changed over time (like speed). This helps avoid errors
+when the odometry data is not perfectly accurate.
+
+imuN_differential : When set to true, the robot looks how much IMU measurements (like angular speed)
+have changed over time instead of the absolute values
+
+odomN_relative : When set to true, it only resets the measurements relative to the first sensor reading
+
+imuN_relative : When set to true, it only resets the measurements relative to the first sensor reading
+
+initial_state : set for initial position of robot
+
+    initial_state: [x,  y,  z,
+                    roll, pitch, yaw,
+                    vx, vy, vz,
+                    roll_dot, pitch_dot, yaw_dot,
+                    ax, ay, az]
