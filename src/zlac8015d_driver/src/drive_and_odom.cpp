@@ -1,10 +1,8 @@
 #include <rclcpp/rclcpp.hpp>
 #include <geometry_msgs/msg/twist.hpp>
 #include <nav_msgs/msg/odometry.hpp>
-#include <tf2_ros/transform_broadcaster.h>
 #include <geometry_msgs/msg/transform_stamped.hpp>
 #include <cmath>
-
 #include "zlac8015d_driver.hpp"
 #include "can.hpp"
 #include "kinematic.hpp"
@@ -17,8 +15,7 @@ public:
     : Node("motor_control_node"),
       can_("can1", 500000),
       driver_(can_, 0x01),
-      last_time_(this->now()),
-      tf_broadcaster_(this) // Pass 'this' as the Node
+      last_time_(this->now())
     {
         wheel_radius_ = 0.065;
         wheel_base_   = 0.457;
@@ -62,7 +59,6 @@ private:
     CAN can_;
     ZLAC8015DDriver driver_;
     KINEMATIC kinematic_;
-    tf2_ros::TransformBroadcaster tf_broadcaster_;
     /* ================= STATE ================= */
     float wheel_radius_;
     float wheel_base_;
