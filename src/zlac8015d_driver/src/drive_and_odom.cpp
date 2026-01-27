@@ -7,13 +7,14 @@
 #include "can.hpp"
 #include "kinematic.hpp"
 #include "food_del_robot/srv/emergency_stop.hpp"
+#include "food_del_robot/srv/reset.hpp"
 
 class MotorControlNode : public rclcpp::Node
 {
 public:
     MotorControlNode()
     : Node("motor_control_node"),
-      can_("can1", 500000),
+      can_("can0", 500000),
       driver_(can_, 0x01),
       last_time_(this->now())
     {
@@ -36,6 +37,15 @@ public:
                     std::placeholders::_1,
                     std::placeholders::_2));
 
+        reset_odom_srv_ =
+            this->create_service<food_del_robot::srv::Reset>(
+                "reset_odom",
+                std::bind(
+                    &MotorControlNode::resetOdomCallback,
+                    this,
+                    std::placeholders::_1,
+                    std::placeholders::_2));
+
         timer_ = this->create_wall_timer(
             std::chrono::milliseconds(10),
             std::bind(&MotorControlNode::publishOdometry, this));
@@ -53,6 +63,7 @@ private:
     rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_pub_;
     rclcpp::Service<food_del_robot::srv::EmergencyStop>::SharedPtr emergency_stop_srv_;
+    rclcpp::Service<food_del_robot::srv::Reset>::SharedPtr reset_odom_srv_;
     rclcpp::TimerBase::SharedPtr timer_;
 
     /* ================= DRIVER ================= */
@@ -116,6 +127,18 @@ private:
         res->success = ok;
     }
 
+    /* ================= RESET ODOMETRY ================= */
+    void resetOdomCallback(
+        const std::shared_ptr<food_del_robot::srv::Reset::Request> req,
+        std::shared_ptr<food_del_robot::srv::Reset::Response> res)
+    {
+        if(req->reset_odom = true)
+        {
+            driver_.shutdown();
+            res->success = "Success";
+        }
+    }
+
     /* ================= ODOMETRY ================= */
     void publishOdometry()
     {
@@ -156,20 +179,20 @@ private:
         odom.twist.twist.angular.z = wz;
 
         // Adding covariance for pose (position and orientation)
-        odom.pose.covariance = {0.01, 0.0, 0.0, 0.0, 0.0, 0.0,   
-                                0.0, 0.1, 0.0, 0.0, 0.0, 0.0,   
+        odom.pose.covariance = {1e6, 0.0, 0.0, 0.0, 0.0, 0.0,   
+                                0.0, 1e6, 0.0, 0.0, 0.0, 0.0,   
                                 0.0, 0.0, 1e6, 0.0, 0.0, 0.0,   
                                 0.0, 0.0, 0.0, 1e6, 0.0, 0.0,  
                                 0.0, 0.0, 0.0, 0.0, 1e6, 0.0,  
-                                0.0, 0.0, 0.0, 0.0, 0.0, 0.5};  
+                                0.0, 0.0, 0.0, 0.0, 0.0, 1e6};  
 
         // Adding covariance for twist (linear and angular velocities)
         odom.twist.covariance = {0.01, 0.0, 0.0, 0.0, 0.0, 0.0,   
-                                 0.0, 0.01, 0.0, 0.0, 0.0, 0.0,   
+                                 0.0, 0.5, 0.0, 0.0, 0.0, 0.0,   
                                  0.0, 0.0, 1e6, 0.0, 0.0, 0.0,   
                                  0.0, 0.0, 0.0, 1e6, 0.0, 0.0,   
                                  0.0, 0.0, 0.0, 0.0, 1e6, 0.0,   
-                                 0.0, 0.0, 0.0, 0.0, 0.0, 0.5};  
+                                 0.0, 0.0, 0.0, 0.0, 0.0, 0.1};  
 
         odom_pub_->publish(odom);
     }

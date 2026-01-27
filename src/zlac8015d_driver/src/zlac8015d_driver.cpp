@@ -77,6 +77,19 @@ bool ZLAC8015DDriver::enable()
 }
 
 /* =====================================================
+ * shutdown driver (CiA-402 Controlword 0x6040)
+ * Shutdown (0x06)
+ * ===================================================== */
+bool ZLAC8015DDriver::shutdown()
+{
+    const uint8_t shutdown[8] = {
+        0x2B, 0x40, 0x60, 0x00,
+        0x06, 0x00, 0x00, 0x00
+    };
+    return send_sdo(shutdown);
+}
+
+/* =====================================================
  * Set left & right wheel speed (RPM)
  * Object: 0x60FF:03 (as per your usage)
  * NOTE: This packs int16 left/right into bytes 4..7

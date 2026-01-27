@@ -99,12 +99,12 @@ private:
         // Angular velocity covariance (3x3 matrix)
         imu_msg.angular_velocity_covariance = {1e6, 0.0, 0.0,
                                                0.0, 1e6, 0.0,
-                                               0.0, 0.0, 0.03};
+                                               0.0, 0.0, 0.01};
 
         // Orientation covariance (3x3 matrix)
         imu_msg.orientation_covariance = {1e6, 0.0, 0.0,
                                           0.0, 1e6, 0.0,
-                                          0.0, 0.0, 0.01};
+                                          0.0, 0.0, 1e6};
 
         imu_pub_->publish(imu_msg);
     }

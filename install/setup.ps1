@@ -25,7 +25,6 @@ function _colcon_prefix_chain_powershell_source_script {
 _colcon_prefix_chain_powershell_source_script "/opt/ros/humble\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/panha/my_ws/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/panha/Robocon2026_ws/install\local_setup.ps1"
-_colcon_prefix_chain_powershell_source_script "/home/panha/turtlebot3_ws/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/panha/mushroom_ws_V2/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/panha/sporaX_ws/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/panha/ws_moveit/install\local_setup.ps1"
