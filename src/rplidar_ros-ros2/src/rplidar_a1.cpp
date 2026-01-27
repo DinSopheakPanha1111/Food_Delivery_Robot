@@ -36,7 +36,7 @@ public:
             "/dev/ttyUSB3"
         };
 
-        const std::string frame_id   = "laser";
+        const std::string frame_id   = "laser_link";
         const std::string topic_name = "scan";
 
         // 🔑 IMPORTANT: empty = let SDK auto-pick Sensitivity

@@ -187,12 +187,12 @@ private:
                                 0.0, 0.0, 0.0, 0.0, 0.0, 1e6};  
 
         // Adding covariance for twist (linear and angular velocities)
-        odom.twist.covariance = {0.01, 0.0, 0.0, 0.0, 0.0, 0.0,   
+        odom.twist.covariance = {0.1, 0.0, 0.0, 0.0, 0.0, 0.0,   
                                  0.0, 0.5, 0.0, 0.0, 0.0, 0.0,   
                                  0.0, 0.0, 1e6, 0.0, 0.0, 0.0,   
                                  0.0, 0.0, 0.0, 1e6, 0.0, 0.0,   
                                  0.0, 0.0, 0.0, 0.0, 1e6, 0.0,   
-                                 0.0, 0.0, 0.0, 0.0, 0.0, 0.1};  
+                                 0.0, 0.0, 0.0, 0.0, 0.0, 0.5};  
 
         odom_pub_->publish(odom);
     }
