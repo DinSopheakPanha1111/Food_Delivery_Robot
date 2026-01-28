@@ -260,6 +260,11 @@ private:
             }
         }
 
+        // Reverse the angle
+        for (auto& node : buf) {
+            node.angle_z_q14 = 16384 * (360 - angle(node));  // Reverse the angle
+        }
+
         publish_raw(
             buf.data(), total,
             stamp, scan_time,

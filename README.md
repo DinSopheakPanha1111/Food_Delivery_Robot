@@ -212,7 +212,7 @@ ros2 topic echo /odom/wheel
 ros2 service call /emergency_stop food_del_robot/srv/EmergencyStop "{stop: true, release: false}"
 
 ```
-**3. ODOMETRY TEST**
+**3. RAW ODOMETRY TEST**
 
 **3.1 RUN MOTOR NODE**
 
@@ -226,7 +226,7 @@ ros2 run zlac8015d_driver drive_and_odom
 ros2 run yahboom_imu_10_axis imu_driver
 
 ```
-**3.3 RUN EKF NODE**
+**3.3 ODOMETRY WITH EKF TEST (Updated)**
 
 **!!NOTE : Make sure to change the params file to your own path**
 
@@ -236,8 +236,6 @@ ros2 run robot_localization ekf_node --ros-args --params-file /home/panha/Food_D
 ```
 
 **3.4 Check Topic**
-
-**!!NOTE : Make sure to change the params file to your own path**
 
 ```
 ros2 topic echo /odometry/filtered
@@ -253,18 +251,26 @@ ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.05}, angular: {z
 
 ```
 
-**3.6 RViz check**
+**3.6 Simply launch everything**
 
 ```
 ros2 launch food_del_robot_description display.launch.py
 
 ```
 
-Change the fixed frame to odom
+**4. CONTROL VIA PS4 CONTROLLER**
 
-then, add two Odometry components
+**4.1 LAUNCH PS4 CONTROLLER**
 
-1. Odometry 1 : Topic : /odom/wheel
-2. Odometry 2 : Topic : /odometry/filtered
+**!!NOTE : Make sure to change launch it on other laptop!!**
+
+```
+ros2 launch food_del_robot_description joystick.launch.py
+
+```
+You can adjust the sensitivity in the joystick.yaml file
+
+
+
 
 
