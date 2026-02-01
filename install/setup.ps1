@@ -23,9 +23,20 @@ function _colcon_prefix_chain_powershell_source_script {
 
 # source chained prefixes
 _colcon_prefix_chain_powershell_source_script "/opt/ros/humble\local_setup.ps1"
-_colcon_prefix_chain_powershell_source_script "/home/panha/Robocon2026_ws/install\local_setup.ps1"
-_colcon_prefix_chain_powershell_source_script "/home/panha/sporaX_ws/install\local_setup.ps1"
-_colcon_prefix_chain_powershell_source_script "/home/panha/ws_moveit/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/ros2_humble/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/ros2_ecam_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/ecam_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/mushroom_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/sporaX_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/level2_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/moveit2_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/odrive_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/scara_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/ws_moveit2/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/ros2_udemy_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/level3_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/stepper_motor_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/tikea/install\local_setup.ps1"
 
 # source this prefix
 $env:COLCON_CURRENT_PREFIX=(Split-Path $PSCommandPath -Parent)

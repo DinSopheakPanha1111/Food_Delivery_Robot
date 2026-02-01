@@ -97,5 +97,5 @@ install(
   TARGETS drive_and_odom cmd_vel_to_twist_stamped
   DESTINATION lib/${PROJECT_NAME}
 )
-
+ament_export_include_directories(include)
 ament_package()

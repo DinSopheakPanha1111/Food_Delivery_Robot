@@ -1,7 +1,1 @@
-image: imu.pgm
-mode: trinary
-resolution: 0.05
-origin: [-2.23, -1.45, 0]
-negate: 0
-occupied_thresh: 0.65
-free_thresh: 0.25
+/home/tikea/Food_Delivery_Robot/src/food_del_robot_description/maps/imu.yaml

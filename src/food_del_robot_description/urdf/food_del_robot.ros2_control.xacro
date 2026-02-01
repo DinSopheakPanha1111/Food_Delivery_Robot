@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <ros2_control name="FoodDeliveryRobotHardwareInterface" type="system">
+    <ros2_control name="FoodDeliveryRobot" type="system">
         <hardware>
             <plugin>mock_components/GenericSystem</plugin>
             <param name="calculate_dynamics">true</param>
+            <!-- <plugin>food_del_robot_hardware/FoodDelRobotHardwareInterface</plugin> -->
         </hardware>
         <joint name="base_right_wheel_joint">
             <command_interface name="velocity" />

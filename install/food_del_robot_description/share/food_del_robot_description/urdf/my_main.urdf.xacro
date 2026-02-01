@@ -1,9 +1,1 @@
-<?xml version="1.0"?>
-<robot name="food_del_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    
-    <xacro:include filename="common_properties.xacro"/>
-    <!-- <xacro:include filename="food_del_robot_gazebo.xacro"/> -->
-    <xacro:include filename="food_del_robot.xacro"/>
-    <xacro:include filename="food_del_robot.ros2_control.xacro"/>
-
-</robot>
+/home/tikea/Food_Delivery_Robot/src/food_del_robot_description/urdf/my_main.urdf.xacro

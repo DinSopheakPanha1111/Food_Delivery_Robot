@@ -17,6 +17,7 @@
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>joy</exec_depend>
   <exec_depend>zlac8015d_driver</exec_depend>
+  <exec_depend>food_del_robot_hardware</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

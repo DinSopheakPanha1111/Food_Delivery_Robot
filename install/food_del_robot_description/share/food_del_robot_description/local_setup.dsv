@@ -1,2 +1,1 @@
-source;share/food_del_robot_description/environment/ament_prefix_path.sh
-source;share/food_del_robot_description/environment/path.sh
+/home/tikea/Food_Delivery_Robot/build/food_del_robot_description/ament_cmake_environment_hooks/local_setup.dsv
