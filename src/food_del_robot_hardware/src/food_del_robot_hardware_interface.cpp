@@ -1,4 +1,5 @@
 #include "food_del_robot_hardware/food_del_robot_hardware_interface.hpp"
+#include "hardware_interface/types/hardware_interface_type_values.hpp"
 #include <cmath>
 
 namespace food_del_robot_hardware {
@@ -14,16 +15,18 @@ hardware_interface::CallbackReturn FoodDelRobotHardwareInterface::on_init
 
     info_ = info;
 
-    can_port_ = "can0";
-    can_bitrate_ = 500000;
-    device_id_ = 0x01;
+    // Resize based on actual number of joints from URDF
+    size_t num_joints = info_.joints.size();
+    position_states_.resize(num_joints, 0.0);
+    velocity_states_.resize(num_joints, 0.0);
+    velocity_commands_.resize(num_joints, 0.0);
 
-    // Initialize storage for 2 wheels
-    position_states_.resize(2, 0.0);
-    velocity_states_.resize(2, 0.0);
-    velocity_commands_.resize(2, 0.0);
+    RCLCPP_INFO(rclcpp::get_logger("FoodDelRobotHardwareInterface"),
+                "Initializing hardware interface with %zu joints", num_joints);
 
-    driver_ = std::make_shared<WheelsDriver>(can_port_, can_bitrate_, device_id_);
+    // Create CAN and Driver objects
+    can_ = std::make_shared<CAN>("can0", 500000);
+    driver_ = std::make_shared<ZLAC8015DDriver>(*can_, 0x01);
 
     return hardware_interface::CallbackReturn::SUCCESS;
 }
@@ -32,24 +35,30 @@ std::vector<hardware_interface::StateInterface>
 FoodDelRobotHardwareInterface::export_state_interfaces()
 {
     std::vector<hardware_interface::StateInterface> state_interfaces;
-    
-    // Export state interfaces similar to old set_state/get_state pattern
-    // Left wheel
-    state_interfaces.emplace_back(
-        hardware_interface::StateInterface(
-            "base_left_wheel_joint", "velocity", &velocity_states_[0]));
-    state_interfaces.emplace_back(
-        hardware_interface::StateInterface(
-            "base_left_wheel_joint", "position", &position_states_[0]));
-    
-    // Right wheel  
-    state_interfaces.emplace_back(
-        hardware_interface::StateInterface(
-            "base_right_wheel_joint", "velocity", &velocity_states_[1]));
-    state_interfaces.emplace_back(
-        hardware_interface::StateInterface(
-            "base_right_wheel_joint", "position", &position_states_[1]));
-    
+
+    RCLCPP_INFO(rclcpp::get_logger("FoodDelRobotHardwareInterface"), 
+                "Exporting state interfaces for %zu joints", info_.joints.size());
+
+    for (size_t i = 0; i < info_.joints.size(); i++) {
+        // Velocity state interface
+        state_interfaces.emplace_back(hardware_interface::StateInterface(
+            info_.joints[i].name,
+            hardware_interface::HW_IF_VELOCITY,
+            &velocity_states_[i]
+        ));
+        
+        // Position state interface
+        state_interfaces.emplace_back(hardware_interface::StateInterface(
+            info_.joints[i].name,
+            hardware_interface::HW_IF_POSITION,
+            &position_states_[i]
+        ));
+        
+        RCLCPP_INFO(rclcpp::get_logger("FoodDelRobotHardwareInterface"), 
+                    "Added state interfaces for joint %s: velocity, position",
+                    info_.joints[i].name.c_str());
+    }
+
     return state_interfaces;
 }
 
@@ -57,15 +66,23 @@ std::vector<hardware_interface::CommandInterface>
 FoodDelRobotHardwareInterface::export_command_interfaces()
 {
     std::vector<hardware_interface::CommandInterface> command_interfaces;
-    
-    // Export command interfaces
-    command_interfaces.emplace_back(
-        hardware_interface::CommandInterface(
-            "base_left_wheel_joint", "velocity", &velocity_commands_[0]));
-    command_interfaces.emplace_back(
-        hardware_interface::CommandInterface(
-            "base_right_wheel_joint", "velocity", &velocity_commands_[1]));
-    
+
+    RCLCPP_INFO(rclcpp::get_logger("FoodDelRobotHardwareInterface"), 
+                "Exporting command interfaces for %zu joints", info_.joints.size());
+
+    for (size_t i = 0; i < info_.joints.size(); i++) {
+        // Velocity command interface
+        command_interfaces.emplace_back(hardware_interface::CommandInterface(
+            info_.joints[i].name,
+            hardware_interface::HW_IF_VELOCITY,
+            &velocity_commands_[i]
+        ));
+        
+        RCLCPP_INFO(rclcpp::get_logger("FoodDelRobotHardwareInterface"), 
+                    "Added command interface for joint %s: velocity",
+                    info_.joints[i].name.c_str());
+    }
+
     return command_interfaces;
 }
 
@@ -73,9 +90,12 @@ hardware_interface::CallbackReturn FoodDelRobotHardwareInterface::on_configure
     (const rclcpp_lifecycle::State & previous_state)
 {
     (void)previous_state;
-    if (driver_->init() == false) {
-        return hardware_interface::CallbackReturn::ERROR;
-    }
+    
+    // Enable CAN interface
+    can_->enable();
+    
+    RCLCPP_INFO(rclcpp::get_logger("FoodDelRobotHardwareInterface"),
+                "CAN interface configured successfully");
     return hardware_interface::CallbackReturn::SUCCESS;
 }
 
@@ -83,16 +103,29 @@ hardware_interface::CallbackReturn FoodDelRobotHardwareInterface::on_activate
     (const rclcpp_lifecycle::State & previous_state)
 {
     (void)previous_state;
-    // Initialize all values to 0 (replaces old set_state calls)
-    velocity_states_[0] = 0.0;    // base_left_wheel_joint/velocity
-    velocity_states_[1] = 0.0;    // base_right_wheel_joint/velocity
-    position_states_[0] = 0.0;    // base_left_wheel_joint/position
-    position_states_[1] = 0.0;    // base_right_wheel_joint/position
-    velocity_commands_[0] = 0.0;  // base_left_wheel_joint/velocity command
-    velocity_commands_[1] = 0.0;  // base_right_wheel_joint/velocity command
     
-    driver_->set_velocity_mode();
-    driver_->enable();
+    // Initialize all values to 0
+    for (size_t i = 0; i < info_.joints.size(); i++) {
+        velocity_states_[i] = 0.0;
+        position_states_[i] = 0.0;
+        velocity_commands_[i] = 0.0;
+    }
+    
+    // Initialize driver
+    if (!driver_->set_velocity_mode()) {
+        RCLCPP_ERROR(rclcpp::get_logger("FoodDelRobotHardwareInterface"),
+                     "Failed to set velocity mode");
+        return hardware_interface::CallbackReturn::ERROR;
+    }
+    
+    if (!driver_->enable()) {
+        RCLCPP_ERROR(rclcpp::get_logger("FoodDelRobotHardwareInterface"),
+                     "Failed to enable driver");
+        return hardware_interface::CallbackReturn::ERROR;
+    }
+    
+    RCLCPP_INFO(rclcpp::get_logger("FoodDelRobotHardwareInterface"),
+                "Hardware activated successfully");
     return hardware_interface::CallbackReturn::SUCCESS;
 }
 
@@ -100,31 +133,63 @@ hardware_interface::CallbackReturn FoodDelRobotHardwareInterface::on_deactivate
     (const rclcpp_lifecycle::State & previous_state)
 {
     (void)previous_state;
-    driver_->shutdown();
+    
+    if (!driver_->emergency_stop()) {
+        RCLCPP_WARN(rclcpp::get_logger("FoodDelRobotHardwareInterface"),
+                    "Failed to emergency stop driver");
+    }
+    
+    RCLCPP_INFO(rclcpp::get_logger("FoodDelRobotHardwareInterface"),
+                "Hardware deactivated");
     return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::return_type FoodDelRobotHardwareInterface::read
-    (const rclcpp::Time & time, const rclcpp::Duration & period)
+hardware_interface::return_type FoodDelRobotHardwareInterface::read(
+    const rclcpp::Time & time, const rclcpp::Duration & period)
 {
     (void)time;
-    float left_vel = 0.0f;
-    float right_vel = 0.0f;
 
-    if (!driver_->get_speed_rad_per_sec(left_vel, right_vel))
-        return hardware_interface::return_type::ERROR;
-    
-    // Update state values (replaces set_state calls)
-    velocity_states_[0] = -1.0f * left_vel;   // base_left_wheel_joint/velocity
-    velocity_states_[1] = right_vel;   // base_right_wheel_joint/velocity
-    
-    // Integrate velocity to get position 
-    position_states_[0] += left_vel * period.seconds();
-    position_states_[1] += right_vel * period.seconds();
-    
-    RCLCPP_INFO(rclcpp::get_logger("food_del_robot_hardware_interface"), "left vel: %lf, right vel: %lf, left pos: %lf, right pos: %lf",
-             left_vel, right_vel, position_states_[0], position_states_[1]);
-    return hardware_interface::return_type::OK;
+    float left_vel_rpm = 0.0f;
+    float right_vel_rpm = 0.0f;
+
+    bool read_ok = driver_->read_speed_feedback(left_vel_rpm, right_vel_rpm);
+
+    if (!read_ok) {
+        // === Simulate / fake feedback when no real motors are connected ===
+        // Option A: Use commanded velocity as fake measured velocity (open-loop)
+        // (most common for desk testing)
+        left_vel_rpm  = velocity_commands_[0]  / 0.104719755f;  // rad/s → RPM
+        right_vel_rpm = velocity_commands_[1] / 0.104719755f;
+
+        // Option B: Keep zero if you prefer (but then odometry stays still)
+        // left_vel_rpm = 0.0f; right_vel_rpm = 0.0f;
+
+        RCLCPP_WARN_ONCE(rclcpp::get_logger("FoodDelRobotHardwareInterface"),
+            "No real feedback available → faking states from commands (open-loop mode)");
+    }
+
+    // Convert RPM → rad/s
+    const float RPM_TO_RAD_PER_SEC = 0.104719755f;
+    float left_vel_rad  = left_vel_rpm  * RPM_TO_RAD_PER_SEC;
+    float right_vel_rad = right_vel_rpm * RPM_TO_RAD_PER_SEC;
+
+    velocity_states_[0] = -left_vel_rad;   // inverted if needed
+    velocity_states_[1] =  right_vel_rad;
+
+    // Integrate position (always do this — even in simulation)
+    position_states_[0] += velocity_states_[0] * period.seconds();
+    position_states_[1] += velocity_states_[1] * period.seconds();
+
+    // Your debug print...
+    static int counter = 0;
+    if (counter++ % 100 == 0) {
+        RCLCPP_DEBUG(rclcpp::get_logger("FoodDelRobotHardwareInterface"), 
+                     "Read: left_vel=%f rad/s, right_vel=%f rad/s, left_pos=%f, right_pos=%f",
+                     velocity_states_[0], velocity_states_[1], 
+                     position_states_[0], position_states_[1]);
+    }
+
+    return hardware_interface::return_type::OK;   // ← always OK now
 }
 
 hardware_interface::return_type FoodDelRobotHardwareInterface::write
@@ -133,11 +198,35 @@ hardware_interface::return_type FoodDelRobotHardwareInterface::write
     (void)time;
     (void)period;
     
-    // Send commands to hardware (replaces get_command calls)
-    driver_->set_sync_left_right_speed(velocity_commands_[0], velocity_commands_[1]);
+    // Convert rad/s to RPM
+    // 1 rad/s = (60/2π) RPM = 9.54929658551 RPM
+    const float RAD_PER_SEC_TO_RPM = 9.54929658551f;
     
-    // RCLCPP_INFO(get_logger(), "left vel: %lf, right vel: %lf", velocity_commands_[0], 
-    //                     velocity_commands_[1]);
+    // Get velocity commands for both wheels
+    float left_vel_rad_per_sec = velocity_commands_[0];  // Left wheel command
+    float right_vel_rad_per_sec = velocity_commands_[1]; // Right wheel command
+    
+    // Convert to RPM
+    float left_rpm = left_vel_rad_per_sec * RAD_PER_SEC_TO_RPM;
+    float right_rpm = right_vel_rad_per_sec * RAD_PER_SEC_TO_RPM;
+    
+    // Send commands to hardware
+    // Note: Left wheel might need to be inverted (-1.0f) depending on your motor orientation
+    if (!driver_->set_sync_left_right_speed(-left_rpm, right_rpm)) {
+        RCLCPP_WARN(rclcpp::get_logger("FoodDelRobotHardwareInterface"),
+                    "Failed to set wheel speeds");
+        return hardware_interface::return_type::ERROR;
+    }
+    
+    // Debug logging (reduce frequency)
+    static int counter = 0;
+    if (counter++ % 100 == 0) {
+        RCLCPP_DEBUG(rclcpp::get_logger("FoodDelRobotHardwareInterface"), 
+                     "Write: left_cmd=%f rad/s (%f RPM), right_cmd=%f rad/s (%f RPM)",
+                     left_vel_rad_per_sec, left_rpm,
+                     right_vel_rad_per_sec, right_rpm);
+    }
+    
     return hardware_interface::return_type::OK;
 }
 

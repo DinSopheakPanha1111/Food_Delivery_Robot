@@ -3,7 +3,8 @@
 
 #include "hardware_interface/system_interface.hpp"
 #include "hardware_interface/types/hardware_interface_return_values.hpp"
-#include "food_del_robot_hardware/wheels_driver.hpp"
+#include "food_del_robot_hardware/can.hpp"
+#include "food_del_robot_hardware/zlac8015d_driver.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 namespace food_del_robot_hardware {
@@ -32,10 +33,8 @@ public:
         write(const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
 private:
-    std::shared_ptr<WheelsDriver> driver_;
-    std::string can_port_;
-    int can_bitrate_;
-    int device_id_;
+    std::shared_ptr<CAN> can_;
+    std::shared_ptr<ZLAC8015DDriver> driver_;
     
     // Storage for state and command values
     std::vector<double> position_states_;
