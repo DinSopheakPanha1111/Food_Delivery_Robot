@@ -1,1 +1,1 @@
-prepend-non-duplicate-if-exists;PATH;bin
+/home/tikea/Food_Delivery_Robot/build/food_del_robot_description/ament_cmake_environment_hooks/path.dsv

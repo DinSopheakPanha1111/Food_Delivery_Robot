@@ -1,0 +1,9 @@
+<library path="food_del_robot_hardware">
+    <class name="food_del_robot_hardware/FoodDelRobotHardwareInterface"
+           type="food_del_robot_hardware::FoodDelRobotHardwareInterface"
+           base_class_type="hardware_interface::SystemInterface">
+        <description>
+            Hardware interface for a mobile base with zlac8015d driver
+        </description>
+    </class>
+</library>

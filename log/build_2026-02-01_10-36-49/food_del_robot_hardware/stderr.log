@@ -1,0 +1,11 @@
+[01m[K/home/tikea/Food_Delivery_Robot/src/food_del_robot_hardware/src/food_del_robot_hardware_interface.cpp:[m[K In member function ‘[01m[Kvirtual hardware_interface::CallbackReturn food_del_robot_hardware::FoodDelRobotHardwareInterface::on_configure(const rclcpp_lifecycle::State&)[m[K’:
+[01m[K/home/tikea/Food_Delivery_Robot/src/food_del_robot_hardware/src/food_del_robot_hardware_interface.cpp:76:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing element_type = class ZLAC8015DDriver[m[K’ {aka ‘[01m[Kclass ZLAC8015DDriver[m[K’} has no member named ‘[01m[Kinit[m[K’
+   76 |     if (driver_->[01;31m[Kinit[m[K() == false) {
+      |                  [01;31m[K^~~~[m[K
+[01m[K/home/tikea/Food_Delivery_Robot/src/food_del_robot_hardware/src/food_del_robot_hardware_interface.cpp:[m[K In member function ‘[01m[Kvirtual hardware_interface::return_type food_del_robot_hardware::FoodDelRobotHardwareInterface::read(const rclcpp::Time&, const rclcpp::Duration&)[m[K’:
+[01m[K/home/tikea/Food_Delivery_Robot/src/food_del_robot_hardware/src/food_del_robot_hardware_interface.cpp:114:19:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing element_type = class ZLAC8015DDriver[m[K’ {aka ‘[01m[Kclass ZLAC8015DDriver[m[K’} has no member named ‘[01m[Kget_speed_rad_per_sec[m[K’
+  114 |     if (!driver_->[01;31m[Kget_speed_rad_per_sec[m[K(left_vel, right_vel))
+      |                   [01;31m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/food_del_robot_hardware.dir/build.make:104: CMakeFiles/food_del_robot_hardware.dir/src/food_del_robot_hardware_interface.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/food_del_robot_hardware.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

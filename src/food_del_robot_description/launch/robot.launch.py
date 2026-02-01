@@ -71,23 +71,23 @@ def generate_launch_description():
         }]
     )
 
-    lifecycle_mgr = Node(
-        package='nav2_lifecycle_manager',
-        executable='lifecycle_manager',
-        name='lifecycle_manager_map',
-        output='screen',
-        parameters=[{
-            'use_sim_time': True,
-            'autostart': True,
-            'node_names': ['map_server']
-        }]
-    )
+    # lifecycle_mgr = Node(
+    #     package='nav2_lifecycle_manager',
+    #     executable='lifecycle_manager',
+    #     name='lifecycle_manager_map',
+    #     output='screen',
+    #     parameters=[{
+    #         'use_sim_time': True,
+    #         'autostart': True,
+    #         'node_names': ['map_server']
+    #     }]
+    # )
 
-    # Delay launching map_server + lifecycle_mgr for 3 seconds
-    delayed_map_nodes = TimerAction(
-        period=3.0,
-        actions=[map_server, lifecycle_mgr],
-    )
+    # # Delay launching map_server + lifecycle_mgr for 3 seconds
+    # delayed_map_nodes = TimerAction(
+    #     period=3.0,
+    #     actions=[map_server, lifecycle_mgr],
+    # )
 
     return LaunchDescription([
         robot_state_publisher_node,
@@ -95,5 +95,5 @@ def generate_launch_description():
         joint_state_broadcaster_spawner,
         diff_drive_controller_spawner,
         rviz_node,                # Start RViz first
-        delayed_map_nodes,        # Then start map_server after delay
+        # delayed_map_nodes,        # Then start map_server after delay
     ])
