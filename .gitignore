@@ -2,4 +2,4 @@ install/
 logs/
 build/
 .vscode/
-
+**/__pycahche__/

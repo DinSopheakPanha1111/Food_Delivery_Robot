@@ -18,13 +18,6 @@ def generate_launch_description():
         'Food_Delivery_Robot/src/food_del_robot_description/rviz/food_del_robot.rviz'
     )
 
-    # Joy parameters file
-    joy_params = os.path.join(
-        get_package_share_directory('food_del_robot_description'), 
-        'config', 
-        'joystick.yaml'
-    )
-
     # Declare the launch argument for EKF config file
     return LaunchDescription([
 
@@ -53,21 +46,6 @@ def generate_launch_description():
         ExecuteProcess(
             cmd=['ros2', 'run', 'robot_localization', 'ekf_node', '--ros-args', '--params-file', LaunchConfiguration('ekf_config')],
             output='screen'
-        ),
-
-        # Joy node for joystick
-        Node(
-            package='joy',
-            executable='joy_node',
-            parameters=[joy_params],
-        ),
-
-        # Teleop node for joystick control
-        Node(
-            package='teleop_twist_joy',
-            executable='teleop_node',
-            name='teleop_node',
-            parameters=[joy_params],
         ),
 
         # Joint State Publisher GUI

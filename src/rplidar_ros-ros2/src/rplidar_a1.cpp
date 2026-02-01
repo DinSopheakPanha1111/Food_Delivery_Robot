@@ -39,12 +39,11 @@ public:
         const std::string frame_id   = "laser_link";
         const std::string topic_name = "scan";
 
-        // 🔑 IMPORTANT: empty = let SDK auto-pick Sensitivity
         const std::string scan_mode  = "";
         const float scan_frequency   = 10.0f;
 
-        const bool inverted          = false;
-        const bool flip_x_axis       = false;
+        const bool inverted          = true; // Flip X-axis using inverted
+        const bool flip_x_axis       = false; // Not needed now, can be kept for custom logic
         const bool angle_compensate  = true;
         const float range_min        = 0.15f;
 
@@ -260,9 +259,11 @@ private:
             }
         }
 
-        // Reverse the angle
-        for (auto& node : buf) {
-            node.angle_z_q14 = 16384 * (360 - angle(node));  // Reverse the angle
+        // Apply inversion for X-axis using the 'inverted' flag
+        if (inverted) {
+            for (auto& node : buf) {
+                node.angle_z_q14 = -node.angle_z_q14;  // Invert the angle
+            }
         }
 
         publish_raw(
