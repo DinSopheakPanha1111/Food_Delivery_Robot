@@ -10,11 +10,7 @@ from launch_ros.actions import Node
 
 def find_serial_port():
     candidates = [
-        '/dev/ttyUSB0',
-        '/dev/ttyUSB1',
-        '/dev/ttyUSB2',
-        '/dev/ttyACM0',
-        '/dev/ttyACM1'
+        '/dev/ttyUSB0'
     ]
 
     for port in candidates:

@@ -23,10 +23,7 @@ private:
     void init_topic()
     {
         std::vector<std::string> port_list = {
-            "/dev/myimu",
-            "/dev/ttyUSB0",
-            "/dev/ttyUSB1",
-            "/dev/ttyUSB2"
+            "/dev/ttyUSB1"
         };
 
         for (const auto &port : port_list)

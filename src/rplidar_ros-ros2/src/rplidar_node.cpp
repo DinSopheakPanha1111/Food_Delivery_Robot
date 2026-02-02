@@ -227,61 +227,115 @@ class RPlidarNode : public rclcpp::Node
         return node.angle_z_q14 * 90.f / 16384.f;
     }
 
-    void publish_scan(rclcpp::Publisher<sensor_msgs::msg::LaserScan>::SharedPtr& pub,
-                  sl_lidar_response_measurement_node_hq_t *nodes,
-                  size_t node_count, rclcpp::Time start,
-                  double scan_time, bool inverted, bool flip_X_axis,
-                  float angle_min, float angle_max,
-                  float max_distance,
-                  std::string frame_id)
+    void publish_scan(
+        rclcpp::Publisher<sensor_msgs::msg::LaserScan>::SharedPtr& pub,
+        sl_lidar_response_measurement_node_hq_t *nodes,
+        size_t node_count,
+        rclcpp::Time start,
+        double scan_time,
+        bool inverted,
+        bool flip_X_axis,
+        float angle_min,
+        float angle_max,
+        float max_distance,
+        std::string frame_id)
     {
-        static int scan_count = 0;
         auto scan_msg = std::make_shared<sensor_msgs::msg::LaserScan>();
 
         scan_msg->header.stamp = start;
         scan_msg->header.frame_id = frame_id;
-        scan_count++;
 
+        // -----------------------------
+        // Original scan geometry
+        // -----------------------------
         bool reversed = (angle_max > angle_min);
-        if ( reversed ) {
-            scan_msg->angle_min =  M_PI - angle_max;
-            scan_msg->angle_max =  M_PI - angle_min;
+
+        float raw_angle_min, raw_angle_max;
+        if (reversed) {
+            raw_angle_min = M_PI - angle_max;
+            raw_angle_max = M_PI - angle_min;
         } else {
-            scan_msg->angle_min =  M_PI - angle_min;
-            scan_msg->angle_max =  M_PI - angle_max;
+            raw_angle_min = M_PI - angle_min;
+            raw_angle_max = M_PI - angle_max;
         }
-        scan_msg->angle_increment = (scan_msg->angle_max - scan_msg->angle_min) / (double)(node_count-1);
 
+        float raw_angle_increment =
+            (raw_angle_max - raw_angle_min) / (double)(node_count - 1);
+
+        // -----------------------------
+        // Front-only angle limits
+        // 270° → 90° == −90° → +90°
+        // -----------------------------
+        const float FRONT_MIN = -M_PI / 2.0f;   // -90 deg
+        const float FRONT_MAX =  M_PI / 2.0f;   // +90 deg
+
+        // -----------------------------
+        // Fixed LaserScan parameters
+        // -----------------------------
         scan_msg->scan_time = scan_time;
-        scan_msg->time_increment = scan_time / (double)(node_count-1);
-        scan_msg->range_min = 0.15;
-        scan_msg->range_max = max_distance;//8.0;
+        scan_msg->range_min = 0.15f;
+        scan_msg->range_max = max_distance;
 
-        scan_msg->intensities.resize(node_count);
-        scan_msg->ranges.resize(node_count);
+        std::vector<float> ranges;
+        std::vector<float> intensities;
+
         bool reverse_data = (!inverted && reversed) || (inverted && !reversed);
-
         size_t scan_midpoint = node_count / 2;
+
+        // -----------------------------
+        // Build FRONT-ONLY scan
+        // -----------------------------
         for (size_t i = 0; i < node_count; i++) {
-            float read_value = (float)nodes[i].dist_mm_q2 / 4.0f / 1000;
+
             size_t apply_index = i;
             if (reverse_data) {
                 apply_index = node_count - 1 - i;
             }
+
             if (flip_X_axis) {
                 if (apply_index >= scan_midpoint)
-                    apply_index = apply_index - scan_midpoint;
+                    apply_index -= scan_midpoint;
                 else
-                    apply_index = apply_index + scan_midpoint;
+                    apply_index += scan_midpoint;
             }
 
-            if (read_value == 0.0)
-                scan_msg->ranges[apply_index] = std::numeric_limits<float>::infinity();
+            float angle = raw_angle_min + apply_index * raw_angle_increment;
+
+            // Keep only front 270° → 90°
+            if (angle < FRONT_MIN || angle > FRONT_MAX)
+                continue;
+
+            float read_value =
+                (float)nodes[apply_index].dist_mm_q2 / 4.0f / 1000.0f;
+
+            if (read_value == 0.0f)
+                ranges.push_back(std::numeric_limits<float>::infinity());
             else
-                scan_msg->ranges[apply_index] = read_value;
-            scan_msg->intensities[apply_index] = (float)(nodes[apply_index].quality >> 2);
+                ranges.push_back(read_value);
+
+            intensities.push_back(
+                (float)(nodes[apply_index].quality >> 2)
+            );
         }
 
+        // -----------------------------
+        // Final LaserScan geometry
+        // -----------------------------
+        scan_msg->angle_min = FRONT_MIN;
+        scan_msg->angle_max = FRONT_MAX;
+
+        scan_msg->angle_increment =
+            (FRONT_MAX - FRONT_MIN) / (double)(ranges.size() - 1);
+
+        scan_msg->time_increment =
+            scan_time / (double)(ranges.size() - 1);
+
+        scan_msg->ranges = ranges;
+        scan_msg->intensities = intensities;
+
+        // -----------------------------
+        // Publish
+        // -----------------------------
         pub->publish(*scan_msg);
     }
 
@@ -477,8 +531,8 @@ public:
                     continue;
                 }
                 op_result = drv->ascendScanData(nodes, count);
-                float angle_min = DEG2RAD(270.0f);
-                float angle_max = DEG2RAD(90.0f);
+                float angle_min = DEG2RAD(0.0f);
+                float angle_max = DEG2RAD(360.0f);
                 if (op_result == SL_RESULT_OK) {
                     if (angle_compensate) {
                         //const int angle_compensate_multiple = 1;
@@ -530,7 +584,6 @@ public:
                                 frame_id);
                     }
                 } else if (op_result == SL_RESULT_OPERATION_FAIL) {
-                    // All the data is invalid, just publish them
                     float angle_min = DEG2RAD(0.0f);
                     float angle_max = DEG2RAD(359.0f);
                     publish_scan(scan_pub, nodes, count,
