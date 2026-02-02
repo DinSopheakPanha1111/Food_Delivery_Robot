@@ -1,0 +1,4 @@
+[ 50%] Built target imu_serial
+[ 75%] [32mBuilding CXX object CMakeFiles/imu_driver.dir/src/imu_driver.cpp.o[0m
+[100%] [32m[1mLinking CXX executable imu_driver[0m
+[100%] Built target imu_driver
