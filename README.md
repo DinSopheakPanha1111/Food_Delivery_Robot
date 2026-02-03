@@ -245,7 +245,7 @@ ros2 run zlac8015d_driver drive_and_odom
 ros2 run yahboom_imu_10_axis imu_driver
 
 ```
-**3.3 ODOMETRY WITH EKF TEST (Updated)**
+**3.3 ODOMETRY WITH EKF TEST**
 
 **!!NOTE : Make sure to change the params file to your own path**
 
@@ -270,25 +270,23 @@ ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.05}, angular: {z
 
 ```
 
-**3.6 Simply launch everything**
+**4. AMCL TEST**
+
+**4.1 Launch RPLidarA1**
+
+```
+ros2 launch rplidar_ros rplidar_a1_launch.py
+
+```
+
+**4.2 Simply launch everything**
 
 ```
 ros2 launch food_del_robot_description display.launch.py
 
 ```
 
-**4. CONTROL VIA PS4 CONTROLLER**
-
-**4.1 LAUNCH PS4 CONTROLLER**
-
-**!!NOTE : Make sure to change launch it on other laptop!!**
-
-```
-ros2 launch food_del_robot_description joystick.launch.py
-
-```
-You can adjust the sensitivity in the joystick.yaml file
-
+Select point estimation 2D then place the arrow point to the right heading of the robot in RViz.
 
 
 
