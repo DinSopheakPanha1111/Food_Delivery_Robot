@@ -89,7 +89,7 @@ private:
 
         // Covariance matrices (set diagonal to a small value, 0 means no uncertainty)
         // Linear acceleration covariance (3x3 matrix)
-        imu_msg.linear_acceleration_covariance = {1e6, 0.0, 0.0,
+        imu_msg.linear_acceleration_covariance = {0.01, 0.0, 0.0,
                                                  0.0, 1e6, 0.0,
                                                  0.0, 0.0, 1e6};
 

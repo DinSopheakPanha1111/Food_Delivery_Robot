@@ -1,0 +1,4 @@
+[  3%] Built target rplidar_client
+[  5%] [32mBuilding CXX object CMakeFiles/rplidar_composition.dir/src/rplidar_node.cpp.o[0m
+[ 19%] [32mBuilding CXX object CMakeFiles/rplidar_node.dir/src/rplidar_node.cpp.o[0m
+[ 39%] Built target rplidar_a1

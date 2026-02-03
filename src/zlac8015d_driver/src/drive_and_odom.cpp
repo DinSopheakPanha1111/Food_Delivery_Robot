@@ -188,7 +188,7 @@ private:
 
         // Adding covariance for twist (linear and angular velocities)
         odom.twist.covariance = {0.1, 0.0, 0.0, 0.0, 0.0, 0.0,   
-                                 0.0, 0.5, 0.0, 0.0, 0.0, 0.0,   
+                                 0.0, 1e6, 0.0, 0.0, 0.0, 0.0,   
                                  0.0, 0.0, 1e6, 0.0, 0.0, 0.0,   
                                  0.0, 0.0, 0.0, 1e6, 0.0, 0.0,   
                                  0.0, 0.0, 0.0, 0.0, 1e6, 0.0,   

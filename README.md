@@ -1,6 +1,13 @@
 # Food_Delivery_Robot
 BY : DIN SOPHEAK PANHA
 
+
+**REQUIREMENT**
+
+1. Ubuntu 22.04
+2. ROS2 humble
+3. Jetson (optional)
+
 **0. SETUP LIBRARY AND CONFIGUARTIONS**
 
 Please do all of these before start playing around with the robot (JETSON only)
@@ -84,6 +91,18 @@ source install/setup.bash
 ```
 
 YOU ARE READY TO GO!!!!
+
+**0.6 AI (optional)**
+
+Speech to text setup:
+
+```
+pip3 install speechrecognition
+sudo apt-get update
+sudo apt-get install portaudio19-dev
+pip3 install pyaudio
+
+```
 
 **1. LAUNCH SENSOR**
 

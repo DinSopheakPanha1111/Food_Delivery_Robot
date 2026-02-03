@@ -1,0 +1,33 @@
+[  3%] Built target rplidar_client
+[  7%] [32mBuilding CXX object CMakeFiles/rplidar_node.dir/src/rplidar_node.cpp.o[0m
+[  7%] [32mBuilding CXX object CMakeFiles/rplidar_composition.dir/src/rplidar_node.cpp.o[0m
+[  8%] [32mBuilding CXX object CMakeFiles/rplidar_a1.dir/src/rplidar_a1.cpp.o[0m
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_node.cpp:36:10:[m[K [01;31m[Kfatal error: [m[Krplidar_node.hpp: No such file or directory
+   36 | #include [01;31m[K<rplidar_node.hpp>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_node.cpp:36:10:[m[K [01;31m[Kfatal error: [m[Krplidar_node.hpp: No such file or directory
+   36 | #include [01;31m[K<rplidar_node.hpp>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+gmake[2]: *** [CMakeFiles/rplidar_composition.dir/build.make:76: CMakeFiles/rplidar_composition.dir/src/rplidar_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:169: CMakeFiles/rplidar_composition.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+gmake[2]: *** [CMakeFiles/rplidar_node.dir/build.make:76: CMakeFiles/rplidar_node.dir/src/rplidar_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:143: CMakeFiles/rplidar_node.dir/all] Error 2
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_cmd.h:41[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_driver.h:54[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar.h:36[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:4[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_protocol.h:66:16:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kdata[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+   66 |     sl_u8 data[[01;35m[K0[m[K];
+      |                [01;35m[K^[m[K
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_driver.h:54[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar.h:36[m[K,
+                 from [01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/src/rplidar_a1.cpp:4[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/rplidar_ros-ros2/sdk/include/sl_lidar_cmd.h:324:20:[m[K [01;35m[Kwarning: [m[KISO C++ forbids zero-size array ‘[01m[Kpayload[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+  324 |     sl_u8  payload[[01;35m[K0[m[K];
+      |                    [01;35m[K^[m[K
+[ 10%] [32m[1mLinking CXX executable rplidar_a1[0m
+[ 39%] Built target rplidar_a1
+gmake: *** [Makefile:146: all] Error 2

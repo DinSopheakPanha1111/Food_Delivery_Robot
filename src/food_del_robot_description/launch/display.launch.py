@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import DeclareLaunchArgument, LogInfo, ExecuteProcess
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, TimerAction
 from launch.substitutions import LaunchConfiguration, Command
 import os
 from ament_index_python.packages import get_package_share_directory
@@ -18,6 +18,13 @@ def generate_launch_description():
         'Food_Delivery_Robot/src/food_del_robot_description/rviz/food_del_robot.rviz'
     )
 
+    lifecycle_manager_config_path = os.path.join(
+        os.getenv('HOME'),
+        'Food_Delivery_Robot/src/food_del_robot/config/lifecycle_manager_config.yaml'
+    )
+
+    joy_params = os.path.join(get_package_share_directory('food_del_robot_description'), 'config', 'joystick.yaml')
+
     # Declare the launch argument for EKF config file
     return LaunchDescription([
 
@@ -26,6 +33,12 @@ def generate_launch_description():
             'ekf_config',
             default_value='/home/panha/Food_Delivery_Robot/src/food_del_robot/config/ekf_config.yaml',
             description='Path to EKF configuration file'
+        ),
+
+        # Launch EKF Node externally using ros2 run (starts EKF early)
+        ExecuteProcess(
+            cmd=['ros2', 'run', 'robot_localization', 'ekf_node', '--ros-args', '--params-file', LaunchConfiguration('ekf_config')],
+            output='screen'
         ),
 
         # IMU node
@@ -42,10 +55,33 @@ def generate_launch_description():
             name='drive_and_odom',
         ),
 
-        # Launch EKF Node externally using ros2 run
-        ExecuteProcess(
-            cmd=['ros2', 'run', 'robot_localization', 'ekf_node', '--ros-args', '--params-file', LaunchConfiguration('ekf_config')],
-            output='screen'
+        # Launch map server after a small delay (so EKF can start processing)
+        TimerAction(
+            period=3.0,  # Delay for map_server to allow EKF to start
+            actions=[
+                Node(
+                    package='nav2_map_server',
+                    executable='map_server',
+                    name='map_server',
+                    output='screen',
+                    parameters=[{
+                        'yaml_filename': '/home/panha/Food_Delivery_Robot/src/food_del_robot/maps/my_map.yaml'
+                    }]
+                )
+            ]
+        ),
+
+        # Launch AMCL after map server has started
+        TimerAction(
+            period=3.0,  # Delay for amcl to ensure map_server is fully ready
+            actions=[
+                Node(
+                    package='nav2_amcl',
+                    executable='amcl',
+                    name='amcl',
+                    output='screen',
+                )
+            ]
         ),
 
         # Joint State Publisher GUI
@@ -73,4 +109,26 @@ def generate_launch_description():
             output='screen',
             arguments=['-d', rviz_config_path]
         ),
+
+        # Launch lifecycle manager to handle node lifecycle states
+        Node(
+            package='nav2_lifecycle_manager',
+            executable='lifecycle_manager',
+            name='lifecycle_manager',
+            output='screen',
+            parameters=[lifecycle_manager_config_path],  # Use the YAML config file for parameters
+        ),
+
+        Node(
+            package='joy',
+            executable='joy_node',
+            parameters=[joy_params],
+        ),
+
+        Node(
+            package='teleop_twist_joy',
+            executable='teleop_node',
+            name='teleop_node',
+            parameters=[joy_params],
+        )
     ])
