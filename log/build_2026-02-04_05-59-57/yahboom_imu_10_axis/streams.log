@@ -1,0 +1,31 @@
+[0.021s] Invoking command in '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis -- -j16 -l16
+[0.070s] [ 50%] Built target imu_serial
+[0.101s] [ 75%] [32mBuilding CXX object CMakeFiles/imu_driver.dir/src/imu_driver.cpp.o[0m
+[3.613s] [100%] [32m[1mLinking CXX executable imu_driver[0m
+[3.813s] [100%] Built target imu_driver
+[3.820s] Invoked command in '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis -- -j16 -l16
+[3.822s] Invoking command in '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis
+[3.827s] -- Install configuration: ""
+[3.827s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib/libimu_serial.a
+[3.827s] -- Installing: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib/yahboom_imu_10_axis/imu_driver
+[3.829s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/lib/yahboom_imu_10_axis/imu_driver" to ""
+[3.829s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/include/
+[3.829s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/include//yahboom_imu_10_axis
+[3.829s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/include//imu_serial.hpp
+[3.829s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/include//protocol.hpp
+[3.829s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/ament_index/resource_index/package_run_dependencies/yahboom_imu_10_axis
+[3.829s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/ament_index/resource_index/parent_prefix_path/yahboom_imu_10_axis
+[3.829s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/environment/ament_prefix_path.sh
+[3.829s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/environment/ament_prefix_path.dsv
+[3.829s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/environment/path.sh
+[3.830s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/environment/path.dsv
+[3.830s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/local_setup.bash
+[3.830s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/local_setup.sh
+[3.830s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/local_setup.zsh
+[3.830s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/local_setup.dsv
+[3.830s] -- Installing: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.dsv
+[3.830s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/ament_index/resource_index/packages/yahboom_imu_10_axis
+[3.830s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/cmake/yahboom_imu_10_axisConfig.cmake
+[3.830s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/cmake/yahboom_imu_10_axisConfig-version.cmake
+[3.830s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/yahboom_imu_10_axis/share/yahboom_imu_10_axis/package.xml
+[3.832s] Invoked command in '/home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/yahboom_imu_10_axis

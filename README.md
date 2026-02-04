@@ -11,7 +11,7 @@ BY : DIN SOPHEAK PANHA
 **0. SETUP LIBRARY AND CONFIGUARTIONS**
 
 Please do all of these before start playing around with the robot (JETSON only)
-If it was testing on PC, I recommend only do 0.1, 0.2, 0.3 only
+If it was testing on PC, I recommend only do 0.1, 0.2, 0.3,0.4 only
 
 **0.1 Setup ROS2 Controllers (YOU CAN SKIP IF YOU ALREAD HAVE IT)**
 
@@ -38,13 +38,85 @@ sudo apt install -y \
 **0.3 Setup RPLidar ROS2 Humble**
 
 ```
+
 sudo chmod 777 /dev/ttyUSB0
 cd src/rpldiar_ros-ros2/
 source scripts/create_udev_rules.sh
 
 ```
 
-**0.4 Yahboom 10 axis IMU**
+**0.3 Assign specific port to Lidar and IMU**
+
+1. Identify your device
+
+```
+
+lsusb
+
+```
+
+2. In case new Lidar and IMU (skip this step if u know the unique path for Lidar and IMU)
+
+- Plug in Lidar only first
+
+```
+
+ls /dev/ttyUSB*
+
+```
+
+Expect result : /dev/ttyUSB0 or /dev/ttyUSB1
+
+- Get Lidar DEVPATH
+
+```
+
+udevadm info -n /dev/ttyUSB0 | grep DEVPATH
+
+```
+
+Expect result : 3-1.2 or other numbers (Please note down this unique number)
+
+- Plug out Lidar and plug in IMU only and repeat the same step for IMU
+
+- Create udev rule file 
+
+```
+
+udevadm info -n /dev/ttyUSB0 | grep DEVPATH
+
+```
+
+- Pass the script below to the file (Please changing the number according to your DEVPATH)
+
+```
+
+SUBSYSTEM=="tty", ENV{DEVPATH}=="*/3-1.2/*",   SYMLINK+="lidar"
+SUBSYSTEM=="tty", ENV{DEVPATH}=="*/3-1.4.2/*", SYMLINK+="imu"
+
+```
+
+CRTL + X -> Press Enter to save
+
+3. Reload udev rules
+
+```
+
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+
+```
+
+4. Replug both devices and verify
+
+```
+
+ls -l /dev/lidar
+ls -l /dev/imu
+
+```
+
+**0.5 Yahboom 10 axis IMU**
 
 For Jetson Orin Nano, it doesn't support the CH341 serial driver, so you have to install and setup manually.
 

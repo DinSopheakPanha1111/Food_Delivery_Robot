@@ -1,0 +1,271 @@
+[0.016s] Invoking command in '/home/panha/Food_Delivery_Robot/build/food_del_robot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake /home/panha/Food_Delivery_Robot/src/food_del_robot -DCMAKE_INSTALL_PREFIX=/home/panha/Food_Delivery_Robot/install/food_del_robot
+[0.078s] -- The C compiler identification is GNU 11.4.0
+[0.134s] -- The CXX compiler identification is GNU 11.4.0
+[0.147s] -- Detecting C compiler ABI info
+[0.222s] -- Detecting C compiler ABI info - done
+[0.227s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.227s] -- Detecting C compile features
+[0.228s] -- Detecting C compile features - done
+[0.230s] -- Detecting CXX compiler ABI info
+[0.311s] -- Detecting CXX compiler ABI info - done
+[0.316s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.317s] -- Detecting CXX compile features
+[0.317s] -- Detecting CXX compile features - done
+[0.324s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.612s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.762s] -- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)
+[0.853s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.866s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.883s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.903s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.934s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.019s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[1.027s] -- Found rmw_cyclonedds_cpp: 1.3.4 (/opt/ros/humble/share/rmw_cyclonedds_cpp/cmake)
+[1.072s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[1.094s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.172s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.172s] -- Found Threads: TRUE  
+[1.239s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[1.429s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[1.586s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.638s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.661s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[1.668s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[1.699s] -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[1.699s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.699s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[1.699s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[1.720s] -- Found PythonExtra: .so  
+[1.780s] -- Configuring done
+[1.808s] -- Generating done
+[1.817s] -- Build files have been written to: /home/panha/Food_Delivery_Robot/build/food_del_robot
+[1.827s] Invoked command in '/home/panha/Food_Delivery_Robot/build/food_del_robot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake /home/panha/Food_Delivery_Robot/src/food_del_robot -DCMAKE_INSTALL_PREFIX=/home/panha/Food_Delivery_Robot/install/food_del_robot
+[1.828s] Invoking command in '/home/panha/Food_Delivery_Robot/build/food_del_robot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/food_del_robot -- -j16 -l16
+[1.861s] [  2%] [34m[1mGenerating C code for ROS interfaces[0m
+[1.870s] [  5%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[1.875s] [  5%] Built target ament_cmake_python_copy_food_del_robot
+[2.109s] running egg_info
+[2.133s] creating food_del_robot.egg-info
+[2.133s] writing food_del_robot.egg-info/PKG-INFO
+[2.133s] writing dependency_links to food_del_robot.egg-info/dependency_links.txt
+[2.133s] writing top-level names to food_del_robot.egg-info/top_level.txt
+[2.133s] writing manifest file 'food_del_robot.egg-info/SOURCES.txt'
+[2.135s] [  5%] Built target food_del_robot__cpp
+[2.141s] [  7%] [32mBuilding C object CMakeFiles/food_del_robot__rosidl_generator_c.dir/rosidl_generator_c/food_del_robot/srv/detail/emergency_stop__functions.c.o[0m
+[2.142s] [ 10%] [32mBuilding C object CMakeFiles/food_del_robot__rosidl_generator_c.dir/rosidl_generator_c/food_del_robot/srv/detail/reset__functions.c.o[0m
+[2.143s] [ 12%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[2.144s] [ 15%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[2.144s] [ 17%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[2.192s] [ 20%] [32m[1mLinking C shared library libfood_del_robot__rosidl_generator_c.so[0m
+[2.199s] reading manifest file 'food_del_robot.egg-info/SOURCES.txt'
+[2.200s] writing manifest file 'food_del_robot.egg-info/SOURCES.txt'
+[2.226s] [ 20%] Built target food_del_robot__rosidl_generator_c
+[2.230s] [ 20%] Built target ament_cmake_python_build_food_del_robot_egg
+[2.236s] [ 25%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[2.236s] [ 25%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[2.236s] [ 28%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[2.367s] [ 33%] [32mBuilding CXX object CMakeFiles/food_del_robot__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/food_del_robot/srv/emergency_stop__type_support.cpp.o[0m
+[2.367s] [ 33%] [32mBuilding CXX object CMakeFiles/food_del_robot__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/food_del_robot/srv/reset__type_support.cpp.o[0m
+[2.390s] [ 38%] [32mBuilding CXX object CMakeFiles/food_del_robot__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/food_del_robot/srv/detail/reset__type_support.cpp.o[0m
+[2.391s] [ 38%] [32mBuilding CXX object CMakeFiles/food_del_robot__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/food_del_robot/srv/detail/emergency_stop__type_support.cpp.o[0m
+[2.412s] [ 41%] [32mBuilding CXX object CMakeFiles/food_del_robot__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/food_del_robot/srv/detail/dds_fastrtps/emergency_stop__type_support.cpp.o[0m
+[2.413s] [ 43%] [32mBuilding CXX object CMakeFiles/food_del_robot__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/food_del_robot/srv/detail/dds_fastrtps/reset__type_support.cpp.o[0m
+[2.488s] [ 48%] [32mBuilding CXX object CMakeFiles/food_del_robot__rosidl_typesupport_c.dir/rosidl_typesupport_c/food_del_robot/srv/emergency_stop__type_support.cpp.o[0m
+[2.488s] [ 48%] [32mBuilding CXX object CMakeFiles/food_del_robot__rosidl_typesupport_c.dir/rosidl_typesupport_c/food_del_robot/srv/reset__type_support.cpp.o[0m
+[2.508s] [ 53%] [32mBuilding C object CMakeFiles/food_del_robot__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/food_del_robot/srv/detail/emergency_stop__type_support.c.o[0m
+[2.509s] [ 53%] [32mBuilding C object CMakeFiles/food_del_robot__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/food_del_robot/srv/detail/reset__type_support.c.o[0m
+[2.517s] [ 56%] [32mBuilding CXX object CMakeFiles/food_del_robot__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/food_del_robot/srv/detail/emergency_stop__type_support_c.cpp.o[0m
+[2.517s] [ 58%] [32mBuilding CXX object CMakeFiles/food_del_robot__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/food_del_robot/srv/detail/reset__type_support_c.cpp.o[0m
+[2.527s] [ 61%] [32m[1mLinking CXX shared library libfood_del_robot__rosidl_typesupport_c.so[0m
+[2.559s] [ 64%] [32m[1mLinking C shared library libfood_del_robot__rosidl_typesupport_introspection_c.so[0m
+[2.569s] [ 64%] Built target food_del_robot__rosidl_typesupport_c
+[2.592s] [ 64%] Built target food_del_robot__rosidl_typesupport_introspection_c
+[2.612s] [ 66%] [32m[1mLinking CXX shared library libfood_del_robot__rosidl_typesupport_cpp.so[0m
+[2.653s] [ 66%] Built target food_del_robot__rosidl_typesupport_cpp
+[2.734s] [ 69%] [32m[1mLinking CXX shared library libfood_del_robot__rosidl_typesupport_introspection_cpp.so[0m
+[2.774s] [ 69%] Built target food_del_robot__rosidl_typesupport_introspection_cpp
+[2.810s] [ 71%] [32m[1mLinking CXX shared library libfood_del_robot__rosidl_typesupport_fastrtps_cpp.so[0m
+[2.815s] [ 74%] [32m[1mLinking CXX shared library libfood_del_robot__rosidl_typesupport_fastrtps_c.so[0m
+[2.872s] [ 74%] Built target food_del_robot__rosidl_typesupport_fastrtps_cpp
+[2.881s] [ 74%] Built target food_del_robot__rosidl_typesupport_fastrtps_c
+[2.903s] [ 74%] Built target food_del_robot
+[2.923s] [ 76%] [34m[1mGenerating Python code for ROS interfaces[0m
+[3.293s] [ 76%] Built target food_del_robot__py
+[3.312s] [ 79%] [32mBuilding C object CMakeFiles/food_del_robot__rosidl_generator_py.dir/rosidl_generator_py/food_del_robot/srv/_emergency_stop_s.c.o[0m
+[3.313s] [ 82%] [32mBuilding C object CMakeFiles/food_del_robot__rosidl_generator_py.dir/rosidl_generator_py/food_del_robot/srv/_reset_s.c.o[0m
+[3.405s] [ 84%] [32m[1mLinking C shared library rosidl_generator_py/food_del_robot/libfood_del_robot__rosidl_generator_py.so[0m
+[3.443s] [ 84%] Built target food_del_robot__rosidl_generator_py
+[3.461s] [ 87%] [32mBuilding C object CMakeFiles/food_del_robot__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/food_del_robot/_food_del_robot_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[3.462s] [ 89%] [32mBuilding C object CMakeFiles/food_del_robot__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/food_del_robot/_food_del_robot_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[3.462s] [ 92%] [32mBuilding C object CMakeFiles/food_del_robot__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/food_del_robot/_food_del_robot_s.ep.rosidl_typesupport_c.c.o[0m
+[3.547s] [ 94%] [32m[1mLinking C shared library rosidl_generator_py/food_del_robot/food_del_robot_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so[0m
+[3.548s] [ 97%] [32m[1mLinking C shared library rosidl_generator_py/food_del_robot/food_del_robot_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so[0m
+[3.549s] [100%] [32m[1mLinking C shared library rosidl_generator_py/food_del_robot/food_del_robot_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so[0m
+[3.578s] [100%] Built target food_del_robot__rosidl_typesupport_fastrtps_c__pyext
+[3.579s] [100%] Built target food_del_robot__rosidl_typesupport_c__pyext
+[3.579s] [100%] Built target food_del_robot__rosidl_typesupport_introspection_c__pyext
+[3.588s] Invoked command in '/home/panha/Food_Delivery_Robot/build/food_del_robot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/food_del_robot -- -j16 -l16
+[3.597s] Invoking command in '/home/panha/Food_Delivery_Robot/build/food_del_robot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/food_del_robot
+[3.601s] -- Install configuration: ""
+[3.601s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/ament_index/resource_index/rosidl_interfaces/food_del_robot
+[3.601s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot
+[3.601s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg
+[3.601s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg/rosidl_generator_c__visibility_control.h
+[3.601s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv
+[3.601s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/reset.h
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/emergency_stop.h
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__functions.c
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__type_support.h
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__functions.h
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__struct.h
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__type_support.h
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__functions.h
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__struct.h
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__functions.c
+[3.602s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/library_path.sh
+[3.603s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/library_path.dsv
+[3.603s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_generator_c.so
+[3.603s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_generator_c.so" to ""
+[3.603s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot
+[3.603s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg
+[3.603s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[3.603s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv
+[3.604s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail
+[3.604s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__rosidl_typesupport_fastrtps_c.h
+[3.604s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__rosidl_typesupport_fastrtps_c.h
+[3.604s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_fastrtps_c.so
+[3.604s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_fastrtps_c.so" to ""
+[3.604s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot
+[3.604s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg
+[3.604s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg/rosidl_generator_cpp__visibility_control.hpp
+[3.604s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv
+[3.604s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail
+[3.604s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__type_support.hpp
+[3.604s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__struct.hpp
+[3.605s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__struct.hpp
+[3.605s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__traits.hpp
+[3.605s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__builder.hpp
+[3.605s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__traits.hpp
+[3.605s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__builder.hpp
+[3.605s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__type_support.hpp
+[3.605s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/emergency_stop.hpp
+[3.605s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/reset.hpp
+[3.605s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot
+[3.605s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg
+[3.605s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[3.606s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv
+[3.606s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail
+[3.606s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__rosidl_typesupport_fastrtps_cpp.hpp
+[3.606s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/dds_fastrtps
+[3.606s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__rosidl_typesupport_fastrtps_cpp.hpp
+[3.606s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_fastrtps_cpp.so
+[3.606s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_fastrtps_cpp.so" to ""
+[3.606s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot
+[3.606s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg
+[3.606s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[3.607s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv
+[3.607s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail
+[3.607s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__type_support.c
+[3.607s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__type_support.c
+[3.607s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__rosidl_typesupport_introspection_c.h
+[3.607s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__rosidl_typesupport_introspection_c.h
+[3.607s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_introspection_c.so
+[3.607s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_introspection_c.so" to ""
+[3.607s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_c.so
+[3.608s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_c.so" to ""
+[3.608s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot
+[3.608s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv
+[3.608s] -- Up-to-date: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail
+[3.608s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__rosidl_typesupport_introspection_cpp.hpp
+[3.608s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/emergency_stop__type_support.cpp
+[3.608s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__type_support.cpp
+[3.608s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/include/food_del_robot/food_del_robot/srv/detail/reset__rosidl_typesupport_introspection_cpp.hpp
+[3.608s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_introspection_cpp.so
+[3.609s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_introspection_cpp.so" to ""
+[3.609s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_cpp.so
+[3.609s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_typesupport_cpp.so" to ""
+[3.609s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/pythonpath.sh
+[3.609s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/pythonpath.dsv
+[3.610s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot-0.0.0-py3.10.egg-info
+[3.610s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot-0.0.0-py3.10.egg-info/dependency_links.txt
+[3.610s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot-0.0.0-py3.10.egg-info/PKG-INFO
+[3.610s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot-0.0.0-py3.10.egg-info/top_level.txt
+[3.610s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot-0.0.0-py3.10.egg-info/SOURCES.txt
+[3.610s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot
+[3.610s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/libfood_del_robot__rosidl_generator_py.so
+[3.610s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/__init__.py
+[3.611s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/_food_del_robot_s.ep.rosidl_typesupport_introspection_c.c
+[3.611s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/_food_del_robot_s.ep.rosidl_typesupport_c.c
+[3.611s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[3.611s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[3.611s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/_food_del_robot_s.ep.rosidl_typesupport_fastrtps_c.c
+[3.611s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv
+[3.611s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/__init__.py
+[3.611s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/_reset.py
+[3.611s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/_reset_s.c
+[3.612s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/_emergency_stop.py
+[3.612s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/_emergency_stop_s.c
+[3.612s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[3.644s] Listing '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot'...
+[3.644s] Compiling '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/__init__.py'...
+[3.644s] Listing '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv'...
+[3.644s] Compiling '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/__init__.py'...
+[3.644s] Compiling '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/_emergency_stop.py'...
+[3.645s] Compiling '/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/srv/_reset.py'...
+[3.648s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[3.648s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""
+[3.648s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[3.648s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""
+[3.648s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[3.649s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/local/lib/python3.10/dist-packages/food_del_robot/food_del_robot_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""
+[3.649s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_generator_py.so
+[3.649s] -- Set runtime path of "/home/panha/Food_Delivery_Robot/install/food_del_robot/lib/libfood_del_robot__rosidl_generator_py.so" to ""
+[3.649s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/EmergencyStop.idl
+[3.649s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/Reset.idl
+[3.649s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/EmergencyStop.srv
+[3.649s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/EmergencyStop_Request.msg
+[3.650s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/EmergencyStop_Response.msg
+[3.650s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/Reset.srv
+[3.650s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/Reset_Request.msg
+[3.650s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/srv/Reset_Response.msg
+[3.650s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/ament_index/resource_index/package_run_dependencies/food_del_robot
+[3.650s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/ament_index/resource_index/parent_prefix_path/food_del_robot
+[3.650s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/ament_prefix_path.sh
+[3.650s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/ament_prefix_path.dsv
+[3.651s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/path.sh
+[3.651s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/environment/path.dsv
+[3.651s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/local_setup.bash
+[3.651s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/local_setup.sh
+[3.651s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/local_setup.zsh
+[3.651s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/local_setup.dsv
+[3.651s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.dsv
+[3.651s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/ament_index/resource_index/packages/food_del_robot
+[3.652s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_generator_cExport.cmake
+[3.652s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_generator_cExport-noconfig.cmake
+[3.652s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_typesupport_fastrtps_cExport.cmake
+[3.652s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[3.652s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_generator_cppExport.cmake
+[3.652s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_typesupport_fastrtps_cppExport.cmake
+[3.652s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[3.653s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_introspection_cExport.cmake
+[3.653s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[3.653s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_cExport.cmake
+[3.653s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_cExport-noconfig.cmake
+[3.653s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_introspection_cppExport.cmake
+[3.653s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[3.653s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_cppExport.cmake
+[3.653s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robot__rosidl_typesupport_cppExport-noconfig.cmake
+[3.654s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_generator_pyExport.cmake
+[3.654s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/export_food_del_robot__rosidl_generator_pyExport-noconfig.cmake
+[3.654s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/rosidl_cmake-extras.cmake
+[3.654s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/ament_cmake_export_dependencies-extras.cmake
+[3.654s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/ament_cmake_export_include_directories-extras.cmake
+[3.654s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/ament_cmake_export_libraries-extras.cmake
+[3.654s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/ament_cmake_export_targets-extras.cmake
+[3.654s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[3.655s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[3.655s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robotConfig.cmake
+[3.655s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/cmake/food_del_robotConfig-version.cmake
+[3.655s] -- Installing: /home/panha/Food_Delivery_Robot/install/food_del_robot/share/food_del_robot/package.xml
+[3.657s] Invoked command in '/home/panha/Food_Delivery_Robot/build/food_del_robot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --install /home/panha/Food_Delivery_Robot/build/food_del_robot

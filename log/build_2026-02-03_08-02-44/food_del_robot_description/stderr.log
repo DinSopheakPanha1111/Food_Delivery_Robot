@@ -1,0 +1,6 @@
+[31mCMake Error at cmake_install.cmake:46 (file):
+  file INSTALL cannot find
+  "/home/panha/Food_Delivery_Robot/src/food_del_robot_description/worlds": No
+  such file or directory.
+
+[0m

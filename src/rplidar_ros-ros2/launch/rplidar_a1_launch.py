@@ -10,7 +10,7 @@ from launch_ros.actions import Node
 
 def find_serial_port():
     candidates = [
-        '/dev/ttyUSB0'
+        '/dev/lidar'
     ]
 
     for port in candidates:
@@ -23,8 +23,8 @@ def find_serial_port():
             except OSError:
                 pass
 
-    print("[rplidar_launch] No free serial port found, fallback to /dev/ttyUSB0")
-    return '/dev/ttyUSB0'
+    print("[rplidar_launch] No free serial port found, fallback to /dev/lidar")
+    return '/dev/lidar'
 
 
 def generate_launch_description():
