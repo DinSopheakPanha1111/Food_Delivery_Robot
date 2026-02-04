@@ -55,7 +55,7 @@ lsusb
 
 ```
 
-2. In case new Lidar and IMU (skip this step if u know the unique path for Lidar and IMU)
+2. Assign port to Lidar and IMU
 
 - Plug in Lidar only first
 
@@ -83,7 +83,7 @@ Expect result : 3-1.2 or other numbers (Please note down this unique number)
 
 ```
 
-udevadm info -n /dev/ttyUSB0 | grep DEVPATH
+sudo nano /etc/udev/rules.d/99-robot-usb.rules
 
 ```
 
