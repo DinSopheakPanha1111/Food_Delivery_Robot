@@ -45,7 +45,7 @@ source scripts/create_udev_rules.sh
 
 ```
 
-**0.3 Assign specific port to Lidar and IMU**
+**0.4 Assign specific port to Lidar and IMU**
 
 1. Identify your device
 
