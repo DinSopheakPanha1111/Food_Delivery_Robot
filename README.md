@@ -91,12 +91,12 @@ sudo nano /etc/udev/rules.d/99-robot-usb.rules
 
 ```
 
-SUBSYSTEM=="tty", ENV{DEVPATH}=="*/3-1.2/*",   SYMLINK+="lidar"
-SUBSYSTEM=="tty", ENV{DEVPATH}=="*/3-1.4.2/*", SYMLINK+="imu"
+SUBSYSTEM=="tty", ENV{DEVPATH}=="*/usb3/3-2/3-2.2/*", SYMLINK+="lidar"
+SUBSYSTEM=="tty", ENV{DEVPATH}=="*/usb3/3-2/3-2.1/*", SYMLINK+="imu"
 
 ```
 
-CRTL + X -> Press Enter to save
+CRTL + X -> y -> Press Enter to save
 
 3. Reload udev rules
 
@@ -107,7 +107,17 @@ sudo udevadm trigger
 
 ```
 
-4. Replug both devices and verify
+4. Dial out
+
+```
+
+sudo usermod -aG dialout $USER
+
+```
+
+Then reboot.
+
+5. Replug both devices and verify
 
 ```
 
