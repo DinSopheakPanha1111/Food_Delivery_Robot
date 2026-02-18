@@ -47,7 +47,7 @@ public:
                     std::placeholders::_2));
 
         timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(10),
+            std::chrono::milliseconds(20),
             std::bind(&MotorControlNode::publishOdometry, this));
 
         can_.enable();

@@ -1,0 +1,4 @@
+[0.036s] Invoking command in '/home/panha/Food_Delivery_Robot/build/EKF_RLS_Tests': /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/EKF_RLS_Tests -- -j16 -l16
+[0.079s] [ 50%] Built target RLSTest
+[0.083s] [100%] Built target EKFTest
+[0.107s] Invoked command in '/home/panha/Food_Delivery_Robot/build/EKF_RLS_Tests' returned '0': /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/EKF_RLS_Tests -- -j16 -l16

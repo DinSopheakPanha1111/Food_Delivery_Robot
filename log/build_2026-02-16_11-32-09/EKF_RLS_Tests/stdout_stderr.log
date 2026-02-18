@@ -1,0 +1,25 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/panha/Food_Delivery_Robot/build/EKF_RLS_Tests
+[ 37%] [32mBuilding CXX object CMakeFiles/RLSTest.dir/matrix.cpp.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/RLSTest.dir/rls_test.cpp.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/EKFTest.dir/ekf_test.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/EKFTest.dir/ekf.cpp.o[0m
+[ 62%] [32mBuilding CXX object CMakeFiles/EKFTest.dir/matrix.cpp.o[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/RLSTest.dir/rls.cpp.o[0m
+[ 87%] [32m[1mLinking CXX executable RLSTest[0m
+[100%] [32m[1mLinking CXX executable EKFTest[0m
+[100%] Built target RLSTest
+[100%] Built target EKFTest

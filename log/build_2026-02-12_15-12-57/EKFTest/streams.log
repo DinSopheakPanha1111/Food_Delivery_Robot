@@ -1,0 +1,24 @@
+[0.038s] Invoking command in '/home/panha/Food_Delivery_Robot/build/EKFTest': /usr/bin/cmake /home/panha/Food_Delivery_Robot/docs/Matrix Operation code -DCMAKE_INSTALL_PREFIX=/home/panha/Food_Delivery_Robot/install/EKFTest
+[0.181s] -- The C compiler identification is GNU 11.4.0
+[0.262s] -- The CXX compiler identification is GNU 11.4.0
+[0.278s] -- Detecting C compiler ABI info
+[0.359s] -- Detecting C compiler ABI info - done
+[0.366s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.366s] -- Detecting C compile features
+[0.366s] -- Detecting C compile features - done
+[0.369s] -- Detecting CXX compiler ABI info
+[0.459s] -- Detecting CXX compiler ABI info - done
+[0.465s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.465s] -- Detecting CXX compile features
+[0.466s] -- Detecting CXX compile features - done
+[0.466s] -- Configuring done
+[0.469s] -- Generating done
+[0.470s] -- Build files have been written to: /home/panha/Food_Delivery_Robot/build/EKFTest
+[0.473s] Invoked command in '/home/panha/Food_Delivery_Robot/build/EKFTest' returned '0': /usr/bin/cmake /home/panha/Food_Delivery_Robot/docs/Matrix Operation code -DCMAKE_INSTALL_PREFIX=/home/panha/Food_Delivery_Robot/install/EKFTest
+[0.475s] Invoking command in '/home/panha/Food_Delivery_Robot/build/EKFTest': /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/EKFTest -- -j16 -l16
+[0.522s] [ 75%] [32mBuilding CXX object CMakeFiles/EKFTest.dir/ekf.cpp.o[0m
+[0.522s] [ 75%] [32mBuilding CXX object CMakeFiles/EKFTest.dir/matrix.cpp.o[0m
+[0.522s] [ 75%] [32mBuilding CXX object CMakeFiles/EKFTest.dir/ekf_test.cpp.o[0m
+[0.924s] [100%] [32m[1mLinking CXX executable EKFTest[0m
+[1.012s] [100%] Built target EKFTest
+[1.022s] Invoked command in '/home/panha/Food_Delivery_Robot/build/EKFTest' returned '0': /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/EKFTest -- -j16 -l16

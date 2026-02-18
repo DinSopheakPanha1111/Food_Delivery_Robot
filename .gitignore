@@ -2,4 +2,5 @@ install/
 logs/
 build/
 .vscode/
+Matrix_Operation_code/
 **/__pycahche__/
