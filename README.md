@@ -179,7 +179,7 @@ YOU ARE READY TO GO!!!!
 **1.1 Launch RPLidar A1**
 
 ```
-ros2 run rplidar_ros rplidar_a1
+ros2 launch rplidar_ros rplidar_a1_launch.py 
 
 ```
 
