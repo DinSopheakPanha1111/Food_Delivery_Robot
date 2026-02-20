@@ -174,18 +174,6 @@ source install/setup.bash
 
 YOU ARE READY TO GO!!!!
 
-**0.6 AI (optional)**
-
-Speech to text setup:
-
-```
-pip3 install speechrecognition
-sudo apt-get update
-sudo apt-get install portaudio19-dev
-pip3 install pyaudio
-
-```
-
 **1. LAUNCH SENSOR**
 
 **1.1 Launch RPLidar A1**
@@ -269,10 +257,10 @@ BW :
 
 ```
 
-**1.4 LAUNCH ROBOT IN SIMULATION**
+**1.4 TESTING URDF OF THE ROBOT**
 
 ```
-ros2 launch food_del_robot_description robot.launch.py 
+ros2 launch food_del_robot_description display.launch.py 
 
 ```
 
@@ -352,7 +340,7 @@ ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.05}, angular: {z
 
 ```
 
-**4. AMCL TEST**
+**4. AMCL TEST (no longer available)**
 
 **4.1 Launch RPLidarA1**
 
@@ -370,6 +358,20 @@ ros2 launch food_del_robot_description display.launch.py
 
 Select point estimation 2D then place the arrow point to the right heading of the robot in RViz.
 
+**5. Full Autonomous Test**
 
+Launch the lidar : 
+
+```
+ros2 launch rplidar_ros rplidar_a1_launch.py
+
+```
+
+Launch the autonomous file : 
+
+```
+ros2 launch food_del_robot_description robot.launch.py
+
+```
 
 
