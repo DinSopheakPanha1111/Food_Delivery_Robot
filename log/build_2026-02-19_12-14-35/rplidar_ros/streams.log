@@ -1,0 +1,5 @@
+[0.027s] Invoking command in '/home/panha/Food_Delivery_Robot/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/rplidar_ros -- -j16 -l16
+[0.075s] [  3%] Built target rplidar_client
+[0.083s] [ 94%] Built target rplidar_composition
+[0.084s] [ 94%] Built target rplidar_a1
+[0.084s] [100%] Built target rplidar_node

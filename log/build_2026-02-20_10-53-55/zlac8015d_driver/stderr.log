@@ -1,0 +1,33 @@
+In file included from [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:8[m[K:
+[01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:18:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+   18 |  //**************************************************************************** */
+      |    
+[01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:29:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+   29 |  //**************************************************************************** */
+      |    
+[01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:38:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+   38 |  //**************************************************************************** */
+      |    
+[01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:48:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+   48 |  //**************************************************************************** */
+      |    
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:224:2:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K}[m[K’ at end of input
+  224 | }
+      |  [01;31m[K^[m[K
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:15:1:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K{[m[K’
+   15 | [01;36m[K{[m[K
+      | [01;36m[K^[m[K
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:[m[K In member function ‘[01m[Kvoid MotorControlNode::publishOdometry()[m[K’:
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:197:49:[m[K [01;31m[Kerror: [m[K‘[01m[KtoMsg[m[K’ is not a member of ‘[01m[Ktf2[m[K’
+  197 |         left_wheel_tf.transform.rotation = tf2::[01;31m[KtoMsg[m[K(
+      |                                                 [01;31m[K^~~~~[m[K
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:209:50:[m[K [01;31m[Kerror: [m[K‘[01m[KtoMsg[m[K’ is not a member of ‘[01m[Ktf2[m[K’
+  209 |         right_wheel_tf.transform.rotation = tf2::[01;31m[KtoMsg[m[K(
+      |                                                  [01;31m[K^~~~~[m[K
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:[m[K At global scope:
+[01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:224:2:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id at end of input
+  224 | }
+      |  [01;31m[K^[m[K
+gmake[2]: *** [CMakeFiles/drive_and_odom.dir/build.make:76: CMakeFiles/drive_and_odom.dir/src/drive_and_odom.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:214: CMakeFiles/drive_and_odom.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

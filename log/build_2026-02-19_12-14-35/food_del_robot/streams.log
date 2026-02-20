@@ -1,0 +1,23 @@
+[0.033s] Invoking command in '/home/panha/Food_Delivery_Robot/build/food_del_robot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/food_del_robot -- -j16 -l16
+[0.074s] [  5%] Built target food_del_robot__cpp
+[0.074s] [ 12%] Built target food_del_robot__rosidl_generator_c
+[0.083s] [ 12%] Built target ament_cmake_python_copy_food_del_robot
+[0.097s] [ 23%] Built target food_del_robot__rosidl_typesupport_introspection_c
+[0.098s] [ 33%] Built target food_del_robot__rosidl_typesupport_c
+[0.098s] [ 43%] Built target food_del_robot__rosidl_typesupport_fastrtps_cpp
+[0.098s] [ 53%] Built target food_del_robot__rosidl_typesupport_cpp
+[0.099s] [ 64%] Built target food_del_robot__rosidl_typesupport_fastrtps_c
+[0.100s] [ 74%] Built target food_del_robot__rosidl_typesupport_introspection_cpp
+[0.120s] [ 74%] Built target food_del_robot
+[0.141s] [ 76%] Built target food_del_robot__py
+[0.167s] [ 84%] Built target food_del_robot__rosidl_generator_py
+[0.189s] [100%] Built target food_del_robot__rosidl_typesupport_fastrtps_c__pyext
+[0.190s] [100%] Built target food_del_robot__rosidl_typesupport_c__pyext
+[0.190s] [100%] Built target food_del_robot__rosidl_typesupport_introspection_c__pyext
+[0.313s] running egg_info
+[0.335s] writing food_del_robot.egg-info/PKG-INFO
+[0.336s] writing dependency_links to food_del_robot.egg-info/dependency_links.txt
+[0.336s] writing top-level names to food_del_robot.egg-info/top_level.txt
+[0.398s] reading manifest file 'food_del_robot.egg-info/SOURCES.txt'
+[0.399s] writing manifest file 'food_del_robot.egg-info/SOURCES.txt'
+[0.431s] [100%] Built target ament_cmake_python_build_food_del_robot_egg

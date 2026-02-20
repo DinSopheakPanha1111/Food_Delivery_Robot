@@ -7,7 +7,8 @@
 #include "can.hpp"
 #include "kinematic.hpp"
 #include "food_del_robot/srv/emergency_stop.hpp"
-#include "food_del_robot/srv/reset.hpp"
+#include <tf2_ros/transform_broadcaster.h>
+#include <geometry_msgs/msg/transform_stamped.hpp>
 
 class MotorControlNode : public rclcpp::Node
 {
@@ -21,6 +22,8 @@ public:
         wheel_radius_ = 0.065;
         wheel_base_   = 0.457;
 
+        tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(this);
+
         odom_pub_ = this->create_publisher<nav_msgs::msg::Odometry>(
             "/odom/wheel", 10);
 
@@ -33,15 +36,6 @@ public:
                 "emergency_stop",
                 std::bind(
                     &MotorControlNode::emergencyStopCallback,
-                    this,
-                    std::placeholders::_1,
-                    std::placeholders::_2));
-
-        reset_odom_srv_ =
-            this->create_service<food_del_robot::srv::Reset>(
-                "reset_odom",
-                std::bind(
-                    &MotorControlNode::resetOdomCallback,
                     this,
                     std::placeholders::_1,
                     std::placeholders::_2));
@@ -63,7 +57,6 @@ private:
     rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_pub_;
     rclcpp::Service<food_del_robot::srv::EmergencyStop>::SharedPtr emergency_stop_srv_;
-    rclcpp::Service<food_del_robot::srv::Reset>::SharedPtr reset_odom_srv_;
     rclcpp::TimerBase::SharedPtr timer_;
 
     /* ================= DRIVER ================= */
@@ -79,6 +72,9 @@ private:
     bool emergency_active_{false};
 
     rclcpp::Time last_time_;
+
+    /* ================= TF2 ================= */
+    std::shared_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
 
     /* ================= CMD_VEL ================= */
     void cmdVelCallback(const geometry_msgs::msg::Twist::SharedPtr msg)
@@ -125,18 +121,6 @@ private:
         }
 
         res->success = ok;
-    }
-
-    /* ================= RESET ODOMETRY ================= */
-    void resetOdomCallback(
-        const std::shared_ptr<food_del_robot::srv::Reset::Request> req,
-        std::shared_ptr<food_del_robot::srv::Reset::Response> res)
-    {
-        if(req->reset_odom = true)
-        {
-            driver_.shutdown();
-            res->success = "Success";
-        }
     }
 
     /* ================= ODOMETRY ================= */
@@ -195,6 +179,41 @@ private:
                                  0.0, 0.0, 0.0, 0.0, 0.0, 0.5};  
 
         odom_pub_->publish(odom);
+
+        // Publish tf for left wheel
+        geometry_msgs::msg::TransformStamped left_wheel_tf;
+        left_wheel_tf.header.stamp = now;
+        left_wheel_tf.header.frame_id = "base_link";
+        left_wheel_tf.child_frame_id = "left_wheel_link";
+        left_wheel_tf.transform.translation.x = 0.0;
+        left_wheel_tf.transform.translation.y = -0.225f;
+        left_wheel_tf.transform.translation.z = 0.0555f;
+
+        // Apply rotation around the Y-axis (quaternion for rotation around Y)
+        float left_angle = left_rpm * dt * 0.5; // Angle in radians
+        left_wheel_tf.transform.rotation.x = 0.0; // No rotation around X-axis
+        left_wheel_tf.transform.rotation.y = std::sin(left_angle / 2.0); // Rotation around Y-axis
+        left_wheel_tf.transform.rotation.z = 0.0; // No rotation around Z-axis
+        left_wheel_tf.transform.rotation.w = std::cos(left_angle / 2.0); // Cosine of half the angle
+
+        // Publish tf for right wheel
+        geometry_msgs::msg::TransformStamped right_wheel_tf;
+        right_wheel_tf.header.stamp = now;
+        right_wheel_tf.header.frame_id = "base_link";
+        right_wheel_tf.child_frame_id = "right_wheel_link";
+        right_wheel_tf.transform.translation.x = 0.0f;
+        right_wheel_tf.transform.translation.y = 0.225f;
+        right_wheel_tf.transform.translation.z = 0.0555f;
+
+        // Apply rotation around the Y-axis (quaternion for rotation around Y)
+        float right_angle = right_rpm * dt * 0.5; // Angle in radians
+        right_wheel_tf.transform.rotation.x = 0.0; // No rotation around X-axis
+        right_wheel_tf.transform.rotation.y = std::sin(right_angle / 2.0); // Rotation around Y-axis
+        right_wheel_tf.transform.rotation.z = 0.0; // No rotation around Z-axis
+        right_wheel_tf.transform.rotation.w = std::cos(right_angle / 2.0); // Cosine of half the angle
+                // Publish the transforms
+        tf_broadcaster_->sendTransform(left_wheel_tf);
+        tf_broadcaster_->sendTransform(right_wheel_tf);
     }
 };
 

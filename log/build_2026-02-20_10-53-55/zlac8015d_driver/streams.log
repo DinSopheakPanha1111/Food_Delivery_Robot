@@ -1,0 +1,40 @@
+[0.035s] Invoking command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16
+[0.075s] [ 20%] Built target robot_kinematic
+[0.075s] [ 40%] Built target can
+[0.081s] [ 60%] Built target cmd_vel_to_twist_stamped
+[0.099s] [ 80%] Built target zlac8015d_driver
+[0.133s] [ 90%] [32mBuilding CXX object CMakeFiles/drive_and_odom.dir/src/drive_and_odom.cpp.o[0m
+[0.421s] In file included from [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:8[m[K:
+[0.421s] [01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:18:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+[0.422s]    18 |  //**************************************************************************** */
+[0.422s]       |    
+[0.422s] [01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:29:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+[0.422s]    29 |  //**************************************************************************** */
+[0.422s]       |    
+[0.422s] [01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:38:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+[0.422s]    38 |  //**************************************************************************** */
+[0.422s]       |    
+[0.422s] [01m[K/home/panha/Food_Delivery_Robot/src/robot_kinematic/include/kinematic.hpp:48:3:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcomment-Wcomment]8;;[m[K]
+[0.422s]    48 |  //**************************************************************************** */
+[0.422s]       |    
+[2.272s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:224:2:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K}[m[K’ at end of input
+[2.272s]   224 | }
+[2.272s]       |  [01;31m[K^[m[K
+[2.272s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:15:1:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K{[m[K’
+[2.272s]    15 | [01;36m[K{[m[K
+[2.272s]       | [01;36m[K^[m[K
+[2.295s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:[m[K In member function ‘[01m[Kvoid MotorControlNode::publishOdometry()[m[K’:
+[2.296s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:197:49:[m[K [01;31m[Kerror: [m[K‘[01m[KtoMsg[m[K’ is not a member of ‘[01m[Ktf2[m[K’
+[2.296s]   197 |         left_wheel_tf.transform.rotation = tf2::[01;31m[KtoMsg[m[K(
+[2.296s]       |                                                 [01;31m[K^~~~~[m[K
+[2.296s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:209:50:[m[K [01;31m[Kerror: [m[K‘[01m[KtoMsg[m[K’ is not a member of ‘[01m[Ktf2[m[K’
+[2.296s]   209 |         right_wheel_tf.transform.rotation = tf2::[01;31m[KtoMsg[m[K(
+[2.296s]       |                                                  [01;31m[K^~~~~[m[K
+[2.299s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:[m[K At global scope:
+[2.299s] [01m[K/home/panha/Food_Delivery_Robot/src/zlac8015d_driver/src/drive_and_odom.cpp:224:2:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id at end of input
+[2.299s]   224 | }
+[2.299s]       |  [01;31m[K^[m[K
+[4.334s] gmake[2]: *** [CMakeFiles/drive_and_odom.dir/build.make:76: CMakeFiles/drive_and_odom.dir/src/drive_and_odom.cpp.o] Error 1
+[4.335s] gmake[1]: *** [CMakeFiles/Makefile2:214: CMakeFiles/drive_and_odom.dir/all] Error 2
+[4.335s] gmake: *** [Makefile:146: all] Error 2
+[4.337s] Invoked command in '/home/panha/Food_Delivery_Robot/build/zlac8015d_driver' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/zlac8015d_driver -- -j16 -l16

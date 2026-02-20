@@ -18,6 +18,10 @@
     <xacro:property name="imu_height" value="0.016"/>
     <xacro:property name="imu_width" value="0.025"/>
     <xacro:property name="imu_height_from_ground" value="0.110"/>
+    <xacro:property name="camera_length" value="0.025"/>
+    <xacro:property name="camera_height" value="0.025"/>
+    <xacro:property name="camera_width" value="0.09"/>
+    <xacro:property name="camera_height_from_ground" value="0.150"/>
 
 
 
@@ -125,6 +129,30 @@
             o_rpy="0.0 0.0 0.0"/>
     </link>
 
+    <!-- Camera link -->
+    <link name="camera_link">
+        <visual>
+            <geometry>
+                <box size="${camera_length} ${camera_width} ${camera_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 ${camera_height / 2.0}" rpy="0.0 0.0 0.0"/>
+            <material name="pink"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${camera_length} ${camera_width} ${camera_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 ${camera_height / 2.0}" rpy="0.0 0.0 0.0"/>
+        </collision>
+        <xacro:box_inertia 
+            m="0.5" 
+            x="${camera_length}" 
+            y="${camera_width}" 
+            z="${camera_height}" 
+            o_xyz="0.0 0.0 ${camera_height / 2.0}" 
+            o_rpy="0.0 0.0 0.0"/>
+    </link>
+
     <!-- base footprint - base link joint -->
     <joint name="base_footprint_base_link_joint" type="fixed">
         <origin xyz="0.0 0.0 ${base_height_from_ground}" rpy="0.0 0.0 0.0"/>
@@ -160,6 +188,13 @@
         <origin xyz="0.0 0.0 ${imu_height_from_ground}" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
         <child link="imu_link"/>
+    </joint>
+
+    <!-- base link - camera link joint -->
+    <joint name="base_camera_joint" type="fixed">
+        <origin xyz="${base_length/2.0} 0.0 ${camera_height_from_ground}" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="camera_link"/>
     </joint>
 
 </robot>
