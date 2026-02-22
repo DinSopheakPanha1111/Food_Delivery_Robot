@@ -5,8 +5,9 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
-
 def generate_launch_description():
+
+    home = os.getenv('HOME')
 
     # --- Launch configurations ---
     use_sim_time = LaunchConfiguration('use_sim_time')
@@ -21,7 +22,7 @@ def generate_launch_description():
 
     declare_slam_params_file_cmd = DeclareLaunchArgument(
         'slam_params_file',
-        default_value='/home/panha/Food_Delivery_Robot/src/food_del_robot/config/slam_online_mapping.yaml',
+        default_value=os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/slam_online_mapping.yaml'),
         description='Full path to slam_toolbox YAML config'
     )
 
