@@ -1,3 +1,0 @@
-[0mCMake Error: The source directory "/home/panha/Food_Delivery_Robot/docs/Matrix Operation code" does not exist.
-Specify --help for usage, or press the help button on the CMake GUI.[0m
-gmake: *** [Makefile:304: cmake_check_build_system] Error 1

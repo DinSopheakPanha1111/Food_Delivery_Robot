@@ -1,4 +1,0 @@
-Invoking command in '/home/panha/Food_Delivery_Robot/build/EKFTest': /usr/bin/cmake /home/panha/Food_Delivery_Robot/docs/Matrix Operation code -DCMAKE_INSTALL_PREFIX=/home/panha/Food_Delivery_Robot/install/EKFTest
-Invoked command in '/home/panha/Food_Delivery_Robot/build/EKFTest' returned '0': /usr/bin/cmake /home/panha/Food_Delivery_Robot/docs/Matrix Operation code -DCMAKE_INSTALL_PREFIX=/home/panha/Food_Delivery_Robot/install/EKFTest
-Invoking command in '/home/panha/Food_Delivery_Robot/build/EKFTest': /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/EKFTest -- -j16 -l16
-Invoked command in '/home/panha/Food_Delivery_Robot/build/EKFTest' returned '0': /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/EKFTest -- -j16 -l16

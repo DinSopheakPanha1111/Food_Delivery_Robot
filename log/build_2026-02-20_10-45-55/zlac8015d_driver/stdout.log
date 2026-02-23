@@ -1,5 +1,0 @@
-[ 20%] Built target robot_kinematic
-[ 40%] Built target can
-[ 60%] Built target cmd_vel_to_twist_stamped
-[ 80%] Built target zlac8015d_driver
-[ 90%] [32mBuilding CXX object CMakeFiles/drive_and_odom.dir/src/drive_and_odom.cpp.o[0m

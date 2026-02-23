@@ -1,2 +1,0 @@
-[0.052s] Invoking command in '/home/panha/Food_Delivery_Robot/build/food_del_robot_hardware': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/panha/ws_moveit/install/moveit_configs_utils:/home/panha/ws_moveit/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake --build /home/panha/Food_Delivery_Robot/build/food_del_robot_hardware -- -j16 -l16
-[0.114s] [100%] Built target food_del_robot_hardware
