@@ -12,7 +12,7 @@ def generate_launch_description():
 
     # ---------------- Paths ----------------
     urdf_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot_description/urdf/my_main.urdf.xacro')
-    rviz_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot_description/rviz/food_del_robot.rviz')
+    rviz_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot_description/rviz/just_robot.rviz')
     ekf_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/ekf_config.yaml')
 
     # RPLIDAR launch file path
