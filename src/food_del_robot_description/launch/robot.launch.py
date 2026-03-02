@@ -1,6 +1,7 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import ExecuteProcess, TimerAction
+from launch.actions import ExecuteProcess, TimerAction, IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command
 import os
 from ament_index_python.packages import get_package_share_directory
@@ -12,16 +13,31 @@ def generate_launch_description():
     # ---------------- Paths ----------------
     urdf_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot_description/urdf/my_main.urdf.xacro')
     rviz_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot_description/rviz/food_del_robot.rviz')
-    map_yaml_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/maps/my_map.yaml')
+    map_yaml_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/maps/outdoor_map.yaml')
     ekf_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/ekf_config.yaml')
     amcl_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/amcl_config.yaml')
     planner_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/A_star_config.yaml')
     controller_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/dwb_config.yaml')
     bt_navigator_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/bt_navigator_config.yaml')
     lifecycle_manager_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/lifecycle_manager_config.yaml')
-    joy_params = os.path.join(get_package_share_directory('food_del_robot_description'), 'config', 'joystick.yaml')
+    rplidar_launch_path = os.path.join(get_package_share_directory('rplidar_ros'), 'launch', 'rplidar_a1_launch.py')
+    joystick_launch_path = os.path.join(get_package_share_directory('food_del_robot_description'), 'launch', 'joystick.launch.py')
 
     return LaunchDescription([
+
+        # =========================================================
+        # RPLIDAR A1
+        # =========================================================
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(rplidar_launch_path)
+        ),
+     
+        # =========================================================
+        # JOYSTICK
+        # =========================================================
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(joystick_launch_path)
+        ),
 
         # =========================================================
         # EKF

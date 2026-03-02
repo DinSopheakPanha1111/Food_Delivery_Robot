@@ -3,7 +3,7 @@
   <name>my_amcl</name>
   <version>1.0.0</version>
   <description>Custom AMCL particle filter localization for food delivery robot</description>
-  <maintainer email="you@email.com">Your Name</maintainer>
+  <maintainer email="tikeat.te@gmail.com">Your Name</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
@@ -15,6 +15,7 @@
   <depend>tf2</depend>
   <depend>tf2_ros</depend>
   <depend>tf2_geometry_msgs</depend>
+  <exec_depend>food_del_robot</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
