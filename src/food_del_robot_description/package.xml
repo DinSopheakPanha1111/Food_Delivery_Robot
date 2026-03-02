@@ -19,6 +19,7 @@
   <exec_depend>zlac8015d_driver</exec_depend>
   <exec_depend>food_del_robot_hardware</exec_depend>
   <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>rplidar_ros</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
