@@ -20,14 +20,13 @@ def generate_launch_description():
         parameters=[joy_params],
     )
 
-    cmd_vel_to_twist_stamped_node = Node(
-        package='zlac8015d_driver',
-        executable='cmd_vel_to_twist_stamped',
-        name='cmd_vel_to_twist_stamped',
-    )
+    # cmd_vel_to_twist_stamped_node = Node(
+    #     package='zlac8015d_driver',
+    #     executable='cmd_vel_to_twist_stamped',
+    #     name='cmd_vel_to_twist_stamped',
+    # )
 
     return LaunchDescription([
         joy_node,
         teleop_node,
-        cmd_vel_to_twist_stamped_node
     ])
