@@ -80,11 +80,6 @@ def generate_launch_description():
              parameters=[{'robot_description': Command(['xacro ', urdf_path])}]),
         
         # =========================================================
-        # Robot state publisher GUI
-        # =========================================================
-        Node(package='joint_state_publisher_gui', executable='joint_state_publisher_gui', output='screen'),
-        
-        # =========================================================
         # RViz
         # =========================================================
         Node(package='rviz2', executable='rviz2', arguments=['-d', rviz_config_path], output='screen'),
