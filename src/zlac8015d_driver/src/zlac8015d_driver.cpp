@@ -123,6 +123,8 @@ bool ZLAC8015DDriver::read_speed_feedback(float& left_rpm, float& right_rpm)
 
     uint8_t response[8] = {0};
 
+    can_.flush_receive_buffer();  // discard stale write-ACKs before issuing read
+
     if (!send_sdo(request))
         return false;
 

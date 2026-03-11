@@ -138,7 +138,7 @@ bool CAN::receive_frame(uint16_t &id, uint8_t *data, uint8_t &len)
 
     struct can_frame frame {};
 
-    struct timeval tv {2, 0};
+    struct timeval tv {0, 50000};   // 50 ms timeout
     setsockopt(sock_, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
 
     if (::read(sock_, &frame, sizeof(frame)) != sizeof(frame))
@@ -151,6 +151,18 @@ bool CAN::receive_frame(uint16_t &id, uint8_t *data, uint8_t &len)
         std::memcpy(data, frame.data, len);
 
     return true;
+}
+
+// ======================================================
+// Drain all pending frames from the receive buffer (non-blocking)
+void CAN::flush_receive_buffer()
+{
+    if (sock_ < 0)
+        return;
+
+    struct can_frame frame {};
+    // MSG_DONTWAIT makes each recv() non-blocking without touching SO_RCVTIMEO
+    while (::recv(sock_, &frame, sizeof(frame), MSG_DONTWAIT) == static_cast<ssize_t>(sizeof(frame))) {}
 }
 
 // ======================================================

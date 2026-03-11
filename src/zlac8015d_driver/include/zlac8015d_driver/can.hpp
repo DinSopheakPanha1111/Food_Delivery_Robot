@@ -19,6 +19,7 @@ public:
 
     bool send_frame(uint16_t id, const uint8_t* data, uint8_t len);
     bool receive_frame(uint16_t &id, uint8_t *data, uint8_t &len);
+    void flush_receive_buffer();
 
     bool set_new_bitrate(int new_bitrate);
 
