@@ -135,8 +135,8 @@ bool ZLAC8015DDriver::read_speed_feedback(float& left_rpm, float& right_rpm)
     int16_t left  = static_cast<int16_t>(response[4] | (response[5] << 8));
     int16_t right = static_cast<int16_t>(response[6] | (response[7] << 8));
 
-    left_rpm  = static_cast<float>(left);
-    right_rpm = static_cast<float>(right);
+    right_rpm  = static_cast<float>(right);
+    left_rpm = static_cast<float>(left);
 
     return true;
 }
