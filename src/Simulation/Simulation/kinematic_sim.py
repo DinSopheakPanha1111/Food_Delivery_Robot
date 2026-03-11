@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import math
-from collections import deque
 
 import matplotlib.pyplot as plt
 import rclpy
@@ -21,8 +20,6 @@ class KinematicSim(Node):
 
         self.robot_length = 0.40
         self.robot_width = 0.30
-
-        self.max_points = 2000
 
         # ---------------- Subscribers ----------------
         self.cmd_sub = self.create_subscription(
@@ -61,17 +58,12 @@ class KinematicSim(Node):
         self.last_integrate_time = self.get_clock().now()
 
         # ---------------- Trajectory buffers ----------------
-        self.cmd_x_hist = deque(maxlen=self.max_points)
-        self.cmd_y_hist = deque(maxlen=self.max_points)
+        # FIX: use plain lists (no maxlen cap) so history is never erased
+        self.cmd_x_hist = [0.0]
+        self.cmd_y_hist = [0.0]
 
-        self.odom_x_hist = deque(maxlen=self.max_points)
-        self.odom_y_hist = deque(maxlen=self.max_points)
-
-        self.cmd_x_hist.append(0.0)
-        self.cmd_y_hist.append(0.0)
-
-        self.odom_x_hist.append(0.0)
-        self.odom_y_hist.append(0.0)
+        self.odom_x_hist = [0.0]
+        self.odom_y_hist = [0.0]
 
         # ---------------- Matplotlib ----------------
         plt.ion()
@@ -111,7 +103,7 @@ class KinematicSim(Node):
     def inverse_kinematic(self, v_cmd, omega_cmd):
 
         w_right = (v_cmd / self.wheel_radius) + ((self.wheel_base * omega_cmd) / (2.0 * self.wheel_radius))
-        w_left = (v_cmd / self.wheel_radius) - ((self.wheel_base * omega_cmd) / (2.0 * self.wheel_radius))
+        w_left  = (v_cmd / self.wheel_radius) - ((self.wheel_base * omega_cmd) / (2.0 * self.wheel_radius))
 
         # convert rad/s -> 0.1 rpm units
         factor = (30.0 / math.pi) * 10.0
@@ -121,9 +113,9 @@ class KinematicSim(Node):
     def forward_kinematic(self, w_right_rpm, w_left_rpm):
 
         w_right = w_right_rpm * 0.1 * (math.pi / 30.0)
-        w_left = w_left_rpm * 0.1 * (math.pi / 30.0)
+        w_left  = w_left_rpm  * 0.1 * (math.pi / 30.0)
 
-        v = self.wheel_radius * ((w_right + w_left) / 2.0)
+        v     = self.wheel_radius * ((w_right + w_left) / 2.0)
         omega = self.wheel_radius * ((w_right - w_left) / self.wheel_base)
 
         return v, omega
@@ -134,7 +126,7 @@ class KinematicSim(Node):
 
     def cmd_callback(self, msg):
 
-        self.cmd_v = msg.linear.x
+        self.cmd_v     = msg.linear.x
         self.cmd_omega = msg.angular.z
 
     def odom_callback(self, msg):
@@ -144,9 +136,9 @@ class KinematicSim(Node):
 
         q = msg.pose.pose.orientation
 
-        self.odom_theta = self.quaternion_to_yaw(
-            q.x, q.y, q.z, q.w) 
+        self.odom_theta = self.quaternion_to_yaw(q.x, q.y, q.z, q.w)
 
+        # FIX: always append — list never drops old points
         self.odom_x_hist.append(self.odom_x)
         self.odom_y_hist.append(self.odom_y)
 
@@ -157,24 +149,21 @@ class KinematicSim(Node):
     def integrate_cmd_pose(self):
 
         now = self.get_clock().now()
-
-        dt = (now - self.last_integrate_time).nanoseconds * 1e-9
-
+        dt  = (now - self.last_integrate_time).nanoseconds * 1e-9
         self.last_integrate_time = now
 
         if dt <= 0:
             return
 
         w_right, w_left = self.inverse_kinematic(self.cmd_v, self.cmd_omega)
+        v, omega        = self.forward_kinematic(w_right, w_left)
 
-        v, omega = self.forward_kinematic(w_right, w_left)
-
-        self.cmd_x += v * math.cos(self.cmd_theta) * dt
-        self.cmd_y += v * math.sin(self.cmd_theta) * dt
+        self.cmd_x     += v * math.cos(self.cmd_theta) * dt
+        self.cmd_y     += v * math.sin(self.cmd_theta) * dt
         self.cmd_theta += omega * dt
+        self.cmd_theta  = self.wrap_angle(self.cmd_theta)
 
-        self.cmd_theta = self.wrap_angle(self.cmd_theta)
-
+        # FIX: always append — list never drops old points
         self.cmd_x_hist.append(self.cmd_x)
         self.cmd_y_hist.append(self.cmd_y)
 
@@ -188,21 +177,18 @@ class KinematicSim(Node):
         W = self.robot_width
 
         corners = [
-            [L/2, W/2],
-            [L/2, -W/2],
+            [ L/2,  W/2],
+            [ L/2, -W/2],
             [-L/2, -W/2],
-            [-L/2, W/2],
-            [L/2, W/2]
+            [-L/2,  W/2],
+            [ L/2,  W/2],   # close the rectangle
         ]
 
-        xs = []
-        ys = []
+        xs, ys = [], []
 
         for cx, cy in corners:
-
-            xr = x + cx*math.cos(theta) - cy*math.sin(theta)
-            yr = y + cx*math.sin(theta) + cy*math.cos(theta)
-
+            xr = x + cx * math.cos(theta) - cy * math.sin(theta)
+            yr = y + cx * math.sin(theta) + cy * math.cos(theta)
             xs.append(xr)
             ys.append(yr)
 
@@ -218,17 +204,12 @@ class KinematicSim(Node):
             rclpy.shutdown()
             return
 
-        # trajectories
+        # full trajectory — all points since startup
         self.line_odom.set_data(self.odom_x_hist, self.odom_y_hist)
-        self.line_cmd.set_data(self.cmd_x_hist, self.cmd_y_hist)
+        self.line_cmd.set_data(self.cmd_x_hist,  self.cmd_y_hist)
 
-        # robot shape (draw using odom pose)
-        xs, ys = self.draw_robot(
-            self.odom_x,
-            self.odom_y,
-            self.odom_theta
-        )
-
+        # robot shape drawn at current odom pose
+        xs, ys = self.draw_robot(self.odom_x, self.odom_y, self.odom_theta)
         self.robot_plot.set_data(xs, ys)
 
         self.ax.relim()
@@ -242,14 +223,11 @@ class KinematicSim(Node):
     # =====================================================
 
     def quaternion_to_yaw(self, x, y, z, w):
-
         siny = 2.0 * (w * z + x * y)
-        cosy = 1.0 - 2.0 * (y*y + z*z)
-
+        cosy = 1.0 - 2.0 * (y * y + z * z)
         return math.atan2(siny, cosy)
 
     def wrap_angle(self, angle):
-
         return math.atan2(math.sin(angle), math.cos(angle))
 
 
@@ -260,12 +238,10 @@ class KinematicSim(Node):
 def main(args=None):
 
     rclpy.init(args=args)
-
     node = KinematicSim()
 
     try:
         rclpy.spin(node)
-
     except KeyboardInterrupt:
         pass
 
