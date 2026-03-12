@@ -12,8 +12,10 @@ find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(food_del_robot REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 
 # ================= External Kinematic Library =================
@@ -70,6 +72,23 @@ ament_target_dependencies(drive_and_odom
   food_del_robot
 )
 
+# ================= EKF Node =================
+add_executable(ekf_node
+  src/ekf_node.cpp
+)
+
+target_link_libraries(ekf_node
+  Eigen3::Eigen
+)
+
+ament_target_dependencies(ekf_node
+  rclcpp
+  nav_msgs
+  sensor_msgs
+  tf2_ros
+  tf2_geometry_msgs
+)
+
 # ================== Cmd Vel to Twist Stamped Node =================
 add_executable(cmd_vel_to_twist_stamped
   src/cmd_vel_to_twist_stamped.cpp
@@ -94,7 +113,7 @@ install(
 )
 
 install(
-  TARGETS drive_and_odom cmd_vel_to_twist_stamped
+  TARGETS drive_and_odom cmd_vel_to_twist_stamped ekf_node
   DESTINATION lib/${PROJECT_NAME}
 )
 ament_export_include_directories(include)
