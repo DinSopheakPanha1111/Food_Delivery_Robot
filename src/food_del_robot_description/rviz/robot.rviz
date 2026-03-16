@@ -52,7 +52,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Alpha: 1
+    - Alpha: 0.5
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
       Description File: ""
@@ -128,9 +128,9 @@ Visualization Manager:
         laser_link:
           Value: false
         left_wheel_link:
-          Value: false
+          Value: true
         right_wheel_link:
-          Value: false
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -372,10 +372,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5097972750663757
+      Pitch: 1.4447968006134033
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.6298290491104126
+      Yaw: 2.9098293781280518
     Saved: ~
 Window Geometry:
   Displays:

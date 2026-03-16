@@ -72,6 +72,26 @@ ament_target_dependencies(drive_and_odom
   food_del_robot
 )
 
+# ================= Drive and Odom Node V2 =================
+add_executable(drive_and_odom_v2
+  src/drive_and_odom_v2.cpp
+)
+
+target_link_libraries(drive_and_odom_v2
+  can
+  zlac8015d_driver
+  robot_kinematic   
+)
+
+ament_target_dependencies(drive_and_odom_v2
+  rclcpp
+  geometry_msgs
+  nav_msgs
+  sensor_msgs
+  tf2_ros
+  food_del_robot
+)
+
 # ================= EKF Node =================
 add_executable(ekf_node
   src/ekf_node.cpp
@@ -88,17 +108,6 @@ ament_target_dependencies(ekf_node
   tf2_ros
   tf2_geometry_msgs
 )
-
-# ================== Cmd Vel to Twist Stamped Node =================
-add_executable(cmd_vel_to_twist_stamped
-  src/cmd_vel_to_twist_stamped.cpp
-)
-
-ament_target_dependencies(cmd_vel_to_twist_stamped
-  rclcpp
-  geometry_msgs
-)
-
 # ================= Install =================
 install(
   TARGETS can zlac8015d_driver
@@ -113,7 +122,7 @@ install(
 )
 
 install(
-  TARGETS drive_and_odom cmd_vel_to_twist_stamped ekf_node
+  TARGETS drive_and_odom drive_and_odom_v2 ekf_node
   DESTINATION lib/${PROJECT_NAME}
 )
 ament_export_include_directories(include)

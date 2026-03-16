@@ -161,18 +161,18 @@
     </joint>
 
     <!-- base link - right wheel link joint -->
-    <joint name="base_right_wheel_joint" type="continuous">
+    <joint name="base_left_wheel_joint" type="continuous">
         <origin xyz="0.0 ${distance_between_two_wheels/2} ${base_to_wheel_center}" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
-        <child link="right_wheel_link"/>
+        <child link="left_wheel_link"/>
         <axis xyz="0.0 1.0 0.0"/>
     </joint>
 
     <!-- base link - left wheel link joint -->
-    <joint name="base_left_wheel_joint" type="continuous">
+    <joint name="base_right_wheel_joint" type="continuous">
         <origin xyz="0.0 ${-distance_between_two_wheels/2} ${base_to_wheel_center}" rpy="0.0 0.0 0.0"/>
         <parent link="base_link"/>
-        <child link="left_wheel_link"/>
+        <child link="right_wheel_link"/>
         <axis xyz="0.0 1.0 0.0"/>
     </joint>
 
