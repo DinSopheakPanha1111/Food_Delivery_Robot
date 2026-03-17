@@ -13,7 +13,7 @@ def generate_launch_description():
     # ---------------- Paths ----------------
     urdf_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot_description/urdf/my_main.urdf.xacro')
     rviz_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot_description/rviz/food_del_robot.rviz')
-    map_yaml_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/maps/outdoor_map.yaml')
+    map_yaml_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/maps/my_map.yaml')
     ekf_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/ekf_config.yaml')
     amcl_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/amcl_config.yaml')
     planner_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot/config/A_star_config.yaml')

@@ -32,7 +32,7 @@ private:
             {
                 imu_ = std::make_shared<ImuSerial>(port);
                 imu_->startReceiveThread();
-                RCLCPP_INFO(get_logger(), "Open Ybimu Port OK: %s", port.c_str());
+                RCLCPP_INFO(get_logger(), "[IMU] :  Open Ybimu Port OK: %s", port.c_str());
                 break;
             }
             catch (...)
@@ -43,7 +43,7 @@ private:
 
         if (!imu_)
         {
-            RCLCPP_ERROR(get_logger(), "---------Fail To Open Ybimu Serial------------");
+            RCLCPP_ERROR(get_logger(), "[IMU] : ---------Fail To Open Ybimu Serial------------");
             return;
         }
 

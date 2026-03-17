@@ -40,7 +40,7 @@ public:
         driver_.set_velocity_mode();
         driver_.enable();
 
-        RCLCPP_INFO(this->get_logger(), "Motor Control + Odometry");
+        RCLCPP_INFO(this->get_logger(), "[drive_and_odom_v2] : Motor Control + Odometry");
     }
 
 private:
