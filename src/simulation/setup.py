@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'Simulation'
+package_name = 'simulation'
 
 setup(
     name=package_name,
@@ -19,11 +19,11 @@ setup(
     license='Apache-2.0',
     entry_points={
         'console_scripts': [
-            'kinematic_sim = Simulation.kinematic_sim:main',
-            'kinematic_sim_imu = Simulation.kinematic_sim_imu:main',
-            'kinematic_sim_ekf = Simulation.kinematic_sim_ekf:main',
-            'dwb_sim = Simulation.dwb_sim:main',
-            'local_costmap_viz = Simulation.local_costmap_viz:main',
+            'kinematic_sim = simulation.kinematic_sim:main',
+            'kinematic_sim_imu = simulation.kinematic_sim_imu:main',
+            'kinematic_sim_ekf = simulation.kinematic_sim_ekf:main',
+            'dwb_sim = simulation.dwb_sim:main',
+            'local_costmap_viz = simulation.local_costmap_viz:main',
         ],
     },
 )
