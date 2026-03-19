@@ -1,364 +1,260 @@
-#include <rclcpp/rclcpp.hpp>
-#include <geometry_msgs/msg/twist.hpp>
-#include <geometry_msgs/msg/pose_stamped.hpp>
-#include <geometry_msgs/msg/quaternion.hpp>
-#include <nav_msgs/msg/odometry.hpp>
-#include <nav_msgs/msg/path.hpp>
-#include <sensor_msgs/msg/imu.hpp>
-#include <tf2_ros/transform_listener.h>
-#include <tf2_ros/buffer.h>
-
-#include <cmath>
-#include <limits>
-#include <vector>
+#include "dwb_controller/dwb_controller.hpp"
 
 // ─────────────────────────────────────────────
-//  Tuneable DWA parameters
+//  Dynamic window
 // ─────────────────────────────────────────────
-struct DWAParams
+void dynamic_window(
+    float  v_c,
+    float  w_c,
+    float  a_v,
+    float  a_w,
+    float  dt,
+    float  v_min,
+    float  v_max,
+    float  w_max,
+    float *v_min_out,
+    float *v_max_out,
+    float *w_min_out,
+    float *w_max_out)
 {
-    // Kinematic limits
-    double max_v        = 0.5;   // [m/s]   max translational velocity
-    double min_v        = 0.0;   // [m/s]   min (no reversing by default)
-    double max_w        = 1.0;   // [rad/s] max rotational velocity
-    double max_accel_v  = 0.5;   // [m/s²]
-    double max_accel_w  = 1.2;   // [rad/s²]
-
-    // Sampling resolution
-    int    v_samples    = 10;    // number of v samples in window
-    int    w_samples    = 20;    // number of ω samples in window
-
-    // Simulation
-    double sim_time     = 1.5;   // [s]  forward-simulate each trajectory
-    double sim_dt       = 0.1;   // [s]  integration step
-
-    // Obstacle detection
-    double robot_radius = 0.25;  // [m]  used as clearance threshold
-
-    // Objective weights
-    double alpha        = 1.2;   // heading weight
-    double beta         = 0.3;   // obstacle clearance weight
-    double gamma        = 0.2;   // velocity weight
-
-    // Goal tolerance
-    double xy_goal_tol  = 0.15;  // [m]
-    double yaw_goal_tol = 0.10;  // [rad]
-
-    // Control cycle
-    int    control_hz   = 20;    // → 50 ms
-};
-
-// ─────────────────────────────────────────────
-//  Simple 2-D pose helper
-// ─────────────────────────────────────────────
-struct Pose2D { double x, y, yaw; };
-
-// ─────────────────────────────────────────────
-//  Extract yaw from a ROS2 quaternion message
-//  Pure math — no tf2 headers needed
-// ─────────────────────────────────────────────
-static inline double quatToYaw(const geometry_msgs::msg::Quaternion & q)
-{
-    double siny_cosp = 2.0 * (q.w * q.z + q.x * q.y);
-    double cosy_cosp = 1.0 - 2.0 * (q.y * q.y + q.z * q.z);
-    return std::atan2(siny_cosp, cosy_cosp);
-}
-
-static inline double normalizeAngle(double a)
-{
-    while (a >  M_PI) a -= 2.0 * M_PI;
-    while (a < -M_PI) a += 2.0 * M_PI;
-    return a;
-}
-
-static inline double euclidean(double dx, double dy)
-{
-    return std::sqrt(dx * dx + dy * dy);
+    *v_min_out = fmaxf(v_c - a_v * dt,  v_min);   // clamp to v_min, NOT 0
+    *v_max_out = fminf(v_c + a_v * dt,  v_max);
+    *w_min_out = fmaxf(w_c - a_w * dt, -w_max);
+    *w_max_out = fminf(w_c + a_w * dt,  w_max);
 }
 
 // ─────────────────────────────────────────────
-//  Node
+//  Goal cost
 // ─────────────────────────────────────────────
-class DWBControllerNode : public rclcpp::Node
+void goal_cost(
+    float  e_x,
+    float  e_y,
+    float  theta_e,
+    float  g_x,
+    float  g_y,
+    float  k_g,
+    float *cost_out)
 {
-public:
-    DWBControllerNode()
-    : Node("dwb_controller")
+    float alpha     = atan2f(g_y - e_y, g_x - e_x);
+    float diff      = alpha - theta_e;
+    float delta_phi = fabsf(atan2f(sinf(diff), cosf(diff)));  // normalised to [-pi, pi]
+    *cost_out       = k_g * delta_phi;
+}
+
+// ─────────────────────────────────────────────
+//  Obstacle cost
+// ─────────────────────────────────────────────
+void obstacle_cost(
+    const float *arc_x,
+    const float *arc_y,
+    uint32_t     num_points,
+    const float *obs_x,
+    const float *obs_y,
+    const float *obs_rad,
+    uint32_t     num_obstacles,
+    float        r_robot,
+    float        k_o,
+    float       *cost_out)
+{
+    if (num_points == 0 || num_obstacles == 0)
     {
-        cmd_vel_pub_ = this->create_publisher<geometry_msgs::msg::Twist>(
-            "/cmd_vel", 10);
-
-        odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
-            "/odom/wheel", 10,
-            std::bind(&DWBControllerNode::odomCallback, this, std::placeholders::_1));
-
-        path_sub_ = this->create_subscription<nav_msgs::msg::Path>(
-            "/plan", 10,
-            std::bind(&DWBControllerNode::pathCallback, this, std::placeholders::_1));
-
-        imu_sub_ = this->create_subscription<sensor_msgs::msg::Imu>(
-            "/imu/data", 10,
-            std::bind(&DWBControllerNode::imuCallback, this, std::placeholders::_1));
-
-        tf_buffer_   = std::make_shared<tf2_ros::Buffer>(this->get_clock());
-        tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
-
-        timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(1000 / p_.control_hz),
-            std::bind(&DWBControllerNode::controlLoop, this));
-
-        RCLCPP_INFO(this->get_logger(), "DWB Controller Node started");
+        *cost_out = 0.0f;
+        return;
     }
 
-private:
-    // ── ROS handles ─────────────────────────────
-    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr    cmd_vel_pub_;
-    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr   odom_sub_;
-    rclcpp::Subscription<nav_msgs::msg::Path>::SharedPtr       path_sub_;
-    rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr     imu_sub_;
-    rclcpp::TimerBase::SharedPtr                               timer_;
+    float d_min = FLT_MAX;
 
-    std::shared_ptr<tf2_ros::Buffer>            tf_buffer_;
-    std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
-
-    // ── state ────────────────────────────────────
-    nav_msgs::msg::Odometry   latest_odom_;
-    nav_msgs::msg::Path       latest_path_;
-    sensor_msgs::msg::Imu     latest_imu_;
-    bool odom_received_ = false;
-    bool goal_reached_  = false;
-
-    // ── params ───────────────────────────────────
-    DWAParams p_;
-
-    // ─────────────────────────────────────────────
-    //  Callbacks
-    // ─────────────────────────────────────────────
-    void odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg)
+    for (uint32_t i = 0; i < num_points; i++)
     {
-        latest_odom_   = *msg;
-        odom_received_ = true;
-    }
-
-    void pathCallback(const nav_msgs::msg::Path::SharedPtr msg)
-    {
-        latest_path_  = *msg;
-        goal_reached_ = false;
-        RCLCPP_INFO(this->get_logger(),
-                    "Received path with %zu poses", msg->poses.size());
-    }
-
-    void imuCallback(const sensor_msgs::msg::Imu::SharedPtr msg)
-    {
-        latest_imu_ = *msg;
-    }
-
-    // ─────────────────────────────────────────────
-    //  Extract current robot pose from odom
-    // ─────────────────────────────────────────────
-    Pose2D getRobotPose() const
-    {
-        Pose2D p;
-        p.x   = latest_odom_.pose.pose.position.x;
-        p.y   = latest_odom_.pose.pose.position.y;
-        p.yaw = quatToYaw(latest_odom_.pose.pose.orientation);
-        return p;
-    }
-
-    // ─────────────────────────────────────────────
-    //  Find lookahead goal on the path
-    // ─────────────────────────────────────────────
-    Pose2D getLookaheadGoal(const Pose2D & robot) const
-    {
-        constexpr double lookahead_dist = 0.5; // [m]
-
-        for (const auto & ps : latest_path_.poses) {
-            double dx = ps.pose.position.x - robot.x;
-            double dy = ps.pose.position.y - robot.y;
-            if (euclidean(dx, dy) >= lookahead_dist) {
-                Pose2D g;
-                g.x   = ps.pose.position.x;
-                g.y   = ps.pose.position.y;
-                g.yaw = quatToYaw(ps.pose.orientation);
-                return g;
-            }
-        }
-
-        // Fall back to final pose
-        const auto & last = latest_path_.poses.back().pose;
-        Pose2D g;
-        g.x   = last.position.x;
-        g.y   = last.position.y;
-        g.yaw = quatToYaw(last.orientation);
-        return g;
-    }
-
-    // ─────────────────────────────────────────────
-    //  Forward-simulate a circular arc
-    // ─────────────────────────────────────────────
-    Pose2D simulateArc(const Pose2D & start, double v, double w) const
-    {
-        Pose2D pose = start;
-        for (double t = 0.0; t < p_.sim_time; t += p_.sim_dt) {
-            pose.x   += v * std::cos(pose.yaw) * p_.sim_dt;
-            pose.y   += v * std::sin(pose.yaw) * p_.sim_dt;
-            pose.yaw  = normalizeAngle(pose.yaw + w * p_.sim_dt);
-        }
-        return pose;
-    }
-
-    // ─────────────────────────────────────────────
-    //  Obstacle clearance along the arc
-    //  Replace body with a real costmap/laser query.
-    // ─────────────────────────────────────────────
-    double arcClearance(const Pose2D & /*start*/,
-                        double /*v*/, double /*w*/) const
-    {
-        return p_.sim_time;   // placeholder → always "clear"
-    }
-
-    // ─────────────────────────────────────────────
-    //  Scoring helpers
-    // ─────────────────────────────────────────────
-    double headingScore(const Pose2D & end, const Pose2D & goal) const
-    {
-        double angle_to_goal = std::atan2(goal.y - end.y, goal.x - end.x);
-        double diff = std::fabs(normalizeAngle(angle_to_goal - end.yaw));
-        return 180.0 - (diff * 180.0 / M_PI);
-    }
-
-    double velocityScore(double v) const
-    {
-        return (p_.max_v > 0.0) ? (v / p_.max_v) : 0.0;
-    }
-
-    // ─────────────────────────────────────────────
-    //  DWA core
-    // ─────────────────────────────────────────────
-    std::pair<double, double> computeDWA(const Pose2D & robot,
-                                          const Pose2D & goal,
-                                          double cur_v,
-                                          double cur_w)
-    {
-        const double dt = 1.0 / p_.control_hz;
-
-        // Dynamic window bounds
-        double v_lo = std::max(p_.min_v, cur_v - p_.max_accel_v * dt);
-        double v_hi = std::min(p_.max_v, cur_v + p_.max_accel_v * dt);
-        double w_lo = std::max(-p_.max_w, cur_w - p_.max_accel_w * dt);
-        double w_hi = std::min( p_.max_w, cur_w + p_.max_accel_w * dt);
-
-        double best_score = -std::numeric_limits<double>::infinity();
-        double best_v = 0.0, best_w = 0.0;
-
-        for (int iv = 0; iv <= p_.v_samples; ++iv)
+        for (uint32_t j = 0; j < num_obstacles; j++)
         {
-            double v = v_lo + iv * (v_hi - v_lo) / p_.v_samples;
+            float dx = arc_x[i] - obs_x[j];
+            float dy = arc_y[i] - obs_y[j];
+            float d  = sqrtf(dx*dx + dy*dy) - obs_rad[j] - r_robot;
+            if (d < d_min) d_min = d;
+        }
+    }
 
-            for (int iw = 0; iw <= p_.w_samples; ++iw)
+    if (d_min <= 0.0f)
+        *cost_out = 1e6f;           // collision — arc rejected
+    else
+        *cost_out = k_o / d_min;
+}
+
+// ─────────────────────────────────────────────
+//  Velocity cost
+// ─────────────────────────────────────────────
+void velocity_cost(
+    float  v_max,
+    float  v_e,
+    float  min_clearance,
+    float  clearance_thresh,
+    float  k_v,
+    float *cost_out)
+{
+    if (min_clearance > clearance_thresh)
+        *cost_out = k_v * (v_max - v_e);   // open space: penalise slow speed
+    else
+        *cost_out = 0.0f;                  // near obstacle: don't penalise speed
+}
+
+// ─────────────────────────────────────────────
+//  Euclidean distance
+// ─────────────────────────────────────────────
+void euclidean_distance(
+    float  x_a, float y_a,
+    float  x_b, float y_b,
+    float *dist_out)
+{
+    float dx  = x_a - x_b;
+    float dy  = y_a - y_b;
+    *dist_out = sqrtf(dx*dx + dy*dy);
+}
+
+// ─────────────────────────────────────────────
+//  Internal helpers
+// ─────────────────────────────────────────────
+
+// forward-simulate one arc and fill arc_x / arc_y sample arrays
+static void simulate_arc(
+    const RobotState &state,
+    float  v, float w,
+    float  dt, float window_time,
+    float *arc_x, float *arc_y,
+    uint32_t *num_pts_out,
+    uint32_t  max_pts,
+    RobotState *end_state_out)
+{
+    RobotState s = state;
+    uint32_t   n = 0;
+    float      t = 0.0f;
+
+    while (t <= window_time && n < max_pts)
+    {
+        arc_x[n] = s.x;
+        arc_y[n] = s.y;
+        n++;
+
+        float theta_new = s.theta + w * dt;
+        s.x    += v * cosf(theta_new) * dt;
+        s.y    += v * sinf(theta_new) * dt;
+        s.theta = theta_new;
+        s.v     = v;
+        s.w     = w;
+        t      += dt;
+    }
+
+    *num_pts_out   = n;
+    *end_state_out = s;
+}
+
+// compute minimum clearance over entire arc (for velocity_cost)
+static float arc_min_clearance(
+    const float *arc_x, const float *arc_y, uint32_t num_pts,
+    const float *obs_x, const float *obs_y, const float *obs_rad,
+    uint32_t num_obstacles, float r_robot)
+{
+    float d_min = FLT_MAX;
+    for (uint32_t i = 0; i < num_pts; i++)
+    {
+        for (uint32_t j = 0; j < num_obstacles; j++)
+        {
+            float dx = arc_x[i] - obs_x[j];
+            float dy = arc_y[i] - obs_y[j];
+            float d  = sqrtf(dx*dx + dy*dy) - obs_rad[j] - r_robot;
+            if (d < d_min) d_min = d;
+        }
+    }
+    return d_min;
+}
+
+// ─────────────────────────────────────────────
+//  DWA rollout
+// ─────────────────────────────────────────────
+void rollout_best_control(
+    const RobotState &state,
+    float  goal_x,
+    float  goal_y,
+    const float *obs_x,
+    const float *obs_y,
+    const float *obs_rad,
+    uint32_t     num_obstacles,
+    float  k_g,
+    float  k_o,
+    float  k_v,
+    float  v_min,
+    float  v_max,
+    float  w_max,
+    float  a_v,
+    float  a_w,
+    float  dt,
+    float  window_time,
+    float  vel_res,
+    float  ang_res,
+    float  r_robot,
+    float  clearance_thresh,
+    float *best_v_out,
+    float *best_w_out)
+{
+    // max arc steps = ceil(window_time / dt) + 1
+    constexpr uint32_t MAX_ARC_PTS = 32;
+
+    float dw_v_min, dw_v_max, dw_w_min, dw_w_max;
+    dynamic_window(state.v, state.w,
+                   a_v, a_w, dt,
+                   v_min, v_max, w_max,
+                   &dw_v_min, &dw_v_max,
+                   &dw_w_min, &dw_w_max);
+
+    float    min_cost = FLT_MAX;
+    float    arc_x[MAX_ARC_PTS];
+    float    arc_y[MAX_ARC_PTS];
+
+    // initialise output to safe fallback
+    *best_v_out = v_min;
+    *best_w_out = 0.0f;
+
+    for (float v = dw_v_min; v <= dw_v_max + 1e-6f; v += vel_res)
+    {
+        for (float w = dw_w_min; w <= dw_w_max + 1e-6f; w += ang_res)
+        {
+            // 1. simulate arc
+            uint32_t   num_pts;
+            RobotState end;
+            simulate_arc(state, v, w, dt, window_time,
+                         arc_x, arc_y, &num_pts, MAX_ARC_PTS, &end);
+
+            // 2. goal cost
+            float c_goal;
+            goal_cost(end.x, end.y, end.theta,
+                      goal_x, goal_y, k_g, &c_goal);
+
+            // 3. obstacle cost
+            float c_obs;
+            obstacle_cost(arc_x, arc_y, num_pts,
+                          obs_x, obs_y, obs_rad, num_obstacles,
+                          r_robot, k_o, &c_obs);
+
+            // skip immediately on collision
+            if (c_obs >= 1e6f) continue;
+
+            // 4. velocity cost (needs clearance)
+            float clearance = arc_min_clearance(arc_x, arc_y, num_pts,
+                                                obs_x, obs_y, obs_rad,
+                                                num_obstacles, r_robot);
+            float c_vel;
+            velocity_cost(v_max, end.v, clearance,
+                          clearance_thresh, k_v, &c_vel);
+
+            // 5. total cost  C_total = C_goal + C_obs + C_vel
+            float c_total = c_goal + c_obs + c_vel;
+
+            if (c_total < min_cost)
             {
-                double w = w_lo + iw * (w_hi - w_lo) / p_.w_samples;
-
-                // Admissibility: robot must be able to stop before obstacle
-                double stop_dist = (p_.max_accel_v > 0.0)
-                                   ? (v * v) / (2.0 * p_.max_accel_v)
-                                   : 0.0;
-                double clearance = arcClearance(robot, v, w);
-                if (clearance < stop_dist + p_.robot_radius)
-                    continue;
-
-                // Simulate & score
-                Pose2D end   = simulateArc(robot, v, w);
-                double score = p_.alpha * headingScore(end, goal)
-                             + p_.beta  * clearance
-                             + p_.gamma * velocityScore(v);
-
-                if (score > best_score) {
-                    best_score = score;
-                    best_v = v;
-                    best_w = w;
-                }
+                min_cost    = c_total;
+                *best_v_out = v;
+                *best_w_out = w;
             }
         }
-        return {best_v, best_w};
     }
-
-    // ─────────────────────────────────────────────
-    //  Spin in place to align with goal yaw
-    // ─────────────────────────────────────────────
-    std::pair<double, double> rotateToYaw(double current_yaw,
-                                           double target_yaw) const
-    {
-        double err = normalizeAngle(target_yaw - current_yaw);
-        double w   = std::copysign(
-                         std::min(p_.max_w, std::fabs(err) * 2.0), err);
-        return {0.0, w};
-    }
-
-    // ─────────────────────────────────────────────
-    //  Main control loop (20 Hz)
-    // ─────────────────────────────────────────────
-    void controlLoop()
-    {
-        if (!odom_received_ || latest_path_.poses.empty())
-            return;
-
-        geometry_msgs::msg::Twist cmd;
-
-        Pose2D robot = getRobotPose();
-        double cur_v = latest_odom_.twist.twist.linear.x;
-        double cur_w = latest_odom_.twist.twist.angular.z;
-
-        // Distance to final goal
-        const auto & final_pose = latest_path_.poses.back().pose;
-        double dx_f             = final_pose.position.x - robot.x;
-        double dy_f             = final_pose.position.y - robot.y;
-        double dist_to_goal     = euclidean(dx_f, dy_f);
-
-        // Goal reached?
-        if (dist_to_goal < p_.xy_goal_tol)
-        {
-            double goal_yaw  = quatToYaw(final_pose.orientation);
-            double yaw_error = std::fabs(normalizeAngle(goal_yaw - robot.yaw));
-
-            if (yaw_error < p_.yaw_goal_tol) {
-                if (!goal_reached_) {
-                    RCLCPP_INFO(this->get_logger(), "Goal reached!");
-                    goal_reached_ = true;
-                }
-                cmd_vel_pub_->publish(cmd);   // zero velocity
-                return;
-            }
-
-            auto [v, w] = rotateToYaw(robot.yaw, goal_yaw);
-            cmd.linear.x  = v;
-            cmd.angular.z = w;
-            cmd_vel_pub_->publish(cmd);
-            return;
-        }
-        goal_reached_ = false;
-
-        // DWA toward lookahead goal
-        Pose2D goal = getLookaheadGoal(robot);
-        auto [v, w] = computeDWA(robot, goal, cur_v, cur_w);
-
-        cmd.linear.x  = v;
-        cmd.angular.z = w;
-        cmd_vel_pub_->publish(cmd);
-
-        RCLCPP_DEBUG(this->get_logger(),
-                     "DWA cmd: v=%.3f  w=%.3f  dist=%.3f",
-                     v, w, dist_to_goal);
-    }
-};
-
-// ─────────────────────────────────────────────
-//  main
-// ─────────────────────────────────────────────
-int main(int argc, char ** argv)
-{
-    rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<DWBControllerNode>());
-    rclcpp::shutdown();
-    return 0;
 }

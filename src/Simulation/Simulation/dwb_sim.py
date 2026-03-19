@@ -4,6 +4,7 @@ dwa_sim.py — draggable obstacle
 Click and drag the red obstacle anywhere on the map.
 Robot reacts in real time.
 """
+
 import math
 import matplotlib
 matplotlib.use("TkAgg")
@@ -13,24 +14,25 @@ from matplotlib.animation import FuncAnimation
 # ─────────────────────────────────────────────
 #  Parameters
 # ─────────────────────────────────────────────
-MAX_LINEAR_VEL    = 0.80
-MIN_LINEAR_VEL    = 0.4
-MAX_ANGULAR_VEL   = 3.00
-MAX_LINEAR_ACCEL  = 3.00
-MAX_ANGULAR_ACCEL = 5.00
+MAX_LINEAR_VEL    = 0.10
+MIN_LINEAR_VEL    = 0.05
+MAX_ANGULAR_VEL   = 0.50
+MAX_LINEAR_ACCEL  = 1.0
+MAX_ANGULAR_ACCEL = 1.0
 ROBOT_RADIUS      = 0.22
 ROBOT_SIZE        = 0.22
 DT                = 0.10
-WINDOW_TIME       = 1.50
+WINDOW_TIME       = 3.0    # ← plan farther ahead
 CONTROL_DT        = 0.05
-VEL_RESOLUTION    = 0.05
+VEL_RESOLUTION    = 0.02
 ANG_RESOLUTION    = 0.05
 GOAL_COST_FACTOR      = 1.0
-OBSTACLE_COST_FACTOR  = 1.0
+OBSTACLE_COST_FACTOR  = 8.0   # ← stronger obstacle repulsion
 VELOCITY_COST_FACTOR  = 0.1
 XY_GOAL_TOL = 0.35
-LOOKAHEAD   = 1.0
-OBS_RADIUS  = 0.40
+LOOKAHEAD   = 3.0
+OBS_RADIUS  = 0.80            # ← inflated safety bubble
+CLEARANCE_THRESH = 3.0        # ← start dodging at 3m
 
 # ─────────────────────────────────────────────
 #  Kinematics
@@ -74,15 +76,14 @@ def obstacle_cost(traj, obstacles):
     return OBSTACLE_COST_FACTOR/min_sep
 
 def velocity_cost(traj, obstacles):
-    # only penalise slow speed when in open space
     min_sep=float("inf")
     for s in traj:
         for (ox,oy,orad) in obstacles:
             sep=math.sqrt((s[0]-ox)**2+(s[1]-oy)**2)-orad-ROBOT_RADIUS
             if sep<min_sep: min_sep=sep
-    if min_sep>1.5:
+    if min_sep>CLEARANCE_THRESH:
         return VELOCITY_COST_FACTOR*(MAX_LINEAR_VEL-traj[-1][3])
-    return 0.0  # near obstacle: don't penalise speed, just dodge
+    return 0.0
 
 def rollout_trajectories(state, goal, obstacles):
     v_lo,v_hi,w_lo,w_hi=dynamic_window(state,DT)
@@ -136,7 +137,7 @@ def get_lookahead(rx,ry):
 #  Draggable obstacle state
 # ─────────────────────────────────────────────
 OBS_IDX=int(len(GLOBAL_PATH)*0.35)
-obs_pos=[GLOBAL_PATH[OBS_IDX][0], GLOBAL_PATH[OBS_IDX][1]]  # mutable [x, y]
+obs_pos=[GLOBAL_PATH[OBS_IDX][0], GLOBAL_PATH[OBS_IDX][1]]
 dragging=False
 
 # ─────────────────────────────────────────────
@@ -166,7 +167,6 @@ ax.text(WAYPOINTS[0][0]+.1,WAYPOINTS[0][1]-.4,"START",color="#2ecc71",fontsize=9
 ax.plot(*GOAL,"*",color="#f1c40f",markersize=22,zorder=6,label="goal")
 ax.add_patch(plt.Circle(GOAL,XY_GOAL_TOL,color="#f1c40f",alpha=0.2,zorder=2))
 
-# draggable obstacle patch
 obs_patch=plt.Circle(tuple(obs_pos),OBS_RADIUS,color="#e74c3c",alpha=0.92,zorder=5,label="obstacle (drag me)")
 ax.add_patch(obs_patch)
 obs_lbl=ax.text(obs_pos[0],obs_pos[1]+OBS_RADIUS+0.25,"⬆ drag me",color="white",fontsize=9,ha="center",zorder=6,fontweight="bold")
@@ -190,14 +190,12 @@ def on_press(event):
     if event.inaxes!=ax: return
     ox,oy=obs_pos
     dist=math.sqrt((event.xdata-ox)**2+(event.ydata-oy)**2)
-    if dist<=OBS_RADIUS*1.5:   # click within 1.5x radius grabs it
-        dragging=True
+    if dist<=OBS_RADIUS*1.5: dragging=True
 
 def on_motion(event):
     if not dragging: return
     if event.inaxes!=ax: return
-    obs_pos[0]=event.xdata
-    obs_pos[1]=event.ydata
+    obs_pos[0]=event.xdata; obs_pos[1]=event.ydata
     obs_patch.set_center(tuple(obs_pos))
     obs_lbl.set_position((obs_pos[0], obs_pos[1]+OBS_RADIUS+0.25))
 
@@ -222,13 +220,11 @@ def rcorners(x,y,yaw):
 def update(_):
     global robot,reached,trail_x,trail_y
 
-    # current obstacle as tuple for cost functions
     obstacle=[(obs_pos[0],obs_pos[1],OBS_RADIUS)]
 
     if reached:
         status_txt.set_text("✓ Goal reached!  Drag obstacle onto path to retest.")
         mode_txt.set_text("[ DONE ]"); mode_txt.set_color("#2ecc71")
-        # allow reset if robot drifts away from goal
         return (robot_poly,trail_line,traj_line,arrow_obj,status_txt,mode_txt,obs_patch,obs_lbl)
 
     rx,ry=robot[0],robot[1]; gx,gy=GOAL
@@ -245,9 +241,9 @@ def update(_):
         traj_xs=[s[0] for s in best_traj]
         traj_ys=[s[1] for s in best_traj]
 
-        if dobs<0.5:    mode,col="AVOIDING","#e74c3c"
-        elif dobs<1.2:  mode,col="NEAR OBS","#f39c12"
-        else:            mode,col="FOLLOW","#2ecc71"
+        if dobs<0.5:   mode,col="AVOIDING","#e74c3c"
+        elif dobs<1.2: mode,col="NEAR OBS","#f39c12"
+        else:           mode,col="FOLLOW","#2ecc71"
 
     robot_poly.set_xy(rcorners(robot[0],robot[1],robot[2]))
     tx=robot[0]+.6*math.cos(robot[2]); ty=robot[1]+.6*math.sin(robot[2])

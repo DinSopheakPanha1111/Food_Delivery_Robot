@@ -22,7 +22,8 @@ setup(
             'kinematic_sim = Simulation.kinematic_sim:main',
             'kinematic_sim_imu = Simulation.kinematic_sim_imu:main',
             'kinematic_sim_ekf = Simulation.kinematic_sim_ekf:main',
-            'dwb_sim = Simulation.dwb_sim:main'
+            'dwb_sim = Simulation.dwb_sim:main',
+            'local_costmap_viz = Simulation.local_costmap_viz:main',
         ],
     },
 )
