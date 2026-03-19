@@ -8,7 +8,7 @@ def generate_launch_description():
     home = os.getenv('HOME')
 
     # ---------------- Paths ----------------
-    urdf_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot_description/urdf/my_main.urdf.xacro')
+    urdf_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot_description/urdf/my_sim_robot.urdf.xacro')
     rviz_config_path = os.path.join(home, 'Food_Delivery_Robot/src/food_del_robot_description/rviz/robot.rviz')
     
     return LaunchDescription([

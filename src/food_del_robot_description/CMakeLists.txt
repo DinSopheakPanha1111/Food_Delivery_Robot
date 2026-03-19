@@ -4,7 +4,7 @@ project(food_del_robot_description)
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY urdf launch rviz config
+  DIRECTORY urdf launch rviz config worlds maps
   DESTINATION share/${PROJECT_NAME}/
 )
 
