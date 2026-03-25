@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Materials -->
+    <material name="blue">
+        <color rgba="0.0 0.0 0.5 1.0"/>
+    </material>
+    <material name="red">
+        <color rgba="0.5 0.0 0.0 1.0"/>
+    </material>
+    <material name="green">
+        <color rgba="0.0 0.5 0.0 1.0"/>
+    </material>
+    <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+    </material>
+    <material name="pink">
+        <color rgba="1.0 0.75 0.8 1.0"/>
+    </material>
+    <material name="gray">
+        <color rgba="0.5 0.5 0.5 1"/>
+    </material>
+
+    <!-- box_inertia: called with m, x, y, z, o_xyz, o_rpy -->
+    <xacro:macro name="box_inertia" params="m x y z o_xyz o_rpy">
+        <inertial>
+            <origin xyz="${o_xyz}" rpy="${o_rpy}"/>
+            <mass value="${m}"/>
+            <inertia ixx="${(1/12.0) * m * (z*z + y*y)}" ixy="0" ixz="0"
+                     iyy="${(1/12.0) * m * (z*z + x*x)}" iyz="0"
+                     izz="${(1/12.0) * m * (x*x + y*y)}"/>
+        </inertial>
+    </xacro:macro>
+
+    <!-- cylinder_inertia: called with m, r, l, o_xyz, o_rpy -->
+    <xacro:macro name="cylinder_inertia" params="m r l o_xyz o_rpy">
+        <inertial>
+            <origin xyz="${o_xyz}" rpy="${o_rpy}"/>
+            <mass value="${m}"/>
+            <inertia ixx="${(1/12.0) * m * (3*r*r + l*l)}" ixy="0" ixz="0"
+                     iyy="${(1/12.0) * m * (3*r*r + l*l)}" iyz="0"
+                     izz="${0.5 * m * r*r}"/>
+        </inertial>
+    </xacro:macro>
+
+    <!-- sphere_inertia: called with m, r, o_xyz, o_rpy -->
+    <xacro:macro name="sphere_inertia" params="m r o_xyz o_rpy">
+        <inertial>
+            <origin xyz="${o_xyz}" rpy="${o_rpy}"/>
+            <mass value="${m}"/>
+            <inertia ixx="${(2/5.0) * m * r*r}" ixy="0" ixz="0"
+                     iyy="${(2/5.0) * m * r*r}" iyz="0"
+                     izz="${(2/5.0) * m * r*r}"/>
+        </inertial>
+    </xacro:macro>
+
+</robot>

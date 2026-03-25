@@ -1,0 +1,37 @@
+costmap:
+  costmap:
+    ros__parameters:
+      update_frequency: 5.0
+      publish_frequency: 3.0
+      global_frame: map
+      robot_base_frame: base_link
+      rolling_window: true
+      width: 5
+      height: 5
+      resolution: 0.05
+      robot_radius: 0.2
+      plugins: ["obstacle_layer", "inflation_layer"]
+      
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        inflation_radius: 0.25
+        cost_scaling_factor: 10.0
+
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        observation_sources: scan
+        scan:
+          topic: /scan
+          max_obstacle_height: 1.5  # Increase max obstacle height to detect more of the table
+          clearing: true
+          marking: true
+          data_type: "LaserScan"
+          raytrace_max_range: 5.0  # Increased max range to detect obstacles from further away
+          raytrace_min_range: 0.2  # Increased the minimum range to avoid false positives
+          obstacle_max_range: 3.0  # Increased obstacle detection range
+          obstacle_min_range: 0.2  # Ensure detection near the robot
+
+      static_layer:
+        map_subscribe_transient_local: true
+      always_send_full_costmap: true

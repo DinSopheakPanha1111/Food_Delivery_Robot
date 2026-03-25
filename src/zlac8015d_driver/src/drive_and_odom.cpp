@@ -137,7 +137,7 @@ private:
         left_wheel_tf.transform.translation.z = 0.0555f;
 
         // Apply rotation around the Y-axis (quaternion for rotation around Y)
-        theta_left += (-w_left) * M_PI* dt / 30.0f; // Angle in radians
+        theta_left += (-w_left) * 0.1f * M_PI* dt / 30.0f; // Angle in radians
         left_wheel_tf.transform.rotation.x = 0.0; // No rotation around X-axis
         left_wheel_tf.transform.rotation.y = std::sin(theta_left / 2.0); // Rotation around Y-axis
         left_wheel_tf.transform.rotation.z = 0.0; // No rotation around Z-axis
@@ -153,7 +153,7 @@ private:
         right_wheel_tf.transform.translation.z = 0.0555f;
 
         // Apply rotation around the Y-axis (quaternion for rotation around Y)
-        theta_right += w_right * M_PI * dt / 30.0f; // Angle in radians
+        theta_right += w_right * 0.1f * M_PI * dt / 30.0f; // Angle in radians
         right_wheel_tf.transform.rotation.x = 0.0; // No rotation around X-axis
         right_wheel_tf.transform.rotation.y = std::sin(theta_right / 2.0); // Rotation around Y-axis
         right_wheel_tf.transform.rotation.z = 0.0; // No rotation around Z-axis
