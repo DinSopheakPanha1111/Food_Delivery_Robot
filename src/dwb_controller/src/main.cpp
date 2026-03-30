@@ -20,18 +20,12 @@ public:
     DWBControllerNode()
     : Node("dwb_controller")
     {
-        // ── Callback groups ───────────────────────────────────────────────────
-        // cb_group_costmap_  : costmap + odom callbacks (mutually exclusive)
-        // cb_group_control_  : path callback + control timer (mutually exclusive)
-        //   → path_ and current_wp_idx_ are always accessed from the same group,
-        //     so NO mutex is needed for those two members.
         cb_group_costmap_ = this->create_callback_group(
             rclcpp::CallbackGroupType::MutuallyExclusive);
 
         cb_group_control_ = this->create_callback_group(
             rclcpp::CallbackGroupType::MutuallyExclusive);
 
-        // ── Costmap / odom subscriptions ──────────────────────────────────────
         rclcpp::SubscriptionOptions costmap_opts;
         costmap_opts.callback_group = cb_group_costmap_;
 
@@ -53,7 +47,6 @@ public:
                       std::placeholders::_1),
             costmap_opts);
 
-        // ── Path subscription (same group as control timer) ───────────────────
         rclcpp::SubscriptionOptions control_opts;
         control_opts.callback_group = cb_group_control_;
 
@@ -63,7 +56,6 @@ public:
                       std::placeholders::_1),
             control_opts);
 
-        // ── Publisher & control timer ──────────────────────────────────────────
         cmd_vel_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
 
         control_timer_ = this->create_wall_timer(
@@ -71,15 +63,13 @@ public:
             std::bind(&DWBControllerNode::control_loop, this),
             cb_group_control_);
 
-        RCLCPP_INFO(this->get_logger(), "DWB Controller Node started — waiting for /planned_path");
+        RCLCPP_INFO(this->get_logger(), "DWB Controller Node started — waiting for /plan");
     }
 
 private:
-    // ── Callback groups ───────────────────────────────────────────────────────
     rclcpp::CallbackGroup::SharedPtr cb_group_costmap_;
     rclcpp::CallbackGroup::SharedPtr cb_group_control_;
 
-    // ── Costmap state ─────────────────────────────────────────────────────────
     uint32_t            width_      = 0;
     uint32_t            height_     = 0;
     float               resolution_ = 0.0f;
@@ -87,7 +77,6 @@ private:
     float               origin_y_   = 0.0f;
     std::vector<int8_t> costmap_;
 
-    // ── Odometry state ────────────────────────────────────────────────────────
     float robot_x_     = 0.0f;
     float robot_y_     = 0.0f;
     float robot_theta_ = 0.0f;
@@ -95,21 +84,16 @@ private:
     float robot_w_     = 0.0f;
     bool  has_odom_    = false;
 
-    // ── Path following state ──────────────────────────────────────────────────
-    // Accessed only from cb_group_control_ → no mutex needed.
     std::vector<geometry_msgs::msg::PoseStamped> path_;
     size_t current_wp_idx_ = 0;
     bool   has_path_       = false;
 
-    // ── Obstacle store ────────────────────────────────────────────────────────
-    // Written by cb_group_costmap_, read by cb_group_control_ → mutex required.
     std::mutex obs_mutex_;
     float    obs_x_  [MAX_OBSTACLES];
     float    obs_y_  [MAX_OBSTACLES];
     float    obs_rad_[MAX_OBSTACLES];
     uint32_t num_obstacles_ = 0;
 
-    // ── ROS handles ───────────────────────────────────────────────────────────
     rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr       local_costmap_sub_;
     rclcpp::Subscription<map_msgs::msg::OccupancyGridUpdate>::SharedPtr local_costmap_update_sub_;
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr            odom_sub_;
@@ -186,16 +170,13 @@ private:
         const float o_x = origin_x_;
         const float o_y = origin_y_;
 
-        // 1. robot world → cell
         float c_robot_x, c_robot_y;
         world_to_cell_conversion(robot_x_, robot_y_, o_x, o_y, r,
                                  &c_robot_x, &c_robot_y);
 
-        // 2. search radius: v_max * window_time + clearance_thresh = 2.5 m
         constexpr float R_metres = 2.5f;
         uint32_t R_cells = static_cast<uint32_t>(floorf(R_metres / r));
 
-        // 3. collect lethal cells
         uint32_t max_cells = (2 * R_cells + 1) * (2 * R_cells + 1);
         float    world_out[max_cells * 2];
         uint32_t lethal_count = 0;
@@ -212,12 +193,10 @@ private:
             return;
         }
 
-        // 4. cluster
         int labels[lethal_count];
         int num_clusters = 0;
         cluster_lethal_points(world_out, lethal_count, r, labels, &num_clusters);
 
-        // 5. build obstacles — heavy work outside mutex
         float    tmp_x  [MAX_OBSTACLES];
         float    tmp_y  [MAX_OBSTACLES];
         float    tmp_rad[MAX_OBSTACLES];
@@ -243,11 +222,10 @@ private:
 
             tmp_x  [tmp_count] = w_cx;
             tmp_y  [tmp_count] = w_cy;
-            tmp_rad[tmp_count] = obs_radius + 0.1f;   // small inflation margin
+            tmp_rad[tmp_count] = obs_radius + 0.15f;  // inflation margin
             tmp_count++;
         }
 
-        // 6. swap into shared arrays under lock — fast memcpy only
         {
             std::lock_guard<std::mutex> lock(obs_mutex_);
             memcpy(obs_x_,   tmp_x,   tmp_count * sizeof(float));
@@ -265,101 +243,135 @@ private:
     //  DWB control loop (50 Hz)
     // =========================================================================
 
-    void control_loop()
+void control_loop()
+{
+    if (!has_odom_ || !has_path_) return;
+
+    constexpr float WP_TOLERANCE = 0.35f;
+
+    // ── Advance past already-reached waypoints ────────────────────────────
+    while (current_wp_idx_ < path_.size()) {
+        const float wx = static_cast<float>(path_[current_wp_idx_].pose.position.x);
+        const float wy = static_cast<float>(path_[current_wp_idx_].pose.position.y);
+        const float dx = robot_x_ - wx;
+        const float dy = robot_y_ - wy;
+        if (sqrtf(dx * dx + dy * dy) > WP_TOLERANCE) break;
+        current_wp_idx_++;
+    }
+
+    if (current_wp_idx_ >= path_.size()) {
+        cmd_vel_pub_->publish(geometry_msgs::msg::Twist{});
+        RCLCPP_INFO_ONCE(this->get_logger(), "Goal reached — path complete.");
+        has_path_ = false;
+        return;
+    }
+
+    // ── Snapshot obstacles ────────────────────────────────────────────────
+    float    snap_x  [MAX_OBSTACLES];
+    float    snap_y  [MAX_OBSTACLES];
+    float    snap_rad[MAX_OBSTACLES];
+    uint32_t snap_count = 0;
     {
-        if (!has_odom_ || !has_path_) return;
+        std::lock_guard<std::mutex> lock(obs_mutex_);
+        snap_count = num_obstacles_;
+        memcpy(snap_x,   obs_x_,   snap_count * sizeof(float));
+        memcpy(snap_y,   obs_y_,   snap_count * sizeof(float));
+        memcpy(snap_rad, obs_rad_, snap_count * sizeof(float));
+    }
 
-        constexpr float WP_TOLERANCE    = 0.35f;
-        constexpr float HEADING_THRESH  = M_PI / 4.0f;  // 45° — turn in place beyond this
+    // ── Look-ahead: find first FORWARD unblocked waypoint ────────────────
+    // NEVER go below current_wp_idx_ — this is what caused the robot to go back
+    size_t target_wp   = current_wp_idx_;   // fallback: current wp
+    bool   found_clear = false;
 
-        while (current_wp_idx_ < path_.size()) {
-            const float goal_x = static_cast<float>(path_[current_wp_idx_].pose.position.x);
-            const float goal_y = static_cast<float>(path_[current_wp_idx_].pose.position.y);
-            const float dx = robot_x_ - goal_x;
-            const float dy = robot_y_ - goal_y;
-            if (sqrtf(dx * dx + dy * dy) > WP_TOLERANCE) break;
-            current_wp_idx_++;
+    for (size_t look = current_wp_idx_;
+         look < std::min(path_.size(), current_wp_idx_ + 10);
+         look++)
+    {
+        const float wx = static_cast<float>(path_[look].pose.position.x);
+        const float wy = static_cast<float>(path_[look].pose.position.y);
+        bool blocked = false;
+        for (uint32_t o = 0; o < snap_count; o++) {
+            const float dx = wx - snap_x[o];
+            const float dy = wy - snap_y[o];
+            if (sqrtf(dx * dx + dy * dy) < snap_rad[o] + 0.1f) {
+                blocked = true;
+                break;
+            }
         }
-
-        if (current_wp_idx_ >= path_.size()) {
-            cmd_vel_pub_->publish(geometry_msgs::msg::Twist{});
-            RCLCPP_INFO_ONCE(this->get_logger(), "Goal reached — path complete.");
-            return;
+        if (!blocked) {
+            target_wp   = look;
+            found_clear = true;
+            break;
         }
+    }
 
-        const float goal_x = static_cast<float>(path_[current_wp_idx_].pose.position.x);
-        const float goal_y = static_cast<float>(path_[current_wp_idx_].pose.position.y);
+    const float goal_x = static_cast<float>(path_[target_wp].pose.position.x);
+    const float goal_y = static_cast<float>(path_[target_wp].pose.position.y);
 
-        // ── Heading check — turn in place if goal is too far off-axis ────────────
-        const float angle_to_goal = atan2f(goal_y - robot_y_, goal_x - robot_x_);
-        float heading_error = angle_to_goal - robot_theta_;
-        // Normalise to [-π, π]
+    // ── If ALL look-ahead waypoints are blocked: turn in place toward path ─
+    // Do NOT call rollout — it will find no valid arc and output v_min forward
+    // which drives the robot into the obstacle.
+    if (!found_clear) {
+        // Rotate toward the furthest look-ahead wp to try to find a way around
+        size_t last_look = std::min(path_.size(), current_wp_idx_ + 10) - 1;
+        const float tx = static_cast<float>(path_[last_look].pose.position.x);
+        const float ty = static_cast<float>(path_[last_look].pose.position.y);
+
+        float angle_to_target = atan2f(ty - robot_y_, tx - robot_x_);
+        float heading_error   = angle_to_target - robot_theta_;
         while (heading_error >  M_PI) heading_error -= 2.0f * M_PI;
         while (heading_error < -M_PI) heading_error += 2.0f * M_PI;
 
-        if (fabsf(heading_error) > HEADING_THRESH) {
-            // Turn in place — no forward motion
-            geometry_msgs::msg::Twist cmd;
-            cmd.linear.x  = 0.0f;
-            cmd.angular.z = (heading_error > 0.0f) ? 0.5f : -0.5f;
-            cmd_vel_pub_->publish(cmd);
-            RCLCPP_INFO(this->get_logger(),
-                "Turning in place: heading_error=%.2f rad", heading_error);
-            return;
-        }
-
-        // ── Snapshot obstacles ────────────────────────────────────────────────────
-        float    snap_x  [MAX_OBSTACLES];
-        float    snap_y  [MAX_OBSTACLES];
-        float    snap_rad[MAX_OBSTACLES];
-        uint32_t snap_count = 0;
-        {
-            std::lock_guard<std::mutex> lock(obs_mutex_);
-            snap_count = num_obstacles_;
-            memcpy(snap_x,   obs_x_,   snap_count * sizeof(float));
-            memcpy(snap_y,   obs_y_,   snap_count * sizeof(float));
-            memcpy(snap_rad, obs_rad_, snap_count * sizeof(float));
-        }
-
-        // ── DWB rollout ───────────────────────────────────────────────────────────
-        float best_v = 0.0f, best_w = 0.0f;
-
-        rollout_best_control(
-            {robot_x_, robot_y_, robot_theta_, robot_v_, robot_w_},
-            goal_x, goal_y,
-            snap_x, snap_y, snap_rad, snap_count,
-            1.0f,   // k_g
-            5.0f,   // k_o
-            0.1f,   // k_v
-            0.05f,  // v_min
-            0.1f,   // v_max
-            0.5f,   // w_max
-            1.0f,   // a_v
-            1.0f,   // a_w
-            0.1f,   // dt
-            3.0f,   // window_time
-            0.02f,  // vel_res
-            0.05f,  // ang_res
-            0.22f,  // r_robot
-            2.0f,   // clearance_thresh
-            &best_v, &best_w
-        );
-
         geometry_msgs::msg::Twist cmd;
-        cmd.linear.x  = best_v;
-        cmd.angular.z = best_w;
+        cmd.linear.x  = 0.0f;
+        cmd.angular.z = (heading_error > 0.0f) ? 0.4f : -0.4f;
         cmd_vel_pub_->publish(cmd);
 
-        RCLCPP_INFO(this->get_logger(),
-            "wp %zu/%zu  goal=(%.2f,%.2f)  heading_err=%.2f  cmd: v=%.3f w=%.3f  obs=%u",
-            current_wp_idx_ + 1, path_.size(),
-            goal_x, goal_y, heading_error,
-            best_v, best_w, snap_count);
+        RCLCPP_WARN(this->get_logger(),
+            "All look-ahead waypoints blocked — turning in place. heading_err=%.2f",
+            heading_error);
+        return;
     }
+
+    // ── DWB rollout ───────────────────────────────────────────────────────
+    float best_v = 0.0f, best_w = 0.0f;
+
+    rollout_best_control(
+        {robot_x_, robot_y_, robot_theta_, robot_v_, robot_w_},
+        goal_x, goal_y,
+        snap_x, snap_y, snap_rad, snap_count,
+        3.0f,   // k_g
+        5.0f,   // k_o
+        0.3f,   // k_v
+        0.05f,  // v_min
+        0.3f,   // v_max
+        0.5f,   // w_max
+        2.0f,   // a_v
+        2.0f,   // a_w
+        0.1f,   // dt
+        2.0f,   // window_time
+        0.02f,  // vel_res
+        0.05f,  // ang_res
+        0.22f,  // r_robot
+        0.5f,   // clearance_thresh
+        &best_v, &best_w
+    );
+
+    geometry_msgs::msg::Twist cmd;
+    cmd.linear.x  = best_v;
+    cmd.angular.z = best_w;
+    cmd_vel_pub_->publish(cmd);
+
+    RCLCPP_INFO(this->get_logger(),
+        "wp %zu/%zu  target=%zu  goal=(%.2f,%.2f)  cmd: v=%.3f w=%.3f  obs=%u",
+        current_wp_idx_ + 1, path_.size(), target_wp + 1,
+        goal_x, goal_y, best_v, best_w, snap_count);
+}
 };
 
 // =============================================================================
-//  main — MultiThreadedExecutor with 2 threads
+//  main
 // =============================================================================
 int main(int argc, char ** argv)
 {

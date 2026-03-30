@@ -115,18 +115,16 @@
         <axis xyz="0 1 0"/>
     </joint>
 
-    <joint name="base_caster_wheel_support_joint" type="continuous">
+    <joint name="base_caster_wheel_support_joint" type="fixed">
         <parent link="base_link"/>
         <child link="caster_wheel_link_support"/>
         <origin xyz="${base_length / 3.0} 0 ${-caster_wheel_support_length / 2.0}" rpy="0 0 0"/>
-        <axis xyz="0 0 1"/>
     </joint>
 
-    <joint name="base_caster_wheel_real_joint" type="continuous">
+    <joint name="base_caster_wheel_real_joint" type="fixed">
         <parent link="caster_wheel_link_support"/>
         <child link="caster_wheel_real_link"/>
         <origin xyz="0 0 ${-caster_wheel_support_length / 2.0 - caster_wheel_real_radius}" rpy="1.57 1.57 0"/>
-        <axis xyz="0 0 1"/>
     </joint>
 
     <joint name="base_joint" type="fixed">

@@ -17,14 +17,18 @@ void dynamic_window(
     float *w_min_out,
     float *w_max_out)
 {
-    *v_min_out = fmaxf(v_c - a_v * dt,  v_min);   // clamp to v_min, NOT 0
-    *v_max_out = fminf(v_c + a_v * dt,  v_max);
-    *w_min_out = fmaxf(w_c - a_w * dt, -w_max);
-    *w_max_out = fminf(w_c + a_w * dt,  w_max);
+    // Bug 2 fix: use a meaningful time horizon (0.5s) not just one dt step
+    constexpr float DW_TIME = 0.5f;
+    *v_min_out = fmaxf(v_c - a_v * DW_TIME, v_min);
+    *v_max_out = fminf(v_c + a_v * DW_TIME, v_max);
+    *w_min_out = fmaxf(w_c - a_w * DW_TIME, -w_max);
+    *w_max_out = fminf(w_c + a_w * DW_TIME,  w_max);
 }
 
 // ─────────────────────────────────────────────
-//  Goal cost
+//  Goal cost — Bug 1 fix: use DISTANCE to goal
+//  at end of arc, not heading angle.
+//  Also add heading component but weighted less.
 // ─────────────────────────────────────────────
 void goal_cost(
     float  e_x,
@@ -35,10 +39,17 @@ void goal_cost(
     float  k_g,
     float *cost_out)
 {
-    float alpha     = atan2f(g_y - e_y, g_x - e_x);
+    // Distance to goal at end of arc
+    float dx   = g_x - e_x;
+    float dy   = g_y - e_y;
+    float dist = sqrtf(dx * dx + dy * dy);
+
+    // Heading alignment (small weight)
+    float alpha     = atan2f(dy, dx);
     float diff      = alpha - theta_e;
-    float delta_phi = fabsf(atan2f(sinf(diff), cosf(diff)));  // normalised to [-pi, pi]
-    *cost_out       = k_g * delta_phi;
+    float delta_phi = fabsf(atan2f(sinf(diff), cosf(diff)));
+
+    *cost_out = k_g * (dist + 0.2f * delta_phi);
 }
 
 // ─────────────────────────────────────────────
@@ -56,18 +67,15 @@ void obstacle_cost(
     float        k_o,
     float       *cost_out)
 {
-    if (num_points == 0 || num_obstacles == 0)
-    {
+    if (num_points == 0 || num_obstacles == 0) {
         *cost_out = 0.0f;
         return;
     }
 
     float d_min = FLT_MAX;
 
-    for (uint32_t i = 0; i < num_points; i++)
-    {
-        for (uint32_t j = 0; j < num_obstacles; j++)
-        {
+    for (uint32_t i = 0; i < num_points; i++) {
+        for (uint32_t j = 0; j < num_obstacles; j++) {
             float dx = arc_x[i] - obs_x[j];
             float dy = arc_y[i] - obs_y[j];
             float d  = sqrtf(dx*dx + dy*dy) - obs_rad[j] - r_robot;
@@ -76,7 +84,7 @@ void obstacle_cost(
     }
 
     if (d_min <= 0.0f)
-        *cost_out = 1e6f;           // collision — arc rejected
+        *cost_out = 1e6f;
     else
         *cost_out = k_o / d_min;
 }
@@ -93,9 +101,9 @@ void velocity_cost(
     float *cost_out)
 {
     if (min_clearance > clearance_thresh)
-        *cost_out = k_v * (v_max - v_e);   // open space: penalise slow speed
+        *cost_out = k_v * (v_max - v_e);
     else
-        *cost_out = 0.0f;                  // near obstacle: don't penalise speed
+        *cost_out = 0.0f;
 }
 
 // ─────────────────────────────────────────────
@@ -114,8 +122,6 @@ void euclidean_distance(
 // ─────────────────────────────────────────────
 //  Internal helpers
 // ─────────────────────────────────────────────
-
-// forward-simulate one arc and fill arc_x / arc_y sample arrays
 static void simulate_arc(
     const RobotState &state,
     float  v, float w,
@@ -129,8 +135,7 @@ static void simulate_arc(
     uint32_t   n = 0;
     float      t = 0.0f;
 
-    while (t <= window_time && n < max_pts)
-    {
+    while (t <= window_time && n < max_pts) {
         arc_x[n] = s.x;
         arc_y[n] = s.y;
         n++;
@@ -148,24 +153,21 @@ static void simulate_arc(
     *end_state_out = s;
 }
 
-// compute minimum clearance over entire arc (for velocity_cost)
 static float arc_min_clearance(
     const float *arc_x, const float *arc_y, uint32_t num_pts,
     const float *obs_x, const float *obs_y, const float *obs_rad,
     uint32_t num_obstacles, float r_robot)
 {
     float d_min = FLT_MAX;
-    for (uint32_t i = 0; i < num_pts; i++)
-    {
-        for (uint32_t j = 0; j < num_obstacles; j++)
-        {
+    for (uint32_t i = 0; i < num_pts; i++) {
+        for (uint32_t j = 0; j < num_obstacles; j++) {
             float dx = arc_x[i] - obs_x[j];
             float dy = arc_y[i] - obs_y[j];
             float d  = sqrtf(dx*dx + dy*dy) - obs_rad[j] - r_robot;
             if (d < d_min) d_min = d;
         }
     }
-    return d_min;
+    return (d_min == FLT_MAX) ? 999.0f : d_min;
 }
 
 // ─────────────────────────────────────────────
@@ -196,7 +198,6 @@ void rollout_best_control(
     float *best_v_out,
     float *best_w_out)
 {
-    // max arc steps = ceil(window_time / dt) + 1
     constexpr uint32_t MAX_ARC_PTS = 32;
 
     float dw_v_min, dw_v_max, dw_w_min, dw_w_max;
@@ -210,35 +211,43 @@ void rollout_best_control(
     float    arc_x[MAX_ARC_PTS];
     float    arc_y[MAX_ARC_PTS];
 
-    // initialise output to safe fallback
+    // Safe fallback: slow forward
     *best_v_out = v_min;
     *best_w_out = 0.0f;
 
-    for (float v = dw_v_min; v <= dw_v_max + 1e-6f; v += vel_res)
-    {
-        for (float w = dw_w_min; w <= dw_w_max + 1e-6f; w += ang_res)
-        {
-            // 1. simulate arc
+    // Track best non-collision arc in case all forward arcs collide
+    float fallback_cost = FLT_MAX;
+    float fallback_v    = 0.0f;
+    float fallback_w    = 0.0f;
+
+    for (float v = dw_v_min; v <= dw_v_max + 1e-6f; v += vel_res) {
+        for (float w = dw_w_min; w <= dw_w_max + 1e-6f; w += ang_res) {
+
             uint32_t   num_pts;
             RobotState end;
             simulate_arc(state, v, w, dt, window_time,
                          arc_x, arc_y, &num_pts, MAX_ARC_PTS, &end);
 
-            // 2. goal cost
-            float c_goal;
-            goal_cost(end.x, end.y, end.theta,
-                      goal_x, goal_y, k_g, &c_goal);
-
-            // 3. obstacle cost
             float c_obs;
             obstacle_cost(arc_x, arc_y, num_pts,
                           obs_x, obs_y, obs_rad, num_obstacles,
                           r_robot, k_o, &c_obs);
 
-            // skip immediately on collision
-            if (c_obs >= 1e6f) continue;
+            if (c_obs >= 1e6f) {
+                // Collision arc — track best pure-turning fallback (v=0)
+                if (fabsf(v) < 1e-4f) {
+                    float c_goal;
+                    goal_cost(end.x, end.y, end.theta,
+                              goal_x, goal_y, k_g, &c_goal);
+                    if (c_goal < fallback_cost) {
+                        fallback_cost = c_goal;
+                        fallback_v    = v;
+                        fallback_w    = w;
+                    }
+                }
+                continue;
+            }
 
-            // 4. velocity cost (needs clearance)
             float clearance = arc_min_clearance(arc_x, arc_y, num_pts,
                                                 obs_x, obs_y, obs_rad,
                                                 num_obstacles, r_robot);
@@ -246,15 +255,23 @@ void rollout_best_control(
             velocity_cost(v_max, end.v, clearance,
                           clearance_thresh, k_v, &c_vel);
 
-            // 5. total cost  C_total = C_goal + C_obs + C_vel
+            float c_goal;
+            goal_cost(end.x, end.y, end.theta,
+                      goal_x, goal_y, k_g, &c_goal);
+
             float c_total = c_goal + c_obs + c_vel;
 
-            if (c_total < min_cost)
-            {
+            if (c_total < min_cost) {
                 min_cost    = c_total;
                 *best_v_out = v;
                 *best_w_out = w;
             }
         }
+    }
+
+    // If no valid forward arc found, use best turning-in-place arc
+    if (min_cost == FLT_MAX && fallback_cost < FLT_MAX) {
+        *best_v_out = fallback_v;
+        *best_w_out = fallback_w;
     }
 }

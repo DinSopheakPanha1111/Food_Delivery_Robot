@@ -1,7 +1,7 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import LifecycleNode
+from launch_ros.actions import LifecycleNode, Node
 from launch_ros.descriptions import ParameterFile
 
 
@@ -37,8 +37,21 @@ def generate_launch_description():
         ],
     )
 
+    lifecycle_manager = Node(
+        package="nav2_lifecycle_manager",
+        executable="lifecycle_manager",
+        name="lifecycle_manager_costmap",
+        output="screen",
+        parameters=[
+            {"use_sim_time": use_sim_time},
+            {"autostart": True},
+            {"node_names": ["costmap/costmap"]},  # matches namespace/name
+        ],
+    )
+
     return LaunchDescription([
         costmap_params_arg,
         use_sim_time_arg,
         costmap_node,
+        lifecycle_manager,
     ])
