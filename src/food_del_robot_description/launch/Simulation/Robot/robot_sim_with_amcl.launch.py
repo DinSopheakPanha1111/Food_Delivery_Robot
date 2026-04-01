@@ -8,7 +8,18 @@ import os
 
 def generate_launch_description():
 
-    pkg = get_package_share_directory('food_del_robot_description')
+    pkg       = get_package_share_directory('food_del_robot_description')
+    pkg_robot = get_package_share_directory('food_del_robot')
+
+    local_costmap_config = os.path.join(
+        pkg_robot, 'config', 'Simulation', 'Costmap', 'local_costmap_config.yaml'
+    )
+
+    # NOTE: global_costmap_config.yaml is loaded internally by AStarPlanner
+    #       via Costmap2DROS — no separate node needed here.
+    global_costmap_config = os.path.join(
+        pkg_robot, 'config', 'Simulation', 'Costmap', 'global_costmap_config.yaml'
+    )
 
     robot_gazebo = IncludeLaunchDescription(
         AnyLaunchDescriptionSource(
@@ -33,15 +44,14 @@ def generate_launch_description():
         executable='astar_planner_node',
         name='astar_planner_node',
         output='screen',
+        parameters=[global_costmap_config],  # passed to the owned Costmap2DROS
     )
 
     dwb_controller = Node(
         package='dwb_controller',
         executable='main',
         name='dwb_controller',
-        parameters=[
-            '/home/panha/Food_Delivery_Robot/src/food_del_robot/config/Simulation/Costmap/local_costmap_config.yaml'
-        ],
+        parameters=[local_costmap_config],
         output='screen',
     )
 
