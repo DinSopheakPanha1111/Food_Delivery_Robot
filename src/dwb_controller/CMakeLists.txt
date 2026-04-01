@@ -77,6 +77,8 @@ ament_target_dependencies(main
   map_msgs
   sensor_msgs
   tf2_ros
+  tf2                   # add this
+  nav2_costmap_2d       # add this
   food_del_robot
 )
 

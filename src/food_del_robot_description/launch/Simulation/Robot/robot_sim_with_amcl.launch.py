@@ -28,12 +28,6 @@ def generate_launch_description():
         )
     )
 
-    costmap_sim = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(pkg, 'launch', 'Simulation', 'Costmap', 'costmap_sim.launch.py')
-        )
-    )
-
     astar_planner = Node(
         package='food_del_astar_planner',
         executable='astar_planner_node',
@@ -45,6 +39,9 @@ def generate_launch_description():
         package='dwb_controller',
         executable='main',
         name='dwb_controller',
+        parameters=[
+            '/home/panha/Food_Delivery_Robot/src/food_del_robot/config/Simulation/Costmap/local_costmap_config.yaml'
+        ],
         output='screen',
     )
 
@@ -52,7 +49,6 @@ def generate_launch_description():
         robot_gazebo,
         amcl_localization,
         hand_controller,
-        costmap_sim,
         astar_planner,
         dwb_controller,
     ])

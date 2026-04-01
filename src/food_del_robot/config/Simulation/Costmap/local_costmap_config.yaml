@@ -1,9 +1,9 @@
-costmap:
-  costmap:
+local_costmap:
+  local_costmap:
     ros__parameters:
       update_frequency: 5.0
       publish_frequency: 3.0
-      global_frame: map
+      global_frame: map        # ← was map, local costmap uses odom
       robot_base_frame: base_link
       rolling_window: true
       width: 5
@@ -23,15 +23,13 @@ costmap:
         observation_sources: scan
         scan:
           topic: /scan
-          max_obstacle_height: 1.5  # Increase max obstacle height to detect more of the table
+          max_obstacle_height: 1.5
           clearing: true
           marking: true
           data_type: "LaserScan"
-          raytrace_max_range: 5.0  # Increased max range to detect obstacles from further away
-          raytrace_min_range: 0.2  # Increased the minimum range to avoid false positives
-          obstacle_max_range: 3.0  # Increased obstacle detection range
-          obstacle_min_range: 0.2  # Ensure detection near the robot
+          raytrace_max_range: 5.0
+          raytrace_min_range: 0.2
+          obstacle_max_range: 3.0
+          obstacle_min_range: 0.2
 
-      static_layer:
-        map_subscribe_transient_local: true
       always_send_full_costmap: true
