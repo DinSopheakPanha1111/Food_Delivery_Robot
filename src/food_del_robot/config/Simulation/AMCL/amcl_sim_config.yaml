@@ -4,47 +4,52 @@ amcl:
 
     global_frame_id: "map"
     odom_frame_id: "odom"
-    base_frame_id: "base_footprint"
+    base_frame_id: "base_link"
     scan_topic: "scan"
     map_topic: "map"
 
     robot_model_type: "nav2_amcl::DifferentialMotionModel"
 
-    alpha1: 0.01       # was 0.1 — near-zero motion noise
-    alpha2: 0.01       # was 0.1
-    alpha3: 0.01       # was 0.05
-    alpha4: 0.01       # was 0.05
-    alpha5: 0.001      # was 0.01
+    # ✅ Balanced motion noise (not too small)
+    alpha1: 0.05
+    alpha2: 0.05
+    alpha3: 0.10
+    alpha4: 0.10
+    alpha5: 0.05
 
-    min_particles: 100   # was 500 — fewer particles, trust odom more
-    max_particles: 500   # was 2000
+    # ✅ Enough particles for stability
+    min_particles: 300
+    max_particles: 1000
 
-    pf_err: 0.01         # was 0.05 — tighter filter
+    pf_err: 0.05
     pf_z: 0.99
-    resample_interval: 5 # was 3 — resample even less
+    resample_interval: 2   # faster than 5 but not too aggressive
 
     recovery_alpha_fast: 0.0
     recovery_alpha_slow: 0.0
 
     laser_model_type: "likelihood_field"
     max_beams: 60
-    laser_min_range: 0.5
+    laser_min_range: 0.0
     laser_max_range: 12.0
     laser_likelihood_max_dist: 2.0
     lambda_short: 0.1
-    sigma_hit: 0.1       # was 0.2 — tighter hit model
-    z_hit: 0.9           # was 0.5 — trust laser hits much more
-    z_short: 0.05
+
+    # ✅ Less aggressive scan weight (avoid shaking)
+    sigma_hit: 0.2
+    z_hit: 0.7
+    z_short: 0.1
     z_max: 0.05
-    z_rand: 0.05         # was 0.4 — much less random noise
+    z_rand: 0.15
 
-    do_beamskip: false   # was true — no need to skip in sim
+    do_beamskip: false
 
-    update_min_d: 0.5    # was 0.3 — update less frequently
-    update_min_a: 0.785  # was 0.5 — ~45° before updating
+    # 🔥 THIS is the key for faster update
+    update_min_d: 0.15
+    update_min_a: 0.15
 
     tf_broadcast: true
-    transform_tolerance: 0.3  # was 0.5 — tighter since sim time is clean
+    transform_tolerance: 0.3
 
     save_pose_rate: 0.5
     set_initial_pose: true

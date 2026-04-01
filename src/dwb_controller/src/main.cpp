@@ -304,7 +304,7 @@ private:
         bool   found_clear = false;
 
         for (size_t look = current_wp_idx_;
-             look < std::min(path_.size(), current_wp_idx_ + 10);
+             look < std::min(path_.size(), current_wp_idx_ + 1);
              look++)
         {
             const float wx = static_cast<float>(path_[look].pose.position.x);
