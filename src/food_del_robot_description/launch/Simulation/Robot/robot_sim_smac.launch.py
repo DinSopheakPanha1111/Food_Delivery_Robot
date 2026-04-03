@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, TimerAction
-from launch.launch_description_sources import PythonLaunchDescriptionSource, AnyLaunchDescriptionSource
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 import os
@@ -24,8 +24,8 @@ def generate_launch_description():
 
     # ── Included launch files (unchanged from robot_sim_with_amcl.launch.py) ──
     robot_gazebo = IncludeLaunchDescription(
-        AnyLaunchDescriptionSource(
-            os.path.join(pkg, 'launch', 'Simulation', 'Gazebo', 'robot_gazebo.launch.xml')
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg, 'launch', 'Simulation', 'Gazebo', 'robot_gazebo.launch.py')
         )
     )
 

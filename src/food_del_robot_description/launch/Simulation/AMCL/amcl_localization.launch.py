@@ -16,11 +16,8 @@ def generate_launch_description():
     )
 
     amcl_params = os.path.join(
-        get_package_share_directory('food_del_robot'),
-        'config',
-        'Simulation',
-        'AMCL',
-        'amcl_sim_config.yaml'
+        home,
+        'Food_Delivery_Robot/src/food_del_robot/config/Simulation/AMCL/amcl_sim_config.yaml'
     )
 
     return LaunchDescription([

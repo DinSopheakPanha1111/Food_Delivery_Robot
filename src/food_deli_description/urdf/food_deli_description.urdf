@@ -1,0 +1,594 @@
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="food_deli_description">
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin xyz="0 0 -0.1" rpy="0 0 0" />
+      <mass value="10.0" />
+      <!-- box inertia: m=10, l=0.45, w=0.45, h=0.2 -->
+      <inertia
+        ixx="0.20208"
+        ixy="0"
+        ixz="0"
+        iyy="0.3375"
+        iyz="0"
+        izz="0.20208" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://food_deli_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.41 0.40 0.24" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="right_wheel_link">
+    <inertial>
+      <origin
+        xyz="3.16733048387328E-06 0.000277693667560031 -1.63803130575485E-05"
+        rpy="0 0 0" />
+      <mass
+        value="1.5" />
+      <inertia
+        ixx="0.001434"
+        ixy="0"
+        ixz="0"
+        iyy="0.002557"
+        iyz="0"
+        izz="0.001434" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://food_deli_description/meshes/right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0" />
+      <geometry>
+        <cylinder radius="0.06549" length="0.045" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_wheel_base_joint"
+    type="continuous">
+    <origin
+      xyz="0.00017427 -0.225 -0.1475"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="left_wheel_link">
+    <inertial>
+      <origin
+        xyz="-3.20839202108167E-06 -0.000277710670171072 -1.63097099627751E-05"
+        rpy="0 0 0" />
+      <mass
+        value="1.5" />
+      <inertia
+        ixx="0.001434"
+        ixy="0"
+        ixz="0"
+        iyy="0.002557"
+        iyz="0"
+        izz="0.001434" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://food_deli_description/meshes/left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0" />
+      <geometry>
+        <cylinder radius="0.06549" length="0.045" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_wheel_base_joint"
+    type="continuous">
+    <origin
+      xyz="0.00017427 0.225 -0.1475"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="lidar_link">
+    <inertial>
+      <origin
+        xyz="0.0120602388818924 -0.000532090380882048 -0.018864885396975"
+        rpy="0 0 0" />
+      <mass
+        value="0.002" />
+      <inertia
+        ixx="1.95808776551824E-05"
+        ixy="-1.03933505258985E-07"
+        ixz="-4.28390902083657E-07"
+        iyy="2.41250105408219E-05"
+        iyz="9.4268915723935E-09"
+        izz="4.14184560423607E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://food_deli_description/meshes/lidar_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.05 0.04" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_base_link"
+    type="fixed">
+    <origin
+      xyz="0.17817 0 0.0406"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="camera_link">
+    <inertial>
+      <origin
+        xyz="-0.0016896900191315 3.1 -0.00401517882301231"
+        rpy="0 0 0" />
+      <mass
+        value="0.0001" />
+      <inertia
+        ixx="4.67746396948393E-05"
+        ixy="2.61383173371617E-07"
+        ixz="2.97154104394623E-07"
+        iyy="6.81477203368761E-06"
+        iyz="-3.56436774233995E-09"
+        izz="4.82012317109639E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://food_deli_description/meshes/camera_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.03 0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_base_joint"
+    type="fixed">
+    <origin
+      xyz="0.29559 0.0175 -0.034988"
+      rpy="0 -0.07296 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="imu_link">
+    <inertial>
+      <origin
+        xyz="-2.37116841404873E-09 0.00114358136354779 -0.00603761131060739"
+        rpy="0 0 0" />
+      <mass
+        value="0.0250179510871718" />
+      <inertia
+        ixx="7.77621091457401E-06"
+        ixy="7.97264074856703E-19"
+        ixz="1.58518255319349E-17"
+        iyy="6.45006147287712E-06"
+        iyz="-2.29887198300278E-07"
+        izz="1.13689682255133E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://food_deli_description/meshes/imu_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.03 0.03 0.01" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="imu_base_joint"
+    type="fixed">
+    <origin
+      xyz="0.00017427 0 -0.092399"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="imu_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="caster1_link">
+    <inertial>
+      <origin
+        xyz="0.00852488174010285 -0.0135436219377933 0.0148618650999655"
+        rpy="0 0 0" />
+      <mass
+        value="0.107797455234629" />
+      <inertia
+        ixx="3.33168638647948E-05"
+        ixy="1.49045589792846E-10"
+        ixz="-1.72910741145957E-06"
+        iyy="5.35364071531758E-05"
+        iyz="-1.38257269248058E-10"
+        izz="4.52408836100978E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://food_deli_description/meshes/caster1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0325" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="c1_b_joint"
+    type="fixed">
+    <origin
+      xyz="-0.18433 -0.15597 -0.1855"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster1_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="caster2_link">
+    <inertial>
+      <origin
+        xyz="0.0085248817401028 -0.013543621937793 0.0148618650999655"
+        rpy="0 0 0" />
+      <mass
+        value="0.107797455234629" />
+      <inertia
+        ixx="3.33168638647949E-05"
+        ixy="1.49045589772927E-10"
+        ixz="-1.72910741146011E-06"
+        iyy="5.35364071531807E-05"
+        iyz="-1.38257269245524E-10"
+        izz="4.52408836101027E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://food_deli_description/meshes/caster2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0325" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="c2_b_joint"
+    type="fixed">
+    <origin
+      xyz="-0.18433 0.18303 -0.1855"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster2_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="caster3_link">
+    <inertial>
+      <origin
+        xyz="-0.00852488174010274 -0.0135073780622069 0.0148618650999655"
+        rpy="0 0 0" />
+      <mass
+        value="0.107797455234629" />
+      <inertia
+        ixx="3.33168638647948E-05"
+        ixy="1.49045589785039E-10"
+        ixz="1.72910741145981E-06"
+        iyy="5.35364071531848E-05"
+        iyz="1.3825726924505E-10"
+        izz="4.52408836101067E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://food_deli_description/meshes/caster3_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0325" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="c3_b_joint"
+    type="fixed">
+    <origin
+      xyz="0.18467 -0.15597 -0.1855"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster3_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="caster4_link">
+    <inertial>
+      <origin
+        xyz="-0.00852488174010285 -0.0135073780622068 0.0148618650999655"
+        rpy="0 0 0" />
+      <mass
+        value="0.107797455234629" />
+      <inertia
+        ixx="3.33168638647949E-05"
+        ixy="1.49045589758903E-10"
+        ixz="1.72910741146011E-06"
+        iyy="5.35364071531811E-05"
+        iyz="1.38257269282171E-10"
+        izz="4.52408836101031E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://food_deli_description/meshes/caster4_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0325" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="c4_b_joint"
+    type="fixed">
+    <origin
+      xyz="0.18467 0.18303 -0.1855"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster4_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <!-- Gazebo: wheel friction -->
+  <gazebo reference="right_wheel_link">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+  </gazebo>
+  <gazebo reference="left_wheel_link">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+  </gazebo>
+
+  <!-- Gazebo: caster friction (low to allow free rolling) -->
+  <gazebo reference="caster1_link">
+    <mu1>0.01</mu1>
+    <mu2>0.01</mu2>
+    <kp>100000.0</kp>
+    <kd>100.0</kd>
+  </gazebo>
+  <gazebo reference="caster2_link">
+    <mu1>0.01</mu1>
+    <mu2>0.01</mu2>
+    <kp>100000.0</kp>
+    <kd>100.0</kd>
+  </gazebo>
+  <gazebo reference="caster3_link">
+    <mu1>0.01</mu1>
+    <mu2>0.01</mu2>
+    <kp>100000.0</kp>
+    <kd>100.0</kd>
+  </gazebo>
+  <gazebo reference="caster4_link">
+    <mu1>0.01</mu1>
+    <mu2>0.01</mu2>
+    <kp>100000.0</kp>
+    <kd>100.0</kd>
+  </gazebo>
+
+  <!-- Gazebo: differential drive plugin -->
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+      <update_rate>30</update_rate>
+      <left_joint>left_wheel_base_joint</left_joint>
+      <right_joint>right_wheel_base_joint</right_joint>
+      <!-- wheel separation: |left_y - right_y| = |0.225 - (-0.225)| = 0.45 m -->
+      <wheel_separation>0.45</wheel_separation>
+      <!-- wheel diameter estimated from inertia: ~0.131 m -->
+      <wheel_diameter>0.131</wheel_diameter>
+      <max_wheel_torque>20</max_wheel_torque>
+      <max_wheel_acceleration>1.0</max_wheel_acceleration>
+      <command_topic>cmd_vel</command_topic>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>false</publish_wheel_tf>
+      <odometry_topic>odom</odometry_topic>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+    </plugin>
+  </gazebo>
+
+  <!-- Gazebo: LiDAR laser scan plugin -->
+  <gazebo reference="lidar_link">
+    <sensor name="lidar" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>8</update_rate>
+      <ray> 
+          <scan>
+              <horizontal>
+                  <samples>1083</samples>
+                  <resolution>1</resolution>
+                  <min_angle>-3.1241390705108643</min_angle>
+                  <max_angle>3.1415927410125732</max_angle> 
+              </horizontal>
+          </scan>
+          <range>
+              <min>0.1</min>
+              <max>12</max>
+          </range>
+      </ray>
+      <plugin name="lidar" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+            <remapping>~/out:=scan</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
+        <topic>scan</topic>
+        <frame_name>lidar_link</frame_name> 
+        <transport>ros</transport>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>
