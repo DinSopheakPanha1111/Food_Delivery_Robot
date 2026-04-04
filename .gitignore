@@ -4,4 +4,6 @@ build/
 .vscode/
 Matrix_Operation_code/
 log/
-**/__pycahche__/
+**/__pycache__/
+*.pyc
+*.pyo

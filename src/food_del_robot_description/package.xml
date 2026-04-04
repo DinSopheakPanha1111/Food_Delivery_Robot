@@ -3,7 +3,7 @@
   <name>food_del_robot_description</name>
   <version>0.0.1</version>
   <description>URDF and visualization files for Food Delivery Robot</description>
-  <maintainer email="you@example.com">Your Name</maintainer>
+  <maintainer email="tikeat.te@gmail.com">TE TIKEA</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

@@ -1,0 +1,381 @@
+<?xml version="1.0"?>
+<robot name="food_del_robot"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Pass use_sim:=true from launch file to activate Gazebo plugins -->
+  <xacro:arg name="use_sim" default="false"/>
+
+  <!-- ============================================================
+       Inertia macros
+       ============================================================ -->
+
+  <xacro:macro name="box_inertia" params="m l w h xyz rpy">
+    <inertial>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <mass value="${m}"/>
+      <inertia ixx="${(1/12.0) * m * (h*h + l*l)}" ixy="0" ixz="0"
+               iyy="${(1/12.0) * m * (w*w + l*l)}" iyz="0"
+               izz="${(1/12.0) * m * (w*w + h*h)}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="cylinder_inertia" params="m r h xyz rpy">
+    <inertial>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <mass value="${m}"/>
+      <inertia ixx="${(1/12.0) * m * (3*r*r + h*h)}" ixy="0" ixz="0"
+               iyy="${(1/12.0) * m * (3*r*r + h*h)}" iyz="0"
+               izz="${0.5 * m * r*r}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="sphere_inertia" params="m r xyz rpy">
+    <inertial>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <mass value="${m}"/>
+      <inertia ixx="${(2/5.0) * m * r*r}" ixy="0" ixz="0"
+               iyy="${(2/5.0) * m * r*r}" iyz="0"
+               izz="${(2/5.0) * m * r*r}"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- Wheel spinning about Y axis -->
+  <xacro:macro name="wheel_inertia" params="m r h xyz rpy">
+    <inertial>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <mass value="${m}"/>
+      <inertia ixx="${(1/12.0) * m * (3*r*r + h*h)}" ixy="0" ixz="0"
+               iyy="${0.5 * m * r*r}"                 iyz="0"
+               izz="${(1/12.0) * m * (3*r*r + h*h)}"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- ============================================================
+       Links
+       ============================================================ -->
+
+  <link name="base_footprint"/>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.01" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <xacro:box_inertia m="10.0" l="0.42" w="0.2" h="0.2"
+                       xyz="0 0 0.11" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0.213" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://food_del_robot_description/meshes/base_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.11" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.42 0.42 0.2"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="right_wheel_link">
+    <xacro:wheel_inertia m="1.5" r="0.0655" h="0.045"
+                         xyz="0 0 0" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://food_del_robot_description/meshes/right_wheel_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0655" length="0.045"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_wheel_base_joint" type="continuous">
+    <origin xyz="0.0 -0.225 0.0555" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="right_wheel_link"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="left_wheel_link">
+    <xacro:wheel_inertia m="1.5" r="0.0655" h="0.045"
+                         xyz="0 0 0" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://food_del_robot_description/meshes/left_wheel_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0655" length="0.045"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="left_wheel_base_joint" type="continuous">
+    <origin xyz="0 0.225 0.0555" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="left_wheel_link"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="lidar_link">
+    <xacro:box_inertia m="0.01" l="0.1" w="0.1" h="0.02"
+                       xyz="0 0 0" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://food_del_robot_description/meshes/lidar_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.79 0.82 0.93 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.01 0.1 0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lidar_base_link" type="fixed">
+    <origin xyz="0.178 0 0.2436" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <link name="camera_link">
+    <xacro:box_inertia m="0.01" l="0.05" w="0.03" h="0.03"
+                       xyz="0 0 0" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://food_del_robot_description/meshes/camera_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.79 0.82 0.93 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.03 0.03"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_base_joint" type="fixed">
+    <origin xyz="0.29541 0.0175 0.168" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <link name="imu_link">
+    <xacro:box_inertia m="0.01" l="0.01" w="0.01" h="0.01"
+                       xyz="0 0 0" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://food_del_robot_description/meshes/imu_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.02 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="imu_base_joint" type="fixed">
+    <origin xyz="0 0 0.1106" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <link name="caster1_link">
+    <xacro:sphere_inertia m="0.108" r="0.0325" xyz="0 0 0" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://food_del_robot_description/meshes/caster1_link.STL"/>
+      </geometry>
+      <material name=""><color rgba="0.75 0.75 0.75 1"/></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.0325"/></geometry>
+    </collision>
+  </link>
+  <joint name="c1_b_joint" type="fixed">
+    <origin xyz="-0.1845 -0.1559745 0.0225" rpy="0 0 0"/>
+    <parent link="base_link"/><child link="caster1_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <link name="caster2_link">
+    <xacro:sphere_inertia m="0.108" r="0.0325" xyz="0 0 0" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://food_del_robot_description/meshes/caster2_link.STL"/>
+      </geometry>
+      <material name=""><color rgba="0.75 0.75 0.75 1"/></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.0325"/></geometry>
+    </collision>
+  </link>
+  <joint name="c2_b_joint" type="fixed">
+    <origin xyz="-0.1845 0.18303 0.0225" rpy="0 0 0"/>
+    <parent link="base_link"/><child link="caster2_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <link name="caster3_link">
+    <xacro:sphere_inertia m="0.108" r="0.0325" xyz="0 0 0" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://food_del_robot_description/meshes/caster3_link.STL"/>
+      </geometry>
+      <material name=""><color rgba="0.75 0.75 0.75 1"/></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.0325"/></geometry>
+    </collision>
+  </link>
+  <joint name="c3_b_joint" type="fixed">
+    <origin xyz="0.1845 -0.15597 0.0225" rpy="0 0 0"/>
+    <parent link="base_link"/><child link="caster3_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <link name="caster4_link">
+    <xacro:sphere_inertia m="0.108" r="0.0325" xyz="0 0 0" rpy="0 0 0"/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://food_del_robot_description/meshes/caster4_link.STL"/>
+      </geometry>
+      <material name=""><color rgba="0.75 0.75 0.75 1"/></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><sphere radius="0.0325"/></geometry>
+    </collision>
+  </link>
+  <joint name="c4_b_joint" type="fixed">
+    <origin xyz="0.1845 0.18303 0.0225" rpy="0 0 0"/>
+    <parent link="base_link"/><child link="caster4_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <!-- ============================================================
+       Gazebo simulation — only loaded when use_sim:=true
+       ============================================================ -->
+  <xacro:if value="$(arg use_sim)">
+
+    <!-- Wheel friction -->
+    <gazebo reference="right_wheel_link">
+      <mu1>1.0</mu1><mu2>1.0</mu2>
+      <kp>500000.0</kp><kd>10.0</kd>
+      <minDepth>0.001</minDepth><maxVel>0.1</maxVel>
+    </gazebo>
+    <gazebo reference="left_wheel_link">
+      <mu1>1.0</mu1><mu2>1.0</mu2>
+      <kp>500000.0</kp><kd>10.0</kd>
+      <minDepth>0.001</minDepth><maxVel>0.1</maxVel>
+    </gazebo>
+
+    <!-- Caster friction (low to allow free rolling) -->
+    <gazebo reference="caster1_link">
+      <mu1>0.01</mu1><mu2>0.01</mu2><kp>100000.0</kp><kd>100.0</kd>
+    </gazebo>
+    <gazebo reference="caster2_link">
+      <mu1>0.01</mu1><mu2>0.01</mu2><kp>100000.0</kp><kd>100.0</kd>
+    </gazebo>
+    <gazebo reference="caster3_link">
+      <mu1>0.01</mu1><mu2>0.01</mu2><kp>100000.0</kp><kd>100.0</kd>
+    </gazebo>
+    <gazebo reference="caster4_link">
+      <mu1>0.01</mu1><mu2>0.01</mu2><kp>100000.0</kp><kd>100.0</kd>
+    </gazebo>
+
+    <!-- Differential drive plugin -->
+    <gazebo>
+      <plugin filename="libgazebo_ros_diff_drive.so" name="diff_drive_controller">
+        <update_rate>50</update_rate>
+        <left_joint>left_wheel_base_joint</left_joint>
+        <right_joint>right_wheel_base_joint</right_joint>
+        <wheel_separation>0.45</wheel_separation>
+        <wheel_diameter>0.131</wheel_diameter>
+        <max_wheel_torque>20</max_wheel_torque>
+        <max_wheel_acceleration>0.8</max_wheel_acceleration>
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <publish_wheel_tf>true</publish_wheel_tf>
+        <odometry_topic>odom</odometry_topic>
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>base_footprint</robot_base_frame>
+      </plugin>
+    </gazebo>
+
+    <!-- LiDAR ray sensor -->
+    <gazebo reference="lidar_link">
+      <sensor name="lidar" type="ray">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>8</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1083</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.1241390705108643</min_angle>
+              <max_angle>3.1415927410125732</max_angle>
+            </horizontal>
+          </scan>
+          <range><min>0.1</min><max>12</max></range>
+        </ray>
+        <plugin name="lidar" filename="libgazebo_ros_ray_sensor.so">
+          <ros>
+            <remapping>~/out:=scan</remapping>
+          </ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+          <topic>scan</topic>
+          <frame_name>lidar_link</frame_name>
+          <transport>ros</transport>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+  </xacro:if>
+
+</robot>
