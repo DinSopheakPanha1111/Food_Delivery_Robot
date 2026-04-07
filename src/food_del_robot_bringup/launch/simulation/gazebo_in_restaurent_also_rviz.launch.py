@@ -12,8 +12,8 @@ def generate_launch_description():
     desc = get_package_share_directory('food_del_robot_description')
 
     xacro_file = os.path.join(desc, 'urdf', 'food_del_robot.urdf.xacro')
-    rviz_config_path = os.path.join(desc, 'rviz', 'food_del_sim.rviz')
-    world_path = os.path.join(desc, 'worlds', 'Restaurant', 'Restaurant')
+    rviz_config_path = os.path.join(desc, 'rviz', 'food_del_sim_v2.rviz')
+    world_path = os.path.join(desc, 'worlds', 'Restaurant', 'Restaurant.sdf')
 
     # Set GAZEBO_MODEL_PATH so Gazebo can resolve package:// mesh URIs
     pkg_share_parent = os.path.dirname(desc)

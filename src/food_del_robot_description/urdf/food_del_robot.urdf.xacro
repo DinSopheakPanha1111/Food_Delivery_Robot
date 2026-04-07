@@ -183,11 +183,29 @@
     </collision>
   </link>
 
+  <!-- FIXED: raise camera and tilt it upward a bit -->
   <joint name="camera_base_joint" type="fixed">
-    <origin xyz="0.29541 0.0175 0.168" rpy="0 0 0"/>
+    <origin xyz="0.29541 0.0175 0.23" rpy="0 -0.35 0"/>
     <parent link="base_link"/>
     <child link="camera_link"/>
     <axis xyz="0 0 0"/>
+  </joint>
+
+  <!-- Added camera frames for ROS optical convention -->
+  <link name="camera_rgb_frame"/>
+
+  <joint name="camera_rgb_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="camera_link"/>
+    <child link="camera_rgb_frame"/>
+  </joint>
+
+  <link name="camera_rgb_optical_frame"/>
+
+  <joint name="camera_rgb_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.57079632679 0 -1.57079632679"/>
+    <parent link="camera_rgb_frame"/>
+    <child link="camera_rgb_optical_frame"/>
   </joint>
 
   <link name="imu_link">
@@ -362,7 +380,7 @@
               <max_angle>3.1415927410125732</max_angle>
             </horizontal>
           </scan>
-          <range><min>0.1</min><max>12</max></range>
+          <range><min>0.2</min><max>12</max></range>
         </ray>
         <plugin name="lidar" filename="libgazebo_ros_ray_sensor.so">
           <ros>
@@ -372,6 +390,47 @@
           <topic>scan</topic>
           <frame_name>lidar_link</frame_name>
           <transport>ros</transport>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+    <!-- RGB-D camera for RTAB-Map + PointCloud2 for STVL -->
+    <gazebo reference="camera_link">
+      <sensor name="camera" type="depth">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>15</update_rate>      <!-- reduced from 30, enough for obstacle detection -->
+
+        <camera>
+          <horizontal_fov>1.047198</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>5.0</far>
+          </clip>
+        </camera>
+
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <frame_name>camera_rgb_optical_frame</frame_name>
+          <camera_name>camera</camera_name>
+          <hack_baseline>0.0</hack_baseline>
+          <min_depth>0.1</min_depth>
+          <max_depth>5.0</max_depth>
+
+          <ros>
+            <namespace>/</namespace>
+            <remapping>~/image_raw:=camera/image_raw</remapping>
+            <remapping>~/depth_image:=cdepth/points</remapping>   <!-- ADD THIS -->
+          </ros>
+
+          <!-- ADD THESE — enables PointCloud2 publishing directly -->
+          <point_cloud_topic>camera/depth/points</point_cloud_topic>
+          <point_cloud_cutoff>0.1</point_cloud_cutoff>
+          <point_cloud_cutoff_max>5.0</point_cloud_cutoff_max>
         </plugin>
       </sensor>
     </gazebo>
