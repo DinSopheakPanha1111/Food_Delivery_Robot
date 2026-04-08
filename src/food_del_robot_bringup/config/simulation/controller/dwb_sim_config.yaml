@@ -69,9 +69,15 @@ local_costmap:
       width: 5
       height: 5
       resolution: 0.05
-      robot_radius: 0.3              # was 0.2 — actual half-diagonal of 0.42x0.42 robot is ~0.30m
+      robot_radius: 0.35              # was 0.2 — actual half-diagonal of 0.42x0.42 robot is ~0.30m
       plugins: ["obstacle_layer", "stvl_layer", "inflation_layer"]
+      filters: ["keepout_filter"]
 
+      keepout_filter:
+              plugin: "nav2_costmap_2d::KeepoutFilter"
+              enabled: True
+              filter_info_topic: "/keepout_costmap_filter_info"   # ← add leading /
+        
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
@@ -90,8 +96,9 @@ local_costmap:
       stvl_layer:
         plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"
         enabled: true
-        voxel_decay: 5.0
-        decay_model: 1               # changed to exponential — clears stale voxels faster initially
+        voxel_decay: 0.5              # was 0.3 — faster decay
+        decay_model: 0                # ← change to LINEAR (0) — time-based absolute expiry
+                                      #   exponential (1) never fully reaches zero
         voxel_size: 0.05
         track_unknown_space: true
         mark_threshold: 0
@@ -117,13 +124,13 @@ local_costmap:
           min_z: 0.05
           max_z: 1.8
           vertical_fov_angle: 0.8
-          horizontal_fov_angle: 1.047
-          decay_acceleration: 1.0
+          horizontal_fov_angle: 1.5    # was 1.047 (~60°) — widen to ~86° to clear more area
+          decay_acceleration: 15.0     # was 1.0 — aggressively expire old voxels
           model_type: 0
 
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.5        # was 0.25 — must be >= robot_radius to guarantee lethal cells are padded enough
-        cost_scaling_factor: 3.0     # was 10.0 — lower value = wider cost gradient, planner avoids obstacles earlier
+        inflation_radius: 0.25        
+        cost_scaling_factor: 3.0     
 
       always_send_full_costmap: true

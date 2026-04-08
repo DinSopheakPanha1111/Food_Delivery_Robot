@@ -5,7 +5,6 @@ from launch.actions import IncludeLaunchDescription, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch.substitutions import LaunchConfiguration
-from launch.actions import DeclareLaunchArgument
 import os
 from ament_index_python.packages import get_package_share_directory
 
@@ -33,10 +32,19 @@ def generate_launch_description():
     lifecycle_config_path = os.path.join(
         bringup, 'config', 'simulation', 'lifecycle_manager', 'lifecycle_manager_sim.yaml'
     )
+    keepout_filter_params = os.path.join(
+        bringup,
+        'config',
+        'simulation',
+        'map_filter',
+        'keep_out_filter_config.yaml'
+    )
 
     return LaunchDescription([
 
+        # =========================
         # Gazebo + RViz
+        # =========================
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(
@@ -48,7 +56,9 @@ def generate_launch_description():
             )
         ),
 
+        # =========================
         # Hand controller
+        # =========================
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(
@@ -59,35 +69,24 @@ def generate_launch_description():
             )
         ),
 
-        # Depth image → PointCloud2 for STVL obstacle detection
-        # Waits 8s to ensure Gazebo camera is fully publishing first
-        TimerAction(
-            period=8.0,
-            actions=[
-                Node(
-                    package='depth_image_proc',
-                    executable='point_cloud_xyz_node',
-                    name='depth_to_pointcloud',
-                    output='screen',
-                    parameters=[{'use_sim_time': use_sim_time}],
-                    remappings=[
-                        ('image_rect',  '/camera/depth/image_raw'),
-                        ('camera_info', '/camera/camera_info'),
-                        ('points',      '/camera/depth/points'),
-                    ]
-                ),
-            ]
-        ),
-
-        # All Nav2 nodes start immediately
+        # =========================
+        # MAP SERVER
+        # starts immediately — other nodes depend on it
+        # =========================
         Node(
             package='nav2_map_server',
             executable='map_server',
             name='map_server',
             output='screen',
-            parameters=[{'yaml_filename': map_yaml_path}, {'use_sim_time': True}]
+            parameters=[
+                {'yaml_filename': map_yaml_path},
+                {'use_sim_time': True}
+            ]
         ),
 
+        # =========================
+        # LOCALIZATION
+        # =========================
         Node(
             package='nav2_amcl',
             executable='amcl',
@@ -96,6 +95,9 @@ def generate_launch_description():
             parameters=[amcl_config_path, {'use_sim_time': True}]
         ),
 
+        # =========================
+        # NAVIGATION SERVERS
+        # =========================
         Node(
             package='nav2_planner',
             executable='planner_server',
@@ -128,9 +130,38 @@ def generate_launch_description():
             parameters=[bt_navigator_config, {'use_sim_time': True}]
         ),
 
-        # Single lifecycle manager — delayed 5s so all 5 nodes are up first
+        # =========================
+        # KEEP OUT FILTER SERVERS
+        # delay 3s so map_server is ready first
+        # =========================
         TimerAction(
-            period=5.0,
+            period=3.0,
+            actions=[
+                Node(
+                    package='nav2_map_server',
+                    executable='map_server',
+                    name='keepout_filter_mask_server',
+                    namespace='',
+                    output='screen',
+                    parameters=[keepout_filter_params, {'use_sim_time': True}]
+                ),
+                Node(
+                    package='nav2_map_server',
+                    executable='costmap_filter_info_server',
+                    name='keepout_costmap_filter_info_server',
+                    namespace='',
+                    output='screen',
+                    parameters=[keepout_filter_params, {'use_sim_time': True}]
+                ),
+            ]
+        ),
+
+        # =========================
+        # LIFECYCLE MANAGER
+        # delay 8s — waits for keepout servers (3s) + extra buffer
+        # =========================
+        TimerAction(
+            period=8.0,
             actions=[
                 Node(
                     package='nav2_lifecycle_manager',
@@ -142,6 +173,31 @@ def generate_launch_description():
             ]
         ),
 
+        # =========================
+        # Depth → PointCloud2
+        # delay 8s — wait for Gazebo to fully load camera
+        # =========================
+        TimerAction(
+            period=8.0,
+            actions=[
+                Node(
+                    package='depth_image_proc',
+                    executable='point_cloud_xyz_node',
+                    name='depth_to_pointcloud',
+                    output='screen',
+                    parameters=[{'use_sim_time': use_sim_time}],
+                    remappings=[
+                        ('image_rect',  '/camera/depth/image_raw'),
+                        ('camera_info', '/camera/camera_info'),
+                        ('points',      '/camera/depth/points'),
+                    ]
+                ),
+            ]
+        ),
+
+        # =========================
+        # GOAL BRIDGE + PATH RECORDER
+        # =========================
         Node(
             package='food_del_goal_bridge',
             executable='path_recorder',
@@ -150,7 +206,6 @@ def generate_launch_description():
             parameters=[{'use_sim_time': True}]
         ),
 
-        # goal_bridge delayed 10s to ensure nav stack is fully active
         TimerAction(
             period=10.0,
             actions=[
