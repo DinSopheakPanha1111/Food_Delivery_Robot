@@ -1,49 +1,97 @@
 amcl:
   ros__parameters:
-    use_sim_time: true            # ✅ Add this at the top
-    alpha1: 0.2
-    alpha2: 0.2
-    alpha3: 0.2
-    alpha4: 0.2
-    alpha5: 0.2
-    base_frame_id: "base_footprint"
-    beam_skip_distance: 0.5
-    beam_skip_error_threshold: 0.9
-    beam_skip_threshold: 0.3
-    do_beamskip: false
-    global_frame_id: "map"
-    lambda_short: 0.1
-    laser_likelihood_max_dist: 2.0
-    laser_max_range: 100.0
-    laser_min_range: -1.0
-    laser_model_type: "likelihood_field"
-    max_beams: 60
-    max_particles: 2000
-    min_particles: 500
-    odom_frame_id: "odom"
-    pf_err: 0.05
-    pf_z: 0.99
-    recovery_alpha_fast: 0.0
-    recovery_alpha_slow: 0.0
-    resample_interval: 1
-    robot_model_type: "nav2_amcl::DifferentialMotionModel"
-    save_pose_rate: 0.5
-    sigma_hit: 0.2
-    tf_broadcast: true
-    transform_tolerance: 0.5
-    update_min_a: 0.2
-    update_min_d: 0.25
-    z_hit: 0.5
-    z_max: 0.05
-    z_rand: 0.5
-    z_short: 0.05
-    scan_topic: scan
-    map_topic: map
-    first_map_only: false
-    set_initial_pose: true
-    always_reset_initial_pose: false
+    use_sim_time: true
+    # ========================= Odometry noise alpha ======================== #
+    # These tell the robot: "Your movement sensors aren't perfect — here's how much to doubt them."
+
+    alpha1: 0.05  ##When I rotate, how wrong is my rotation measurement?
+    alpha2: 0.05  ##When I drive forward, how wrong is my rotation measurement?
+    alpha3: 0.05  ##When I drive forward, how wrong is my distance measurement?
+    alpha4: 0.05   ##When I rotate, how wrong is my distance measurement?
+
+    # ========================= Frame ================================== #
+    # These define which coordinate frames the robot uses.
+
+    base_frame_id: "base_footprint" ##The name of the robot's body frame (default: base_footprint)
+    global_frame_id: "map"  ##The name of the overall map frame (default: map)
+    odom_frame_id: "odom"  ##The name of the odometry frame (default: odom)
+
+    # ========================= Laser/Beam settings ================================== #
+    # These control how the robot reads its laser scanner.
+    # + likelihood_field : The "nearest obstacle" model. Instead of simulating physics, it just asks:
+    #                      "Is there a map obstacle near where my laser beam ended?"
+    #                      It looks at where each laser beam endpoint lands and checks if the map has a wall nearby.
+    #
+    # + likelihood_field_prob : The "likelihood_field + beam skipping". Exactly the same as likelihood_field but adds beam skip support
+    #                           it can automatically ignore bad/weird beams that don't match the map at all (like laser hitting a person walking by).
+    #
+    # + beam : The "physics simulation" model, It tries to fully simulate how a laser beam behaves in the real world, accounting for:
+    #          hitting a wall correctly, hitting an unexpected obstacle, random noise, beam maxing out (hitting nothing)
+
+    laser_max_range: 8.0  ##Ignore laser beams longer than this distance (-1 = use sensor default)
+    laser_min_range: 0.15   ##Ignore laser beams shorter than this distance (-1 = use sensor default)
+    max_beams: 180  ##How many laser beams to use per scan (more = more accurate but slower), RPLIDAR A1 has resolution <= 1degree, so max can be 360
+    laser_model_type: "likelihood_field_prob"  ##Which math model to use for laser matching (likelihood_field is most common)
+    laser_likelihood_max_dist: 1.0  ##How far around obstacles to "inflate" when matching laser to map
+
+    # ========================= Beam Skip settings ================================== #
+    #These help the robot ignore bad/weird laser readings.
+
+    beam_skip_distance: 0.5  ##"How far off does a beam need to be to count as bad?", 0.5 = if beam endpoint is 0.5m away from nearest map obstacle → it's a bad beam
+    beam_skip_error_threshold: 0.9  ##If this many beams are bad, force a full update (something's really wrong)
+    beam_skip_threshold: 0.3  ##How many beams need to be bad before skipping kicks in (%)
+    do_beamskip: true  ##Turn beam skipping on or off
+
+   # ========================= Particle Filter settings ================================== #
+   # AMCL uses particles (little guesses about where the robot is). More particles = more accurate but uses more CPU.
+     
+    max_particles: 2000   ##Maximum number of location guesses allowed
+    min_particles: 500    ##Minimum number of location guesses to keep
+    pf_err: 0.05    ##"How accurate does my particle set need to be?"
+    pf_z: 0.99    ##"How confident do I need to be that my particles are good enough?"
+    resample_interval: 1  ##How many updates happen before particles are resampled/refreshed
+
+   # ========================= Update / Moiton Thresholds================================= #
+   # The robot only recalculates its position when it moves enough (saves CPU).
+    update_min_a: 0.2   ##Robot must move this far (meters) before updating location
+    update_min_d: 0.25  ##Robot must rotate this much (radians) before updating location
+
+   # ========================= Recovery Settings ================================= #
+   # When the robot gets completely lost, it adds random guesses to recover. 
+    
+    recovery_alpha_fast: 0.0  ##How quickly the "short-term confusion" detector reacts
+    recovery_alpha_slow: 0.0  ##How quickly the "long-term confusion" detector reacts
+
+   # ========================= Initial Pose Settings ================================= #
+   # When the robot gets completely lost, it adds random guesses to recover. 
+    set_initial_pose: true   ##If true, use the coordinates below instead of waiting for a message
     initial_pose:
       x: 0.0
       y: 0.0
       z: 0.0
       yaw: 0.0
+    always_reset_initial_pose: false    ##If true, always require a fresh starting pose when restarting
+   
+   # ========================= Laser Model Weights (z_ values) ================================= #
+   # These are mixing ratios for how the laser model explains sensor readings. All used weights must add up to 1.0. 
+
+    z_hit: 0.6    ##Weight for beams that hit exactly where expected (good readings)
+    z_max: 0.05   ##Weight for beams that max out (hit nothing) IGNORED BECAUSE LIKELIHOOD FIELD PROB
+    z_rand: 0.4   ##Weight for completely random/unexpected readings
+    z_short: 0.05   ##Weight for beams that are shorter than expected (hit something unexpected) IGNORED BECAUSE LIKELIHOOD FIELD PROB
+    lambda_short: 0.1   ##How quickly short beam probability drops off
+    sigma_hit: 0.2  ##How wide the "good hit" zone is (Gaussian spread)
+
+   # =========================  Transform / Publishing Settings ================================= #
+   # These are mixing ratios for how the laser model explains sensor readings. All used weights must add up to 1.0. 
+
+    tf_broadcast: true  ##Whether to publish the map→odom transform (usually keep true)
+    transform_tolerance: 0.5  ##How far into the future to stamp the published transform
+    save_pose_rate: 0.5   ##How often to save the robot's last known pose (Hz)
+   
+   # =========================  Topic Settings ================================= #
+
+    scan_topic: scan    ##Which ROS topic to listen to for laser scan data
+    map_topic: map    ##Which ROS topic to listen to for the map
+    first_map_only: false   ##If true, only accept the very first map received 
+    robot_model_type: "nav2_amcl::DifferentialMotionModel"
