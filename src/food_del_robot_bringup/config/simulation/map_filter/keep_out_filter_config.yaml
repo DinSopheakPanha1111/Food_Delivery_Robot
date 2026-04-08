@@ -1,15 +1,15 @@
 keepout_filter_mask_server:
   ros__parameters:
-    use_sim_time: true                    # ← add
+    use_sim_time: true
     topic_name: "keepout_filter_mask"
     frame_id: "map"
-    yaml_filename: "/home/panha/Food_Delivery_Robot/src/food_del_robot_bringup/maps/Simulation_map/keepout_mask.yaml"
+    yaml_filename: "keepout_mask.yaml"
 
 keepout_costmap_filter_info_server:
   ros__parameters:
     use_sim_time: true
     type: 0
     filter_info_topic: "keepout_costmap_filter_info"
-    mask_topic: "/keepout_filter_mask"      # ← add leading slash
+    mask_topic: "/keepout_filter_mask"
     base: 0.0
     multiplier: 1.0

@@ -17,21 +17,27 @@ def generate_launch_description():
     smac_sim_config = os.path.join(
         bringup, 'config', 'simulation', 'planner', 'smac_sim_config.yaml'
     )
+
     dwb_sim_config = os.path.join(
         bringup, 'config', 'simulation', 'controller', 'dwb_sim_config.yaml'
     )
+
     bt_navigator_config = os.path.join(
         bringup, 'config', 'simulation', 'bt_navigator', 'bt_navigator_sim_config.yaml'
     )
+
     map_yaml_path = os.path.join(
         bringup, 'maps', 'Simulation_map', 'Simulation_map.yaml'
     )
+
     amcl_config_path = os.path.join(
         bringup, 'config', 'simulation', 'amcl', 'amcl_sim_config.yaml'
     )
+
     lifecycle_config_path = os.path.join(
         bringup, 'config', 'simulation', 'lifecycle_manager', 'lifecycle_manager_sim.yaml'
     )
+
     keepout_filter_params = os.path.join(
         bringup,
         'config',
@@ -39,8 +45,18 @@ def generate_launch_description():
         'map_filter',
         'keep_out_filter_config.yaml'
     )
-    behaviour_sim_config = os.path.join(                          # ← ADDED
+
+    behaviour_sim_config = os.path.join(
         bringup, 'config', 'simulation', 'behaviour', 'behaviour_sim_config.yaml'
+    )
+
+    # IMPORTANT:
+    # Resolve keepout mask yaml dynamically from package share
+    keepout_mask_yaml = os.path.join(
+        bringup,
+        'maps',
+        'Simulation_map',
+        'keepout_mask.yaml'
     )
 
     return LaunchDescription([
@@ -74,7 +90,6 @@ def generate_launch_description():
 
         # =========================
         # MAP SERVER
-        # starts immediately — other nodes depend on it
         # =========================
         Node(
             package='nav2_map_server',
@@ -82,8 +97,10 @@ def generate_launch_description():
             name='map_server',
             output='screen',
             parameters=[
-                {'yaml_filename': map_yaml_path},
-                {'use_sim_time': True}
+                {
+                    'yaml_filename': map_yaml_path,
+                    'use_sim_time': True
+                }
             ]
         ),
 
@@ -95,7 +112,10 @@ def generate_launch_description():
             executable='amcl',
             name='amcl',
             output='screen',
-            parameters=[amcl_config_path, {'use_sim_time': True}]
+            parameters=[
+                amcl_config_path,
+                {'use_sim_time': True}
+            ]
         ),
 
         # =========================
@@ -106,7 +126,10 @@ def generate_launch_description():
             executable='planner_server',
             name='planner_server',
             output='screen',
-            parameters=[smac_sim_config, {'use_sim_time': True}]
+            parameters=[
+                smac_sim_config,
+                {'use_sim_time': True}
+            ]
         ),
 
         Node(
@@ -114,7 +137,10 @@ def generate_launch_description():
             executable='controller_server',
             name='controller_server',
             output='screen',
-            parameters=[dwb_sim_config, {'use_sim_time': True}]
+            parameters=[
+                dwb_sim_config,
+                {'use_sim_time': True}
+            ]
         ),
 
         Node(
@@ -122,7 +148,10 @@ def generate_launch_description():
             executable='behavior_server',
             name='behavior_server',
             output='screen',
-            parameters=[behaviour_sim_config, {'use_sim_time': True}]   # ← FIXED (was missing config)
+            parameters=[
+                behaviour_sim_config,
+                {'use_sim_time': True}
+            ]
         ),
 
         Node(
@@ -130,12 +159,14 @@ def generate_launch_description():
             executable='bt_navigator',
             name='bt_navigator',
             output='screen',
-            parameters=[bt_navigator_config, {'use_sim_time': True}]
+            parameters=[
+                bt_navigator_config,
+                {'use_sim_time': True}
+            ]
         ),
 
         # =========================
         # KEEP OUT FILTER SERVERS
-        # delay 3s so map_server is ready first
         # =========================
         TimerAction(
             period=3.0,
@@ -144,24 +175,30 @@ def generate_launch_description():
                     package='nav2_map_server',
                     executable='map_server',
                     name='keepout_filter_mask_server',
-                    namespace='',
                     output='screen',
-                    parameters=[keepout_filter_params, {'use_sim_time': True}]
+                    parameters=[
+                        keepout_filter_params,
+                        {
+                            'use_sim_time': True,
+                            'yaml_filename': keepout_mask_yaml
+                        }
+                    ]
                 ),
                 Node(
                     package='nav2_map_server',
                     executable='costmap_filter_info_server',
                     name='keepout_costmap_filter_info_server',
-                    namespace='',
                     output='screen',
-                    parameters=[keepout_filter_params, {'use_sim_time': True}]
+                    parameters=[
+                        keepout_filter_params,
+                        {'use_sim_time': True}
+                    ]
                 ),
             ]
         ),
 
         # =========================
         # LIFECYCLE MANAGER
-        # delay 8s — waits for keepout servers (3s) + extra buffer
         # =========================
         TimerAction(
             period=8.0,
@@ -178,7 +215,6 @@ def generate_launch_description():
 
         # =========================
         # Depth → PointCloud2
-        # delay 8s — wait for Gazebo to fully load camera
         # =========================
         TimerAction(
             period=8.0,
@@ -190,9 +226,9 @@ def generate_launch_description():
                     output='screen',
                     parameters=[{'use_sim_time': use_sim_time}],
                     remappings=[
-                        ('image_rect',  '/camera/depth/image_raw'),
+                        ('image_rect', '/camera/depth/image_raw'),
                         ('camera_info', '/camera/camera_info'),
-                        ('points',      '/camera/depth/points'),
+                        ('points', '/camera/depth/points'),
                     ]
                 ),
             ]
