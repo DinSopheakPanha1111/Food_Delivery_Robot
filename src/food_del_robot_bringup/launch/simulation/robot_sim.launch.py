@@ -39,6 +39,9 @@ def generate_launch_description():
         'map_filter',
         'keep_out_filter_config.yaml'
     )
+    behaviour_sim_config = os.path.join(                          # ← ADDED
+        bringup, 'config', 'simulation', 'behaviour', 'behaviour_sim_config.yaml'
+    )
 
     return LaunchDescription([
 
@@ -119,7 +122,7 @@ def generate_launch_description():
             executable='behavior_server',
             name='behavior_server',
             output='screen',
-            parameters=[{'use_sim_time': True}]
+            parameters=[behaviour_sim_config, {'use_sim_time': True}]   # ← FIXED (was missing config)
         ),
 
         Node(

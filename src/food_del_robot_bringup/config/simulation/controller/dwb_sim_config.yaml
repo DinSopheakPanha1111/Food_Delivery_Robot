@@ -46,7 +46,7 @@ controller_server:
       short_circuit_trajectory_evaluation: true
       stateful: true
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
-      BaseObstacle.scale: 0.5        # was 0.02 — nearly zero means planner ignores obstacle costs entirely
+      BaseObstacle.scale: 0.5        
       PathAlign.scale: 32.0
       PathAlign.forward_point_distance: 0.1
       GoalAlign.scale: 24.0
@@ -69,7 +69,7 @@ local_costmap:
       width: 5
       height: 5
       resolution: 0.05
-      robot_radius: 0.35              # was 0.2 — actual half-diagonal of 0.42x0.42 robot is ~0.30m
+      robot_radius: 0.32            # was 0.2 — actual half-diagonal of 0.42x0.42 robot is ~0.30m
       plugins: ["obstacle_layer", "stvl_layer", "inflation_layer"]
       filters: ["keepout_filter"]
 
