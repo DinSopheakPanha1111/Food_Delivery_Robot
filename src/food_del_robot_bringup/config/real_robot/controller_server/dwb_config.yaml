@@ -1,135 +1,201 @@
 controller_server:
   ros__parameters:
-    controller_frequency: 10.0
-    min_x_velocity_threshold: 0.001
-    min_y_velocity_threshold: 0.001
-    min_theta_velocity_threshold: 0.001
-    failure_tolerance: 0.3
+    
+    # ============================== CONTROLLER SERVER  ======================================= #
+    
+    controller_frequency: 10.0    ## How often the controller runs its control loop
+    min_x_velocity_threshold: 0.001   ## Velocities below this are treated as zero (linear) TAKE 10% OF MAX VEL
+    min_theta_velocity_threshold: 0.0   ## Velocities below this are treated as zero (angular) TAKE 10% OF MAX VEL
+    failure_tolerance: 1.0   ## Seconds to tolerate controller failure before aborting
+    
+    # ============================== PROGRESS AND GOAL CHECKERS ======================================= #
     progress_checker_plugins: ["progress_checker"]
     goal_checker_plugins: ["goal_checker"]
-    controller_plugins: ["FollowPath"]
+
     progress_checker:
-      plugin: "nav2_controller::SimpleProgressChecker"
-      required_movement_radius: 0.1
-      movement_time_allowance: 10.0
+      plugin: "nav2_controller::PoseProgressChecker"  ##Checks whether the robot has made progress based on translation and rotation.
+      required_movement_radius: 0.1   ##Minimum amount a robot must move to be progressing to goal (m).
+      movement_time_allowance: 10.0   ##Maximum amount of time a robot has to move the minimum radius or the mnimum angle (s).
+      required_movement_angle: 0.1    ##Minimum amount a robot must rotate to be progressing to goal (rad).
+    
     goal_checker:
-      stateful: true
-      plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.25
-      yaw_goal_tolerance: 0.25
+      stateful: true   ##Whether to check for XY position tolerance after rotating to goal orientation in case of minor localization changes.
+      plugin: "nav2_controller::SimpleGoalChecker"  ##Checks whether the robot has reached the goal pose.
+      xy_goal_tolerance: 0.05   ##Tolerance to meet goal completion criteria (m).
+      yaw_goal_tolerance: 0.05  ##Tolerance to meet goal completion criteria (rad).
+      path_length_tolerance: 0.05   ##How close to the end of the path (in meters) the robot must be before the goal is considered complete
+        
+    # ============================== DWB LOCAL PLANNER ======================================= # 
+    controller_plugins: ["FollowPath"]
+
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
       debug_trajectory_details: true
-      min_vel_x: 0.0
-      min_vel_y: 0.0
-      max_vel_x: 0.2  # Limiting linear velocity to 0.2 m/s
-      max_vel_y: 0.0
-      max_vel_theta: 0.5  # Limiting angular velocity to 0.5 rad/s
-      min_speed_xy: 0.0
-      max_speed_xy: 0.2  # Ensuring overall linear speed is limited to 0.2 m/s
-      min_speed_theta: 0.0
-      acc_lim_x: 3.0
-      acc_lim_y: 0.0
-      acc_lim_theta: 3.2
-      decel_lim_x: -2.5
-      decel_lim_y: 0.0
-      decel_lim_theta: -3.2
-      vx_samples: 20
-      vy_samples: 0
-      vtheta_samples: 40
-      sim_time: 1.5
-      linear_granularity: 0.05
-      angular_granularity: 0.025
-      transform_tolerance: 0.2
-      xy_goal_tolerance: 0.05
-      trans_stopped_velocity: 0.25
-      short_circuit_trajectory_evaluation: true
-      stateful: true
-      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
-      BaseObstacle.scale: 0.02
-      PathAlign.scale: 32.0
-      PathAlign.forward_point_distance: 0.1
-      GoalAlign.scale: 24.0
-      GoalAlign.forward_point_distance: 0.1
-      PathDist.scale: 32.0
-      GoalDist.scale: 24.0
+      min_vel_x: 0.0  ##Minimum forward speed m/s (Allow stop)
+      min_vel_y: 0.0  ##Minimum sideway speed m/s (NO)
+      max_vel_x: 0.3  ##Maximum forward speed m/s
+      max_vel_y: 0.0  ##Maximum sideway speed m/s (NO)
+      max_vel_theta: 1.0  ##Maximum rotation rad/s speed
+      min_speed_xy: 0.0   ##Minimum overall linear m/s speed
+      max_speed_xy: 0.3   ##Maximum overall linear m/s speed
+      min_speed_theta: 0.0    ##Minimum overall rotation rad/s speed
+      acc_lim_x: 0.2  ##Limit forward acceleration m/s^2 
+      acc_lim_y: 0.0  ##Limit sideway acceleration m/s^2 (NO)
+      acc_lim_theta: 1.5  ##Limit rotation acceleration m/s^2
+      decel_lim_x: 0.2  ##Limit forward decceleration m/s^2
+      decel_lim_y: 0.0  ##Limit sideway decceleration m/s^2 (NO)
+      decel_lim_theta: -1.0   ##Limit rotation decceleration rad/s^2 (NO)
+      ###########
+      #DWB works by simulating many possible trajectories and picking the best one. These parameters control how those simulations are generated.
+      #Think of it like a search grid of possible velocity combinations:
+      #vx (forward speed):   [0.0, 0.01, 0.02, ... 0.2]  → 10 evenly spaced samples
+      #vy (sideways speed):  [0]                           → 0 = disabled (can't strafe)
+      #vtheta (turn speed):  [−0.5, ... 0.0, ... +0.5]    → 10 evenly spaced samples
+      #So DWB generates up to 10 × 10 = 100 candidate trajectories each cycle, each with a different (vx, vtheta) combination, then scores them all and picks the best.
+      #NOTE : More samples = better path quality, but more CPU cost
+      vx_samples: 20   ##Number of forward velocity samples to evaluate
+      vy_samples: 0   ##No lateral samples (non-holonomic)
+      vtheta_samples: 40  ##Number of rotational velocity samples to evaluate
+      ############
+      ############
+      #Longer sim_time = robot plans further ahead, but gets slower to compute
+      sim_time: 1.5   ##How far ahead trajectories are simulated s. Each candidate trajectory is simulated 1.5 seconds into the future
+      ############
+
+      ############
+      #During each simulated trajectory, the planner checks for collisions at regular intervals along the path — not continuously, but at discrete steps:
+      #linear_granularity = 0.05m
+      # Path:  ●────┼────┼────┼────┼────┼────► (check every 5cm)
+      #             ✓    ✓    ✓    ✗ COLLISION!
+      #                            └─ trajectory is rejected
+      # angular_granularity = 0.017rad
+      # Rotation: ●──┼──┼──┼──┼──► (check every ~1°)
+      # NOTE : Smaller value = more collision check points = safer but slower, Larger value = fewer check points = faster but may miss narrow obstacles
+      linear_granularity: 0.05  ##Step size when checking linear trajectory for collisions m
+      angular_granularity: 0.017  ##Step size when checking angular trajectory for collisions rad
+      ############
+      transform_tolerance: 0.2   ##Max age of TF transforms before considered stale s
+      xy_goal_tolerance: 0.05   ##Local planner's own (tighter) position goal tolerance m
+      trans_stopped_velocity: 0.03  ##translation speed below which robot is considered "stopped" m/s
+      short_circuit_trajectory_evaluation: true   ##Stops evaluating a trajectory early if it's already invalid (performance boost)
+      stateful: true  ##Remembers state between iterations
+      ############
+      #total_score = (critic1_score × scale1) + (critic2_score × scale2) + ...
+      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "GoalDist", "PathDist", "PathAlign", "ObstacleFootprint"]  ##DWBs' critics
+      
+      ##RotateToGoal : Spin to face goal before arriving
       RotateToGoal.scale: 32.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
-    enable_stamped_cmd_vel: true
+      RotateToGoal.trans_stopped_velocity: 0.03
+      RotateToGoal.path_length_tolerance: 0.05 
+      RotateToGoal.xy_goal_tolerance: 0.05
+
+      ##OscillationCritic : Prevents the robot from just moving backwards and forwards.
+      Oscillation.oscillation_reset_dist: 0.05  ##Minimum distance to move to reset oscillation watchdog (m).
+      Oscillation.oscillation_reset_angle:  0.05   ##Minimum angular distance to move to reset watchdog (rad).
+      Oscillation.oscillation_reset_time: -1.0  ##Duration when a reset may be called. If -1, cannot be reset..
+      Oscillation.x_only_threshold: 0.05  ##Threshold to check in the X velocity direction.
+      Oscillation.scale: 5.0
+
+      ##BaseObstacleCritic : Scores a trajectory based on where the path passes over the costmap. To use this properly, you must use the inflation layer in costmap to expand obstacles by the robot’s radius.  
+      BaseObstacle.scale: 32.0
+
+      ##GoalAlignCritic : Scores a trajectory based on how well aligned the trajectory is with the goal pose.
+      GoalAlign.scale: 24.0
+      GoalAlign.forward_point_distance: 0.1
+
+      ##GoalDistCritic : Scores a trajectory based on how close the trajectory gets the robot to the goal pose.
+      GoalDist.scale: 24.0
+      GoalDist.aggregation_type: "last"
+
+      ##PathDistCritic : Scores a trajectory based on how well it is aligned to the path provided by the global planner.
+      PathDist.scale: 32.0
+      PathDist.aggregation_type: "last"
+      ##PathAlignCritic : Scores a trajectory based on how well it is aligned to the path provided by the global planner.
+      PathAlign.scale: 32.0  ## no unit just a weight scale
+      PathAlign.forward_point_distance: 0.1 ## Point in front of robot to look ahead to compute angular change from m
+      PathAlign.aggregation_type: "last" ## last, sum, or product combination methods 1.0 mean last
+      
+      ##ObstacleFootprint : Scores a trajectory based on verifying all points along the robot’s footprint don’t touch an obstacle marked in the costmap.
+      ObstacleFootprint.sum_scores: False
+      ObstacleFootprint.scale: 32.0
+      ############
+    enable_stamped_cmd_vel: true    ##Publishes velocity commands with a timestamp
 
 local_costmap:
   local_costmap:
     ros__parameters:
-      update_frequency: 5.0
-      publish_frequency: 3.0
+      update_frequency: 7.0
+      publish_frequency: 3.0         
       global_frame: odom
       robot_base_frame: base_link
       rolling_window: true
-      width: 5
-      height: 5
+      width: 2
+      height: 2
       resolution: 0.05
-      robot_radius: 0.2
+      robot_radius: 0.18
       plugins: ["obstacle_layer", "stvl_layer", "inflation_layer"]
-      
-      inflation_layer:
-        plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.25
-        cost_scaling_factor: 10.0
+      filters: ["keepout_filter"]
 
+      keepout_filter:
+              plugin: "nav2_costmap_2d::KeepoutFilter"
+              enabled: True
+              filter_info_topic: "/keepout_costmap_filter_info"   # ← add leading /
+        
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
         observation_sources: scan
         scan:
           topic: /scan
-          max_obstacle_height: 1.5  # Increase max obstacle height to detect more of the table
+          max_obstacle_height: 1.5
           clearing: true
           marking: true
           data_type: "LaserScan"
-          raytrace_max_range: 5.0  # Increased max range to detect obstacles from further away
-          raytrace_min_range: 0.2  # Increased the minimum range to avoid false positives
-          obstacle_max_range: 3.0  # Increased obstacle detection range
-          obstacle_min_range: 0.2  # Ensure detection near the robot
+          raytrace_max_range: 5.0
+          raytrace_min_range: 0.2
+          obstacle_max_range: 3.0
+          obstacle_min_range: 0.2
 
       stvl_layer:
         plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"
         enabled: true
-        voxel_decay: 15.
-        decay_model: 0
+        voxel_decay: 0.5              # was 0.3 — faster decay
+        decay_model: 0                # ← change to LINEAR (0) — time-based absolute expiry
+                                      #   exponential (1) never fully reaches zero
         voxel_size: 0.05
         track_unknown_space: true
-        unknown_threshold: 15
         mark_threshold: 0
         update_footprint_enabled: true
         combination_method: 1
         origin_z: 0.0
         publish_voxel_map: true
-        transform_tolerance: 0.2
+        transform_tolerance: 0.5
         mapping_mode: false
         map_save_duration: 60.0
+
         observation_sources: pointcloud
         pointcloud:
           data_type: PointCloud2
-          topic: /camera/camera/depth/color/points
+          topic: /camera/depth/points
+          sensor_frame: camera_link
+          observation_persistence: 0.0
+          expected_update_rate: 0.0
           marking: true
           clearing: true
-          obstacle_range: 2.5
-          min_obstacle_height: 0.2
-          max_obstacle_height: 3.0
-          expected_update_rate: 0.0
-          observation_persistence: 0.0
-          inf_is_valid: false
-          filter: "voxel"
-          voxel_min_points: 0
-          clear_after_reading: true
-          max_z: 7.0
-          min_z: 0.1
-          vertical_fov_angle: 0.8745
-          horizontal_fov_angle: 1.048
-          decay_acceleration: 15.0
+          min_obstacle_height: 0.05
+          max_obstacle_height: 1.8
+          min_z: 0.05
+          max_z: 1.8
+          vertical_fov_angle: 0.8
+          horizontal_fov_angle: 1.5    # was 1.047 (~60°) — widen to ~86° to clear more area
+          decay_acceleration: 15.0     # was 1.0 — aggressively expire old voxels
           model_type: 0
 
-      static_layer:
-        map_subscribe_transient_local: true
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        inflation_radius: 0.25        
+        cost_scaling_factor: 3.0     
+
       always_send_full_costmap: true
