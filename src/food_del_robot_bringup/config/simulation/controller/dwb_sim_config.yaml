@@ -3,9 +3,9 @@ controller_server:
     
     # ============================== CONTROLLER SERVER  ======================================= #
     
-    controller_frequency: 10.0    ## How often the controller runs its control loop
-    min_x_velocity_threshold: 0.03   ## Velocities below this are treated as zero (linear) TAKE 10% OF MAX VEL
-    min_theta_velocity_threshold: 0.05   ## Velocities below this are treated as zero (angular) TAKE 10% OF MAX VEL
+    controller_frequency: 20.0    ## How often the controller runs its control loop
+    min_x_velocity_threshold: 0.01   ## Velocities below this are treated as zero (linear) TAKE 10% OF MAX VEL
+    min_theta_velocity_threshold: 0.01   ## Velocities below this are treated as zero (angular) TAKE 10% OF MAX VEL
     failure_tolerance: 1.0   ## Seconds to tolerate controller failure before aborting
     
     # ============================== PROGRESS AND GOAL CHECKERS ======================================= #
@@ -39,12 +39,12 @@ controller_server:
       min_speed_xy: 0.0   ##Minimum overall linear m/s speed
       max_speed_xy: 0.3   ##Maximum overall linear m/s speed
       min_speed_theta: 0.0    ##Minimum overall rotation rad/s speed
-      acc_lim_x: 0.2  ##Limit forward acceleration m/s^2 
+      acc_lim_x: 1.0  ##Limit forward acceleration m/s^2 
       acc_lim_y: 0.0  ##Limit sideway acceleration m/s^2 (NO)
       acc_lim_theta: 1.5  ##Limit rotation acceleration m/s^2
-      decel_lim_x: -0.2  ##Limit forward decceleration m/s^2
+      decel_lim_x: -1.0  ##Limit forward decceleration m/s^2
       decel_lim_y: 0.0  ##Limit sideway decceleration m/s^2 (NO)
-      decel_lim_theta: -1.0   ##Limit rotation decceleration rad/s^2 (NO)
+      decel_lim_theta: -1.5   ##Limit rotation decceleration rad/s^2 (NO)
       ###########
       #DWB works by simulating many possible trajectories and picking the best one. These parameters control how those simulations are generated.
       #Think of it like a search grid of possible velocity combinations:
@@ -59,7 +59,7 @@ controller_server:
       ############
       ############
       #Longer sim_time = robot plans further ahead, but gets slower to compute
-      sim_time: 1.5   ##How far ahead trajectories are simulated s. Each candidate trajectory is simulated 1.5 seconds into the future
+      sim_time: 2.5   ##How far ahead trajectories are simulated s. Each candidate trajectory is simulated 1.5 seconds into the future
       ############
       ############
       #During each simulated trajectory, the planner checks for collisions at regular intervals along the path — not continuously, but at discrete steps:
@@ -81,7 +81,7 @@ controller_server:
       ############
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
       ##RotateToGoal : Spin to face goal before arriving
-      RotateToGoal.scale: 32.0
+      RotateToGoal.scale: 24.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
       RotateToGoal.trans_stopped_velocity: 0.03
@@ -96,7 +96,7 @@ controller_server:
       Oscillation.scale: 5.0
 
       ##BaseObstacleCritic : Scores a trajectory based on where the path passes over the costmap. To use this properly, you must use the inflation layer in costmap to expand obstacles by the robot’s radius.  
-      BaseObstacle.scale: 32.0
+      BaseObstacle.scale: 0.0
 
       ##GoalAlignCritic : Scores a trajectory based on how well aligned the trajectory is with the goal pose.
       GoalAlign.scale: 24.0
@@ -131,7 +131,7 @@ local_costmap:
       width: 2
       height: 2
       resolution: 0.05
-      robot_radius: 0.18           # was 0.2 — actual half-diagonal of 0.42x0.42 robot is ~0.30m
+      robot_radius: 0.35           # was 0.2 — actual half-diagonal of 0.42x0.42 robot is ~0.30m
       plugins: ["obstacle_layer", "stvl_layer", "inflation_layer"]
       filters: ["keepout_filter"]
 
@@ -193,7 +193,7 @@ local_costmap:
 
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.25        
+        inflation_radius: 0.7       
         cost_scaling_factor: 3.0     
 
       always_send_full_costmap: true
