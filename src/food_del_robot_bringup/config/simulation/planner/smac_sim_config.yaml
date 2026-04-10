@@ -64,7 +64,7 @@ global_costmap:
 
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.7     # ← was 0.15; must be > robot_radius, ideally 2x
+        inflation_radius: 0.5     # ← was 0.15; must be > robot_radius, ideally 2x
         cost_scaling_factor: 3.0  # ← was 10.0; lower = gentler cost gradient = planner stays further away
 
       always_send_full_costmap: true
