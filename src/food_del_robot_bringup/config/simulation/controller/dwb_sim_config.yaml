@@ -5,7 +5,7 @@ controller_server:
     
     controller_frequency: 20.0    ## How often the controller runs its control loop
     min_x_velocity_threshold: 0.01   ## Velocities below this are treated as zero (linear) TAKE 10% OF MAX VEL
-    min_theta_velocity_threshold: 0.01   ## Velocities below this are treated as zero (angular) TAKE 10% OF MAX VEL
+    min_theta_velocity_threshold: 0.05   ## Velocities below this are treated as zero (angular) TAKE 10% OF MAX VEL
     failure_tolerance: 1.0   ## Seconds to tolerate controller failure before aborting
     
     # ============================== PROGRESS AND GOAL CHECKERS ======================================= #
@@ -23,7 +23,7 @@ controller_server:
       plugin: "nav2_controller::SimpleGoalChecker"  ##Checks whether the robot has reached the goal pose.
       xy_goal_tolerance: 0.05   ##Tolerance to meet goal completion criteria (m).
       yaw_goal_tolerance: 0.1  ##Tolerance to meet goal completion criteria (rad).
-      path_length_tolerance: 0.05   ##How close to the end of the path (in meters) the robot must be before the goal is considered complete
+      path_length_tolerance: 0.01   ##How close to the end of the path (in meters) the robot must be before the goal is considered complete
     
     # ============================== DWB LOCAL PLANNER ======================================= # 
     controller_plugins: ["FollowPath"]
@@ -131,7 +131,7 @@ local_costmap:
       width: 2
       height: 2
       resolution: 0.05
-      robot_radius: 0.35           # was 0.2 — actual half-diagonal of 0.42x0.42 robot is ~0.30m
+      robot_radius: 0.3           # was 0.2 — actual half-diagonal of 0.42x0.42 robot is ~0.30m
       plugins: ["obstacle_layer", "stvl_layer", "inflation_layer"]
       filters: ["keepout_filter"]
 
