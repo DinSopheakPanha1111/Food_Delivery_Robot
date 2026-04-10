@@ -14,8 +14,8 @@ controller_server:
     
     progress_checker:
       plugin: "nav2_controller::PoseProgressChecker"  ##Checks whether the robot has made progress based on translation and rotation.
-      required_movement_radius: 0.1   ##Minimum amount a robot must move to be progressing to goal (m).
-      movement_time_allowance: 10.0   ##Maximum amount of time a robot has to move the minimum radius or the mnimum angle (s).
+      required_movement_radius: 0.01   ##Minimum amount a robot must move to be progressing to goal (m).
+      movement_time_allowance: 20.0   ##Maximum amount of time a robot has to move the minimum radius or the mnimum angle (s).
       required_movement_angle: 0.1    ##Minimum amount a robot must rotate to be progressing to goal (rad).
     
     goal_checker:
@@ -39,9 +39,9 @@ controller_server:
       min_speed_xy: 0.0   ##Minimum overall linear m/s speed
       max_speed_xy: 0.3   ##Maximum overall linear m/s speed
       min_speed_theta: 0.0    ##Minimum overall rotation rad/s speed
-      acc_lim_x: 1.0  ##Limit forward acceleration m/s^2 
+      acc_lim_x: 0.01   ##Limit forward acceleration m/s^2 
       acc_lim_y: 0.0  ##Limit sideway acceleration m/s^2 (NO)
-      acc_lim_theta: 1.5  ##Limit rotation acceleration m/s^2
+      acc_lim_theta: 3.5  ##Limit rotation acceleration m/s^2
       decel_lim_x: -1.0  ##Limit forward decceleration m/s^2
       decel_lim_y: 0.0  ##Limit sideway decceleration m/s^2 (NO)
       decel_lim_theta: -1.5   ##Limit rotation decceleration rad/s^2 (NO)
@@ -53,9 +53,9 @@ controller_server:
       #vtheta (turn speed):  [−0.5, ... 0.0, ... +0.5]    → 10 evenly spaced samples
       #So DWB generates up to 10 × 10 = 100 candidate trajectories each cycle, each with a different (vx, vtheta) combination, then scores them all and picks the best.
       #NOTE : More samples = better path quality, but more CPU cost
-      vx_samples: 10   ##Number of forward velocity samples to evaluate
+      vx_samples: 20   ##Number of forward velocity samples to evaluate
       vy_samples: 0   ##No lateral samples (non-holonomic)
-      vtheta_samples: 10  ##Number of rotational velocity samples to evaluate
+      vtheta_samples: 30  ##Number of rotational velocity samples to evaluate
       ############
       ############
       #Longer sim_time = robot plans further ahead, but gets slower to compute
@@ -81,7 +81,7 @@ controller_server:
       ############
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "ObstacleFootprint", "PathAlign", "PathDist", "GoalDist"]
       ##RotateToGoal : Spin to face goal before arriving
-      RotateToGoal.scale: 24.0
+      RotateToGoal.scale: 32.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
       RotateToGoal.trans_stopped_velocity: 0.03
@@ -96,10 +96,10 @@ controller_server:
       Oscillation.scale: 5.0
 
       ##BaseObstacleCritic : Scores a trajectory based on where the path passes over the costmap. To use this properly, you must use the inflation layer in costmap to expand obstacles by the robot’s radius.  
-      BaseObstacle.scale: 0.0
+      BaseObstacle.scale: 24.0
 
       ##GoalAlignCritic : Scores a trajectory based on how well aligned the trajectory is with the goal pose.
-      GoalAlign.scale: 24.0
+      GoalAlign.scale: 32.0
       GoalAlign.forward_point_distance: 0.1
 
       ##GoalDistCritic : Scores a trajectory based on how close the trajectory gets the robot to the goal pose.
@@ -110,13 +110,13 @@ controller_server:
       PathDist.scale: 32.0
       PathDist.aggregation_type: "last"
       ##PathAlignCritic : Scores a trajectory based on how well it is aligned to the path provided by the global planner.
-      PathAlign.scale: 32.0  ## no unit just a weight scale
+      PathAlign.scale: 24.0  ## no unit just a weight scale
       PathAlign.forward_point_distance: 0.1 ## Point in front of robot to look ahead to compute angular change from m
       PathAlign.aggregation_type: "last" ## last, sum, or product combination methods 1.0 mean last
       
       ##ObstacleFootprint : Scores a trajectory based on verifying all points along the robot’s footprint don’t touch an obstacle marked in the costmap.
       ObstacleFootprint.sum_scores: False
-      ObstacleFootprint.scale: 32.0
+      ObstacleFootprint.scale: 24.0
       ############
     enable_stamped_cmd_vel: true    ##Publishes velocity commands with a timestamp
 
@@ -131,7 +131,7 @@ local_costmap:
       width: 4
       height: 4
       resolution: 0.05
-      robot_radius: 0.3           # was 0.2 — actual half-diagonal of 0.42x0.42 robot is ~0.30m
+      robot_radius: 0.2           # was 0.2 — actual half-diagonal of 0.42x0.42 robot is ~0.30m
       plugins: ["obstacle_layer", "stvl_layer", "inflation_layer"]
       filters: ["keepout_filter"]
 
@@ -150,9 +150,9 @@ local_costmap:
           clearing: true
           marking: true
           data_type: "LaserScan"
-          raytrace_max_range: 9.5
+          raytrace_max_range: 3.0    # was 9.5 — reduced to costmap radius + small buffer
           raytrace_min_range: 0.15
-          obstacle_max_range: 10.0
+          obstacle_max_range: 2.5    # was 10.0 — reduced to safely inside costmap window
           obstacle_min_range: 0.15
       ##Like Obstacle Layer but in 3D — it remembers obstacles for a limited time, then automatically forgets them. Great for dynamic environments.
      
@@ -193,7 +193,7 @@ local_costmap:
 
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.15      
-        cost_scaling_factor: 3.0     
+        inflation_radius: 0.2      
+        cost_scaling_factor: 5.0     
 
       always_send_full_costmap: true
