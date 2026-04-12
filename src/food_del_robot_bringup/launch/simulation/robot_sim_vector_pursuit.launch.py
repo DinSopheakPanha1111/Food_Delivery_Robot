@@ -19,7 +19,7 @@ def generate_launch_description():
     )
 
     dwb_sim_config = os.path.join(
-        bringup, 'config', 'simulation', 'controller', 'dwb_sim_config.yaml'
+        bringup, 'config', 'simulation', 'controller', 'vector_pursuit_config.yaml'
     )
 
     bt_navigator_config = os.path.join(

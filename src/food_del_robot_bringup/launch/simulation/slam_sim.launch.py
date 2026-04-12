@@ -39,9 +39,20 @@ def generate_launch_description():
         }.items(),
     )
 
+    hand_controller_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                bringup,
+                'launch',
+                'hand_controller.launch.py'
+            )
+        )
+    )
+
     return LaunchDescription([
         use_sim_time_arg,
         slam_params_file_arg,
         robot_gazebo,
         slam_toolbox_launch,
+        hand_controller_launch,
     ])

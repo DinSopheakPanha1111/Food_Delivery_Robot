@@ -1,0 +1,161 @@
+controller_server:
+  ros__parameters:
+    use_sim_time: True                        # Set to True for simulation, False for real robot
+    controller_frequency: 10.0               # How often controller runs (Hz) - 10Hz is good for indoor robot
+    min_x_velocity_threshold: 0.01           # Ignore velocities smaller than this in X (m/s) - filters noise
+    min_y_velocity_threshold: 0.01           # Ignore velocities smaller than this in Y (m/s) - filters noise
+    min_theta_velocity_threshold: 0.01       # Ignore rotations smaller than this (rad/s) - filters noise
+    failure_tolerance: 0.3                   # How long (s) controller can fail before giving up
+    progress_checker_plugin: "progress_checker"
+    goal_checker_plugins: ["general_goal_checker"]
+    controller_plugins: ["FollowPath"]
+
+    # ---------------------------------------------------------------
+    # PROGRESS CHECKER - makes sure robot is actually moving
+    # ---------------------------------------------------------------
+    progress_checker:
+      plugin: "nav2_controller::SimpleProgressChecker"
+      required_movement_radius: 0.1          # Robot must move at least 0.1m within time allowance
+      movement_time_allowance: 10.0          # Time (s) allowed before declaring robot is stuck
+
+    # ---------------------------------------------------------------
+    # GOAL CHECKER - decides when robot has reached the goal
+    # ---------------------------------------------------------------
+    general_goal_checker:
+      plugin: "nav2_controller::SimpleGoalChecker"
+      xy_goal_tolerance: 0.05               # Accept goal if within 0.05m (5cm) of target position
+      yaw_goal_tolerance: 0.05              # Accept goal if within 0.05rad (~3°) of target heading
+      stateful: True                         # Once goal xy is reached, only check yaw (don't recheck xy)
+
+    # ---------------------------------------------------------------
+    # VECTOR PURSUIT CONTROLLER - main path following controller
+    # ---------------------------------------------------------------
+    FollowPath:
+      plugin: "vector_pursuit_controller::VectorPursuitController"
+
+      # --- CORE SPEED SETTINGS ---
+      desired_linear_vel: 0.2               # Target cruising speed (m/s) - safe for indoor food delivery
+      min_linear_velocity: 0.0              # Minimum moving speed (m/s) - never go below this while driving
+      min_approach_linear_velocity: 0.05    # Minimum speed when approaching goal (m/s) - ensures smooth stop
+
+      # --- TURNING SETTINGS ---
+      min_turning_radius: 0.0               # Diff drive can spin in place so this is 0.0
+      use_rotate_to_heading: true           # Rotate in place before moving - perfect for diff drive
+      rotate_to_heading_min_angle: 0.785    # Only rotate in place if heading diff > 45° (0.785 rad)
+      rotate_to_heading_angular_vel: 0.5    # Max rotation speed when rotating to heading (rad/s)
+      allow_reversing: false                # Never drive backwards - important for food delivery safety
+
+      # --- LOOKAHEAD SETTINGS ---
+      use_velocity_scaled_lookahead_dist: false  # Fixed lookahead - simpler and more predictable indoors
+      lookahead_dist: 0.3                   # Fixed lookahead distance (m) - how far ahead robot looks
+      min_lookahead_dist: 0.2               # Minimum lookahead distance (m) - prevents too close tracking
+      max_lookahead_dist: 0.5               # Maximum lookahead distance (m) - prevents looking too far ahead
+      lookahead_time: 1.0                   # Used only if use_velocity_scaled_lookahead_dist is true (s)
+
+      # --- ACCELERATION LIMITS ---
+      max_linear_accel: 0.2                 # Max linear acceleration (m/s²) - smooth speed up for food delivery
+      max_angular_accel: 0.3               # Max angular acceleration (rad/s²) - smooth rotation ramp up
+      max_lateral_accel: 0.2               # Not meaningful for diff drive but required by controller (m/s²)
+
+      # --- OBSTACLE & COST SCALING ---
+      use_cost_regulated_linear_velocity_scaling: true   # Slow down automatically near obstacles
+      cost_scaling_dist: 0.3               # Start slowing down when obstacle is within 0.3m
+      cost_scaling_gain: 1.0               # How aggressively to slow near obstacles (1.0 = balanced)
+      inflation_cost_scaling_factor: 3.0   # Must match your costmap inflation_layer cost_scaling_factor!
+
+      # --- COLLISION DETECTION ---
+      use_collision_detection: true         # Stop robot if obstacle detected directly ahead
+      max_allowed_time_to_collision_up_to_target: 1.0  # How far ahead (s) to check for collisions
+
+      # --- GOAL APPROACH ---
+      approach_velocity_scaling_dist: 0.4  # Start slowing down 0.4m before final goal for smooth stop
+
+      # --- PATH SEARCH & INTERPOLATION ---
+      max_robot_pose_search_dist: 1.0      # Max distance (m) to search for closest point on path
+      use_interpolation: true              # Smoothly interpolate exact lookahead point on path
+      use_heading_from_path: true          # Use SMAC planner headings directly - correct since you use SMAC
+
+      # --- TRANSFORM ---
+      transform_tolerance: 0.2             # TF transform time tolerance (s) - 0.2 safer for real robot
+
+      # --- ROTATION CONSTANT ---
+      k: 5.0                               # Ratio of rotation time to translation time.
+                                           # Higher k = faster translation, Lower k = faster rotation
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      update_frequency: 7.0
+      publish_frequency: 5.0         # was 3.0 — match update frequency
+      global_frame: odom
+      robot_base_frame: base_link
+      rolling_window: true
+      width: 2
+      height: 2
+      resolution: 0.05
+      footprint: "[[0.23, 0.23], [-0.23, 0.23], [-0.23, -0.23], [0.23, -0.23]]"
+      footprint_padding: 0.01   # extra 1cm buffer around footprint   
+      plugins: ["obstacle_layer", "stvl_layer", "inflation_layer"]
+      filters: ["keepout_filter"]
+
+      keepout_filter:
+              plugin: "nav2_costmap_2d::KeepoutFilter"
+              enabled: True
+              filter_info_topic: "/keepout_costmap_filter_info"   # ← add leading /
+        
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        observation_sources: scan
+        scan:
+          topic: /scan
+          max_obstacle_height: 1.5
+          clearing: true
+          marking: true
+          data_type: "LaserScan"
+          raytrace_max_range: 3.0    # was 9.5 — reduced to costmap radius + small buffer
+          raytrace_min_range: 0.15
+          obstacle_max_range: 2.5    # was 10.0 — reduced to safely inside costmap window
+          obstacle_min_range: 0.15
+      ##Like Obstacle Layer but in 3D — it remembers obstacles for a limited time, then automatically forgets them. Great for dynamic environments.
+     
+      stvl_layer:
+        plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"
+        enabled: true
+        voxel_decay: 0.5              # Obstacle disappears after 0.5 seconds
+        decay_model: 0                # Expires exactly at 0.5s — clean cutoff (LINEAR = 0)
+        voxel_size: 0.05  ##Each 3D cube = 5cm × 5cm × 5cm
+        track_unknown_space: true
+        mark_threshold: 0   ##Even 1 point is enough to mark a voxel
+        update_footprint_enabled: true  ##Clears voxels under the robot's footprint as it moves
+        combination_method: 1
+        origin_z: 0.0
+        publish_voxel_map: true
+        transform_tolerance: 0.5
+        mapping_mode: false
+        map_save_duration: 60.0
+
+        ##Observation Source (Depth Camera)
+        observation_sources: pointcloud
+        pointcloud:
+          data_type: PointCloud2
+          topic: /camera/depth/points
+          sensor_frame: camera_link
+          observation_persistence: 0.0
+          expected_update_rate: 0.0
+          marking: true
+          clearing: true
+          min_obstacle_height: 0.05
+          max_obstacle_height: 1.8
+          min_z: 0.05
+          max_z: 1.8
+          vertical_fov_angle: 1.012
+          horizontal_fov_angle: 1.519    # ~86° horizontal view
+          decay_acceleration: 15.0     # Voxels expire 15× faster when not seen
+          model_type: 0   ##Uses 3D ray tracing to clear free space
+
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        inflation_radius: 0.2      
+        cost_scaling_factor: 5.0     
+
+      always_send_full_costmap: true
