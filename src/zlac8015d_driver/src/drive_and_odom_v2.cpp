@@ -109,7 +109,7 @@ private:
 
     /* ================= Publish odom msg + odom→base_footprint TF ================= */
     void publishOdomMsg(const rclcpp::Time & now)
-    {
+    {   
         nav_msgs::msg::Odometry odom;
         odom.header.stamp    = now;
         odom.header.frame_id = "odom";

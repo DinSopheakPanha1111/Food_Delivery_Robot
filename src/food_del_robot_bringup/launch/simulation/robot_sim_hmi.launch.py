@@ -70,7 +70,7 @@ def generate_launch_description():
                     bringup,
                     'launch',
                     'simulation',
-                    'gazebo_in_restaurent_also_rviz.launch.py'
+                    'gazebo_hmi.launch.py'
                 )
             )
         ),

@@ -85,7 +85,7 @@ amcl:
    # These are mixing ratios for how the laser model explains sensor readings. All used weights must add up to 1.0. 
 
     tf_broadcast: true  ##Whether to publish the map→odom transform (usually keep true)
-    transform_tolerance: 0.5  ##How far into the future to stamp the published transform
+    transform_tolerance: 1.0  ##How far into the future to stamp the published transform
     save_pose_rate: 0.5   ##How often to save the robot's last known pose (Hz)
    
    # =========================  Topic Settings ================================= #

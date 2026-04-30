@@ -34,6 +34,7 @@ BY: DIN SOPHEAK PANHA & TE TIKEA
 
 Please complete all setup steps before using the robot. If testing on PC, only steps 0.1, 0.2, 0.3, 0.4 are needed.
 
+
 **0.1 ROS2 Controllers**
 
 ```bash
@@ -51,6 +52,8 @@ sudo apt install -y \
   ros-humble-navigation2 \
   ros-humble-nav2-bringup
 sudo apt install ros-humble-spatio-temporal-voxel-layer
+pip install PySide6
+sudo apt install xdotool
 ```
 
 **0.3 RPLidar ROS2 Humble**
