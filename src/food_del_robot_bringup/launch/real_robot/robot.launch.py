@@ -15,7 +15,7 @@ def generate_launch_description():
 
     urdf_path = os.path.join(desc, 'urdf', 'food_del_robot.urdf.xacro')
     rviz_config_path = os.path.join(desc, 'rviz', 'food_del_sim_v5.rviz')
-    map_yaml_path = os.path.join(bringup, 'maps', 'Outdoor_map', 'outdoor_map.yaml')
+    map_yaml_path = os.path.join(bringup, 'maps', 'Class_map', 'class_map.yaml')
     amcl_config_path = os.path.join(bringup, 'config', 'real_robot', 'amcl', 'amcl_config.yaml')
     controller_config_path = os.path.join(bringup, 'config', 'real_robot', 'controller_server', 'vector_pursuit_config.yaml')
     planner_config_path = os.path.join(bringup, 'config', 'real_robot', 'planner_server', 'Smac_planner_config.yaml')
