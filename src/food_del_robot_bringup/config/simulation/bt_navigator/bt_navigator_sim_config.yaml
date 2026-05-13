@@ -7,64 +7,8 @@ bt_navigator:
     bt_loop_duration: 10
     default_server_timeout: 20
 
-    # Replans ONLY when path becomes invalid — no constant replanning
     default_nav_to_pose_bt_xml: "/opt/ros/humble/share/nav2_bt_navigator/behavior_trees/navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml"
 
-    # Nav2 always loads through_poses tree too — keep default for that
-    default_nav_through_poses_bt_xml: "/opt/ros/humble/share/nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml"
-
-    plugin_lib_names:
-      # --- CORE NAVIGATION ---
-      - nav2_compute_path_to_pose_action_bt_node         # Compute path to goal using SMAC planner
-      - nav2_compute_path_through_poses_action_bt_node   # Required by default through_poses BT
-      - nav2_follow_path_action_bt_node                  # Follow computed path using vector pursuit
-      - nav2_navigate_to_pose_action_bt_node             # Top-level navigate to pose action
-      - nav2_navigate_through_poses_action_bt_node       # Required by default through_poses BT
-
-      # --- PATH VALIDITY ---
-      - nav2_is_path_valid_condition_bt_node             # Triggers replan when path becomes invalid
-
-      # --- GOAL CHECKING ---
-      - nav2_goal_reached_condition_bt_node              # Check if robot reached the goal
-      - nav2_goal_updated_condition_bt_node              # Check if goal was changed/updated
-      - nav2_globally_updated_goal_condition_bt_node     # Required by through_poses BT
-
-      # --- RECOVERY BEHAVIORS (matches your behavior_server) ---
-      - nav2_spin_action_bt_node                         # Spin in place recovery
-      - nav2_back_up_action_bt_node                      # Backup recovery
-      - nav2_drive_on_heading_bt_node                    # Drive on heading behavior
-      - nav2_wait_action_bt_node                         # Wait and retry recovery
-      - nav2_assisted_teleop_action_bt_node              # Assisted teleop behavior
-
-      # --- RECOVERY CANCELS ---
-      - nav2_spin_cancel_bt_node                         # Cancel spin cleanly
-      - nav2_back_up_cancel_bt_node                      # Cancel backup cleanly
-      - nav2_drive_on_heading_cancel_bt_node             # Cancel drive on heading cleanly
-      - nav2_assisted_teleop_cancel_bt_node              # Cancel assisted teleop cleanly
-
-      # --- COSTMAP CLEARING (used during recovery) ---
-      - nav2_clear_costmap_service_bt_node               # Clear costmap when path planning fails
-
-      # --- STUCK DETECTION ---
-      - nav2_is_stuck_condition_bt_node                  # Detect if robot is stuck → trigger recovery
-
-      # --- REQUIRED BY through_poses BT ---
-      - nav2_remove_passed_goals_action_bt_node          # Remove already-passed waypoints
-
-      # --- BT CONTROL NODES ---
-      - nav2_recovery_node_bt_node                       # Wraps recovery subtree logic
-      - nav2_pipeline_sequence_bt_node                   # Run BT nodes in sequence
-      - nav2_round_robin_node_bt_node                    # Try nodes in round robin order
-      - nav2_rate_controller_bt_node                     # Control how fast BT ticks
-      - nav2_distance_controller_bt_node                 # Trigger actions based on distance traveled
-      - nav2_transform_available_condition_bt_node       # Check TF is available before navigating
-      - nav2_time_expired_condition_bt_node              # Check if time limit expired
-      - nav2_single_trigger_bt_node                      # Trigger action only once
-
 bt_navigator_navigate_to_pose_rclcpp_node:
-  ros__parameters:
-    use_sim_time: True
-
-bt_navigator_navigate_through_poses_rclcpp_node:
   ros__parameters:
     use_sim_time: True

@@ -95,12 +95,6 @@ local_costmap:
       footprint: "[[0.23, 0.23], [-0.23, 0.23], [-0.23, -0.23], [0.23, -0.23]]"
       footprint_padding: 0.01   # extra 1cm buffer around footprint   
       plugins: ["obstacle_layer", "stvl_layer", "inflation_layer"]
-      filters: ["keepout_filter"]
-
-      keepout_filter:
-              plugin: "nav2_costmap_2d::KeepoutFilter"
-              enabled: True
-              filter_info_topic: "/keepout_costmap_filter_info"   # ← add leading /
         
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
