@@ -234,27 +234,27 @@ def generate_launch_description():
             ]
         ),
 
-        # =========================
-        # GOAL BRIDGE + PATH RECORDER
-        # =========================
-        Node(
-            package='food_del_goal_bridge',
-            executable='path_recorder',
-            name='path_recorder',
-            output='screen',
-            parameters=[{'use_sim_time': True}]
-        ),
+        # # =========================
+        # # GOAL BRIDGE + PATH RECORDER
+        # # =========================
+        # Node(
+        #     package='food_del_goal_bridge',
+        #     executable='path_recorder',
+        #     name='path_recorder',
+        #     output='screen',
+        #     parameters=[{'use_sim_time': True}]
+        # ),
 
-        TimerAction(
-            period=10.0,
-            actions=[
-                Node(
-                    package='food_del_goal_bridge',
-                    executable='goal_bridge',
-                    name='goal_bridge',
-                    output='screen',
-                    parameters=[{'use_sim_time': True}]
-                ),
-            ]
-        ),
+        # TimerAction(
+        #     period=10.0,
+        #     actions=[
+        #         Node(
+        #             package='food_del_goal_bridge',
+        #             executable='goal_bridge',
+        #             name='goal_bridge',
+        #             output='screen',
+        #             parameters=[{'use_sim_time': True}]
+        #         ),
+        #     ]
+        # ),
     ])
