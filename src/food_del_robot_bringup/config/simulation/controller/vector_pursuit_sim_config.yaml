@@ -23,8 +23,8 @@ controller_server:
     # ---------------------------------------------------------------
     general_goal_checker:
       plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.05               # Accept goal if within 0.05m (5cm) of target position
-      yaw_goal_tolerance: 0.05              # Accept goal if within 0.05rad (~3°) of target heading
+      xy_goal_tolerance: 0.10               # Accept goal if within 0.10m (10cm) of target position
+      yaw_goal_tolerance: 0.10              # Accept goal if within 0.10rad (~6°) of target heading
       stateful: True                         # Once goal xy is reached, only check yaw (don't recheck xy)
 
     # ---------------------------------------------------------------
@@ -84,8 +84,8 @@ controller_server:
 local_costmap:
   local_costmap:
     ros__parameters:
-      update_frequency: 7.0
-      publish_frequency: 5.0         # was 3.0 — match update frequency
+      update_frequency: 10.0
+      publish_frequency: 5.0 
       global_frame: odom
       robot_base_frame: base_link
       rolling_window: true
