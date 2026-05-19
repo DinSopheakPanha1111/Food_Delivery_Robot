@@ -53,8 +53,8 @@ amcl:
 
    # ========================= Update / Moiton Thresholds================================= #
    # The robot only recalculates its position when it moves enough (saves CPU).
-    update_min_a: 0.2   ##Robot must move this far (meters) before updating location
-    update_min_d: 0.25  ##Robot must rotate this much (radians) before updating location
+    update_min_a: 0.10   ##Robot must move this far (meters) before updating location
+    update_min_d: 0.10  ##Robot must rotate this much (radians) before updating location
 
    # ========================= Recovery Settings ================================= #
    # When the robot gets completely lost, it adds random guesses to recover. 

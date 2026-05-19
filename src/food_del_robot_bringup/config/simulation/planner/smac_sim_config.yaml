@@ -26,7 +26,7 @@ global_costmap:
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map
-      robot_base_frame: base_link
+      robot_base_frame: base_footprint
       transform_tolerance: 0.5
       footprint: "[[0.23, 0.23], [-0.23, 0.23], [-0.23, -0.23], [0.23, -0.23]]"
       footprint_padding: 0.01   # extra 1cm buffer around footprint        

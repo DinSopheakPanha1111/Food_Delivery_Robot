@@ -1,6 +1,5 @@
 planner_server:
   ros__parameters:
-    expected_planner_frequency: 10.0
     planner_plugins: ["GridBased"]
     GridBased:
       plugin: "nav2_smac_planner/SmacPlanner2D"
@@ -27,8 +26,8 @@ global_costmap:
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map
-      robot_base_frame: base_link
-      transform_tolerance: 1.0
+      robot_base_frame: base_footprint
+      transform_tolerance: 0.5
       footprint: "[[0.23, 0.23], [-0.23, 0.23], [-0.23, -0.23], [0.23, -0.23]]"
       footprint_padding: 0.01   # extra 1cm buffer around footprint        
       resolution: 0.05
