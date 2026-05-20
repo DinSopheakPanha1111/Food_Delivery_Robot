@@ -16,7 +16,7 @@ class MotorControlNode : public rclcpp::Node
 public:
     MotorControlNode()
     : Node("drive_and_odom"),
-      can_("can0", 500000),
+      can_("can1", 500000),
       driver_(can_, 0x01),
       last_time_(this->now())
     {

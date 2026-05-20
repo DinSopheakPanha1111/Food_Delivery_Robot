@@ -1,20 +1,5 @@
 joy_node:
   ros__parameters:
     device_id: 0
-    deadzone: 0.05
+    deadzone: 0.1
     autorepeat_rate: 20.0
-
-teleop_node:
-  ros__parameters:
-    require_enable_button: false
-    enable_turbo_button: -1
-
-    axis_linear:
-      x: 1          # left joystick vertical
-    scale_linear:
-      x: 0.3
-
-    axis_angular:
-      yaw: 3        # right joystick horizontal
-    scale_angular:
-      yaw: 0.5

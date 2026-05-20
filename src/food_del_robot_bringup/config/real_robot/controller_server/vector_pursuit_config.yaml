@@ -114,7 +114,7 @@ local_costmap:
       stvl_layer:
         plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"
         enabled: true
-        voxel_decay: 0.5             # ← fixed: honest 5 second decay
+        voxel_decay: 5.0         
         decay_model: 0
         voxel_size: 0.05
         track_unknown_space: true
@@ -124,7 +124,7 @@ local_costmap:
         combination_method: 1
         origin_z: 0.0
         publish_voxel_map: true
-        transform_tolerance: 0.5
+        transform_tolerance: 0.2
         mapping_mode: false
         map_save_duration: 60.0
         observation_sources: pointcloud
@@ -134,19 +134,19 @@ local_costmap:
           topic: /camera/camera/depth/color/points
           marking: true
           clearing: true
-          obstacle_range: 2.0        # ← matches costmap half-width
-          min_obstacle_height: 0.15  # ← ignores floor
+          obstacle_range: 2.0        
+          min_obstacle_height: 0.0  # ← ignores floor
           max_obstacle_height: 2.0
           expected_update_rate: 0.0
           observation_persistence: 0.0
           inf_is_valid: false
           filter: "voxel"
-          voxel_min_points: 3
+          voxel_min_points: 0
           clear_after_reading: true
-          max_z: 5.0
-          min_z: -5.0                # ← wide, let global height filter handle it
-          vertical_fov_angle: 0.8745
-          horizontal_fov_angle: 1.048
+          max_z: 7.0
+          min_z: 0.1                # ← wide, let global height filter handle it
+          vertical_fov_angle: 1.012
+          horizontal_fov_angle: 1.518
           decay_acceleration: 2.0    # ← fixed: no acceleration fighting decay
           model_type: 0
 
