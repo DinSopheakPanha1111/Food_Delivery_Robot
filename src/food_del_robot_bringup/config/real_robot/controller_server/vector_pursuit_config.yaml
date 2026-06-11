@@ -76,7 +76,7 @@ controller_server:
       use_heading_from_path: true          # Use SMAC planner headings directly - correct since you use SMAC
 
       # --- TRANSFORM ---
-      transform_tolerance: 0.2             # TF transform time tolerance (s) - 0.2 safer for real robot
+      transform_tolerance: 0.5             # TF transform time tolerance (s) - 0.2 safer for real robot
 
       # --- ROTATION CONSTANT ---
       k: 5.0                               # Ratio of rotation time to translation time.
@@ -91,6 +91,8 @@ local_costmap:
       rolling_window: true
       width: 4
       height: 4
+      transform_tolerance: 0.5 #(s)
+      inf_is_valid: true
       resolution: 0.05
       footprint: "[[0.25, 0.25], [-0.25, 0.25], [-0.25, -0.25], [0.25, -0.25]]"
       footprint_padding: 0.03   # extra 1cm buffer around footprint   
@@ -102,8 +104,10 @@ local_costmap:
         observation_sources: scan
         scan:
           topic: /scan
+          inf_is_valid: true
           clearing: true
           marking: true
+          max_obstacle_height: 1.5
           data_type: "LaserScan"
           raytrace_max_range: 3.0 
           raytrace_min_range: 0.0
@@ -113,7 +117,7 @@ local_costmap:
       stvl_layer:
         plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"
         enabled: true
-        voxel_decay: 0.5              # Obstacle disappears after 0.5 seconds
+        voxel_decay: 1.5              # Obstacle disappears after 0.5 seconds
         decay_model: 0                # Expires exactly at 0.5s — clean cutoff (LINEAR = 0)
         voxel_size: 0.05  ##Each 3D cube = 5cm × 5cm × 5cm
         track_unknown_space: false
@@ -130,11 +134,11 @@ local_costmap:
         observation_sources: pointcloud
         pointcloud:
           data_type: PointCloud2
-          topic: /camera/depth/points
+          topic: /camera/camera/depth/color/points
           sensor_frame: camera_link
           observation_persistence: 0.0
           expected_update_rate: 0.0
-          inf_is_valid: false
+          inf_is_valid: true
           filter: "voxel"
           clear_after_reading: true
           voxel_min_points: 3
@@ -152,6 +156,6 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         inflation_radius: 0.25     
-        cost_scaling_factor: 5.0     
+        cost_scaling_factor: 15.0     
 
       always_send_full_costmap: true

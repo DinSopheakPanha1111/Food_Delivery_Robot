@@ -43,7 +43,7 @@ public:
             sub_opts);
 
         timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(20),
+            std::chrono::milliseconds(10),
             std::bind(&MotorControlNode::publishOdometry, this),
             cb_group_);
 
@@ -69,7 +69,7 @@ private:
 
     /* ================= STATE ================= */
     float wheel_radius_ = 0.065f;
-    float wheel_base_   = 0.457f;
+    float wheel_base_   = 0.45f;
     float x_      {0.0f};
     float y_      {0.0f};
     float theta_  {0.0f};

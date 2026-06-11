@@ -4,6 +4,8 @@ lifecycle_manager:
     autostart: true
     node_names: 
       - 'map_server'
+      - 'keepout_filter_mask_server'          # ← must come before filter info server
+      - 'keepout_costmap_filter_info_server'  # ← depends on mask server
       - 'amcl'
       - 'controller_server'
       - 'planner_server'
