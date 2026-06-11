@@ -67,7 +67,7 @@ private:
         twist.linear.x = ly * speed_;
 
         // RIGHT STICK → angular velocity (rotation)
-        double rx = msg->axes[2]; // FIXED axis
+        double rx = msg->axes[0]; // FIXED axis
         twist.angular.z = rx * angular_speed_;
 
         cmd_pub_->publish(twist);

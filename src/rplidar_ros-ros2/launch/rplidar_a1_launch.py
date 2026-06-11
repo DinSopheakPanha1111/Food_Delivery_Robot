@@ -1,37 +1,14 @@
 #!/usr/bin/env python3
 
-import os
-
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, LogInfo
+from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
 
-def find_serial_port():
-    candidates = [
-        '/dev/lidar'
-    ]
-
-    for port in candidates:
-        if os.path.exists(port):
-            try:
-                fd = os.open(port, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
-                os.close(fd)
-                print(f"[rplidar_launch] Auto-selected serial port: {port}")
-                return port
-            except OSError:
-                pass
-
-    print("[rplidar_launch] No free serial port found, fallback to /dev/lidar")
-    return '/dev/lidar'
-
-
 def generate_launch_description():
     channel_type = LaunchConfiguration('channel_type', default='serial')
-    auto_serial_port = find_serial_port()
-    serial_port = LaunchConfiguration('serial_port', default=auto_serial_port)
-
+    serial_port = LaunchConfiguration('serial_port', default='/dev/lidar')
     serial_baudrate = LaunchConfiguration('serial_baudrate', default='115200')
     frame_id = LaunchConfiguration('frame_id', default='lidar_link')
     inverted = LaunchConfiguration('inverted', default='false')
@@ -88,6 +65,8 @@ def generate_launch_description():
                 'angle_compensate': angle_compensate,
                 'scan_mode': scan_mode
             }],
-            output='screen'
+            output='screen',
+            respawn=True,
+            respawn_delay=2.0
         ),
     ])
