@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+
+from launch import LaunchDescription
+from launch_ros.actions import Node
+import os
+from ament_index_python.packages import get_package_share_directory
+
+def generate_launch_description():
+    bringup = get_package_share_directory('food_del_robot_bringup')
+    joy_params = os.path.join(
+        bringup,
+        'config',
+        'real_robot',
+        'hand_controller',
+        'hand_controller.yaml'
+    )
+
+    return LaunchDescription([
+        Node(
+            package='joy',
+            executable='joy_node',
+            parameters=[joy_params],
+            output='screen'
+        ),
+
+        Node(
+            package='my_controller',
+            executable='my_controller',
+            name='my_controller',
+            output='screen',
+            emulate_tty=True
+        )
+    ])

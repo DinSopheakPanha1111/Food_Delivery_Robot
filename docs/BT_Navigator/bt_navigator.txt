@@ -1,0 +1,225 @@
++ What is BT Navigator ? 
+
+    The BT Navigator (Behavior Tree Navigator) module implements the NavigateToPose, NavigateThroughPoses, 
+    and other task interfaces. It is a Behavior Tree-based implementation of navigation that is intended 
+    to allow for flexibility in the navigation task and provide a way to easily specify complex robot 
+    behaviors, including recovery.
+
+    Navigate To Poses : This task is used when the robot needs to move to a specific target pose (i.e., a particular position and orientation) in the environment.
+        > Purpose : The robot is given a specific goal pose (a combination of position and orientation) and needs to compute a path to reach that pose. 
+                    The robot will follow the computed path and adjust its movement to reach the target position and orientation.
+        > How it works : 
+            * The robot receives a goal pose.
+            * The system calculates a path from the robot’s current position to the target position.
+            * The robot follows the path while adjusting its velocity, direction, and speed to reach the target pose.
+    Navigate Through Poses : 
+        > Purpose : The robot is given a list of waypoints and must navigate through each one in sequence. 
+                    After reaching one waypoint, it proceeds to the next, following a series of points to reach the final destination.
+        > How it works : 
+            * The robot receives a list of waypoints (poses).
+            * The system calculates the path to the first waypoint.
+            * Once the robot reaches the first waypoint, it calculates the path to the next waypoint in the sequence, continuing until all waypoints are reached.
+
++ Paramaters :
+
+    - navigators : Plugins for navigator types implementing the nav2_core::BehaviorTreeNavigator interface. 
+                   They implement custom action servers with custom interface definitions and use that data 
+                   to populate and process behavior tree navigation requests. Plugin classes are defined under 
+                   the same namespace, see examples below. Defaults correspond to the NavigateToPoseNavigator 
+                   and NavigateThroughPosesNavigator navigators.
+
+    - default_nav_to_pose_bt_xml : Path to the default behavior tree XML description for NavigateToPose, see Behavior Tree XML Nodes for details on this file. 
+                                   This parameter used to be default_bt_xml_filename pre-Galactic. You can use substitution to specify file path like 
+                                   $(find-pkg-share my_package)/behavior_tree/my_nav_to_pose_bt.xml. However, if left empty, the default behavior tree XML will 
+                                   be loaded from the nav2_bt_navigator package.
+
+    - default_nav_through_poses_bt_xml : Path to the default behavior tree XML description for NavigateThroughPoses, see Behavior Tree XML Nodes for details on this file. 
+                                         New to Galactic after NavigateThroughPoses was added. You can use substitution to specify file path like $(find-pkg-share my_package)/behavior_tree/my_nav_through_poses_bt.xml.
+                                         However, if left empty, the default behavior tree XML will be loaded from the nav2_bt_navigator package.
+
+    - always_reload_bt_xml : Always load the requested behavior tree XML description, regardless of the name of the currently active XML.
+
+    - plugin_lib_names : List of behavior tree node shared libraries. All Nav2 BT libraries are automatically included for you, so this only needs to include your new custom plugins (new to Jazzy).
+
+    - bt_loop_duration : Duration (in milliseconds) for each iteration of BT execution.
+
+    - filter_duration : Duration (secs) over which robot velocity should be smoothed.
+
+    - default_server_timeout : Default timeout value (in milliseconds) while a BT action node is waiting for acknowledgement from an action server. 
+                               This value will be overwritten for a BT node if the input port “server_timeout” is provided.
+
+    - default_cancel_timeout : Default timeout (in seconds) for BT action node cancellation requests during node halt. 
+                               This value will be overwritten for a BT node if the input port “cancel_timeout” is provided.
+
+    - wait_for_service_timeout : Default timeout value (in milliseconds) while Action or Service BT nodes will waiting for acknowledgement from an service or action server on BT initialization
+                                 (e.g. wait_for_action_server(timeout)). This value will be overwritten for a BT node if the input port “wait_for_service_timeout” is provided.
+                        
+    - introspection_mode : The introspection mode for services and actions. Options are “disabled”, “metadata”, “contents”. 
+
+    - transform_tolerance : TF transform tolerance.
+
+    - global_frame : Reference frame.
+
+    - robot_base_frame : Robot base frame.
+
+    - odom_topic : Topic on which odometry is published
+
+    - error_code_name_prefixes : For Kilted and newer: List of of error code name prefixes to be appended with ‘_error_code’ and ‘_error_msg’ and searched for during aborted navigator error processing.
+
+    - error_code_names : For Jazzy and older: List of of error codes to compare.
+
+    - bond_heartbeat_period : The lifecycle node bond mechanism publishing period (on the /bond topic). Disabled if inferior or equal to 0.0.
+
+    - allow_parameter_qos_overrides : Whether to allow QoS profiles to be overwritten with parameterized values.
+
+    - bt_search_directories : List of directories that hosts behavior trees XML files. It is needed to register all behavior trees as well as subtrees.
+
++ Navigate to pose paramaters:
+
+    - enable_groot_monitoring : Whether to enable Groot2 monitoring for this navigator.
+
+    - groot_server_port : The port number for the Groot2 server. Note: In Groot2, you only need to specify the server port value, not the publisher port, 
+                          as it is always the server port +1. Therefore, in this case, to use another navigator, the next available port would be 1669.
+
+    - search_window : How far (in meters) along the path the searching algorithm will look for the closest point.
+
++ Navigate to through pose paramaters:
+
+    - enable_groot_monitoring : Whether to enable Groot2 monitoring for this navigator.
+
+    - groot_server_port : The port number for the Groot2 server. Note: In Groot2, you only need to specify the server port value, not the publisher port, 
+                          as it is always the server port +1. Therefore, in this case, to use another navigator, the next available port would be 1669.
+
+    - search_window : How far (in meters) along the path the searching algorithm will look for the closest point.
+
++ Plugin lib names : 
+
+    - Action nodes :
+
+        > nav2_compute_path_to_pose_action_bt_node : Computes a path to a specified goal pose.
+
+        > nav2_follow_path_action_bt_node : Executes the plan (path) by following it step-by-step.
+
+        > nav2_back_up_action_bt_node : A recovery behavior that commands the robot to back up in case it encounters an obstacle or gets stuck.
+
+        > nav2_spin_action_bt_node : A recovery behavior that commands the robot to spin (often used for reorienting the robot).
+
+        > nav2_wait_action_bt_node : A behavior that makes the robot wait for a certain condition or event.
+
+    - Service Nodes : 
+
+        > nav2_clear_costmap_service_bt_node : Clears the robot’s local costmap, typically used to remove obstacles or reset the environment.
+
+        > nav2_reinitialize_global_localization_service_bt_node : Reinitializes the robot's global localization. 
+
+    -  Condition Nodes : 
+
+        > nav2_is_stuck_condition_bt_node : Checks if the robot is stuck and needs recovery.
+         
+        > nav2_is_stopped_condition_bt_node : Checks if the robot is stopped (useful to prevent unnecessary actions).
+
+        > nav2_goal_reached_condition_bt_node : Checks if the robot has reached its goal.
+
+        > nav2_initial_pose_received_condition_bt_node : Checks if the robot has received an initial pose.
+
+        > nav2_goal_updated_condition_bt_node : Checks if the goal has been updated during navigation.
+
+        > nav2_transform_available_condition_bt_node : Checks if a valid transformation (TF) is available for navigation.
+
+    - Controller Nodes : 
+
+        > nav2_rate_controller_bt_node : Controls the robot's movement speed.
+
+        > nav2_distance_controller_bt_node : Controls the robot's distance to obstacles or targets.
+
+        > nav2_speed_controller_bt_node : Controls the robot's speed during movement.
+
+    - Recovery and Behavior Nodes : 
+
+        > nav2_recovery_node_bt_node : A generic node that triggers recovery behaviors like backup or spinning when the robot encounters errors or obstacles.
+
+        > nav2_pipeline_sequence_bt_node : A sequence node for executing multiple actions or behaviors in a pipeline.
+
+        > nav2_persistent_sequence_bt_node : Similar to the pipeline node but can persist certain states across cycles.
+
+        > nav2_pause_resume_controller_bt_node : Pauses and resumes controller actions (useful in certain recovery modes).
+
+        > nav2_round_robin_node_bt_node : Switches between different behavior tasks in a round-robin fashion (useful for dynamic task management).
+
+    - Condition Nodes for Timing/Distance: 
+
+        > nav2_time_expired_condition_bt_node : Checks if a time limit has expired (often used for actions with time constraints).
+
+        > nav2_distance_traveled_condition_bt_node : Checks if a certain distance has been traveled (used to track progress or goals).
+
+        > nav2_single_trigger_bt_node : A generic trigger node, often used to initiate actions on specific conditions.
+     
++ Default Example : 
+
+    bt_navigator:
+  ros__parameters:
+    global_frame: map
+    robot_base_frame: base_link
+    transform_tolerance: 0.1
+    filter_duration: 0.3
+    default_server_timeout: 20
+    default_cancel_timeout: 50
+    introspection_mode: "disabled"
+    default_nav_to_pose_bt_xml: replace/with/path/to/bt.xml # or $(find-pkg-share my_package)/behavior_tree/my_nav_to_pose_bt.xml
+    default_nav_through_poses_bt_xml: replace/with/path/to/bt.xml # or $(find-pkg-share my_package)/behavior_tree/my_nav_through_poses_bt.xml
+    always_reload_bt_xml: false
+    goal_blackboard_id: goal
+    goals_blackboard_id: goals
+    path_blackboard_id: path
+    waypoint_statuses_blackboard_id: waypoint_statuses
+    navigators: ['navigate_to_pose', 'navigate_through_poses']
+    bt_search_directories:
+      - $(find-pkg-share nav2_bt_navigator)/behavior_trees
+    navigate_to_pose:
+      plugin: "nav2_bt_navigator::NavigateToPoseNavigator" # In Iron and older versions, "/" was used instead of "::"
+      enable_groot_monitoring: false
+      groot_server_port: 1667
+      search_window: 2.0
+    navigate_through_poses:
+      plugin: "nav2_bt_navigator::NavigateThroughPosesNavigator" # In Iron and older versions, "/" was used instead of "::"
+      enable_groot_monitoring: false
+      groot_server_port: 1669
+      search_window: 2.0
+    plugin_lib_names:
+      - nav2_compute_path_to_pose_action_bt_node
+      - nav2_follow_path_action_bt_node
+      - nav2_back_up_action_bt_node
+      - nav2_spin_action_bt_node
+      - nav2_wait_action_bt_node
+      - nav2_clear_costmap_service_bt_node
+      - nav2_is_stuck_condition_bt_node
+      - nav2_is_stopped_condition_bt_node
+      - nav2_goal_reached_condition_bt_node
+      - nav2_initial_pose_received_condition_bt_node
+      - nav2_goal_updated_condition_bt_node
+      - nav2_reinitialize_global_localization_service_bt_node
+      - nav2_rate_controller_bt_node
+      - nav2_distance_controller_bt_node
+      - nav2_speed_controller_bt_node
+      - nav2_recovery_node_bt_node
+      - nav2_pipeline_sequence_bt_node
+      - nav2_persistent_sequence_bt_node
+      - nav2_pause_resume_controller_bt_node
+      - nav2_round_robin_node_bt_node
+      - nav2_transform_available_condition_bt_node
+      - nav2_time_expired_condition_bt_node
+      - nav2_distance_traveled_condition_bt_node
+      - nav2_single_trigger_bt_node
+    error_code_name_prefixes:
+      - assisted_teleop
+      - backup
+      - compute_path
+      - dock_robot
+      - drive_on_heading
+      - follow_path
+      - nav_thru_poses
+      - nav_to_pose
+      - spin
+      - route
+      - undock_robot
+      - wait

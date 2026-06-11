@@ -1,0 +1,155 @@
++ certain : 0.05 - 0.1
++ uncertain : 0.5 - 1.0
+
++ alpha1:
+
+    - Description: This represents the expected process noise (uncertainty) in the rotation estimate from rotation.
+    - How it works: When the robot turns, there’s always some error in the odometry (like wheels slipping or sensor inaccuracies). alpha1 controls how much uncertainty AMCL expects when the robot rotates.
+    - Default value: 0.2 (should be 0.1 for differential drive robot)
+    - Effect of changing it:
+        > If you increase alpha1, the system will assume more uncertainty in the robot's rotation.
+        > If you decrease it, the system will trust the robot's rotation more, assuming less noise.
+
++ alpha2:
+
+    - Description: This is the expected process noise in the rotation estimate from translation.
+    - How it works: When the robot moves forward or backward, the rotation estimate might also have some noise because the translation (forward movement) can affect the turning (rotation) due to wheel slippage, uneven surfaces, etc.
+      alpha2 controls this uncertainty in rotation that comes from translation.
+    - Default value: 0.2 (should be 0.1 for differential drive robot)
+    - Effect of changing it:
+        > Increasing alpha2 will make AMCL more cautious about rotational noise during forward movement.
+        > Decreasing alpha2 will make AMCL trust the robot's rotation more when it is moving forward.
+
++ alpha3:
+
+    - Description: This represents the expected process noise in translation (forward/backward movement) from translation.
+    - How it works: This parameter accounts for uncertainty in the robot's linear movement (when moving forward or backward). 
+      If the robot's wheels slip or the surface is uneven, the robot might not move exactly as planned. alpha3 adjusts for this kind of noise.
+    - Default value: 0.05 (should be 0.05 for differential drive robot)
+    - Effect of changing it:
+        > If you increase alpha3, AMCL will assume more noise in the robot’s forward or backward movement, making it less certain about its linear position.
+        > If you decrease alpha3, AMCL will trust the robot’s linear movement more and assume less noise.
+
++ alpha4:
+
+    - Description: This is the expected process noise in translation (forward/backward movement) from rotation.
+    - How it works: This parameter controls the uncertainty in translation that happens due to rotation. For example, if the robot turns while moving forward,
+      the actual path it takes might deviate slightly, and alpha4 adjusts for that uncertainty.
+    - Default value: 0.2    
+    - Effect of changing it:
+        > Increasing alpha4 makes AMCL more cautious when the robot turns while moving forward.
+        > Decreasing alpha4 makes AMCL trust the robot’s movement more during combined rotational and translational actions.
+
++ alpha5 : is not needed for differential drive robot
+
++ beam_skip_distance : 
+
+    - Description: This sets the maximum distance at which AMCL will ignore laser beams that most particles disagree with. This is part of the "beam skipping" strategy, which helps improve performance.
+    - Default: 0.5 meters
+    - When to adjust: Increase this if you want to ignore unreliable sensor data over larger distances.
+
++ beam_skip_error_threshold : 
+
+    - Description: This defines the percentage of beams that must not match the map before AMCL forces a full update due to a "bad convergence" (when localization isn't working well).
+    - Default: 0.9 (90%)
+    - When to adjust: Lower it if you want to skip beams more easily; increase it if you want stricter matching.
+
++ do_beamskip : 
+
+    - Description: Enables or disables the beam skipping feature. When enabled, AMCL skips beams that don't match the map well, speeding up the process.
+    - Default: False
+    - When to adjust: Set it to True if you want AMCL to skip unreliable beams.
+
++ lambda_short : 
+
+    - Description: A parameter related to the laser model, specifically the short-range beam in the scan data. It adjusts the exponential decay for short beams.
+    - Default: 0.1
+    - When to adjust: Increase if your robot frequently detects objects that are very close, like walls or obstacles right in front of it.
+
++ laser_likelihood_max_dist : 
+
+    - Description: The maximum distance at which obstacle inflation will occur in the likelihood field model (AMCL's way of interpreting laser data). 
+      This defines the effective area around the laser scan data that will be considered for localization.
+    - Default: 2.0 meters
+    - When to adjust: Increase if the robot should consider obstacles further away for localization.
+
++ laser_max_range : 
+
+    - Description: The maximum range at which the laser scanner will be considered in localization. Any scan data beyond this range will be ignored.
+    - Default: 100.0 meters (should be 12m for A1)
+    - When to adjust: Set this to the maximum range of your laser scanner, or lower if you want to limit the scanning range.
+
++ laser_min_range : 
+
+    - Description: The minimum range at which the laser scanner will be considered in localization. Any scan data beyond this range will be ignored.
+    - Default: -1.0 meters (should be 0.5 for A1)
+    - When to adjust: Set this to the minimum range of your laser scanner, or lower if you want to limit the scanning range.
+
++ laser_model_type : 
+    - Description: This defines which laser scan model AMCL uses. There are three models:
+        > beam: Uses a basic beam model.
+        > likelihood_field: Uses a likelihood field model, more complex.
+        > likelihood_field_prob: Similar to likelihood field, but with beam skipping. (prefer for food deliery robot)
+    - Default: likelihood_field
+    - When to adjust: Use likelihood_field_prob if you want to use beam skipping with the likelihood model.
+
++ set_initial_pose:
+
+    - Description: If set to true, AMCL will set the initial pose (robot's position) from the parameters instead of waiting for the initial pose message. This is useful for setting a known starting position.
+    - Default: false
+    - When to adjust: Set it to true if you want AMCL to set the starting pose automatically instead of waiting for an external message.
+
++ initial_pose:
+
+    - Description: The initial position of the robot when AMCL starts. It uses X, Y, Z coordinates and yaw (rotation).
+    - Default: {x: 0.0, y: 0.0, z: 0.0, yaw: 0.0}
+    - When to adjust: Set this to the starting position of your robot (if set_initial_pose is true).
+
++ max_beams:
+
+    - Description: The maximum number of laser beams used for updating the particle filter. More beams give more accurate localization, but increase the computation cost.
+    - Default: 60
+    - When to adjust: Increase if you need more accurate updates, decrease if you want faster processing.
+
++ max_particles:
+
+    - Description: The maximum number of particles (hypotheses about the robot’s position). 
+      More particles result in better localization accuracy, but use more CPU.
+    - Default: 2000
+    - When to adjust: Increase if you want more accuracy and have enough computing power, decrease if the system is slow.
+
++ min_particles:
+
+    - Description: The minimum number of particles AMCL will use. 
+      This sets a lower bound to ensure some particles are always being used for localization.
+    - Default: 500
+    - When to adjust: Increase if you want more particles for better accuracy or decrease if you want to speed up localization.
+
++ pf_err:
+
+    - Description: The allowed error in the particle filter’s population. 
+      This is used to control when the filter needs to be updated based on the number of particles.
+    - Default: 0.05
+    - When to adjust: Increase if you want to allow larger errors before the filter updates; decrease for more precise control.
+
++ pf_z:
+
+    - Description: This controls the population density of the particle filter. A higher value indicates a denser population of particles.
+    - Default: 0.99
+    - When to adjust: Change it if you want to control how concentrated your particles are during localization.
+
++ random_seed:
+
+    - Description: This controls the seed for the random number generator (RNG) used for particles.
+        > >= 0: A fixed value is used for reproducibility.
+        > < 0: The system uses the current time as the seed.
+    - Default: -1
+    - When to adjust: Leave it as -1 for random, or set it to a fixed number if you want reproducible tests
+
++ recovery_alpha_fast & recovery_alpha_slow:
+
+    - Description: These control how quickly AMCL recovers by adding random poses when the filter fails to converge.
+        > recovery_alpha_fast: Faster recovery rate.
+        > recovery_alpha_slow: Slower recovery rate.
+    - Default: 0.0 (no recovery).
+    - When to adjust: Increase these values if the robot often gets lost or stuck and needs recovery.

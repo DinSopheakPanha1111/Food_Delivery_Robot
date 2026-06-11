@@ -1,0 +1,73 @@
+amcl:
+  ros__parameters:
+    ################################### Alphas' value #####################################
+    alpha1: 0.005 # error​​ yaw ដោយការបង្វិលជុំវិញខ្លួន
+    alpha2: 0.005 # error yaw ដោយការបើកទៅមុខ
+    alpha3: 0.005 # error distance ដោយការបើកទៅមុខ
+    alpha4: 0.005 # error distance ដោយការបង្វិលជុំវិញខ្លួន
+    #alpha5: 0.2 # no needed for diff drive robot
+    #Maximum of alpha = 1
+    #####################################################################################
+
+    ################################### Lidar's config #####################################
+    beam_skip_distance: 0.20 #skip beam មួយចំនួនចោលបើ​ beam មិននៅក្នុង​ map​ (m)
+    beam_skip_error_threshold: 0.9 #បើចំនួន beam មិន match នឹង map លើសភាគរយដែលបានកំណត់​ គឺត្រួវបាន skip ចោល វានឹងធ្វើការ update ឡើងវិញ all(%)
+    beam_skip_threshold: 0.3 #បើភាគរយ​​ X នៃ beam មិនត្រឹមត្រួវជាមួយនឹង particle, យើងធ្វើការ skip beam ចោល (%)
+    do_beamskip: true #បើក beam skipping ដើម្បីអោយ parameters ខាងលើដំណើរការ 
+    sigma_hit: 0.1 # Measurement noise from reading for z_hit (m) 
+    laser_likelihood_max_dist: 2.0 #ប៉ារ៉ាម៉ែត្រនេះ គឺជា «ចម្ងាយស្វែងរកអតិបរមាជុំវិញជញ្ជាំង ឬឧបសគ្គ» នៅពេលដែលរ៉ូបូតគណនាភាពត្រឹមត្រូវនៃទីតាំងរបស់វា។ វាជួយបង្កើត <<តំបន់ប៉ាន់ស្មាន>>(Probability Glow) ជុំវិញជញ្ជាំងនៅលើផែនទី (m)
+    laser_max_range: 9.0 #ដាក់ -1m ដើម្បីប្រើប្រាស់ប្រវែងវែងបំផុតរបស់​ Lidar
+    laser_min_range: 0.15 #ដាក់ -1m ដើម្បីប្រើប្រាស់ប្រវែងខ្លីបំផុតរបស់​ Lidar
+    laser_model_type: "likelihood_field_prob" #​ have 3 models, beam : សុី CPU ខ្លាំងប៉ុន្តែ និងអាច slow down system. likelihood_field អាច confuse​ ពេលមានមនុស្សច្រើនដើរកាត់. likelihood_field_prob ប្រើប្រាស់​ beam skip features​ ដើម្បីកុំអោយមាន noise នៅក្នុងការ Localization 
+    max_beams: 120 # តើប្រើប្រាស់ beam ចំនួនប៉ុន្មានដើម្បីប្រើប្រាស់ក្នុងការ update filter
+    max_particles: 3000 #ចំនួន guessing particles ច្រើនបំផុតដែលអាច ​​​ estimate លើ map
+    min_particles: 500 #ចំនួន guessing particles តិចបំផុតដែលអាច​​​ estimate លើ map
+    z_hit: 0.85 # តើអោយតម្លៃវាប៉ុន្មានសម្រប់ beam ដែលបាញ់ចំ map (how much trust amcl can trust the beam to do localization)
+    z_rand: 0.15 # តើអោយតម្លៃវាប៉ុន្មានសម្រប់ beam ដែលបាញ់ចំ របស់ដទៃទៀត (how much trust amcl should not trust the beam to do localization)
+    #Maximum of z = 1
+    #####################################################################################
+
+    ################################### Robot's frame config #####################################
+    base_frame_id: "base_footprint" #base frame រ៉ួបូត
+    global_frame_id: "map" #global frame រ៉ួបូត
+    odom_frame_id: "odom" #odom frame រ៉ួបូត
+    robot_model_type: "nav2_amcl::DifferentialMotionModel" # រ៉ូបូតម៉ូដេល
+    #introspection_mode: "disabled" # no needed
+    #####################################################################################
+
+    ################################### topic's config #####################################
+    scan_topic: scan
+    map_topic: map
+    tf_broadcast: true #publish transformation
+    transform_tolerance: 0.2 #accetable 0.1 s delay only
+    #####################################################################################
+
+    ################################### Particle filter's config #####################################
+    pf_err: 0.05  #Particle Filter population error.
+    pf_z: 0.99    #Particle filter population density. 2.33 is the 99% percentile.
+    random_seed: -1
+    #####################################################################################
+
+    ################################### Recovery's config #####################################   
+    recovery_alpha_fast: 0.1 #good value recommend for nav2
+    recovery_alpha_slow: 0.001 ##good value recommend for nav2
+    resample_interval: 1 #Number of filter updates required before resampling.
+    #These parameters control AMCL's ability to recover from being completely lost (the "kidnapped robot problem"). They do this by randomly injecting completely new particles across the entire map if the overall laser-to-map match quality drops significantly.
+    #####################################################################################
+
+
+    ################################### AMCL's Update configuration #####################################
+    update_min_a: 0.1 # update if the robot has rotated at least X rad
+    update_min_d: 0.2 # update if the robot has moved at least X m
+    #####################################################################################
+
+    ################################### Pose configuration #####################################
+    save_pose_rate: -1.0 # no need for prototyping
+    set_initial_pose: true
+    always_reset_initial_pose: true
+    first_map_only: true #Allows AMCL to accept maps more than once on the map_topic. This is especially useful when you’re using the LoadMap service in map_server. Prior to Humble, this is first_map_only_.
+    initial_pose:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      yaw: 0.0

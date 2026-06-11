@@ -1,0 +1,65 @@
+
++ Example for mobile robot:
+
+        if (!imu_)
+            return;
+
+        auto stamp = this->get_clock()->now();
+
+        auto accel = imu_->getAccel();
+        auto gyro  = imu_->getGyro();
+        auto quat  = imu_->getQuat();
+
+        sensor_msgs::msg::Imu imu_msg;
+        imu_msg.header.stamp = stamp;
+        imu_msg.header.frame_id = "imu_link";
+
+        // Linear acceleration (m/s^2 assumed already scaled correctly)
+        imu_msg.linear_acceleration.x = accel[0];
+        imu_msg.linear_acceleration.y = accel[1];
+        imu_msg.linear_acceleration.z = accel[2];
+
+        // Angular velocity (rad/s)
+        imu_msg.angular_velocity.x = gyro[0];
+        imu_msg.angular_velocity.y = gyro[1];
+        imu_msg.angular_velocity.z = gyro[2];
+
+        // Orientation (quat)
+        imu_msg.orientation.w = quat[0];
+        imu_msg.orientation.x = quat[1];
+        imu_msg.orientation.y = quat[2];
+        imu_msg.orientation.z = quat[3];
+
+        // Covariance matrices (set diagonal to a small value, 0 means no uncertainty)
+        // Linear acceleration covariance (3x3 matrix)
+        imu_msg.linear_acceleration_covariance = {1e6, 0.0, 0.0,
+                                                 0.0, 1e6, 0.0,
+                                                 0.0, 0.0, 1e6};
+
+        // Angular velocity covariance (3x3 matrix)
+        imu_msg.angular_velocity_covariance = {1e6, 0.0, 0.0,
+                                               0.0, 1e6, 0.0,
+                                               0.0, 0.0, 0.03};
+
+        // Orientation covariance (3x3 matrix)
+        imu_msg.orientation_covariance = {1e6, 0.0, 0.0,
+                                          0.0, 1e6, 0.0,
+                                          0.0, 0.0, 0.01};
+
+        imu_pub_->publish(imu_msg);
+
++ linear accleration covariance : 
+    -   imu_msg.linear_acceleration_covariance = {ax, 0.0, 0.0,
+                                                 0.0, ay, 0.0,
+                                                 0.0, 0.0, az};
+
++ angular velocity in euler covariance : 
+    -   imu_msg.angular_velocity_covariance = {roll_dot, 0.0, 0.0,
+                                                 0.0, pitch_dot, 0.0,
+                                                 0.0, 0.0, yaw_dot};
+
++ orientation in euler covariance : 
+    -   imu_msg.orientation_covariance =        {roll, 0.0, 0.0,
+                                                 0.0, pitch, 0.0,
+                                                 0.0, 0.0, yaw};
+

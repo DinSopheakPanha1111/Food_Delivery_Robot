@@ -1,0 +1,9 @@
+install/
+logs/
+build/
+.vscode/
+Matrix_Operation_code/
+log/
+**/__pycache__/
+*.pyc
+*.pyo
