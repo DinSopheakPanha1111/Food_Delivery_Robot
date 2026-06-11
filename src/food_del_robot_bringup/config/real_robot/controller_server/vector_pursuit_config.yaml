@@ -59,12 +59,12 @@ controller_server:
 
       # --- OBSTACLE & COST SCALING ---
       use_cost_regulated_linear_velocity_scaling: true   # Slow down automatically near obstacles
-      cost_scaling_dist: 0.6               # Start slowing down when obstacle is within 0.3m
-      cost_scaling_gain: 0.5               # How aggressively to slow near obstacles (1.0 = balanced)
-      inflation_cost_scaling_factor: 15.0   # Must match your costmap inflation_layer cost_scaling_factor!
+      cost_scaling_dist: 0.3               # Start slowing down when obstacle is within 0.3m
+      cost_scaling_gain: 0.8               # How aggressively to slow near obstacles (1.0 = balanced)
+      inflation_cost_scaling_factor: 2.5   # Must match your costmap inflation_layer cost_scaling_factor!
 
       # --- COLLISION DETECTION ---
-      use_collision_detection: true         # Stop robot if obstacle detected directly ahead
+      use_collision_detection: false         # Stop robot if obstacle detected directly ahead
       max_allowed_time_to_collision_up_to_target: 2.0  # How far ahead (s) to check for collisions
 
       # --- GOAL APPROACH ---
@@ -155,7 +155,7 @@ local_costmap:
 
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.25     
-        cost_scaling_factor: 15.0     
+        inflation_radius: 0.2     
+        cost_scaling_factor: 2.5     
 
       always_send_full_costmap: true
