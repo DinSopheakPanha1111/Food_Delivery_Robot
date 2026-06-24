@@ -14,8 +14,8 @@ def generate_launch_description():
     bringup = get_package_share_directory('food_del_robot_bringup')
 
     urdf_path = os.path.join(desc, 'urdf', 'food_del_robot.urdf.xacro')
-    rviz_config_path = os.path.join(desc, 'rviz', 'food_del_robot_v7.rviz')
-    map_yaml_path = os.path.join(bringup, 'maps', 'Class_map', 'classroom_map.yaml')
+    rviz_config_path = os.path.join(desc, 'rviz', 'food_del_sim_v6.rviz')
+    map_yaml_path = os.path.join(bringup, 'maps', 'Outdoor_map', 'Outdoor_new.yaml')
     amcl_config_path = os.path.join(bringup, 'config', 'real_robot', 'amcl', 'amcl_config.yaml')
     controller_config_path = os.path.join(bringup, 'config', 'real_robot', 'controller_server', 'vector_pursuit_config.yaml')
     planner_config_path = os.path.join(bringup, 'config', 'real_robot', 'planner_server', 'Smac_planner_config.yaml')
@@ -23,7 +23,6 @@ def generate_launch_description():
     lifecycle_config_path = os.path.join(bringup, 'config', 'real_robot', 'lifecycle_manager', 'lifecycle_manager_config.yaml')
     behaviour_config_path = os.path.join(bringup, 'config', 'real_robot', 'behaviour', 'behaviour_config.yaml')
     rplidar_launch_path = os.path.join(get_package_share_directory('rplidar_ros'), 'launch', 'rplidar_a1_launch.py')
-    realsense_launch_path = os.path.join(get_package_share_directory('realsense2_camera'), 'launch', 'rs_launch.py')
     hand_controller_launch = os.path.join(bringup, 'launch', 'hand_controller.launch.py')
     keepout_filter_params = os.path.join(
         bringup,
@@ -35,17 +34,33 @@ def generate_launch_description():
     keepout_mask_yaml = os.path.join(
         bringup,
         'maps',
-        'Class_map',
-        'classroom_map_mask.yaml'
+        'Outdoor_map',
+        'Outdoor_new_mask.yaml'
     )
     return LaunchDescription([
         IncludeLaunchDescription(PythonLaunchDescriptionSource(rplidar_launch_path)),
         IncludeLaunchDescription(PythonLaunchDescriptionSource(hand_controller_launch)),
 
         # ── RealSense D435 ─────────────────────────────────────────────────
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(realsense_launch_path),
-            launch_arguments={'pointcloud.enable': 'true'}.items(),
+        # Use correct parameter names discovered from ros2 param list:
+        #   pointcloud__neon_.enable  (not pointcloud.enable)
+        #   depth_module.depth_profile (not depth_module.profile)
+        # Color must be enabled for pointcloud generation to work
+        Node(
+            package='realsense2_camera',
+            executable='realsense2_camera_node',
+            name='camera',
+            output='screen',
+            parameters=[{
+                'enable_depth':                     True,
+                'enable_color':                     True,
+                'enable_sync':                      True,
+                'align_depth.enable':               True,
+                'depth_module.depth_profile':       '848x480x30',
+                'rgb_camera.color_profile':         '640x480x30',
+                'pointcloud__neon_.enable':         True,
+                'pointcloud__neon_.stream_filter':  2,      # use Color stream for texture
+            }]
         ),
         # ──────────────────────────────────────────────────────────────────
 

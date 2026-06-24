@@ -59,7 +59,7 @@ matplotlib.rcParams.update({
 })
 
 # ── Fixed waypoint ───────────────────────────────────────────────────────────
-GOAL_X     = 1.2
+GOAL_X     = 2.4
 GOAL_Y     = 5.4
 GOAL_THETA =  0.0   # degrees
 GOAL_FRAME = "map"
