@@ -4,20 +4,20 @@ nav_realtime_plot.py
 ====================
 ROS 2 node: navigate to a fixed waypoint and show four live plots.
 
-Position / orientation source: TF  map → base_footprint  (not amcl_pose)
+Position / orientation source: TF  map -> base_footprint  (not amcl_pose)
 Velocity source              : /cmd_vel  (linear.x  and  angular.z)
 Path source                  : /plan  (first plan only)
 
 RViz topics (latched, republished at 1 Hz so they persist after goal):
-  /viz/planned_path   — nav_msgs/Path  — the Nav2 planned path
-  /viz/actual_path    — nav_msgs/Path  — the robot's actual travelled path
+  /viz/planned_path   -- nav_msgs/Path  -- the Nav2 planned path
+  /viz/actual_path    -- nav_msgs/Path  -- the robot's actual travelled path
 
 On completion the script auto-increments a test counter and saves:
-  test_N_figure.pkl   — double-click to reload the interactive figure
-  test_N_data.txt     — raw timestamped data for every channel
+  test_N_figure.npz   -- reload with --load flag
+  test_N_data.txt     -- raw timestamped data for every channel
 
 Re-open a saved figure:
-  python3 nav_realtime_plot.py --load test_1_figure.pkl
+  python3 nav_realtime_plot.py --load test_1_figure.npz
 """
 
 import argparse
@@ -34,7 +34,7 @@ from rclpy.action import ActionClient
 from rclpy.qos import QoSProfile, QoSDurabilityPolicy, QoSReliabilityPolicy
 
 from action_msgs.msg import GoalStatus
-from geometry_msgs.msg import Twist, PoseStamped
+from geometry_msgs.msg import Twist, PoseStamped, PoseWithCovarianceStamped
 from nav2_msgs.action import NavigateToPose
 from nav_msgs.msg import Path
 
@@ -43,10 +43,10 @@ from tf2_ros import (Buffer, TransformListener,
                      LookupException, ConnectivityException, ExtrapolationException)
 
 import matplotlib
-matplotlib.use("TkAgg")          # swap to Qt5Agg / Qt6Agg if TkAgg unavailable
+matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-# ── Global font: Times New Roman ─────────────────────────────────────────────
+
 matplotlib.rcParams.update({
     "font.family":       "serif",
     "font.serif":        ["Times New Roman", "Times", "DejaVu Serif"],
@@ -60,18 +60,25 @@ matplotlib.rcParams.update({
 
 # ── Fixed waypoint ───────────────────────────────────────────────────────────
 GOAL_X     = 2.4
-GOAL_Y     = 5.4
-GOAL_THETA =  0.0   # degrees
+GOAL_Y     = 6.0
+GOAL_THETA =  90.0   # degrees
 GOAL_FRAME = "map"
+
+# ── Robot initial pose (where the robot physically starts) ───────────────────
+# These must match the robot's real starting position on the map.
+# Same values you would set with the RViz "2D Pose Estimate" button.
+INIT_X     = 0.0
+INIT_Y     = 0.0
+INIT_THETA = 0.0   # degrees
 
 # TF frames
 TF_TARGET = "map"
-TF_SOURCE = "base_footprint"   # fallback: "base_link"
+TF_SOURCE = "base_footprint"
 
-# ── Output directory (same folder as this script) ────────────────────────────
+# ── Output directory ─────────────────────────────────────────────────────────
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# ── Colour palette (white background) ────────────────────────────────────────
+# ── Colour palette ───────────────────────────────────────────────────────────
 ACCENT = "#0072B2"
 ORANGE = "#D55E00"
 GREEN  = "#009E73"
@@ -125,9 +132,11 @@ class NavPlotNode(Node):
         self.create_subscription(Path,  "/plan",    self._plan_cb, 10)
         self.create_subscription(Twist, "/cmd_vel", self._vel_cb,  10)
 
+        # ── Initial pose publisher ─────────────────────────────────────────
+        self._init_pose_pub = self.create_publisher(
+            PoseWithCovarianceStamped, "/initialpose", 10)
+
         # ── RViz publishers (TRANSIENT_LOCAL = latched) ───────────────────
-        # Any RViz instance that connects — even after publishing — will
-        # receive the last message immediately.
         latch_qos = QoSProfile(
             depth=1,
             reliability=QoSReliabilityPolicy.RELIABLE,
@@ -136,7 +145,7 @@ class NavPlotNode(Node):
         self._pub_planned = self.create_publisher(Path, "/viz/planned_path", latch_qos)
         self._pub_actual  = self.create_publisher(Path, "/viz/actual_path",  latch_qos)
 
-        # Republish both paths at 1 Hz so RViz never drops them on reconnect
+        # Republish both paths at 1 Hz
         self.create_timer(1.0, self._republish_paths)
 
         # ── Thread-safe data stores ───────────────────────────────────────
@@ -167,10 +176,37 @@ class NavPlotNode(Node):
         # Poll TF at 20 Hz while navigating
         self._tf_timer = self.create_timer(0.05, self._tf_poll)
 
+    # ── Publish initial pose to initialize AMCL ───────────────────────────
+
+    def publish_initial_pose(self):
+        """
+        Publish /initialpose so AMCL knows where the robot starts.
+        This replaces the manual RViz '2D Pose Estimate' step.
+        """
+        qz, qw = yaw_deg_to_quat(INIT_THETA)
+
+        msg = PoseWithCovarianceStamped()
+        msg.header.frame_id = "map"
+        msg.header.stamp    = self.get_clock().now().to_msg()
+
+        msg.pose.pose.position.x    = INIT_X
+        msg.pose.pose.position.y    = INIT_Y
+        msg.pose.pose.orientation.z = qz
+        msg.pose.pose.orientation.w = qw
+
+        # Standard covariance values matching Nav2 defaults
+        msg.pose.covariance[0]  = 0.25   # x variance
+        msg.pose.covariance[7]  = 0.25   # y variance
+        msg.pose.covariance[35] = 0.07   # yaw variance
+
+        self._init_pose_pub.publish(msg)
+        self.get_logger().info(
+            f"Initial pose published: x={INIT_X}, y={INIT_Y}, theta={INIT_THETA} deg"
+        )
+
     # ── RViz republish ────────────────────────────────────────────────────
 
     def _republish_paths(self):
-        """Publish both paths at 1 Hz so they persist in RViz at all times."""
         now = self.get_clock().now().to_msg()
 
         with self._lock:
@@ -179,7 +215,6 @@ class NavPlotNode(Node):
             ax = list(self.actual_x)
             ay = list(self.actual_y)
 
-        # ── Planned path ──────────────────────────────────────────────────
         if px:
             planned_msg = Path()
             planned_msg.header.frame_id = GOAL_FRAME
@@ -194,7 +229,6 @@ class NavPlotNode(Node):
                 planned_msg.poses.append(ps)
             self._pub_planned.publish(planned_msg)
 
-        # ── Actual path ───────────────────────────────────────────────────
         if ax:
             actual_msg = Path()
             actual_msg.header.frame_id = GOAL_FRAME
@@ -229,8 +263,6 @@ class NavPlotNode(Node):
         elapsed = time.time() - self._t_start
 
         with self._lock:
-            # Tracking error = nearest planned-path point − actual pose
-            # (desired − actual). NaN until the first plan arrives.
             if self.planned_x:
                 dx = np.asarray(self.planned_x) - t.x
                 dy = np.asarray(self.planned_y) - t.y
@@ -273,12 +305,13 @@ class NavPlotNode(Node):
 
     def _goal_response_cb(self, future):
         gh = future.result()
+        print(f"[DEBUG] goal_response_cb fired, accepted={gh.accepted}")
         if not gh.accepted:
             self.get_logger().error("Goal rejected!")
             self._navigating = False
             self._nav_done.set()
             return
-        self.get_logger().info("Goal accepted — navigating …")
+        self.get_logger().info("Goal accepted -- navigating ...")
         gh.get_result_async().add_done_callback(self._result_cb)
 
     def _result_cb(self, future):
@@ -320,9 +353,9 @@ def build_figure(test_label: str):
 
     fig = plt.figure(figsize=(16, 9), facecolor=BG)
     fig.suptitle(
-        f"Nav2 Monitor — {test_label}  |  "
-        f"Goal: x={GOAL_X} m, y={GOAL_Y} m, θ={GOAL_THETA}°  |  "
-        f"Pose source: TF map → base",
+        f"Nav2 Monitor -- {test_label}  |  "
+        f"Goal: x={GOAL_X} m, y={GOAL_Y} m, theta={GOAL_THETA} deg  |  "
+        f"Pose source: TF map -> base",
         color=FG, fontsize=11, fontweight="bold", y=0.98,
     )
 
@@ -364,7 +397,7 @@ def build_figure(test_label: str):
     line_vang, = ax_vel.plot([], [], color=PINK, lw=1.8, label="Angular velocity")
     ax_vel.legend(loc="upper right", fontsize=8, facecolor=BG, labelcolor=FG, edgecolor=GRID_C).set_draggable(True)
 
-    status_txt = fig.text(0.5, 0.003, "Status: waiting …",
+    status_txt = fig.text(0.5, 0.003, "Status: waiting ...",
                           ha="center", color="#555555", fontsize=9)
 
     lines = dict(plan=line_plan, actual=line_actual,
@@ -413,10 +446,10 @@ def run_live_plots(node: NavPlotNode, fig, axes, lines, status_txt):
 
         nav_done = node._nav_done.is_set()
         if nav_done:
-            status_txt.set_text("Status: Navigation COMPLETE — figure saved")
+            status_txt.set_text("Status: Navigation COMPLETE -- figure saved")
         else:
             elapsed = time.time() - node._t_start if node._t_start else 0.0
-            status_txt.set_text(f"Status: Navigating …  elapsed: {elapsed:.1f} s")
+            status_txt.set_text(f"Status: Navigating ...  elapsed: {elapsed:.1f} s")
 
         fig.canvas.draw_idle()
         fig.canvas.flush_events()
@@ -430,10 +463,6 @@ def run_live_plots(node: NavPlotNode, fig, axes, lines, status_txt):
 # ── Final value annotations ───────────────────────────────────────────────────
 
 def annotate_final_values(node, axes: dict):
-    """
-    Place draggable end-point annotations on every panel.
-    All annotation boxes can be grabbed and moved with the mouse.
-    """
     with node._lock:
         ax_x = list(node.actual_x);  ax_y = list(node.actual_y)
         ts   = list(node.t_stamps)
@@ -445,11 +474,9 @@ def annotate_final_values(node, axes: dict):
     DOT  = dict(marker="o", markersize=6, zorder=6, clip_on=False)
     HLIN = dict(linestyle="--", linewidth=0.9, alpha=0.55)
 
-    # Tracks the currently selected annotation (click = select, Delete = remove)
     _selected = [None]
 
     def _on_click(event):
-        """Click an annotation box to select it (highlights border)."""
         prev = _selected[0]
         if prev is not None:
             try:
@@ -475,7 +502,6 @@ def annotate_final_values(node, axes: dict):
                     return
 
     def _on_key(event):
-        """Press Delete or Backspace to remove the selected annotation."""
         if event.key not in ("delete", "backspace"):
             return
         ann = _selected[0]
@@ -494,7 +520,6 @@ def annotate_final_values(node, axes: dict):
     fig.canvas.mpl_connect("key_press_event",    _on_key)
 
     def _ann(ax, x, y, text, color, offset_x=12, offset_y=0):
-        """Create a draggable annotation. Click to select, Delete to remove."""
         xl, xr = ax.get_xlim()
         yb, yt = ax.get_ylim()
         xspan  = xr - xl if xr != xl else 1.0
@@ -515,7 +540,6 @@ def annotate_final_values(node, axes: dict):
         ann.draggable(use_blit=True)
         return ann
 
-    # ── Panel 1: path map ────────────────────────────────────────────────
     if ax_x and ax_y:
         a      = axes["map"]
         xv, yv = ax_x[-1], ax_y[-1]
@@ -524,7 +548,6 @@ def annotate_final_values(node, axes: dict):
              f"Final\nx = {xv:.3f} m\ny = {yv:.3f} m",
              ORANGE, offset_x=12, offset_y=0)
 
-    # ── Panel 2: error ───────────────────────────────────────────────────
     if ts and len(ts) == len(ex) == len(ey):
         a     = axes["err"]
         t_end = ts[-1]
@@ -537,7 +560,6 @@ def annotate_final_values(node, axes: dict):
             a.plot([xl, t_end], [yv, yv], color=color, **HLIN)
             _ann(a, t_end, yv, label, color, offset_x=8, offset_y=oy)
 
-    # ── Panel 3: yaw ─────────────────────────────────────────────────────
     if ts and len(ts) == len(yw):
         a     = axes["yaw"]
         xl, _ = a.get_xlim()
@@ -548,24 +570,22 @@ def annotate_final_values(node, axes: dict):
              f"Yaw\n{yv:.2f} deg\nt={te:.2f} s",
              PURPLE, offset_x=8, offset_y=0)
 
-    # ── Panel 4: velocity ────────────────────────────────────────────────
     if tv and len(tv) == len(vl) == len(va):
         a     = axes["vel"]
         t_end = tv[-1]
         xl, _ = a.get_xlim()
         for yv, color, label, oy in [
             (vl[-1], CYAN, f"v = {vl[-1]:.3f} m/s\nt={t_end:.2f} s",        12),
-            (va[-1], PINK, f"\u03c9 = {va[-1]:.3f} rad/s\nt={t_end:.2f} s", -40),
+            (va[-1], PINK, f"w = {va[-1]:.3f} rad/s\nt={t_end:.2f} s",      -40),
         ]:
             a.plot(t_end, yv, color=color, **DOT)
             a.plot([xl, t_end], [yv, yv], color=color, **HLIN)
             _ann(a, t_end, yv, label, color, offset_x=8, offset_y=oy)
 
 
-# ── Save figure as pickle ─────────────────────────────────────────────────────
+# ── Save figure data ──────────────────────────────────────────────────────────
 
 def save_figure_npz(node, path: str):
-    """Save all plot data to a .npz file for later interactive reload."""
     with node._lock:
         data = dict(
             planned_x = np.array(node.planned_x),
@@ -583,7 +603,7 @@ def save_figure_npz(node, path: str):
             succeeded = np.array([1 if node._nav_succeeded else 0]),
         )
     np.savez(path, **data)
-    print(f"  Figure data saved → {path}.npz")
+    print(f"  Figure data saved -> {path}.npz")
 
 
 # ── Save raw data to .txt ─────────────────────────────────────────────────────
@@ -613,7 +633,7 @@ def save_data_txt(node: NavPlotNode, path: str, test_label: str, succeeded: bool
             f.write(f"{x:.6f}  {y:.6f}\n")
         f.write("#\n")
 
-        f.write("# --- ACTUAL POSE (TF) + TRACKING ERRORS (vs planned path, desired - actual) ---\n")
+        f.write("# --- ACTUAL POSE (TF) + TRACKING ERRORS ---\n")
         f.write("# time(s)  actual_x(m)  actual_y(m)  err_x(m)  err_y(m)  yaw(deg)\n")
         for i, t in enumerate(ts):
             f.write(f"{t:.4f}  "
@@ -627,14 +647,12 @@ def save_data_txt(node: NavPlotNode, path: str, test_label: str, succeeded: bool
         for i, t in enumerate(tv):
             f.write(f"{t:.4f}  {vl[i]:.6f}  {va[i]:.6f}\n")
 
-    print(f"  Data  saved → {path}")
+    print(f"  Data  saved -> {path}")
 
 
 # ── Load & show a saved figure ────────────────────────────────────────────────
 
 def load_and_show(npz_path: str):
-    """Reconstruct the full interactive figure from a saved .npz data file."""
-    # accept with or without the .npz extension
     if not npz_path.endswith(".npz"):
         npz_path += ".npz"
     print(f"Loading figure data from {npz_path} ...")
@@ -643,14 +661,12 @@ def load_and_show(npz_path: str):
     gx, gy, gt = float(d["goal"][0]), float(d["goal"][1]), float(d["goal"][2])
     ok = bool(d["succeeded"][0])
 
-    # Temporarily override globals so build_figure titles are correct
     global GOAL_X, GOAL_Y, GOAL_THETA
     GOAL_X, GOAL_Y, GOAL_THETA = gx, gy, gt
 
-    fname   = os.path.basename(npz_path)
-    # derive label from filename e.g. test_1_figure.npz -> Test 1
-    parts   = fname.replace("_figure.npz", "").split("_")
-    label   = " ".join(p.capitalize() for p in parts)
+    fname  = os.path.basename(npz_path)
+    parts  = fname.replace("_figure.npz", "").split("_")
+    label  = " ".join(p.capitalize() for p in parts)
 
     fig, axes, lines, status_txt = build_figure(label)
 
@@ -684,7 +700,6 @@ def load_and_show(npz_path: str):
         f"Loaded: {fname}  |  Status: {'SUCCEEDED' if ok else 'FAILED'}"
     )
 
-    # Reconstruct final annotations from numpy arrays
     class _FakeNode:
         pass
     n = _FakeNode()
@@ -714,15 +729,12 @@ def main():
 
     test_idx   = next_test_index(SCRIPT_DIR)
     test_label = f"Test {test_idx}"
-    fig_path   = os.path.join(SCRIPT_DIR, f"test_{test_idx}_figure")   # .npz added by numpy
+    fig_path   = os.path.join(SCRIPT_DIR, f"test_{test_idx}_figure")
     txt_path   = os.path.join(SCRIPT_DIR, f"test_{test_idx}_data.txt")
 
     print(f"\n{'='*55}")
     print(f"  {test_label}  (files will be saved as test_{test_idx}_*)")
     print(f"{'='*55}")
-    print(f"\n  RViz topics:")
-    print(f"    /viz/planned_path  — nav_msgs/Path  (desired route)")
-    print(f"    /viz/actual_path   — nav_msgs/Path  (robot trail)\n")
 
     rclpy.init()
     node = NavPlotNode()
@@ -730,17 +742,31 @@ def main():
     spin_thread = threading.Thread(target=rclpy.spin, args=(node,), daemon=True)
     spin_thread.start()
 
-    print("Waiting 2 s for nodes to connect …")
+    print("\nWaiting 2 s for nodes to connect ...")
     time.sleep(2.0)
 
-    print("Waiting for navigate_to_pose action server …")
-    node._action_client.wait_for_server()
-    print("Action server ready.\n")
+    # ── Step 1: publish initial pose so AMCL knows where robot is ─────────
+    print(f"\nPublishing initial pose: x={INIT_X}, y={INIT_Y}, theta={INIT_THETA} deg")
+    print("(This replaces the RViz '2D Pose Estimate' step)")
+    node.publish_initial_pose()
 
-    print(f"Sending goal in 2 s → x={GOAL_X}, y={GOAL_Y}, theta={GOAL_THETA}°")
-    time.sleep(2.0)
-    print("Sending goal now…\n")
+    print("Waiting 3 s for AMCL to initialize ...")
+    time.sleep(3.0)
 
+    # Confirm AMCL has updated
+    print("Checking AMCL pose after initialization ...")
+    time.sleep(1.0)
+
+    # ── Step 2: wait for action server ────────────────────────────────────
+    print("\nWaiting for navigate_to_pose action server ...")
+    while not node._action_client.wait_for_server(timeout_sec=1.0):
+        print("  still waiting ...")
+    print("Action server ready.")
+
+    time.sleep(1.0)
+
+    # ── Step 3: send goal ─────────────────────────────────────────────────
+    print(f"\nSending goal -> x={GOAL_X}, y={GOAL_Y}, theta={GOAL_THETA} deg\n")
     node.send_goal()
 
     fig, axes, lines, status_txt = build_figure(test_label)
@@ -749,13 +775,12 @@ def main():
     annotate_final_values(node, axes)
     fig.canvas.draw_idle()
 
-    print(f"\nSaving outputs for {test_label} …")
+    print(f"\nSaving outputs for {test_label} ...")
     save_figure_npz(node, fig_path)
     save_data_txt(node, txt_path, test_label, node._nav_succeeded)
     npz_name = f"test_{test_idx}_figure.npz"
     print(f"\nDone. Close the plot window to exit.")
     print(f"  Reload figure : python3 {os.path.basename(__file__)} --load {npz_name}")
-    print(f"  RViz paths still publishing on /viz/planned_path and /viz/actual_path")
 
     plt.ioff()
     plt.show()

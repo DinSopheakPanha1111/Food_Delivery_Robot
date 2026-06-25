@@ -14,8 +14,8 @@ def generate_launch_description():
     bringup = get_package_share_directory('food_del_robot_bringup')
 
     urdf_path = os.path.join(desc, 'urdf', 'food_del_robot.urdf.xacro')
-    rviz_config_path = os.path.join(desc, 'rviz', 'food_del_sim_v6.rviz')
-    map_yaml_path = os.path.join(bringup, 'maps', 'Outdoor_map', 'Outdoor_new.yaml')
+    rviz_config_path = os.path.join(desc, 'rviz', 'food_del_robot_v8.rviz')
+    map_yaml_path = os.path.join(bringup, 'maps', 'Class_map', 'classroom_map.yaml')
     amcl_config_path = os.path.join(bringup, 'config', 'real_robot', 'amcl', 'amcl_config.yaml')
     controller_config_path = os.path.join(bringup, 'config', 'real_robot', 'controller_server', 'vector_pursuit_config.yaml')
     planner_config_path = os.path.join(bringup, 'config', 'real_robot', 'planner_server', 'Smac_planner_config.yaml')
@@ -34,8 +34,8 @@ def generate_launch_description():
     keepout_mask_yaml = os.path.join(
         bringup,
         'maps',
-        'Outdoor_map',
-        'Outdoor_new_mask.yaml'
+        'Class_map',
+        'classroom_map_mask.yaml'
     )
     return LaunchDescription([
         IncludeLaunchDescription(PythonLaunchDescriptionSource(rplidar_launch_path)),
