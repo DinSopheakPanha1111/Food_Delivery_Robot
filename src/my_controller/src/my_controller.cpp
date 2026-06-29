@@ -10,8 +10,8 @@ class DynamicTeleop : public rclcpp::Node
 public:
     DynamicTeleop()
     : Node("dynamic_teleop"),
-      speed_(0.5),
-      angular_speed_(1.0),
+      speed_(0.2),
+      angular_speed_(0.8),
       last_triangle_(0),
       last_x_(0)
     {

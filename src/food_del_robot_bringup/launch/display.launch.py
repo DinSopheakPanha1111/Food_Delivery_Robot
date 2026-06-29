@@ -9,7 +9,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     desc = get_package_share_directory('food_del_robot_description')
     xacro_file = os.path.join(desc, 'urdf', 'food_del_robot.urdf.xacro')
-    rviz_config_path = os.path.join(desc, 'rviz', 'food_deli_display.rviz')
+    rviz_config_path = os.path.join(desc, 'rviz', 'food_del_robot_slam.rviz')
     robot_description = xacro.process_file(xacro_file, mappings={'use_sim': 'true'}).toxml()
 
     return LaunchDescription([
